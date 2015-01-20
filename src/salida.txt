@@ -1,0 +1,789 @@
+Using built-in specs.
+COLLECT_GCC=g++
+COLLECT_LTO_WRAPPER=/usr/lib/gcc/i686-linux-gnu/4.6/lto-wrapper
+Target: i686-linux-gnu
+Configured with: ../src/configure -v --with-pkgversion='Ubuntu/Linaro 4.6.3-1ubuntu5' --with-bugurl=file:///usr/share/doc/gcc-4.6/README.Bugs --enable-languages=c,c++,fortran,objc,obj-c++ --prefix=/usr --program-suffix=-4.6 --enable-shared --enable-linker-build-id --with-system-zlib --libexecdir=/usr/lib --without-included-gettext --enable-threads=posix --with-gxx-include-dir=/usr/include/c++/4.6 --libdir=/usr/lib --enable-nls --with-sysroot=/ --enable-clocale=gnu --enable-libstdcxx-debug --enable-libstdcxx-time=yes --enable-gnu-unique-object --enable-plugin --enable-objc-gc --enable-targets=all --disable-werror --with-arch-32=i686 --with-tune=generic --enable-checking=release --build=i686-linux-gnu --host=i686-linux-gnu --target=i686-linux-gnu
+Thread model: posix
+gcc version 4.6.3 (Ubuntu/Linaro 4.6.3-1ubuntu5) 
+COMPILER_PATH=/usr/lib/gcc/i686-linux-gnu/4.6/:/usr/lib/gcc/i686-linux-gnu/4.6/:/usr/lib/gcc/i686-linux-gnu/:/usr/lib/gcc/i686-linux-gnu/4.6/:/usr/lib/gcc/i686-linux-gnu/
+LIBRARY_PATH=/usr/lib/gcc/i686-linux-gnu/4.6/:/usr/lib/gcc/i686-linux-gnu/4.6/../../../i386-linux-gnu/:/usr/lib/gcc/i686-linux-gnu/4.6/../../../../lib/:/lib/i386-linux-gnu/:/lib/../lib/:/usr/lib/i386-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/i686-linux-gnu/4.6/../../../:/lib/:/usr/lib/
+COLLECT_GCC_OPTIONS='-v' '-Wno-deprecated' '-g' '-O2' '-o' 'mnslp' '-L.' '-L../../m-nslp/src/msg' '-L../../qspec/src' '-L../../ntlp/src' '-L../../protlib/src' '-L../../protlib/fastqueue' '-shared-libgcc' '-mtune=generic' '-march=i686'
+ /usr/lib/gcc/i686-linux-gnu/4.6/collect2 --sysroot=/ --build-id --no-add-needed --as-needed --eh-frame-hdr -m elf_i386 --hash-style=gnu -dynamic-linker /lib/ld-linux.so.2 -z relro -o mnslp /usr/lib/gcc/i686-linux-gnu/4.6/../../../i386-linux-gnu/crt1.o /usr/lib/gcc/i686-linux-gnu/4.6/../../../i386-linux-gnu/crti.o /usr/lib/gcc/i686-linux-gnu/4.6/crtbegin.o -L. -L../../m-nslp/src/msg -L../../qspec/src -L../../ntlp/src -L../../protlib/src -L../../protlib/fastqueue -L/usr/lib/gcc/i686-linux-gnu/4.6 -L/usr/lib/gcc/i686-linux-gnu/4.6/../../../i386-linux-gnu -L/usr/lib/gcc/i686-linux-gnu/4.6/../../../../lib -L/lib/i386-linux-gnu -L/lib/../lib -L/usr/lib/i386-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/i686-linux-gnu/4.6/../../.. mnslp-mnslp_daemon.o mnslp-main.o -lmnslp -lmnslp_msg -lqspec -lgist -lprot -lfastqueue -lipq -lssl -lrt -lpthread -lcppunit -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/i686-linux-gnu/4.6/crtend.o /usr/lib/gcc/i686-linux-gnu/4.6/../../../i386-linux-gnu/crtn.o
+mnslp-mnslp_daemon.o: In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+mnslp-mnslp_daemon.o: In function `mnslp::mnslp_daemon::main_loop(unsigned int)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/mnslp_daemon.cpp:196: undefined reference to `protlib::log::DefaultLog'
+mnslp-mnslp_daemon.o: In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+mnslp-mnslp_daemon.o:/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: more undefined references to `protlib::log::DefaultLog' follow
+./libmnslp.a(libmnslp_a-nf_session.o): In function `~nf_session':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:89: undefined reference to `mnslp::session::~session()'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `nf_session':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:63: undefined reference to `mnslp::session::session(mnslp::session_id const&)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:63: undefined reference to `mnslp::timer::timer(mnslp::session*)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:63: undefined reference to `mnslp::timer::timer(mnslp::session*)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:63: undefined reference to `mnslp::session::~session()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:79: undefined reference to `mnslp::session::session()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:79: undefined reference to `mnslp::timer::timer(mnslp::session*)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:79: undefined reference to `mnslp::timer::timer(mnslp::session*)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:79: undefined reference to `mnslp::session::~session()'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_close_configure(mnslp::dispatcher*, mnslp::msg_event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:228: undefined reference to `mnslp::nf_session::create_msg_for_nr(mnslp::msg::ntlp_msg*) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:230: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_close_configure(mnslp::dispatcher*, mnslp::msg_event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:195: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_close_configure(mnslp::dispatcher*, mnslp::msg_event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:198: undefined reference to `mnslp::nf_session::save_mt_policy_rule(mnslp::msg_event*)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:206: undefined reference to `mnslp::nf_session::create_msg_for_nr(mnslp::msg::ntlp_msg*) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:208: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_close_configure(mnslp::dispatcher*, mnslp::msg_event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:214: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:214: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_close(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:151: undefined reference to `mnslp::session::check_lifetime(unsigned int, unsigned int) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:152: undefined reference to `mnslp::session::check_authorization(mnslp::dispatcher*, mnslp::msg_event const*) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:161: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:177: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_close(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:169: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o):/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: more undefined references to `protlib::log::DefaultLog' follow
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_pending_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:304: undefined reference to `mnslp::session::check_authorization(mnslp::dispatcher*, mnslp::msg_event const*) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:336: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_pending_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:351: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:351: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:355: undefined reference to `mnslp::nf_session::get_mt_policy_rule_copy() const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:364: undefined reference to `mnslp::timer::stop()'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_pending_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:316: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_pending_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:318: undefined reference to `mnslp::timer::stop()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:259: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_pending_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:375: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:375: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o):/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:264: more undefined references to `protlib::log::DefaultLog' follow
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_pending_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:266: undefined reference to `mnslp::nf_session::get_mt_policy_rule_copy() const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:268: undefined reference to `mnslp::nf_session::create_msg_for_ni(mnslp::msg::ntlp_msg*) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:270: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_pending_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:275: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_pending_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:278: undefined reference to `mnslp::timer::stop()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:280: undefined reference to `mnslp::nf_session::create_msg_for_ni(mnslp::msg::ntlp_msg*) const'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_pending_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:327: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:327: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:331: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:398: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_pending_participating(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:468: undefined reference to `mnslp::session::check_authorization(mnslp::dispatcher*, mnslp::msg_event const*) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:500: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:535: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_pending_participating(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:512: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:512: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o):/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:423: more undefined references to `protlib::log::DefaultLog' follow
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_pending_participating(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:430: undefined reference to `mnslp::nf_session::get_mt_policy_rule_copy() const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:432: undefined reference to `mnslp::nf_session::create_msg_for_ni(mnslp::msg::ntlp_msg*) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:434: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:439: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_pending_participating(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:442: undefined reference to `mnslp::timer::stop()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:444: undefined reference to `mnslp::nf_session::create_msg_for_ni(mnslp::msg::ntlp_msg*) const'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_pending_participating(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:480: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_pending_participating(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:482: undefined reference to `mnslp::timer::stop()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:491: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:495: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:471: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_metering_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:564: undefined reference to `mnslp::session::check_lifetime(unsigned int, unsigned int) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:565: undefined reference to `mnslp::session::check_authorization(mnslp::dispatcher*, mnslp::msg_event const*) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:574: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:687: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:689: undefined reference to `mnslp::timer::stop()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:691: undefined reference to `mnslp::nf_session::get_mt_policy_rule_copy() const'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_metering_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:583: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_metering_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:597: undefined reference to `mnslp::nf_session::create_msg_for_nr(mnslp::msg::ntlp_msg*) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:599: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:608: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_metering_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:610: undefined reference to `mnslp::timer::stop()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:611: undefined reference to `mnslp::timer::stop()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:613: undefined reference to `mnslp::nf_session::get_mt_policy_rule_copy() const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:615: undefined reference to `mnslp::nf_session::create_msg_for_nr(mnslp::msg::ntlp_msg*) const'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_metering_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:667: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_metering_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:669: undefined reference to `mnslp::timer::stop()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:670: undefined reference to `mnslp::timer::stop()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:672: undefined reference to `mnslp::nf_session::get_mt_policy_rule_copy() const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:702: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:715: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:632: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_metering_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:638: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o):/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:638: more undefined references to `protlib::log::DefaultLog' follow
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_metering_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:640: undefined reference to `mnslp::nf_session::create_msg_for_ni(mnslp::msg::ntlp_msg*) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:643: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:648: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:648: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:650: undefined reference to `mnslp::nf_session::get_mt_policy_rule_copy() const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:652: undefined reference to `mnslp::nf_session::create_msg_for_ni(mnslp::msg::ntlp_msg*) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:568: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_metering_participating(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:744: undefined reference to `mnslp::session::check_lifetime(unsigned int, unsigned int) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:745: undefined reference to `mnslp::session::check_authorization(mnslp::dispatcher*, mnslp::msg_event const*) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:754: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:861: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:863: undefined reference to `mnslp::timer::stop()'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_metering_participating(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:763: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_metering_participating(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:777: undefined reference to `mnslp::nf_session::create_msg_for_nr(mnslp::msg::ntlp_msg*) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:779: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:788: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_metering_participating(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:790: undefined reference to `mnslp::timer::stop()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:791: undefined reference to `mnslp::timer::stop()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:793: undefined reference to `mnslp::nf_session::create_msg_for_nr(mnslp::msg::ntlp_msg*) const'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_metering_participating(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:843: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::handle_state_metering_participating(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:845: undefined reference to `mnslp::timer::stop()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:846: undefined reference to `mnslp::timer::stop()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:874: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:887: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:810: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:816: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:818: undefined reference to `mnslp::nf_session::create_msg_for_ni(mnslp::msg::ntlp_msg*) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:821: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:828: undefined reference to `mnslp::nf_session::create_msg_for_ni(mnslp::msg::ntlp_msg*) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:748: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `mnslp::nf_session::process_event(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:898: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nf_session.o): In function `~nf_session':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nf_session.cpp:89: undefined reference to `mnslp::session::~session()'
+./libmnslp.a(libmnslp_a-nf_session.o):(.rodata._ZTIN5mnslp10nf_sessionE[typeinfo for mnslp::nf_session]+0x8): undefined reference to `typeinfo for mnslp::session'
+./libmnslp.a(libmnslp_a-nf_session.o):(.rodata._ZTVN5mnslp10nf_sessionE[vtable for mnslp::nf_session]+0x10): undefined reference to `mnslp::session::process(mnslp::dispatcher*, mnslp::event*)'
+./libmnslp.a(libmnslp_a-ni_session.o): In function `~ni_session':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:95: undefined reference to `mnslp::session::~session()'
+./libmnslp.a(libmnslp_a-ni_session.o): In function `ni_session':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:83: undefined reference to `mnslp::session::session()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:83: undefined reference to `mnslp::timer::timer(mnslp::session*)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:83: undefined reference to `mnslp::timer::timer(mnslp::session*)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:83: undefined reference to `mnslp::session::~session()'
+./libmnslp.a(libmnslp_a-ni_session.o): In function `mnslp::ni_session::build_configure_message()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:144: undefined reference to `mnslp::session::next_msg_sequence_number()'
+./libmnslp.a(libmnslp_a-ni_session.o): In function `mnslp::ni_session::build_refresh_message()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:173: undefined reference to `mnslp::session::next_msg_sequence_number()'
+./libmnslp.a(libmnslp_a-ni_session.o): In function `mnslp::ni_session::setup_session(mnslp::api_configure_event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:222: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-ni_session.o): In function `mnslp::ni_session::handle_state_close(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:256: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:272: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-ni_session.o): In function `mnslp::ni_session::handle_state_pending_participating(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:325: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:329: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:371: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:343: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:351: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:293: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:306: undefined reference to `mnslp::timer::stop()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:307: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+./libmnslp.a(libmnslp_a-ni_session.o): In function `mnslp::ni_session::handle_state_pending_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:426: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:430: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:472: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:444: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:452: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:392: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:406: undefined reference to `mnslp::timer::stop()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:407: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+./libmnslp.a(libmnslp_a-ni_session.o): In function `mnslp::ni_session::handle_state_metering_participating(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:524: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:553: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:588: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:545: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:549: undefined reference to `mnslp::ni_session::inc_refresh_counter()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:567: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:492: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:506: undefined reference to `mnslp::timer::stop()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:507: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+./libmnslp.a(libmnslp_a-ni_session.o): In function `mnslp::ni_session::handle_state_metering_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:641: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:670: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:705: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:662: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:666: undefined reference to `mnslp::ni_session::inc_refresh_counter()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:684: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:609: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:623: undefined reference to `mnslp::timer::stop()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:624: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+./libmnslp.a(libmnslp_a-ni_session.o): In function `mnslp::ni_session::process_event(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:717: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-ni_session.o): In function `ni_session':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:63: undefined reference to `mnslp::session::session(mnslp::session_id const&)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:63: undefined reference to `mnslp::timer::timer(mnslp::session*)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:63: undefined reference to `mnslp::timer::timer(mnslp::session*)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:63: undefined reference to `mnslp::session::~session()'
+./libmnslp.a(libmnslp_a-ni_session.o): In function `~ni_session':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/ni_session.cpp:95: undefined reference to `mnslp::session::~session()'
+./libmnslp.a(libmnslp_a-ni_session.o):(.rodata._ZTIN5mnslp10ni_sessionE[typeinfo for mnslp::ni_session]+0x8): undefined reference to `typeinfo for mnslp::session'
+./libmnslp.a(libmnslp_a-ni_session.o):(.rodata._ZTVN5mnslp10ni_sessionE[vtable for mnslp::ni_session]+0x10): undefined reference to `mnslp::session::process(mnslp::dispatcher*, mnslp::event*)'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `nr_session':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:60: undefined reference to `mnslp::session::session(mnslp::session_id const&)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:60: undefined reference to `mnslp::timer::timer(mnslp::session*)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:60: undefined reference to `mnslp::session::~session()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:77: undefined reference to `mnslp::session::session()'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:77: undefined reference to `mnslp::timer::timer(mnslp::session*)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:77: undefined reference to `mnslp::session::~session()'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `mnslp::nr_session::handle_state_close(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:133: undefined reference to `mnslp::session::check_lifetime(unsigned int, unsigned int) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:134: undefined reference to `mnslp::session::check_authorization(mnslp::dispatcher*, mnslp::msg_event const*) const'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `mnslp::nr_session::handle_state_close(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:143: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `mnslp::nr_session::handle_state_close(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:152: undefined reference to `mnslp::nr_session::save_mt_policy_rule(mnslp::msg_event*)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:153: undefined reference to `mnslp::nr_session::get_mt_policy_rule_copy() const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:159: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `mnslp::nr_session::handle_state_close(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:180: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `mnslp::nr_session::handle_state_close(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:175: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:169: undefined reference to `mnslp::timer::start(mnslp::dispatcher*, int)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:137: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `mnslp::nr_session::handle_state_metering_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:206: undefined reference to `mnslp::session::check_lifetime(unsigned int, unsigned int) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:207: undefined reference to `mnslp::session::check_authorization(mnslp::dispatcher*, mnslp::msg_event const*) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:216: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:253: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `mnslp::nr_session::handle_state_metering_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:220: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o):/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: more undefined references to `protlib::log::DefaultLog' follow
+./libmnslp.a(libmnslp_a-nr_session.o): In function `mnslp::nr_session::handle_state_metering_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:229: undefined reference to `mnslp::timer::restart(mnslp::dispatcher*, int)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:265: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:234: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `mnslp::nr_session::handle_state_metering_forward(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:236: undefined reference to `mnslp::nr_session::get_mt_policy_rule_copy() const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:210: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `mnslp::nr_session::handle_state_metering_participating(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:292: undefined reference to `mnslp::session::check_lifetime(unsigned int, unsigned int) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:293: undefined reference to `mnslp::session::check_authorization(mnslp::dispatcher*, mnslp::msg_event const*) const'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:302: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:337: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `mnslp::nr_session::handle_state_metering_participating(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:306: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o):/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/../../protlib/include/logfile.h:339: more undefined references to `protlib::log::DefaultLog' follow
+./libmnslp.a(libmnslp_a-nr_session.o): In function `mnslp::nr_session::handle_state_metering_participating(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:315: undefined reference to `mnslp::timer::restart(mnslp::dispatcher*, int)'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:349: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:320: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:296: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `mnslp::nr_session::process_event(mnslp::dispatcher*, mnslp::event*)':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:362: undefined reference to `protlib::log::DefaultLog'
+./libmnslp.a(libmnslp_a-nr_session.o): In function `~nr_session':
+/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/nr_session.cpp:87: undefined reference to `mnslp::session::~session()'
+./libmnslp.a(libmnslp_a-nr_session.o):(.rodata._ZTIN5mnslp10nr_sessionE[typeinfo for mnslp::nr_session]+0x8): undefined reference to `typeinfo for mnslp::session'
+./libmnslp.a(libmnslp_a-nr_session.o):(.rodata._ZTVN5mnslp10nr_sessionE[vtable for mnslp::nr_session]+0x10): undefined reference to `mnslp::session::process(mnslp::dispatcher*, mnslp::event*)'
+../../ntlp/src/libgist.a(libgist_a-ntlp_starter.o): In function `~NTLPStarter':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_starter.cpp:111: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_starter.o): In function `setPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:149: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_starter.o): In function `ntlp::NTLPStarter::main_loop(unsigned int)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_starter.cpp:128: undefined reference to `ntlp::gconf'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_starter.cpp:136: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_starter.o): In function `getPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_starter.o): In function `getPar<short unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_starter.o): In function `getPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_starter.o): In function `getPar<short unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_starter.o): In function `getpar<std::basic_string<char> >':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../include/gist_conf.h:115: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_starter.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../include/gist_conf.h:115: more undefined references to `ntlp::gconf' follow
+../../ntlp/src/libgist.a(libgist_a-ntlp_starter.o): In function `ntlp::APIWrapper::decode_api_header_clen(protlib::NetMsg&, unsigned int&)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../include/apiwrapper.h:164: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_starter.o): In function `protlib::Thread::lock()':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/threads.h:212: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/threads.h:212: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_starter.o): In function `protlib::ThreadStarter<protlib::TPoverTLS_TCP, protlib::TPoverTLS_TCPParam>::start_processing()':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/threads.h:352: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/threads.h:374: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_starter.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `getPar<short unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `Statemodule':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:132: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `ntlp::Statemodule::process_mobility_msg(ntlp::MobilityMsg*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:496: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:496: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:476: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `getPar<unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `ntlp::Statemodule::senderror(ntlp::known_ntlp_pdu const*, protlib::appladdress const*, ntlp::GIST_Error::gist_error_code_t, unsigned short, ntlp::ntlp_object const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:1248: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `getPar<short unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `ntlp::Statemodule::checkNATTraversal(ntlp::nattraversal const*, ntlp::known_ntlp_pdu const*, protlib::appladdress const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:1215: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:1222: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `ntlp::Statemodule::starttimer(ntlp::routingkey const*, ntlp::routingentry*, ntlp::time_type_enum, unsigned int, unsigned int, bool)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:1537: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:1537: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `getPar<unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `ntlp::Statemodule::process_timer_msg(protlib::TimerMsg*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:434: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:429: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `ntlp::Statemodule::process_timer_msg(protlib::TimerMsg*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:440: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:440: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:297: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `getPar<unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `ntlp::Statemodule::randomized(unsigned int, float)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:1630: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `ntlp::Statemodule::check_refresh_timer(ntlp::routingkey*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:1665: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `getPar<float>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `getPar<unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_main.o): In function `StatemoduleParam':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:117: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_main.cpp:117: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `getPar<short unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `ntlp::Statemodule::send_confirm_dmode(ntlp::known_ntlp_pdu const*, ntlp::routingkey const*, ntlp::routingentry*, ntlp::nli const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:717: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:717: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `getPar<short unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `getPar<unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `ntlp::Statemodule::send_confirm_cmode(ntlp::known_ntlp_pdu const*, ntlp::routingkey const*, ntlp::routingentry*, ntlp::nli const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:811: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:794: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `getPar<float>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `ntlp::Statemodule::handle_response_in_established(ntlp::known_ntlp_pdu const*, ntlp::routingkey*, ntlp::routingentry*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:644: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:644: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:622: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `ntlp::Statemodule::handle_response_in_awaiting_response(ntlp::known_ntlp_pdu*, ntlp::routingkey*, ntlp::routingentry*, protlib::appladdress const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:361: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `getPar<unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `getPar<float>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `ntlp::Statemodule::handle_response_in_awaiting_response(ntlp::known_ntlp_pdu*, ntlp::routingkey*, ntlp::routingentry*, protlib::appladdress const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:354: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `ntlp::Statemodule::handle_response_in_awaiting_refresh(ntlp::known_ntlp_pdu const*, ntlp::routingkey*, ntlp::routingentry*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:503: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `getPar<float>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `ntlp::Statemodule::to_inactive_qnode(ntlp::routingkey const*, protlib::TimerMsg*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:893: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `ntlp::Statemodule::query_cookie(ntlp::routingkey const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:670: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `ntlp::Statemodule::query_cookie(ntlp::routingkey const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:682: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:682: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `getPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `ntlp::Statemodule::send_query(ntlp::APIMsg const*, ntlp::routingkey const*, ntlp::routingentry*, bool)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:125: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `getPar<short unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `getPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `ntlp::Statemodule::send_query(ntlp::APIMsg const*, ntlp::routingkey const*, ntlp::routingentry*, bool)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:121: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `getPar<unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `ntlp::Statemodule::send_query(ntlp::APIMsg const*, ntlp::routingkey const*, ntlp::routingentry*, bool)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:98: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:129: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:89: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o): In function `ntlp::Statemodule::to_refresh_qnode(ntlp::routingkey const*, protlib::TimerMsg*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_querier.cpp:1028: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_querier.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:334: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `getParRef<std::basic_string<char> >':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:135: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `ntlp::Statemodule::create_resp_cookie(ntlp::nli const*, ntlp::routingkey const*, unsigned int, unsigned short, protlib::NetMsg const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:1552: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:1552: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:1502: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `getParRef<std::basic_string<char> >':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:135: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `ntlp::Statemodule::send_response(ntlp::known_ntlp_pdu const*, ntlp::routingkey const*, ntlp::routingentry*, protlib::appladdress const*, bool)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:1094: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `getPar<unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `ntlp::Statemodule::send_response(ntlp::known_ntlp_pdu const*, ntlp::routingkey const*, ntlp::routingentry*, protlib::appladdress const*, bool)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:1179: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:1075: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:1137: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `getPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `ntlp::Statemodule::send_response(ntlp::known_ntlp_pdu const*, ntlp::routingkey const*, ntlp::routingentry*, protlib::appladdress const*, bool)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:1177: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `getPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `querycookie':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/./pdu/query_cookie.h:130: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `getPar<short unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `ntlp::Statemodule::handle_query_in_awaiting_confirm_or_refresh(ntlp::known_ntlp_pdu const*, ntlp::routingkey*, ntlp::routingentry*, protlib::appladdress const*, protlib::appladdress const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:316: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `getPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `ntlp::Statemodule::handle_query_in_established(ntlp::known_ntlp_pdu const*, ntlp::routingkey*, ntlp::routingentry*, protlib::appladdress const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:275: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `ntlp::Statemodule::handle_query_in_established(ntlp::known_ntlp_pdu const*, ntlp::routingkey*, ntlp::routingentry*, protlib::appladdress const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:241: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:241: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:252: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `getPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `ntlp::Statemodule::handle_confirm_in_awaiting_refresh(ntlp::known_ntlp_pdu const*, ntlp::routingkey*, ntlp::routingentry*, protlib::appladdress const*, protlib::appladdress const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:908: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:966: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:993: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `ntlp::ntlp_pdu::get_stackconf() const':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:1772: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `ntlp::Statemodule::handle_confirm_in_awaiting_refresh(ntlp::known_ntlp_pdu const*, ntlp::routingkey*, ntlp::routingentry*, protlib::appladdress const*, protlib::appladdress const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:962: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:548: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `getPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `getPar<unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `ntlp::Statemodule::handle_initial_query(ntlp::known_ntlp_pdu const*, ntlp::routingkey*, protlib::appladdress const*, protlib::appladdress const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:78: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `getPar<unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `ntlp::Statemodule::handle_confirm_in_awaiting_confirm(ntlp::known_ntlp_pdu const*, ntlp::routingkey*, ntlp::routingentry*, protlib::appladdress const*, protlib::appladdress const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:352: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `getPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_responder.o): In function `ntlp::Statemodule::handle_confirm_in_awaiting_confirm(ntlp::known_ntlp_pdu const*, ntlp::routingkey*, ntlp::routingentry*, protlib::appladdress const*, protlib::appladdress const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:350: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_responder.cpp:473: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-routingentry.o): In function `getpar<unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../include/gist_conf.h:115: undefined reference to `ntlp::gconf'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../include/gist_conf.h:115: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-routingtable.o): In function `ntlp::ma_entry::set_ma_hold_time(unsigned int)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/routingtable.cpp:50: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-routingtable.o): In function `ntlp::routingtable::locktable()':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/routingtable.h:429: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-routingtable.o): In function `ntlp::routingtable::unlock(ntlp::routingkey const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/routingtable.cpp:484: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/routingtable.cpp:488: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-routingtable.o): In function `ntlp::routingtable::status() const':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/routingtable.cpp:621: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-routingtable.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-routingtable.o): In function `getPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-routingtable.o): In function `getPar<float>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-routingtable.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-routingtable.o): In function `ntlp::routingtable::process_timer_msg(protlib::TimerMsg*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/routingtable.cpp:714: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/routingtable.cpp:714: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-routingtable.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-routingtable.o): In function `ntlp::routingtable::process_timer_msg(protlib::TimerMsg*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/routingtable.cpp:799: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-routingtable.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/routingtable.cpp:799: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-routingtable.o): In function `getPar<float>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-routingtable.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-routingtable.o): In function `ntlp::routingtable::add_ma(ntlp::nli*, protlib::appladdress const&, unsigned int, bool)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/routingtable.cpp:206: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/routingtable.cpp:206: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-routingtable.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-routingtable.o): In function `ntlp::routingtable::add_ma(ntlp::nli*, protlib::appladdress const&, unsigned int, bool)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/routingtable.cpp:222: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-routingtable.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/routingtable.cpp:222: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-signalingmodule_ntlp.o): In function `getpar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../include/gist_conf.h:115: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-signalingmodule_ntlp.o): In function `ntlp::SignalingNTLP::handleInternalMessage(protlib::message*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/signalingmodule_ntlp.cpp:351: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-signalingmodule_ntlp.o): In function `ntlp::SignalingNTLP::process_queue()':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/signalingmodule_ntlp.cpp:423: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-signalingmodule_ntlp.o): In function `ntlp::SignalingNTLP::main_loop(unsigned int)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/signalingmodule_ntlp.cpp:336: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-signalingmodule_ntlp.o): In function `ntlp::NSLPtable::get_address(unsigned int)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../include/apimessage.h:438: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../include/apimessage.h:433: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_pdu.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/pdu/ntlp_pdu.cpp:377: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-capability.o): In function `getPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-capability.o): In function `ntlp::capability::get_address(ntlp::stackprop const*, ntlp::stack_conf_data const*, ntlp::nli const*, bool)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/capability.cpp:200: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-capability.o): In function `ntlp::stackprop::find_profile(unsigned char, unsigned int&) const':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/./pdu/stackprop.h:127: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-capability.o): In function `ntlp::capability::get_address(ntlp::stackprop const*, ntlp::stack_conf_data const*, ntlp::nli const*, bool)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/capability.cpp:168: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-capability.o): In function `getPar<unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-capability.o): In function `getPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-capability.o): In function `getPar<unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-capability.o): In function `getPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-capability.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-capability.o): In function `capability':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/capability.cpp:41: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-capability.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-capability.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-capability.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/capability.cpp:133: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-capability.o): In function `getPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-gist_conf.o): In function `ntlp::gistconf::repository_init()':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/gist_conf.cpp:98: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-gist_conf.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-gist_conf.o): In function `ntlp::gistconf::registerAllPars()':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/gist_conf.cpp:49: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-gist_conf.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-gist_conf.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-ntlp_proto.o): In function `getPar<unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_proto.o): In function `getParRef<ntlp::peer_identity>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:135: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_proto.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_proto.o): In function `ntlp::NTLP::generate_errorpdu(protlib::NetMsg&, protlib::IEErrorList&, ntlp::known_ntlp_pdu*, ntlp::known_ntlp_pdu*&, protlib::appladdress&)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_proto.cpp:1003: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_proto.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_proto.o): In function `ntlp::NTLP::generate_errorpdu(protlib::NetMsg&, protlib::IEErrorList&, ntlp::known_ntlp_pdu*, ntlp::known_ntlp_pdu*&, protlib::appladdress&)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_proto.cpp:461: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_proto.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `getPar<unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `ntlp::Statemodule::tg_send_message(ntlp::APIMsg*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_api.cpp:484: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_api.cpp:484: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `ntlp::Statemodule::tg_send_message(ntlp::APIMsg*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_api.cpp:739: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_api.cpp:739: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `ntlp::Statemodule::tg_send_message(ntlp::APIMsg*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_api.cpp:571: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `ntlp::Statemodule::tg_send_message(ntlp::APIMsg*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_api.cpp:544: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_api.cpp:544: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `ntlp::Statemodule::tg_send_message(ntlp::APIMsg*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_api.cpp:695: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_api.cpp:695: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `getPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `ntlp::Statemodule::tg_recv_message_answer(ntlp::APIMsg*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_api.cpp:837: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_api.cpp:837: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `getPar<unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `getPar<bool>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/configpar_repository.h:106: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `ntlp::Statemodule::tg_recv_message_answer(ntlp::APIMsg*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_api.cpp:844: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_api.cpp:844: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_api.cpp:790: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_api.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_api.cpp:911: more undefined references to `protlib::log::DefaultLog' follow
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_data.o): In function `getpar<short unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../include/gist_conf.h:115: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_data.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_data.o): In function `ntlp::Statemodule::send_data_dmode(ntlp::nslpdata*, ntlp::routingkey*, ntlp::routingentry*, unsigned int)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_data.cpp:216: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_data.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_data.o): In function `ntlp::Statemodule::send_data_explicit(ntlp::APIMsg const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_data.cpp:62: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_data.o): In function `getpar<short unsigned int>':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../include/gist_conf.h:115: undefined reference to `ntlp::gconf'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_data.o): In function `protlib::log::logfile::should_log(protlib::log::logclass_t, protlib::log::loglevel_t)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:307: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_data.o): In function `ntlp::Statemodule::send_data_explicit(ntlp::APIMsg const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_data.cpp:144: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_data.o): In function `protlib::log::logfile::logend()':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:334: undefined reference to `protlib::log::DefaultLog'
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/../../protlib/include/logfile.h:339: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_data.o): In function `ntlp::Statemodule::send_data_explicit(ntlp::APIMsg const*)':
+/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_data.cpp:71: undefined reference to `protlib::log::DefaultLog'
+../../ntlp/src/libgist.a(libgist_a-ntlp_statemodule_data.o):/home/luis/NSIS/nsis-ka-0.97/ntlp/src/ntlp_statemodule_data.cpp:56: more undefined references to `protlib::log::DefaultLog' follow
+collect2: ld returned 1 exit status

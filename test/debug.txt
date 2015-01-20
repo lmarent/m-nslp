@@ -1,0 +1,348 @@
+2015-01-08 10:13:23.587-6184**ERROR**4: IE              IE::check_ser_args() for IE session_lifetime, error: IE is in invalid state.
+2015-01-08 10:13:23.588-6184**ERROR**4: IE              IE::check_ser_args() for IE information_code, error: IE is in invalid state.
+2015-01-08 10:13:23.589-6184- DEBUG /4: MNSLP_IEManager created MNSLP_IEManager singleton: 0x9ee1418
+2015-01-08 10:13:23.589-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe07374
+2015-01-08 10:13:23.589-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe07374
+2015-01-08 10:13:23.589-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe07374
+2015-01-08 10:13:23.589-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe07374
+2015-01-08 10:13:23.589-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe07374
+2015-01-08 10:13:23.589-6184- DEBUG /4: IEManager       Registered IE session_lifetime for 0xbfe07374
+2015-01-08 10:13:23.589-6184- DEBUG /4: IEManager       Registered IE information_code for 0xbfe07374
+2015-01-08 10:13:23.589-6184- DEBUG /4: IEManager       Registered IE message_hop_count for 0xbfe07374
+2015-01-08 10:13:23.589-6184- DEBUG /4: IEManager       Registered IE selection_metering_entities for 0xbfe07374
+2015-01-08 10:13:23.589-6184- DEBUG /4: IEManager       Registered IE msg_sequence_number for 0xbfe07374
+2015-01-08 10:13:23.589-6184- DEBUG /4: IEManager       Registered IE mnslp_ipfix_mspec for 0xbfe07374
+2015-01-08 10:13:23.589-6184- DEBUG /4: MNSLP_IEManager registered known IEs
+2015-01-08 10:13:23.594-6184- DEBUG /4: IEManager       Deleted 11 IEs
+2015-01-08 10:13:23.594-6184- DEBUG /4: MNSLP_IEManager deleted MNSLP_IEManager singleton
+2015-01-08 10:13:23.594-6184- DEBUG /4: MNSLP_IEManager created MNSLP_IEManager singleton: 0x9ee1418
+2015-01-08 10:13:23.594-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe07374
+2015-01-08 10:13:23.594-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe07374
+2015-01-08 10:13:23.594-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe07374
+2015-01-08 10:13:23.594-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe07374
+2015-01-08 10:13:23.594-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe07374
+2015-01-08 10:13:23.594-6184- DEBUG /4: IEManager       Registered IE session_lifetime for 0xbfe07374
+2015-01-08 10:13:23.594-6184- DEBUG /4: IEManager       Registered IE information_code for 0xbfe07374
+2015-01-08 10:13:23.594-6184- DEBUG /4: IEManager       Registered IE message_hop_count for 0xbfe07374
+2015-01-08 10:13:23.594-6184- DEBUG /4: IEManager       Registered IE selection_metering_entities for 0xbfe07374
+2015-01-08 10:13:23.594-6184- DEBUG /4: IEManager       Registered IE msg_sequence_number for 0xbfe07374
+2015-01-08 10:13:23.594-6184- DEBUG /4: IEManager       Registered IE mnslp_ipfix_mspec for 0xbfe07374
+2015-01-08 10:13:23.594-6184- DEBUG /4: MNSLP_IEManager registered known IEs
+2015-01-08 10:13:23.597-6184- DEBUG /4: IEManager       Deleted 11 IEs
+2015-01-08 10:13:23.597-6184- DEBUG /4: MNSLP_IEManager deleted MNSLP_IEManager singleton
+2015-01-08 10:13:23.597-6184**ERROR**4: IE              IE::check_ser_args() for IE message_hop_count, error: IE is in invalid state.
+2015-01-08 10:13:23.597-6184**ERROR**4: IE              IE::check_ser_args() for IE msg_sequence_number, error: IE is in invalid state.
+2015-01-08 10:13:23.597-6184**ERROR**4: IE              IE::check_ser_args() for IE selection_metering_entities, error: IE is in invalid state.
+2015-01-08 10:13:23.597-6184**ERROR**4: IE              IE::check_ser_args() for IE session_lifetime, error: IE is in invalid state.
+2015-01-08 10:13:23.598-6184- DEBUG /4: MNSLP_IEManager created MNSLP_IEManager singleton: 0x9ee1418
+2015-01-08 10:13:23.598-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.598-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.598-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.598-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.598-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.598-6184- DEBUG /4: IEManager       Registered IE session_lifetime for 0xbfe074d4
+2015-01-08 10:13:23.598-6184- DEBUG /4: IEManager       Registered IE information_code for 0xbfe074d4
+2015-01-08 10:13:23.598-6184- DEBUG /4: IEManager       Registered IE message_hop_count for 0xbfe074d4
+2015-01-08 10:13:23.598-6184- DEBUG /4: IEManager       Registered IE selection_metering_entities for 0xbfe074d4
+2015-01-08 10:13:23.598-6184- DEBUG /4: IEManager       Registered IE msg_sequence_number for 0xbfe074d4
+2015-01-08 10:13:23.598-6184- DEBUG /4: IEManager       Registered IE mnslp_ipfix_mspec for 0xbfe074d4
+2015-01-08 10:13:23.598-6184- DEBUG /4: MNSLP_IEManager registered known IEs
+2015-01-08 10:13:23.598-6184- DEBUG /4: IEManager       Deleted 11 IEs
+2015-01-08 10:13:23.598-6184- DEBUG /4: MNSLP_IEManager deleted MNSLP_IEManager singleton
+2015-01-08 10:13:23.618-6184- DEBUG /4: MNSLP_IEManager created MNSLP_IEManager singleton: 0x9ee29e8
+2015-01-08 10:13:23.618-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.618-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.618-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.618-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.618-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.618-6184- DEBUG /4: IEManager       Registered IE session_lifetime for 0xbfe074d4
+2015-01-08 10:13:23.618-6184- DEBUG /4: IEManager       Registered IE information_code for 0xbfe074d4
+2015-01-08 10:13:23.618-6184- DEBUG /4: IEManager       Registered IE message_hop_count for 0xbfe074d4
+2015-01-08 10:13:23.618-6184- DEBUG /4: IEManager       Registered IE selection_metering_entities for 0xbfe074d4
+2015-01-08 10:13:23.618-6184- DEBUG /4: IEManager       Registered IE msg_sequence_number for 0xbfe074d4
+2015-01-08 10:13:23.618-6184- DEBUG /4: IEManager       Registered IE mnslp_ipfix_mspec for 0xbfe074d4
+2015-01-08 10:13:23.618-6184- DEBUG /4: MNSLP_IEManager registered known IEs
+2015-01-08 10:13:23.618-6184- DEBUG /4: IEManager       Deleted 11 IEs
+2015-01-08 10:13:23.618-6184- DEBUG /4: MNSLP_IEManager deleted MNSLP_IEManager singleton
+2015-01-08 10:13:23.619-6184- DEBUG /4: MNSLP_IEManager created MNSLP_IEManager singleton: 0x9ee29e8
+2015-01-08 10:13:23.619-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.619-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.619-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.619-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.619-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.619-6184- DEBUG /4: IEManager       Registered IE session_lifetime for 0xbfe074d4
+2015-01-08 10:13:23.619-6184- DEBUG /4: IEManager       Registered IE information_code for 0xbfe074d4
+2015-01-08 10:13:23.619-6184- DEBUG /4: IEManager       Registered IE message_hop_count for 0xbfe074d4
+2015-01-08 10:13:23.619-6184- DEBUG /4: IEManager       Registered IE selection_metering_entities for 0xbfe074d4
+2015-01-08 10:13:23.619-6184- DEBUG /4: IEManager       Registered IE msg_sequence_number for 0xbfe074d4
+2015-01-08 10:13:23.619-6184- DEBUG /4: IEManager       Registered IE mnslp_ipfix_mspec for 0xbfe074d4
+2015-01-08 10:13:23.619-6184- DEBUG /4: MNSLP_IEManager registered known IEs
+2015-01-08 10:13:23.619-6184- DEBUG /4: IEManager       Deleted 11 IEs
+2015-01-08 10:13:23.619-6184- DEBUG /4: MNSLP_IEManager deleted MNSLP_IEManager singleton
+2015-01-08 10:13:23.619-6184- DEBUG /4: MNSLP_IEManager created MNSLP_IEManager singleton: 0x9ee29e8
+2015-01-08 10:13:23.619-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe074d4
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE session_lifetime for 0xbfe074d4
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE information_code for 0xbfe074d4
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE message_hop_count for 0xbfe074d4
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE selection_metering_entities for 0xbfe074d4
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE msg_sequence_number for 0xbfe074d4
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE mnslp_ipfix_mspec for 0xbfe074d4
+2015-01-08 10:13:23.620-6184- DEBUG /4: MNSLP_IEManager registered known IEs
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Deleted 11 IEs
+2015-01-08 10:13:23.620-6184- DEBUG /4: MNSLP_IEManager deleted MNSLP_IEManager singleton
+2015-01-08 10:13:23.620-6184- DEBUG /4: MNSLP_IEManager created MNSLP_IEManager singleton: 0x9ee29e8
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe07374
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe07374
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe07374
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe07374
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE mnslp_msg for 0xbfe07374
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE session_lifetime for 0xbfe07374
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE information_code for 0xbfe07374
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE message_hop_count for 0xbfe07374
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE selection_metering_entities for 0xbfe07374
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE msg_sequence_number for 0xbfe07374
+2015-01-08 10:13:23.620-6184- DEBUG /4: IEManager       Registered IE mnslp_ipfix_mspec for 0xbfe07374
+2015-01-08 10:13:23.620-6184- DEBUG /4: MNSLP_IEManager registered known IEs
+2015-01-08 10:13:23.622-6184- DEBUG /4: IEManager       Deleted 11 IEs
+2015-01-08 10:13:23.622-6184- DEBUG /4: MNSLP_IEManager deleted MNSLP_IEManager singleton
+2015-01-08 10:13:23.622-6184- DEBUG /4: mnslp_config    start - creating configuration parameter singleton
+2015-01-08 10:13:23.622-6184- DEBUG /4: configpar_repository instance() - creating instance
+2015-01-08 10:13:23.622-6184- DEBUG /4: mnslp_config    registered mnslp realm with realm id 5
+2015-01-08 10:13:23.622-6184- DEBUG /4: mnslp_config::registerAllPars starting registering mnslp parameters.
+2015-01-08 10:13:23.622-6184- DEBUG /4: mnslp_config::registerAllPars finished registering mnslp parameters.
+2015-01-08 10:13:23.622-6184- DEBUG /4: gistconf        registered gist realm with realm id 2
+2015-01-08 10:13:23.622-6184- DEBUG /4: gistconf::registerAllPars starting registering gist parameters.
+2015-01-08 10:13:23.622-6184- DEBUG /4: gistconf::registerAllPars finished registering gist parameters.
+2015-01-08 10:13:23.623-6184- INFO  /4: session_manager created new NI session 663F1426_364C67B8_728F6018_975B6D82
+2015-01-08 10:13:23.623-6184- INFO  /4: session_manager created new NI session 1DBF6D79_3EFAE479_3BBC2F90_3D4819C2
+2015-01-08 10:13:23.626-6184- DEBUG /4: mnslp_config    start - creating configuration parameter singleton
+2015-01-08 10:13:23.626-6184- DEBUG /4: configpar_repository instance() - creating instance
+2015-01-08 10:13:23.626-6184- DEBUG /4: mnslp_config    registered mnslp realm with realm id 5
+2015-01-08 10:13:23.626-6184- DEBUG /4: mnslp_config::registerAllPars starting registering mnslp parameters.
+2015-01-08 10:13:23.626-6184- DEBUG /4: mnslp_config::registerAllPars finished registering mnslp parameters.
+2015-01-08 10:13:23.626-6184- DEBUG /4: gistconf        registered gist realm with realm id 2
+2015-01-08 10:13:23.626-6184- DEBUG /4: gistconf::registerAllPars starting registering gist parameters.
+2015-01-08 10:13:23.626-6184- DEBUG /4: gistconf::registerAllPars finished registering gist parameters.
+2015-01-08 10:13:23.628-6184- INFO  /4: session_manager created new NI session D4B0CAC1_FFCAB317_1F63BFBB_18C6AC1D
+2015-01-08 10:13:23.628-6184- INFO  /4: session_manager removed session D4B0CAC1_FFCAB317_1F63BFBB_18C6AC1D
+2015-01-08 10:13:23.629-6184- DEBUG /4: mnslp_config    start - creating configuration parameter singleton
+2015-01-08 10:13:23.629-6184- DEBUG /4: configpar_repository instance() - creating instance
+2015-01-08 10:13:23.629-6184- DEBUG /4: mnslp_config    registered mnslp realm with realm id 5
+2015-01-08 10:13:23.629-6184- DEBUG /4: mnslp_config::registerAllPars starting registering mnslp parameters.
+2015-01-08 10:13:23.629-6184- DEBUG /4: mnslp_config::registerAllPars finished registering mnslp parameters.
+2015-01-08 10:13:23.629-6184- DEBUG /4: gistconf        registered gist realm with realm id 2
+2015-01-08 10:13:23.629-6184- DEBUG /4: gistconf::registerAllPars starting registering gist parameters.
+2015-01-08 10:13:23.629-6184- DEBUG /4: gistconf::registerAllPars finished registering gist parameters.
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=C2D6D79F_005FD9AA_90BADD1C_9FEF75BC, state=CLOSE]
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      using lifetime: 30 seconds
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      using refresh interval: 6 seconds
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      using response timeout: 6 seconds
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=C2D6D79F_005FD9AA_90BADD1C_9FEF75BC, state=PENDING_PARTICIPATING]
+2015-01-08 10:13:23.630-6184- DEBUG /4: mnslp_config    start - creating configuration parameter singleton
+2015-01-08 10:13:23.630-6184- DEBUG /4: configpar_repository instance() - creating instance
+2015-01-08 10:13:23.630-6184- DEBUG /4: mnslp_config    registered mnslp realm with realm id 5
+2015-01-08 10:13:23.630-6184- DEBUG /4: mnslp_config::registerAllPars starting registering mnslp parameters.
+2015-01-08 10:13:23.630-6184- DEBUG /4: mnslp_config::registerAllPars finished registering mnslp parameters.
+2015-01-08 10:13:23.630-6184- DEBUG /4: gistconf        registered gist realm with realm id 2
+2015-01-08 10:13:23.630-6184- DEBUG /4: gistconf::registerAllPars starting registering gist parameters.
+2015-01-08 10:13:23.630-6184- DEBUG /4: gistconf::registerAllPars finished registering gist parameters.
+2015-01-08 10:13:23.630-6184**ERROR**4: Threadsafe_DB   Tried to access tsdb although not initialized.
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=69111779_4D97CB1F_53F1E73B_C1D2BC89, state=PENDING_FORWARD]
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      received response [mnslp_msg: msg_type=2, objects={
+   [information_code: type=244, treatment=0, severity=2, response_code=1, obj_type=0]
+   [msg_sequence_number: type=247, treatment=0, value=77]
+}]
+2015-01-08 10:13:23.630-6184- INFO  /4: dispatcher      reporting async event to user: CREATE refresh successful
+2015-01-08 10:13:23.630-6184**ERROR**8: dispatcher      report_async_event() not implemented at dispatcher.cpp:302
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=69111779_4D97CB1F_53F1E73B_C1D2BC89, state=METERING_FORWARD]
+2015-01-08 10:13:23.630-6184**ERROR**4: Threadsafe_DB   Tried to access tsdb although not initialized.
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=11DDCDB9_7962785C_B716D951_5864B662, state=PENDING_FORWARD]
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      received response [mnslp_msg: msg_type=2, objects={
+   [information_code: type=244, treatment=0, severity=5, response_code=0, obj_type=0]
+   [msg_sequence_number: type=247, treatment=0, value=77]
+}]
+2015-01-08 10:13:23.630-6184- INFO  /4: dispatcher      reporting async event to user: CREATE session died
+2015-01-08 10:13:23.630-6184**ERROR**8: dispatcher      report_async_event() not implemented at dispatcher.cpp:302
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=11DDCDB9_7962785C_B716D951_5864B662, state=CLOSE]
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=0A718122_EEEE600F_B8DA60D4_1FAB6DFA, state=PENDING_FORWARD]
+2015-01-08 10:13:23.630-6184-WARNING/4: ni_session      response timeout, restarting timer.
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=0A718122_EEEE600F_B8DA60D4_1FAB6DFA, state=PENDING_FORWARD]
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=348EE6EB_CF701599_AFE6F45F_4443E24D, state=PENDING_FORWARD]
+2015-01-08 10:13:23.630-6184- INFO  /4: dispatcher      reporting async event to user: got no response for our Configure
+2015-01-08 10:13:23.630-6184**ERROR**8: dispatcher      report_async_event() not implemented at dispatcher.cpp:302
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=348EE6EB_CF701599_AFE6F45F_4443E24D, state=CLOSE]
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=3BF7A0E8_19C5D43B_F1731454_55240535, state=PENDING_FORWARD]
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      received API teardown event
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=3BF7A0E8_19C5D43B_F1731454_55240535, state=CLOSE]
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=38450743_37EFC180_76B1F534_A8E04639, state=PENDING_FORWARD]
+2015-01-08 10:13:23.630-6184- INFO  /4: ni_session      cannot reach destination
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=38450743_37EFC180_76B1F534_A8E04639, state=CLOSE]
+2015-01-08 10:13:23.630-6184- DEBUG /4: mnslp_config    start - creating configuration parameter singleton
+2015-01-08 10:13:23.630-6184- DEBUG /4: configpar_repository instance() - creating instance
+2015-01-08 10:13:23.630-6184- DEBUG /4: mnslp_config    registered mnslp realm with realm id 5
+2015-01-08 10:13:23.630-6184- DEBUG /4: mnslp_config::registerAllPars starting registering mnslp parameters.
+2015-01-08 10:13:23.630-6184- DEBUG /4: mnslp_config::registerAllPars finished registering mnslp parameters.
+2015-01-08 10:13:23.630-6184- DEBUG /4: gistconf        registered gist realm with realm id 2
+2015-01-08 10:13:23.630-6184- DEBUG /4: gistconf::registerAllPars starting registering gist parameters.
+2015-01-08 10:13:23.630-6184- DEBUG /4: gistconf::registerAllPars finished registering gist parameters.
+2015-01-08 10:13:23.630-6184**ERROR**4: Threadsafe_DB   Tried to access tsdb although not initialized.
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=3F105C02_A1FCE502_2A890328_320490E4, state=PENDING_PARTICIPATING]
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      received response [mnslp_msg: msg_type=2, objects={
+   [information_code: type=244, treatment=0, severity=2, response_code=1, obj_type=0]
+   [msg_sequence_number: type=247, treatment=0, value=77]
+}]
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      initiated session 3F105C02_A1FCE502_2A890328_320490E4
+2015-01-08 10:13:23.630-6184- INFO  /4: dispatcher      reporting async event to user: CONFIGURE session initiated
+2015-01-08 10:13:23.630-6184**ERROR**8: dispatcher      report_async_event() not implemented at dispatcher.cpp:302
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=3F105C02_A1FCE502_2A890328_320490E4, state=METERING_PARTICIPATING]
+2015-01-08 10:13:23.630-6184**ERROR**4: Threadsafe_DB   Tried to access tsdb although not initialized.
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=95AC69B9_BDE98E01_2D45A71C_E9A933CD, state=PENDING_PARTICIPATING]
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      received response [mnslp_msg: msg_type=2, objects={
+   [information_code: type=244, treatment=0, severity=5, response_code=0, obj_type=0]
+   [msg_sequence_number: type=247, treatment=0, value=77]
+}]
+2015-01-08 10:13:23.630-6184- INFO  /4: dispatcher      reporting async event to user: cannot initiate Configure session
+2015-01-08 10:13:23.630-6184**ERROR**8: dispatcher      report_async_event() not implemented at dispatcher.cpp:302
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=95AC69B9_BDE98E01_2D45A71C_E9A933CD, state=CLOSE]
+2015-01-08 10:13:23.630-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=D59059F3_13FFCBB8_39866ED5_F122D7E2, state=PENDING_PARTICIPATING]
+2015-01-08 10:13:23.630-6184-WARNING/4: ni_session      response timeout, restarting timer.
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=D59059F3_13FFCBB8_39866ED5_F122D7E2, state=PENDING_PARTICIPATING]
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=DD7AA420_98DFD290_A3E62E01_ADA5E46B, state=PENDING_PARTICIPATING]
+2015-01-08 10:13:23.631-6184- INFO  /4: dispatcher      reporting async event to user: got no response for our Configure
+2015-01-08 10:13:23.631-6184**ERROR**8: dispatcher      report_async_event() not implemented at dispatcher.cpp:302
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=DD7AA420_98DFD290_A3E62E01_ADA5E46B, state=CLOSE]
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=432CD01E_C4FF2883_4DF69CAB_6FB51823, state=PENDING_PARTICIPATING]
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      received API teardown event
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=432CD01E_C4FF2883_4DF69CAB_6FB51823, state=CLOSE]
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=BDC89B99_E8C7D9A3_F74E781B_7262DC78, state=PENDING_PARTICIPATING]
+2015-01-08 10:13:23.631-6184- INFO  /4: ni_session      cannot reach destination
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=BDC89B99_E8C7D9A3_F74E781B_7262DC78, state=CLOSE]
+2015-01-08 10:13:23.631-6184- DEBUG /4: mnslp_config    start - creating configuration parameter singleton
+2015-01-08 10:13:23.631-6184- DEBUG /4: configpar_repository instance() - creating instance
+2015-01-08 10:13:23.631-6184- DEBUG /4: mnslp_config    registered mnslp realm with realm id 5
+2015-01-08 10:13:23.631-6184- DEBUG /4: mnslp_config::registerAllPars starting registering mnslp parameters.
+2015-01-08 10:13:23.631-6184- DEBUG /4: mnslp_config::registerAllPars finished registering mnslp parameters.
+2015-01-08 10:13:23.631-6184- DEBUG /4: gistconf        registered gist realm with realm id 2
+2015-01-08 10:13:23.631-6184- DEBUG /4: gistconf::registerAllPars starting registering gist parameters.
+2015-01-08 10:13:23.631-6184- DEBUG /4: gistconf::registerAllPars finished registering gist parameters.
+2015-01-08 10:13:23.631-6184**ERROR**4: Threadsafe_DB   Tried to access tsdb although not initialized.
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=D89C943C_EAB03295_A55A8C37_6AF084DB, state=METERING_FORWARD]
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      received RESPONSE: [mnslp_msg: msg_type=2, objects={
+   [information_code: type=244, treatment=0, severity=2, response_code=1, obj_type=0]
+   [msg_sequence_number: type=247, treatment=0, value=77]
+}]
+2015-01-08 10:13:23.631-6184- INFO  /4: dispatcher      reporting async event to user: REFRESH successful
+2015-01-08 10:13:23.631-6184**ERROR**8: dispatcher      report_async_event() not implemented at dispatcher.cpp:302
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=D89C943C_EAB03295_A55A8C37_6AF084DB, state=METERING_FORWARD]
+2015-01-08 10:13:23.631-6184**ERROR**4: Threadsafe_DB   Tried to access tsdb although not initialized.
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=72EE3998_531119EB_C9D3D271_50D179C0, state=METERING_FORWARD]
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      received RESPONSE: [mnslp_msg: msg_type=2, objects={
+   [information_code: type=244, treatment=0, severity=5, response_code=0, obj_type=0]
+   [msg_sequence_number: type=247, treatment=0, value=77]
+}]
+2015-01-08 10:13:23.631-6184- INFO  /4: dispatcher      reporting async event to user: REFRESH session died
+2015-01-08 10:13:23.631-6184**ERROR**8: dispatcher      report_async_event() not implemented at dispatcher.cpp:302
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=72EE3998_531119EB_C9D3D271_50D179C0, state=CLOSE]
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=91C0DC36_319F1DA6_F4BDDD57_C86D29BE, state=METERING_FORWARD]
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      received response timeout timer
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=91C0DC36_319F1DA6_F4BDDD57_C86D29BE, state=METERING_FORWARD]
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=F51DD9F4_624FD1F8_7069A65D_0B628899, state=METERING_FORWARD]
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      received response timeout timer
+2015-01-08 10:13:23.631-6184- INFO  /4: dispatcher      reporting async event to user: got no response to our REFRESH message
+2015-01-08 10:13:23.631-6184**ERROR**8: dispatcher      report_async_event() not implemented at dispatcher.cpp:302
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=F51DD9F4_624FD1F8_7069A65D_0B628899, state=CLOSE]
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=CBF370AB_7573BB95_564EE23E_7FBDF840, state=METERING_FORWARD]
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      received API teardown event
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=CBF370AB_7573BB95_564EE23E_7FBDF840, state=CLOSE]
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=08CEB5F0_1E7EC06A_8E9CE071_752B88CB, state=METERING_FORWARD]
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      received refresh timer
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=08CEB5F0_1E7EC06A_8E9CE071_752B88CB, state=METERING_FORWARD]
+2015-01-08 10:13:23.631-6184- DEBUG /4: mnslp_config    start - creating configuration parameter singleton
+2015-01-08 10:13:23.631-6184- DEBUG /4: configpar_repository instance() - creating instance
+2015-01-08 10:13:23.631-6184- DEBUG /4: mnslp_config    registered mnslp realm with realm id 5
+2015-01-08 10:13:23.631-6184- DEBUG /4: mnslp_config::registerAllPars starting registering mnslp parameters.
+2015-01-08 10:13:23.631-6184- DEBUG /4: mnslp_config::registerAllPars finished registering mnslp parameters.
+2015-01-08 10:13:23.631-6184- DEBUG /4: gistconf        registered gist realm with realm id 2
+2015-01-08 10:13:23.631-6184- DEBUG /4: gistconf::registerAllPars starting registering gist parameters.
+2015-01-08 10:13:23.631-6184- DEBUG /4: gistconf::registerAllPars finished registering gist parameters.
+2015-01-08 10:13:23.631-6184**ERROR**4: Threadsafe_DB   Tried to access tsdb although not initialized.
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=599094E8_C1B481F1_DE60EAB3_7E949BD6, state=METERING_PARTICIPATING]
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      received RESPONSE: [mnslp_msg: msg_type=2, objects={
+   [information_code: type=244, treatment=0, severity=2, response_code=1, obj_type=0]
+   [msg_sequence_number: type=247, treatment=0, value=77]
+}]
+2015-01-08 10:13:23.631-6184- INFO  /4: dispatcher      reporting async event to user: REFRESH successful
+2015-01-08 10:13:23.631-6184**ERROR**8: dispatcher      report_async_event() not implemented at dispatcher.cpp:302
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=599094E8_C1B481F1_DE60EAB3_7E949BD6, state=METERING_PARTICIPATING]
+2015-01-08 10:13:23.631-6184**ERROR**4: Threadsafe_DB   Tried to access tsdb although not initialized.
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=50DEA7B8_A764F7F5_52C83593_6F086DB3, state=METERING_PARTICIPATING]
+2015-01-08 10:13:23.631-6184- DEBUG /4: ni_session      received RESPONSE: [mnslp_msg: msg_type=2, objects={
+   [information_code: type=244, treatment=0, severity=5, response_code=0, obj_type=0]
+   [msg_sequence_number: type=247, treatment=0, value=77]
+}]
+2015-01-08 10:13:23.632-6184- INFO  /4: dispatcher      reporting async event to user: REFRESH session died
+2015-01-08 10:13:23.632-6184**ERROR**8: dispatcher      report_async_event() not implemented at dispatcher.cpp:302
+2015-01-08 10:13:23.632-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=50DEA7B8_A764F7F5_52C83593_6F086DB3, state=CLOSE]
+2015-01-08 10:13:23.632-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=83A1A46C_E705CD2C_7FC90E06_999A552F, state=METERING_PARTICIPATING]
+2015-01-08 10:13:23.632-6184- DEBUG /4: ni_session      received response timeout timer
+2015-01-08 10:13:23.632-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=83A1A46C_E705CD2C_7FC90E06_999A552F, state=METERING_PARTICIPATING]
+2015-01-08 10:13:23.632-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=57603F44_D7A10DB7_3551D324_E051FA00, state=METERING_PARTICIPATING]
+2015-01-08 10:13:23.632-6184- DEBUG /4: ni_session      received response timeout timer
+2015-01-08 10:13:23.632-6184- INFO  /4: dispatcher      reporting async event to user: got no response to our REFRESH message
+2015-01-08 10:13:23.632-6184**ERROR**8: dispatcher      report_async_event() not implemented at dispatcher.cpp:302
+2015-01-08 10:13:23.632-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=57603F44_D7A10DB7_3551D324_E051FA00, state=CLOSE]
+2015-01-08 10:13:23.632-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=0A8D6F95_F8741738_54C7889D_4C5D5B2B, state=METERING_PARTICIPATING]
+2015-01-08 10:13:23.632-6184- DEBUG /4: ni_session      received API teardown event
+2015-01-08 10:13:23.632-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=0A8D6F95_F8741738_54C7889D_4C5D5B2B, state=CLOSE]
+2015-01-08 10:13:23.632-6184- DEBUG /4: ni_session      begin process_event(): [ni_session: id=8A309720_8E022E47_88E2579B_50228E82, state=METERING_PARTICIPATING]
+2015-01-08 10:13:23.632-6184- DEBUG /4: ni_session      received refresh timer
+2015-01-08 10:13:23.632-6184- DEBUG /4: ni_session      end process_event(): [ni_session: id=8A309720_8E022E47_88E2579B_50228E82, state=METERING_PARTICIPATING]
+2015-01-08 10:13:23.632-6184- DEBUG /4: mnslp_config    start - creating configuration parameter singleton
+2015-01-08 10:13:23.632-6184- DEBUG /4: configpar_repository instance() - creating instance
+2015-01-08 10:13:23.632-6184- DEBUG /4: mnslp_config    registered mnslp realm with realm id 5
+2015-01-08 10:13:23.632-6184- DEBUG /4: mnslp_config::registerAllPars starting registering mnslp parameters.
+2015-01-08 10:13:23.632-6184- DEBUG /4: mnslp_config::registerAllPars finished registering mnslp parameters.
+2015-01-08 10:13:23.632-6184- DEBUG /4: gistconf        registered gist realm with realm id 2
+2015-01-08 10:13:23.632-6184- DEBUG /4: gistconf::registerAllPars starting registering gist parameters.
+2015-01-08 10:13:23.632-6184- DEBUG /4: gistconf::registerAllPars finished registering gist parameters.
+2015-01-08 10:13:23.632-6184**ERROR**4: Threadsafe_DB   Tried to access tsdb although not initialized.
+2015-01-08 10:13:23.632-6184- DEBUG /4: nr_session      begin process_event(): [nr_session: id=7B613432_5C149EB8_5DAE9B51_A0B0964B, state=CLOSE]
+2015-01-08 10:13:23.632-6184**ERROR**8: dispatcher      implement dispatcher::is_authorized()! at dispatcher.cpp:351
+2015-01-08 10:13:23.632-6184- DEBUG /4: nr_session      responder session initiated.
+2015-01-08 10:13:23.632-6184- DEBUG /4: nr_session      end process_event(): [nr_session: id=7B613432_5C149EB8_5DAE9B51_A0B0964B, state=METERING_FORWARD]
+2015-01-08 10:13:23.632-6184- DEBUG /4: mnslp_config    start - creating configuration parameter singleton
+2015-01-08 10:13:23.632-6184- DEBUG /4: configpar_repository instance() - creating instance
+2015-01-08 10:13:23.632-6184- DEBUG /4: mnslp_config    registered mnslp realm with realm id 5
+2015-01-08 10:13:23.632-6184- DEBUG /4: mnslp_config::registerAllPars starting registering mnslp parameters.
+2015-01-08 10:13:23.632-6184- DEBUG /4: mnslp_config::registerAllPars finished registering mnslp parameters.
+2015-01-08 10:13:23.632-6184- DEBUG /4: gistconf        registered gist realm with realm id 2
+2015-01-08 10:13:23.632-6184- DEBUG /4: gistconf::registerAllPars starting registering gist parameters.
+2015-01-08 10:13:23.632-6184- DEBUG /4: gistconf::registerAllPars finished registering gist parameters.
+2015-01-08 10:13:23.632-6184- DEBUG /4: nr_session      begin process_event(): [nr_session: id=50F0DAA8_C101067E_520E4D6E_E0E78055, state=METERING_PARTICIPATING]
+2015-01-08 10:13:23.632-6184**ERROR**8: dispatcher      implement dispatcher::is_authorized()! at dispatcher.cpp:351
+2015-01-08 10:13:23.632-6184- DEBUG /4: nr_session      authentication succesful.
+2015-01-08 10:13:23.632-6184- DEBUG /4: nr_session      end process_event(): [nr_session: id=50F0DAA8_C101067E_520E4D6E_E0E78055, state=METERING_PARTICIPATING]
+2015-01-08 10:13:23.632-6184- DEBUG /4: nr_session      begin process_event(): [nr_session: id=8798470B_018F5F87_7C85ECAE_CCD40754, state=METERING_PARTICIPATING]
+2015-01-08 10:13:23.632-6184**ERROR**8: dispatcher      implement dispatcher::is_authorized()! at dispatcher.cpp:351
+2015-01-08 10:13:23.632-6184- DEBUG /4: nr_session      authentication succesful.
+2015-01-08 10:13:23.632-6184- DEBUG /4: nr_session      end process_event(): [nr_session: id=8798470B_018F5F87_7C85ECAE_CCD40754, state=METERING_PARTICIPATING]
+2015-01-08 10:13:23.632-6184- DEBUG /4: mnslp_config    start - creating configuration parameter singleton
+2015-01-08 10:13:23.632-6184- DEBUG /4: configpar_repository instance() - creating instance
+2015-01-08 10:13:23.632-6184- DEBUG /4: mnslp_config    registered mnslp realm with realm id 5
+2015-01-08 10:13:23.632-6184- DEBUG /4: mnslp_config::registerAllPars starting registering mnslp parameters.
+2015-01-08 10:13:23.632-6184- DEBUG /4: mnslp_config::registerAllPars finished registering mnslp parameters.
+2015-01-08 10:13:23.632-6184- DEBUG /4: gistconf        registered gist realm with realm id 2
+2015-01-08 10:13:23.632-6184- DEBUG /4: gistconf::registerAllPars starting registering gist parameters.
+2015-01-08 10:13:23.632-6184- DEBUG /4: gistconf::registerAllPars finished registering gist parameters.
+2015-01-08 10:13:23.632-6184- DEBUG /4: nr_session      begin process_event(): [nr_session: id=2F79AEB6_0F7324D9_F0158D5F_CCFA226E, state=METERING_FORWARD]
+2015-01-08 10:13:23.632-6184**ERROR**8: dispatcher      implement dispatcher::is_authorized()! at dispatcher.cpp:351
+2015-01-08 10:13:23.632-6184- DEBUG /4: nr_session      authentication succesful.
+2015-01-08 10:13:23.632-6184- DEBUG /4: nr_session      end process_event(): [nr_session: id=2F79AEB6_0F7324D9_F0158D5F_CCFA226E, state=METERING_FORWARD]
+2015-01-08 10:13:23.632-6184- DEBUG /4: nr_session      begin process_event(): [nr_session: id=5568286E_0D1BC4A0_FE29BBEF_5D15E5D9, state=METERING_FORWARD]
+2015-01-08 10:13:23.632-6184**ERROR**8: dispatcher      implement dispatcher::is_authorized()! at dispatcher.cpp:351
+2015-01-08 10:13:23.632-6184- DEBUG /4: nr_session      authentication succesful.
+2015-01-08 10:13:23.632-6184- DEBUG /4: nr_session      end process_event(): [nr_session: id=5568286E_0D1BC4A0_FE29BBEF_5D15E5D9, state=METERING_FORWARD]
