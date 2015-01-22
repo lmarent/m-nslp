@@ -89,7 +89,7 @@ class policy_rule_installer {
 	 *
 	 * If they are not, an exception is thrown.
 	 */
-	virtual void check(const mt_policy_rule *mt_object)
+	virtual void check(const msg::mnslp_mspec_object *object)
 		throw (policy_rule_installer_error) = 0;
 
 	/**
@@ -114,17 +114,30 @@ class policy_rule_installer {
 	virtual void remove(const mt_policy_rule * mt_object)
 		throw (policy_rule_installer_error) = 0;
 
-	/**
-	 * Remove all previously installed policy rules.
-	 *
-	 * This has the same effect as calling remove() for all installed
-	 * policy rules.
-	 */
-	virtual void remove_all() throw (policy_rule_installer_error) = 0;
-	
-	const policy_action_container & get_action_container() const;	
+	virtual void remove_all()
+		throw (policy_rule_installer_error) = 0;
 
+			
+	const policy_action_container & get_action_container() const;	
+	
+	const policy_filter_container & get_filter_container() const;
+
+	std::string get_metering_application(){ return config->get_metering_application(); }
+
+	std::string get_metering_application() const { return config->get_metering_application(); }
+		
+	std::string get_user() { return config->get_user(); }
+	
+	std::string get_password() { return config->get_password(); } 
+	
+	std::string get_metering_server() { return config->get_metering_server(); } 
+	
+	std::string get_metering_xsl() { return config->get_metering_xsl(); } 
+	
+	std::string get_metering_port() { return config->get_metering_port(); } 
+	
   private:
+  
 	mnslp_config *config;
 	policy_action_container * action_container;
 	policy_filter_container * filter_container;

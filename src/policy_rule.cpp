@@ -32,8 +32,7 @@
 
 #include "policy_rule.h"
 
-using namespace mnslp;
-
+namespace mnslp {
 
 /*****************************************************************************
  *
@@ -44,13 +43,18 @@ using namespace mnslp;
 /**
  * Constructor.
  */
-mt_policy_rule::mt_policy_rule(msg::mnslp_mspec_object &obj):
-object(obj) 
+mt_policy_rule::mt_policy_rule()
 {
-
 	// nothing to do
 }
 
+/**
+ * Copy constructor.
+ */
+mt_policy_rule::mt_policy_rule(const mt_policy_rule &rhs)
+{
+	objects = rhs.objects;
+}
 
 /**
  * Create a deep copy of this object.
@@ -61,22 +65,16 @@ mt_policy_rule *mt_policy_rule::copy() const {
 
 
 /**
- * Create a deep copy of this object.
- */
-msg::mnslp_mspec_object * mt_policy_rule::get_object() const {
-	return &object;
+ * Add a mspec objet to the rule. This creates the key to share with the
+ * metering application. 
+*/
+void 
+mt_policy_rule::set_object(msg::mnslp_mspec_object &obj)
+{
+	mspec_rule_key key();
+	objects[key] = obj;
 }
 
-
-std::ostream &
-mnslp::operator<<(std::ostream &out, const mt_policy_rule &mpr)
-{
-
-	//TODO AM implement operator<< in msnlp_mspec_object
-	//return object.operator <<(out);
-	
-	return out;
-	
 }
 
 // EOF

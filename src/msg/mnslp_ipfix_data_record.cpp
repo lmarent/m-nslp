@@ -81,6 +81,12 @@ mnslp_ipfix_data_record::get_num_fields()
 	return field_data.size();
 }
 
+int 
+mnslp_ipfix_data_record::get_num_fields() const
+{
+	return field_data.size();
+}
+
 
 mnslp_ipfix_value_field 
 mnslp_ipfix_data_record::get_field(mnslp_ipfix_field_key &param)

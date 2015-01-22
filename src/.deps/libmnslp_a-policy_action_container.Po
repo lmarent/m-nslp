@@ -99,32 +99,15 @@ libmnslp_a-policy_action_container.o: policy_action_container.cpp \
  /usr/include/libxml2/libxml/xlink.h /usr/include/libxml2/libxml/SAX2.h \
  /usr/include/libxml2/libxml/relaxng.h \
  /usr/include/libxml2/libxml/xmlschemas.h ../include/policy_action.h \
- ../include/mnslp_xml_node_reader.h ../include/policy_action_mapping.h \
- ../include/msg/mnslp_ipfix_field.h /usr/include/c++/4.6/vector \
+ ../include/msg/mnslp_field.h ../../protlib/include/ie.h \
+ /usr/include/c++/4.6/ext/hash_map \
+ /usr/include/c++/4.6/backward/backward_warning.h \
+ /usr/include/c++/4.6/backward/hashtable.h /usr/include/c++/4.6/vector \
  /usr/include/c++/4.6/bits/stl_construct.h \
  /usr/include/c++/4.6/bits/stl_uninitialized.h \
  /usr/include/c++/4.6/bits/stl_vector.h \
  /usr/include/c++/4.6/bits/stl_bvector.h \
- /usr/include/c++/4.6/bits/vector.tcc /usr/include/string.h \
- /usr/include/i386-linux-gnu/bits/string3.h \
- /usr/include/i386-linux-gnu/sys/time.h /usr/include/inttypes.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include/stdint.h /usr/include/stdint.h \
- /usr/include/i386-linux-gnu/sys/socket.h \
- /usr/include/i386-linux-gnu/sys/uio.h \
- /usr/include/i386-linux-gnu/bits/uio.h \
- /usr/include/i386-linux-gnu/bits/socket.h \
- /usr/include/i386-linux-gnu/bits/sockaddr.h \
- /usr/include/i386-linux-gnu/asm/socket.h \
- /usr/include/asm-generic/socket.h \
- /usr/include/i386-linux-gnu/asm/sockios.h \
- /usr/include/asm-generic/sockios.h \
- /usr/include/i386-linux-gnu/bits/socket2.h /usr/include/netinet/in.h \
- /usr/include/i386-linux-gnu/bits/in.h ../include/msg/ipfix_def.h \
- /usr/include/c++/4.6/cstddef ../include/msg/mnslp_ipfix_exception.h \
- ../include/msg/information_code.h ../include/msg/mnslp_object.h \
- ../../protlib/include/ie.h /usr/include/c++/4.6/ext/hash_map \
- /usr/include/c++/4.6/backward/backward_warning.h \
- /usr/include/c++/4.6/backward/hashtable.h /usr/include/c++/4.6/iterator \
+ /usr/include/c++/4.6/bits/vector.tcc /usr/include/c++/4.6/iterator \
  /usr/include/c++/4.6/ostream /usr/include/c++/4.6/ios \
  /usr/include/c++/4.6/bits/ios_base.h \
  /usr/include/c++/4.6/bits/locale_classes.h \
@@ -155,8 +138,29 @@ libmnslp_a-policy_action_container.o: policy_action_container.cpp \
  /usr/include/c++/4.6/i686-linux-gnu/./bits/basic_file.h \
  /usr/include/c++/4.6/i686-linux-gnu/./bits/c++io.h \
  /usr/include/c++/4.6/bits/fstream.tcc /usr/include/c++/4.6/cassert \
- /usr/include/assert.h ../../protlib/include/network_message.h \
- ../include/msg/session_lifetime.h ../include/msg/information_code.h \
+ /usr/include/assert.h /usr/include/netinet/in.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include/stdint.h /usr/include/stdint.h \
+ /usr/include/i386-linux-gnu/sys/socket.h \
+ /usr/include/i386-linux-gnu/sys/uio.h \
+ /usr/include/i386-linux-gnu/bits/uio.h \
+ /usr/include/i386-linux-gnu/bits/socket.h \
+ /usr/include/i386-linux-gnu/bits/sockaddr.h \
+ /usr/include/i386-linux-gnu/asm/socket.h \
+ /usr/include/asm-generic/socket.h \
+ /usr/include/i386-linux-gnu/asm/sockios.h \
+ /usr/include/asm-generic/sockios.h \
+ /usr/include/i386-linux-gnu/bits/socket2.h \
+ /usr/include/i386-linux-gnu/bits/in.h \
+ ../../protlib/include/network_message.h ../include/msg/mnslp_field_key.h \
+ ../include/msg/mnslp_ipfix_field.h /usr/include/string.h \
+ /usr/include/i386-linux-gnu/bits/string3.h \
+ /usr/include/i386-linux-gnu/sys/time.h /usr/include/inttypes.h \
+ ../include/msg/ipfix_def.h /usr/include/c++/4.6/cstddef \
+ ../include/msg/mnslp_field.h ../include/msg/mnslp_ipfix_exception.h \
+ ../include/mnslp_xml_node_reader.h ../include/policy_action_mapping.h \
+ ../include/policy_field_mapping.h ../include/msg/information_code.h \
+ ../include/msg/mnslp_object.h ../include/msg/session_lifetime.h \
+ ../include/msg/information_code.h \
  ../include/msg/selection_metering_entities.h \
  ../include/msg/msg_sequence_number.h ../include/msg/message_hop_count.h \
  ../include/policy_rule_installer.h ../include/session.h \
@@ -164,7 +168,7 @@ libmnslp_a-policy_action_container.o: policy_action_container.cpp \
  /usr/include/c++/4.6/iomanip ../include/msg/mnslp_msg.h \
  ../include/msg/ie_store.h ../include/msg/ie_object_key.h \
  ../include/msg/mnslp_configure.h ../include/msg/mnslp_msg.h \
- ../include/msg/mnslp_ipfix_message.h ../include/msg/mnslp_ipfix_field.h \
+ ../include/msg/mnslp_ipfix_message.h \
  ../include/msg/mnslp_ipfix_data_record.h \
  ../include/msg/mnslp_ipfix_template.h /usr/include/c++/4.6/list \
  /usr/include/c++/4.6/bits/stl_list.h /usr/include/c++/4.6/bits/list.tcc \
@@ -183,11 +187,23 @@ libmnslp_a-policy_action_container.o: policy_action_container.cpp \
  /usr/include/c++/4.6/bits/sstream.tcc \
  ../../protlib/include/configpar_repository.h \
  ../../protlib/include/configpar.h ../../ntlp/include/gist_conf.h \
- ../include/policy_rule.h ../include/policy_action_container.h \
- ../include/policy_filter_container.h ../include/policy_filter_mapping.h \
+ ../include/policy_rule.h ../include/mspec_rule_key.h \
+ /usr/include/uuid/uuid.h ../include/policy_action_container.h \
+ ../include/policy_filter_container.h \
  ../include/nop_policy_rule_installer.h \
  ../include/policy_rule_installer.h \
- ../include/netmate_ipfix_policy_rule_installer.h
+ ../include/netmate_ipfix_policy_rule_installer.h \
+ ../include/msg/mnslp_ipfix_message.h \
+ ../include/msg/mnslp_ipfix_template.h /usr/include/curl/curl.h \
+ /usr/include/curl/curlver.h /usr/include/curl/curlbuild.h \
+ /usr/include/curl/curlrules.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include-fixed/limits.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include-fixed/syslimits.h \
+ /usr/include/limits.h /usr/include/i386-linux-gnu/bits/posix1_lim.h \
+ /usr/include/i386-linux-gnu/bits/local_lim.h /usr/include/linux/limits.h \
+ /usr/include/i386-linux-gnu/bits/posix2_lim.h \
+ /usr/include/i386-linux-gnu/bits/xopen_lim.h /usr/include/curl/easy.h \
+ /usr/include/curl/multi.h /usr/include/curl/curl.h
 
 /usr/include/c++/4.6/new:
 
@@ -441,11 +457,15 @@ libmnslp_a-policy_action_container.o: policy_action_container.cpp \
 
 ../include/policy_action.h:
 
-../include/mnslp_xml_node_reader.h:
+../include/msg/mnslp_field.h:
 
-../include/policy_action_mapping.h:
+../../protlib/include/ie.h:
 
-../include/msg/mnslp_ipfix_field.h:
+/usr/include/c++/4.6/ext/hash_map:
+
+/usr/include/c++/4.6/backward/backward_warning.h:
+
+/usr/include/c++/4.6/backward/hashtable.h:
 
 /usr/include/c++/4.6/vector:
 
@@ -458,60 +478,6 @@ libmnslp_a-policy_action_container.o: policy_action_container.cpp \
 /usr/include/c++/4.6/bits/stl_bvector.h:
 
 /usr/include/c++/4.6/bits/vector.tcc:
-
-/usr/include/string.h:
-
-/usr/include/i386-linux-gnu/bits/string3.h:
-
-/usr/include/i386-linux-gnu/sys/time.h:
-
-/usr/include/inttypes.h:
-
-/usr/lib/gcc/i686-linux-gnu/4.6/include/stdint.h:
-
-/usr/include/stdint.h:
-
-/usr/include/i386-linux-gnu/sys/socket.h:
-
-/usr/include/i386-linux-gnu/sys/uio.h:
-
-/usr/include/i386-linux-gnu/bits/uio.h:
-
-/usr/include/i386-linux-gnu/bits/socket.h:
-
-/usr/include/i386-linux-gnu/bits/sockaddr.h:
-
-/usr/include/i386-linux-gnu/asm/socket.h:
-
-/usr/include/asm-generic/socket.h:
-
-/usr/include/i386-linux-gnu/asm/sockios.h:
-
-/usr/include/asm-generic/sockios.h:
-
-/usr/include/i386-linux-gnu/bits/socket2.h:
-
-/usr/include/netinet/in.h:
-
-/usr/include/i386-linux-gnu/bits/in.h:
-
-../include/msg/ipfix_def.h:
-
-/usr/include/c++/4.6/cstddef:
-
-../include/msg/mnslp_ipfix_exception.h:
-
-../include/msg/information_code.h:
-
-../include/msg/mnslp_object.h:
-
-../../protlib/include/ie.h:
-
-/usr/include/c++/4.6/ext/hash_map:
-
-/usr/include/c++/4.6/backward/backward_warning.h:
-
-/usr/include/c++/4.6/backward/hashtable.h:
 
 /usr/include/c++/4.6/iterator:
 
@@ -599,7 +565,65 @@ libmnslp_a-policy_action_container.o: policy_action_container.cpp \
 
 /usr/include/assert.h:
 
+/usr/include/netinet/in.h:
+
+/usr/lib/gcc/i686-linux-gnu/4.6/include/stdint.h:
+
+/usr/include/stdint.h:
+
+/usr/include/i386-linux-gnu/sys/socket.h:
+
+/usr/include/i386-linux-gnu/sys/uio.h:
+
+/usr/include/i386-linux-gnu/bits/uio.h:
+
+/usr/include/i386-linux-gnu/bits/socket.h:
+
+/usr/include/i386-linux-gnu/bits/sockaddr.h:
+
+/usr/include/i386-linux-gnu/asm/socket.h:
+
+/usr/include/asm-generic/socket.h:
+
+/usr/include/i386-linux-gnu/asm/sockios.h:
+
+/usr/include/asm-generic/sockios.h:
+
+/usr/include/i386-linux-gnu/bits/socket2.h:
+
+/usr/include/i386-linux-gnu/bits/in.h:
+
 ../../protlib/include/network_message.h:
+
+../include/msg/mnslp_field_key.h:
+
+../include/msg/mnslp_ipfix_field.h:
+
+/usr/include/string.h:
+
+/usr/include/i386-linux-gnu/bits/string3.h:
+
+/usr/include/i386-linux-gnu/sys/time.h:
+
+/usr/include/inttypes.h:
+
+../include/msg/ipfix_def.h:
+
+/usr/include/c++/4.6/cstddef:
+
+../include/msg/mnslp_field.h:
+
+../include/msg/mnslp_ipfix_exception.h:
+
+../include/mnslp_xml_node_reader.h:
+
+../include/policy_action_mapping.h:
+
+../include/policy_field_mapping.h:
+
+../include/msg/information_code.h:
+
+../include/msg/mnslp_object.h:
 
 ../include/msg/session_lifetime.h:
 
@@ -632,8 +656,6 @@ libmnslp_a-policy_action_container.o: policy_action_container.cpp \
 ../include/msg/mnslp_msg.h:
 
 ../include/msg/mnslp_ipfix_message.h:
-
-../include/msg/mnslp_ipfix_field.h:
 
 ../include/msg/mnslp_ipfix_data_record.h:
 
@@ -699,14 +721,50 @@ libmnslp_a-policy_action_container.o: policy_action_container.cpp \
 
 ../include/policy_rule.h:
 
+../include/mspec_rule_key.h:
+
+/usr/include/uuid/uuid.h:
+
 ../include/policy_action_container.h:
 
 ../include/policy_filter_container.h:
-
-../include/policy_filter_mapping.h:
 
 ../include/nop_policy_rule_installer.h:
 
 ../include/policy_rule_installer.h:
 
 ../include/netmate_ipfix_policy_rule_installer.h:
+
+../include/msg/mnslp_ipfix_message.h:
+
+../include/msg/mnslp_ipfix_template.h:
+
+/usr/include/curl/curl.h:
+
+/usr/include/curl/curlver.h:
+
+/usr/include/curl/curlbuild.h:
+
+/usr/include/curl/curlrules.h:
+
+/usr/lib/gcc/i686-linux-gnu/4.6/include-fixed/limits.h:
+
+/usr/lib/gcc/i686-linux-gnu/4.6/include-fixed/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/i386-linux-gnu/bits/posix1_lim.h:
+
+/usr/include/i386-linux-gnu/bits/local_lim.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/i386-linux-gnu/bits/posix2_lim.h:
+
+/usr/include/i386-linux-gnu/bits/xopen_lim.h:
+
+/usr/include/curl/easy.h:
+
+/usr/include/curl/multi.h:
+
+/usr/include/curl/curl.h:

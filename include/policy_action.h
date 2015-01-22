@@ -31,6 +31,7 @@
 
 #include <map>
 #include <string>
+#include "msg/mnslp_field.h"
 #include "mnslp_xml_node_reader.h"
 #include "policy_action_mapping.h"
 
@@ -69,6 +70,12 @@ class policy_action : public mnslp_xml_node_reader {
 	typedef std::map<std::string, policy_action_mapping>::const_iterator const_iterator;
 	const_iterator begin() const throw() { return action_mappings.begin(); }
 	const_iterator end() const throw() { return action_mappings.end(); }
+	
+	bool check_field_availability(std::string app, msg::mnslp_field &field) const;
+	
+	std::string get_field_traslate(std::string app, msg::mnslp_field &field) const;
+	
+	std::string get_package(std::string app, msg::mnslp_field &field) const;
     
   private:
 	std::map<std::string, policy_action_mapping> action_mappings;

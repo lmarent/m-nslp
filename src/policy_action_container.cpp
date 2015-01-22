@@ -123,7 +123,51 @@ policy_action_container::operator!=(const policy_action_container &rhs) const
 	return !(operator==(rhs));
 }    
 
+bool 
+policy_action_container::check_field_availability(std::string app, 
+												  msg::mnslp_field &field) const
+{
+	
+	for ( const_iterator i = actions.begin(); i != actions.end(); i++ ) {
 
+		// Verify if the field is included in this action.
+		if ((i->second).check_field_availability(app,field) )
+			return true;
+		
+	}	
+	
+	return false;
+	
+}
 
+std::string 
+policy_action_container::get_field_traslate( std::string app, msg::mnslp_field &field ) const
+{
+	
+	std::string val_return = "";
+	for ( const_iterator i = actions.begin(); i != actions.end(); i++ ) {
+		// Bring the field translation from this action.
+		val_return = ((i->second).get_field_traslate(app,field) );
+		if (val_return.length() > 0)
+			break;
+	}	
+	
+	return val_return;
+}
+
+std::string 
+policy_action_container::get_package( std::string app, msg::mnslp_field &field ) const
+{
+	
+	std::string val_return = "";
+	for ( const_iterator i = actions.begin(); i != actions.end(); i++ ) {
+		// Bring the field translation from this action.
+		val_return = ((i->second).get_package(app,field) );
+		if (val_return.length() > 0)
+			break;
+	}	
+	
+	return val_return;
+}
 	
 } // namespace mnslp

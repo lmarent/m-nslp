@@ -175,6 +175,7 @@ libmnslp_a-gistka_mapper.o: gistka_mapper.cpp \
  ../include/msg/mnslp_configure.h ../include/msg/mnslp_ipfix_message.h \
  /usr/include/inttypes.h ../include/msg/ipfix_def.h \
  /usr/include/c++/4.6/cstddef ../include/msg/mnslp_ipfix_field.h \
+ ../include/msg/mnslp_field_key.h ../include/msg/mnslp_field.h \
  ../include/msg/mnslp_ipfix_exception.h \
  ../include/msg/mnslp_ipfix_data_record.h \
  ../include/msg/mnslp_ipfix_template.h \
@@ -184,10 +185,11 @@ libmnslp_a-gistka_mapper.o: gistka_mapper.cpp \
  /usr/include/c++/4.6/iomanip ../include/msg/mnslp_msg.h \
  ../include/session.h ../include/session_id.h \
  ../include/msg/mnslp_mspec_object.h ../include/msg/mnslp_response.h \
- ../include/session.h ../include/policy_rule.h ../include/mnslp_timers.h \
- ../include/msg/selection_metering_entities.h ../include/gistka_mapper.h \
- ../include/events.h ../include/benchmark_journal.h \
- /usr/include/c++/4.6/ctime
+ ../include/session.h ../include/policy_rule.h \
+ ../include/mspec_rule_key.h /usr/include/uuid/uuid.h \
+ ../include/mnslp_timers.h ../include/msg/selection_metering_entities.h \
+ ../include/gistka_mapper.h ../include/events.h \
+ ../include/benchmark_journal.h /usr/include/c++/4.6/ctime
 
 ../../protlib/include/timer_module.h:
 
@@ -689,6 +691,10 @@ libmnslp_a-gistka_mapper.o: gistka_mapper.cpp \
 
 ../include/msg/mnslp_ipfix_field.h:
 
+../include/msg/mnslp_field_key.h:
+
+../include/msg/mnslp_field.h:
+
 ../include/msg/mnslp_ipfix_exception.h:
 
 ../include/msg/mnslp_ipfix_data_record.h:
@@ -722,6 +728,10 @@ libmnslp_a-gistka_mapper.o: gistka_mapper.cpp \
 ../include/session.h:
 
 ../include/policy_rule.h:
+
+../include/mspec_rule_key.h:
+
+/usr/include/uuid/uuid.h:
 
 ../include/mnslp_timers.h:
 

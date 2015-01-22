@@ -49,9 +49,8 @@ policy_rule_installer::setup() throw (policy_rule_installer_error)
 {
 	
 	std::cout << "In setup function" << std::endl << std::flush;
-	
-	// Bring the xml file name and directory.
 	if ( config->is_ms_meter()){
+		
 		std::cout << "is_meter" << std::endl << std::flush;
 		
 		// Parse and load the export configuration.
@@ -140,6 +139,18 @@ policy_rule_installer::get_action_container() const
 	else
 		std::cout << "action container is null" << std::endl;
 		throw policy_rule_installer_error("action configuration not defined",
+			msg::information_code::sc_permanent_failure,
+			msg::information_code::fail_configuration_failed);
+}
+
+const policy_filter_container &
+policy_rule_installer::get_filter_container() const
+{
+	if (filter_container != NULL)
+		return *filter_container;
+	else
+		std::cout << "filter container is null" << std::endl;
+		throw policy_rule_installer_error("filter configuration not defined",
 			msg::information_code::sc_permanent_failure,
 			msg::information_code::fail_configuration_failed);
 }

@@ -77,6 +77,8 @@ public:
     
     inline uint16_t get_template_id(){ return template_id; }
     
+    inline uint16_t get_template_id() const { return template_id; }
+    
     /**
      *  Insert a field value based on components of the field key (eno,ftype).
      */
@@ -93,24 +95,33 @@ public:
     int get_num_fields();
         
     /** 
+     * Return the number of fields with a value
+     */
+    int get_num_fields() const;
+        
+    /** 
      * Return the field value based on components of the field key
+     * Throws mnslp_ipfix_bad_argument if the field is not found
      */
     mnslp_ipfix_value_field get_field(int eno, int ftype);
 
 
     /** 
-     * Return the field value based on components of the field key
+     * Return the field value based on components of the field key.
+     * Throws mnslp_ipfix_bad_argument if the field is not found
      */
     mnslp_ipfix_value_field get_field(int eno, int ftype) const;
 
 
     /** 
      * Return the field value based on the field key
+     * Throws mnslp_ipfix_bad_argument if the field is not found
      */
     mnslp_ipfix_value_field get_field(mnslp_ipfix_field_key &param);
 
     /** 
      * Return the field value based on the field key
+     * Throws mnslp_ipfix_bad_argument if the field is not found
      */
     mnslp_ipfix_value_field get_field(const mnslp_ipfix_field_key &param) const;
     

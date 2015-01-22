@@ -141,8 +141,8 @@ libmnslp_a-session_manager.o: session_manager.cpp /usr/include/assert.h \
  ../include/msg/mnslp_configure.h ../include/msg/mnslp_msg.h \
  ../include/msg/mnslp_ipfix_message.h /usr/include/inttypes.h \
  ../include/msg/ipfix_def.h /usr/include/c++/4.6/cstddef \
- ../include/msg/mnslp_ipfix_field.h \
- ../include/msg/mnslp_ipfix_exception.h \
+ ../include/msg/mnslp_ipfix_field.h ../include/msg/mnslp_field_key.h \
+ ../include/msg/mnslp_field.h ../include/msg/mnslp_ipfix_exception.h \
  ../include/msg/mnslp_ipfix_data_record.h \
  ../include/msg/mnslp_ipfix_template.h /usr/include/c++/4.6/list \
  /usr/include/c++/4.6/bits/stl_list.h /usr/include/c++/4.6/bits/list.tcc \
@@ -186,6 +186,7 @@ libmnslp_a-session_manager.o: session_manager.cpp /usr/include/assert.h \
  ../../ntlp/include/mri_le.h ../include/msg/ntlp_msg.h \
  ../../ntlp/include/mri.h ../include/session_id.h \
  ../include/msg/mnslp_response.h ../include/policy_rule.h \
+ ../include/mspec_rule_key.h /usr/include/uuid/uuid.h \
  ../include/mnslp_timers.h ../include/msg/selection_metering_entities.h \
  ../include/nf_session.h ../include/nr_session.h
 
@@ -579,6 +580,10 @@ libmnslp_a-session_manager.o: session_manager.cpp /usr/include/assert.h \
 
 ../include/msg/mnslp_ipfix_field.h:
 
+../include/msg/mnslp_field_key.h:
+
+../include/msg/mnslp_field.h:
+
 ../include/msg/mnslp_ipfix_exception.h:
 
 ../include/msg/mnslp_ipfix_data_record.h:
@@ -718,6 +723,10 @@ libmnslp_a-session_manager.o: session_manager.cpp /usr/include/assert.h \
 ../include/msg/mnslp_response.h:
 
 ../include/policy_rule.h:
+
+../include/mspec_rule_key.h:
+
+/usr/include/uuid/uuid.h:
 
 ../include/mnslp_timers.h:
 

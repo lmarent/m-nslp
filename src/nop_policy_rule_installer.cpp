@@ -73,7 +73,7 @@ void nop_policy_rule_installer::setup() throw (policy_rule_installer_error) {
 }
 
 
-void nop_policy_rule_installer::check(const mt_policy_rule *mt_rule)
+void nop_policy_rule_installer::check(const msg::mnslp_mspec_object *object)
 		throw (policy_rule_installer_error) {
 
 	LogDebug("NOP: check()");
@@ -95,12 +95,12 @@ void nop_policy_rule_installer::remove(const mt_policy_rule *mt_rule)
 		LogDebug("NOP: removing firewall policy rule " << *mt_rule);
 }
 
-
 void nop_policy_rule_installer::remove_all()
 		throw (policy_rule_installer_error) {
 
-	LogDebug("NOP: removing all installed policy rules");
+	LogDebug("NOP: removing all metering policy rules ");
 }
+
 
 
 // EOF

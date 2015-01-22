@@ -43,9 +43,11 @@ libmnslp_msg_a_SOURCES = ie_object_key.cpp \
 					     ipfix_t.cpp \
 					     mnslp_mspec_object.cpp \
 					     mnslp_ipfix_message.cpp \
+					     mnslp_field.cpp \
+					     mnslp_field_key.cpp \
 					     mnslp_ipfix_field.cpp \
 					     mnslp_ipfix_data_record.cpp \
-					     mnslp_ipfix_template.cpp
+					     mnslp_ipfix_template.cpp 
 
 
 

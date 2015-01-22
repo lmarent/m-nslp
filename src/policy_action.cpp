@@ -64,27 +64,30 @@ int policy_action::read_from_xml(xmlTextReaderPtr reader)
 	
 	// Level 0 is the whole set of rules
 	// Level 1 corresponds to action objects.
-	if (xmlTextReaderDepth(reader) == 1)
+	int level = 1;
+	if (xmlTextReaderDepth(reader) == level)
 	{
         
         // Read the metering application.
         action = processAttribute( reader, policy_action::id_str );
 		
 		// Read an application mapping
-		ret = xmlTextReaderRead(reader);			
+		ret = xmlTextReaderRead(reader);
+		
+		level++;
 		while (ret == 1) 
 		{
-			if ((xmlTextReaderDepth(reader) == 2) and 
+			if ((xmlTextReaderDepth(reader) == level) and 
 				(xmlTextReaderNodeType(reader) == 1) )
 			{
 				policy_action_mapping action_mapping;
-				ret = action_mapping.read_from_xml(reader);
+				ret = action_mapping.read_from_xml(level, reader);
 				set_action_mapping(action_mapping.get_application(), 
 							   action_mapping);
 					
 			}
 			else{
-				if (xmlTextReaderDepth(reader) < 2){
+				if (xmlTextReaderDepth(reader) < level){
 					return ret;
 				}
 				else{
@@ -141,6 +144,39 @@ std::string
 policy_action::get_name() const
 {
 	return action;
+}
+
+bool 
+policy_action::check_field_availability(std::string app, msg::mnslp_field &field) const
+{
+	for ( const_iterator i = action_mappings.begin(); i != action_mappings.end(); i++ ) {
+		if (app.compare( (i->second).get_application() ) == 0) 
+			return (i->second).check_field_availability(field);
+	}
+	return false;
+}
+
+std::string 
+policy_action::get_field_traslate(std::string app, msg::mnslp_field &field) const
+{
+	std::string val_return = "";
+	for ( const_iterator i = action_mappings.begin(); i != action_mappings.end(); i++ ) {
+		if (app.compare( (i->second).get_application() ) == 0) 
+			return (i->second).get_field_traslate(field);
+	}
+	return val_return;
+}
+
+std::string 
+policy_action::get_package(std::string app, msg::mnslp_field &field) const
+{
+	std::string val_return = "";
+	for ( const_iterator i = action_mappings.begin(); i != action_mappings.end(); i++ ) {
+		if (app.compare( (i->second).get_application() ) == 0) 
+			if ( (i->second).check_field_availability(field) )
+				return (i->second).get_proc_name();
+	}
+	return val_return;
 }
 
 } // namespace mnslp

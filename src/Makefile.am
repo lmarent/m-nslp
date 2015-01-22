@@ -32,18 +32,18 @@ MNSLPMSG_LIBDIR	= msg
 
 
 libmnslp_a_CPPFLAGS = -I$(API_INC) -I$(MNSLP_INC) -I$(MNSLPMSG_INCDIR) -I$(NTLP_INC) -I$(PROTLIB_INC) -I$(FQUEUE_INC)
-libmnslp_a_CPPFLAGS += @LIBXML_CFLAGS@
+libmnslp_a_CPPFLAGS += @LIBXML_CFLAGS@ @CURL_CFLAGS@ @LIBXSLT_CFLAGS@ @LIBUUID_CFLAGS@
 
 mnslp_CPPFLAGS = -I$(API_INC) -I$(MNSLP_INC) -I$(MNSLPMSG_INCDIR) -I$(NTLP_INC) -I$(PROTLIB_INC) -I$(FQUEUE_INC)
-mnslp_CPPFLAGS += @LIBXML_CFLAGS@
+mnslp_CPPFLAGS += @LIBXML_CFLAGS@ @CURL_CFLAGS@ @LIBXSLT_CFLAGS@ @LIBUUID_CFLAGS@
 
 MNSLP_SOURCEFILES = benchmark_journal.cpp gistka_mapper.cpp session_id.cpp \
   dispatcher.cpp mnslp_daemon.cpp nf_session.cpp ni_session.cpp \
   nr_session.cpp session_manager.cpp session.cpp mnslp_config.cpp mnslp_timers.cpp \
   policy_rule_installer.cpp policy_action.cpp policy_action_mapping.cpp \
   policy_action_container.cpp nop_policy_rule_installer.cpp \
-  netmate_ipfix_policy_rule_installer.cpp policy_rule.cpp mnslp_xml_node_reader.cpp \
-  policy_filter_container.cpp policy_filter_mapping.cpp
+  netmate_ipfix_policy_rule_installer.cpp mspec_rule_key.cpp policy_rule.cpp \
+  mnslp_xml_node_reader.cpp policy_filter_container.cpp policy_field_mapping.cpp 
 
 
 libmnslp_a_SOURCES = $(MNSLP_SOURCEFILES)
@@ -55,7 +55,8 @@ LD_SCTP_LIB= -lsctp
 endif
 
 mnslp_LDADD = -L. -l$(MNSLP_LLIB) -L$(MNSLP_MSG_LIBDIR) -l$(MNSLPMSG_LLIB) $(LD_QSPEC_LIB) $(LD_NTLP_LIB) $(LD_PROTLIB_LIB) $(LD_FQUEUE_LIB) -lipq -lssl -lrt $(LD_SCTP_LIB) -lpthread -lxml2
-mnslp_LDADD += @LIBXML_LIBS@
+mnslp_LDADD += @LIBXML_LIBS@ @CURL_LIBS@ @LIBXSLT_LIBS@ @LIBUUID_LIBS@
+
 
 include_HEADERS = $(INC_DIR)/session_id.h \
 	        	$(MNSLPMSG_INCDIR)/msg_sequence_number.h $(MNSLPMSG_INCDIR)/mnslp_ie.h $(MNSLPMSG_INCDIR)/mnslp_object.h \

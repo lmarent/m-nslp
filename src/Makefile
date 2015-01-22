@@ -104,10 +104,11 @@ am__objects_1 = libmnslp_a-benchmark_journal.$(OBJEXT) \
 	libmnslp_a-policy_action_container.$(OBJEXT) \
 	libmnslp_a-nop_policy_rule_installer.$(OBJEXT) \
 	libmnslp_a-netmate_ipfix_policy_rule_installer.$(OBJEXT) \
+	libmnslp_a-mspec_rule_key.$(OBJEXT) \
 	libmnslp_a-policy_rule.$(OBJEXT) \
 	libmnslp_a-mnslp_xml_node_reader.$(OBJEXT) \
 	libmnslp_a-policy_filter_container.$(OBJEXT) \
-	libmnslp_a-policy_filter_mapping.$(OBJEXT)
+	libmnslp_a-policy_field_mapping.$(OBJEXT)
 am_libmnslp_a_OBJECTS = $(am__objects_1)
 libmnslp_a_OBJECTS = $(am_libmnslp_a_OBJECTS)
 PROGRAMS = $(bin_PROGRAMS)
@@ -147,11 +148,13 @@ CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
 CPP = gcc -E
 CPPFLAGS = 
+CURL_CFLAGS =  
+CURL_LIBS = -lcurl  
 CXX = g++
 CXXDEPMODE = depmode=gcc3
 CXXFLAGS = -g -O2
 CYGPATH_W = echo
-DEFS = -DPACKAGE_NAME=\"mnslp-ua\" -DPACKAGE_TARNAME=\"mnslp-ua\" -DPACKAGE_VERSION=\"0.97\" -DPACKAGE_STRING=\"mnslp-ua\ 0.97\" -DPACKAGE_BUGREPORT=\"la.marentes455@uniandes.edu.co\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mnslp-ua\" -DVERSION=\"0.97\" -DHAVE_LIBCPPUNIT=1 -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_ARPA_INET_H=1 -DHAVE_NETDB_H=1 -DHAVE_NETINET_IN_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DTIME_WITH_SYS_TIME=1 -DRETSIGTYPE=void -DHAVE_GETHOSTNAME=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_SOCKET=1 -DHAVE_STRERROR=1
+DEFS = -DPACKAGE_NAME=\"mnslp-ua\" -DPACKAGE_TARNAME=\"mnslp-ua\" -DPACKAGE_VERSION=\"0.97\" -DPACKAGE_STRING=\"mnslp-ua\ 0.97\" -DPACKAGE_BUGREPORT=\"la.marentes455@uniandes.edu.co\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mnslp-ua\" -DVERSION=\"0.97\" -DHAVE_LIBCPPUNIT=1 -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_ARPA_INET_H=1 -DHAVE_NETDB_H=1 -DHAVE_NETINET_IN_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DTIME_WITH_SYS_TIME=1 -DRETSIGTYPE=void -DHAVE_GETHOSTNAME=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_SOCKET=1 -DHAVE_STRERROR=1 -DHAVE_CURL=1
 DEPDIR = .deps
 ECHO_C = 
 ECHO_N = -n
@@ -167,8 +170,14 @@ INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LDFLAGS = 
 LIBOBJS = 
 LIBS = -lcppunit 
+LIBUUID_CFLAGS = -I/usr/include/uuid   -I/usr/include/uuid 
+LIBUUID_LIBS = -luuid  
+LIBXML2_CFLAGS = -I/usr/include/libxml2  
+LIBXML2_LIBS = -lxml2  
 LIBXML_CFLAGS = -I/usr/include/libxml2  
 LIBXML_LIBS = -lxml2  
+LIBXSLT_CFLAGS = -I/usr/include/libxml2  
+LIBXSLT_LIBS = -lxslt -lxml2  
 LTLIBOBJS = 
 MAKEINFO = ${SHELL} /home/luis/NSIS/nsis-ka-0.97/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
@@ -292,16 +301,18 @@ INC_DIR = ../include/
 MNSLPMSG_INCDIR = $(INC_DIR)/msg
 MNSLPMSG_LIBDIR = msg
 libmnslp_a_CPPFLAGS = -I$(API_INC) -I$(MNSLP_INC) -I$(MNSLPMSG_INCDIR) \
-	-I$(NTLP_INC) -I$(PROTLIB_INC) -I$(FQUEUE_INC) -I/usr/include/libxml2  
+	-I$(NTLP_INC) -I$(PROTLIB_INC) -I$(FQUEUE_INC) -I/usr/include/libxml2   \
+	  -I/usr/include/libxml2   -I/usr/include/uuid   -I/usr/include/uuid  $(am__empty)
 mnslp_CPPFLAGS = -I$(API_INC) -I$(MNSLP_INC) -I$(MNSLPMSG_INCDIR) \
-	-I$(NTLP_INC) -I$(PROTLIB_INC) -I$(FQUEUE_INC) -I/usr/include/libxml2  
+	-I$(NTLP_INC) -I$(PROTLIB_INC) -I$(FQUEUE_INC) -I/usr/include/libxml2   \
+	  -I/usr/include/libxml2   -I/usr/include/uuid   -I/usr/include/uuid  $(am__empty)
 MNSLP_SOURCEFILES = benchmark_journal.cpp gistka_mapper.cpp session_id.cpp \
   dispatcher.cpp mnslp_daemon.cpp nf_session.cpp ni_session.cpp \
   nr_session.cpp session_manager.cpp session.cpp mnslp_config.cpp mnslp_timers.cpp \
   policy_rule_installer.cpp policy_action.cpp policy_action_mapping.cpp \
   policy_action_container.cpp nop_policy_rule_installer.cpp \
-  netmate_ipfix_policy_rule_installer.cpp policy_rule.cpp mnslp_xml_node_reader.cpp \
-  policy_filter_container.cpp policy_filter_mapping.cpp
+  netmate_ipfix_policy_rule_installer.cpp mspec_rule_key.cpp policy_rule.cpp \
+  mnslp_xml_node_reader.cpp policy_filter_container.cpp policy_field_mapping.cpp 
 
 libmnslp_a_SOURCES = $(MNSLP_SOURCEFILES)
 mnslp_SOURCES = mnslp_daemon.cpp main.cpp
@@ -309,7 +320,8 @@ mnslp_SOURCES = mnslp_daemon.cpp main.cpp
 mnslp_LDADD = -L. -l$(MNSLP_LLIB) -L$(MNSLP_MSG_LIBDIR) \
 	-l$(MNSLPMSG_LLIB) $(LD_QSPEC_LIB) $(LD_NTLP_LIB) \
 	$(LD_PROTLIB_LIB) $(LD_FQUEUE_LIB) -lipq -lssl -lrt \
-	$(LD_SCTP_LIB) -lpthread -lxml2 -lxml2  
+	$(LD_SCTP_LIB) -lpthread -lxml2 -lxml2   -lcurl   \
+	-lxslt -lxml2   -luuid   $(am__empty)
 include_HEADERS = $(INC_DIR)/session_id.h \
 	        	$(MNSLPMSG_INCDIR)/msg_sequence_number.h $(MNSLPMSG_INCDIR)/mnslp_ie.h $(MNSLPMSG_INCDIR)/mnslp_object.h \
 	        	$(MNSLPMSG_INCDIR)/ntlp_msg.h $(MNSLPMSG_INCDIR)/ie_store.h	$(MNSLPMSG_INCDIR)/message_hop_count.h \
@@ -442,6 +454,7 @@ include ./$(DEPDIR)/libmnslp_a-mnslp_config.Po
 include ./$(DEPDIR)/libmnslp_a-mnslp_daemon.Po
 include ./$(DEPDIR)/libmnslp_a-mnslp_timers.Po
 include ./$(DEPDIR)/libmnslp_a-mnslp_xml_node_reader.Po
+include ./$(DEPDIR)/libmnslp_a-mspec_rule_key.Po
 include ./$(DEPDIR)/libmnslp_a-netmate_ipfix_policy_rule_installer.Po
 include ./$(DEPDIR)/libmnslp_a-nf_session.Po
 include ./$(DEPDIR)/libmnslp_a-ni_session.Po
@@ -450,8 +463,8 @@ include ./$(DEPDIR)/libmnslp_a-nr_session.Po
 include ./$(DEPDIR)/libmnslp_a-policy_action.Po
 include ./$(DEPDIR)/libmnslp_a-policy_action_container.Po
 include ./$(DEPDIR)/libmnslp_a-policy_action_mapping.Po
+include ./$(DEPDIR)/libmnslp_a-policy_field_mapping.Po
 include ./$(DEPDIR)/libmnslp_a-policy_filter_container.Po
-include ./$(DEPDIR)/libmnslp_a-policy_filter_mapping.Po
 include ./$(DEPDIR)/libmnslp_a-policy_rule.Po
 include ./$(DEPDIR)/libmnslp_a-policy_rule_installer.Po
 include ./$(DEPDIR)/libmnslp_a-session.Po
@@ -726,6 +739,20 @@ libmnslp_a-netmate_ipfix_policy_rule_installer.obj: netmate_ipfix_policy_rule_in
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-netmate_ipfix_policy_rule_installer.obj `if test -f 'netmate_ipfix_policy_rule_installer.cpp'; then $(CYGPATH_W) 'netmate_ipfix_policy_rule_installer.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_ipfix_policy_rule_installer.cpp'; fi`
 
+libmnslp_a-mspec_rule_key.o: mspec_rule_key.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-mspec_rule_key.o -MD -MP -MF $(DEPDIR)/libmnslp_a-mspec_rule_key.Tpo -c -o libmnslp_a-mspec_rule_key.o `test -f 'mspec_rule_key.cpp' || echo '$(srcdir)/'`mspec_rule_key.cpp
+	$(am__mv) $(DEPDIR)/libmnslp_a-mspec_rule_key.Tpo $(DEPDIR)/libmnslp_a-mspec_rule_key.Po
+#	source='mspec_rule_key.cpp' object='libmnslp_a-mspec_rule_key.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-mspec_rule_key.o `test -f 'mspec_rule_key.cpp' || echo '$(srcdir)/'`mspec_rule_key.cpp
+
+libmnslp_a-mspec_rule_key.obj: mspec_rule_key.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-mspec_rule_key.obj -MD -MP -MF $(DEPDIR)/libmnslp_a-mspec_rule_key.Tpo -c -o libmnslp_a-mspec_rule_key.obj `if test -f 'mspec_rule_key.cpp'; then $(CYGPATH_W) 'mspec_rule_key.cpp'; else $(CYGPATH_W) '$(srcdir)/mspec_rule_key.cpp'; fi`
+	$(am__mv) $(DEPDIR)/libmnslp_a-mspec_rule_key.Tpo $(DEPDIR)/libmnslp_a-mspec_rule_key.Po
+#	source='mspec_rule_key.cpp' object='libmnslp_a-mspec_rule_key.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-mspec_rule_key.obj `if test -f 'mspec_rule_key.cpp'; then $(CYGPATH_W) 'mspec_rule_key.cpp'; else $(CYGPATH_W) '$(srcdir)/mspec_rule_key.cpp'; fi`
+
 libmnslp_a-policy_rule.o: policy_rule.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-policy_rule.o -MD -MP -MF $(DEPDIR)/libmnslp_a-policy_rule.Tpo -c -o libmnslp_a-policy_rule.o `test -f 'policy_rule.cpp' || echo '$(srcdir)/'`policy_rule.cpp
 	$(am__mv) $(DEPDIR)/libmnslp_a-policy_rule.Tpo $(DEPDIR)/libmnslp_a-policy_rule.Po
@@ -768,19 +795,19 @@ libmnslp_a-policy_filter_container.obj: policy_filter_container.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-policy_filter_container.obj `if test -f 'policy_filter_container.cpp'; then $(CYGPATH_W) 'policy_filter_container.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_filter_container.cpp'; fi`
 
-libmnslp_a-policy_filter_mapping.o: policy_filter_mapping.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-policy_filter_mapping.o -MD -MP -MF $(DEPDIR)/libmnslp_a-policy_filter_mapping.Tpo -c -o libmnslp_a-policy_filter_mapping.o `test -f 'policy_filter_mapping.cpp' || echo '$(srcdir)/'`policy_filter_mapping.cpp
-	$(am__mv) $(DEPDIR)/libmnslp_a-policy_filter_mapping.Tpo $(DEPDIR)/libmnslp_a-policy_filter_mapping.Po
-#	source='policy_filter_mapping.cpp' object='libmnslp_a-policy_filter_mapping.o' libtool=no \
+libmnslp_a-policy_field_mapping.o: policy_field_mapping.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-policy_field_mapping.o -MD -MP -MF $(DEPDIR)/libmnslp_a-policy_field_mapping.Tpo -c -o libmnslp_a-policy_field_mapping.o `test -f 'policy_field_mapping.cpp' || echo '$(srcdir)/'`policy_field_mapping.cpp
+	$(am__mv) $(DEPDIR)/libmnslp_a-policy_field_mapping.Tpo $(DEPDIR)/libmnslp_a-policy_field_mapping.Po
+#	source='policy_field_mapping.cpp' object='libmnslp_a-policy_field_mapping.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-policy_filter_mapping.o `test -f 'policy_filter_mapping.cpp' || echo '$(srcdir)/'`policy_filter_mapping.cpp
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-policy_field_mapping.o `test -f 'policy_field_mapping.cpp' || echo '$(srcdir)/'`policy_field_mapping.cpp
 
-libmnslp_a-policy_filter_mapping.obj: policy_filter_mapping.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-policy_filter_mapping.obj -MD -MP -MF $(DEPDIR)/libmnslp_a-policy_filter_mapping.Tpo -c -o libmnslp_a-policy_filter_mapping.obj `if test -f 'policy_filter_mapping.cpp'; then $(CYGPATH_W) 'policy_filter_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_filter_mapping.cpp'; fi`
-	$(am__mv) $(DEPDIR)/libmnslp_a-policy_filter_mapping.Tpo $(DEPDIR)/libmnslp_a-policy_filter_mapping.Po
-#	source='policy_filter_mapping.cpp' object='libmnslp_a-policy_filter_mapping.obj' libtool=no \
+libmnslp_a-policy_field_mapping.obj: policy_field_mapping.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-policy_field_mapping.obj -MD -MP -MF $(DEPDIR)/libmnslp_a-policy_field_mapping.Tpo -c -o libmnslp_a-policy_field_mapping.obj `if test -f 'policy_field_mapping.cpp'; then $(CYGPATH_W) 'policy_field_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_field_mapping.cpp'; fi`
+	$(am__mv) $(DEPDIR)/libmnslp_a-policy_field_mapping.Tpo $(DEPDIR)/libmnslp_a-policy_field_mapping.Po
+#	source='policy_field_mapping.cpp' object='libmnslp_a-policy_field_mapping.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-policy_filter_mapping.obj `if test -f 'policy_filter_mapping.cpp'; then $(CYGPATH_W) 'policy_filter_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_filter_mapping.cpp'; fi`
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-policy_field_mapping.obj `if test -f 'policy_field_mapping.cpp'; then $(CYGPATH_W) 'policy_field_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_field_mapping.cpp'; fi`
 
 mnslp-mnslp_daemon.o: mnslp_daemon.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslp_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT mnslp-mnslp_daemon.o -MD -MP -MF $(DEPDIR)/mnslp-mnslp_daemon.Tpo -c -o mnslp-mnslp_daemon.o `test -f 'mnslp_daemon.cpp' || echo '$(srcdir)/'`mnslp_daemon.cpp

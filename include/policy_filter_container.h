@@ -33,7 +33,7 @@
 #include <string>
 #include <libxml/xmlreader.h>
 
-#include "policy_filter_mapping.h"
+#include "policy_field_mapping.h"
 
 namespace mnslp {
 
@@ -59,19 +59,22 @@ class policy_filter_container {
 	 */ 
 	void read_from_xml(xmlTextReaderPtr node);
 	
-	void set_filter(std::string key, policy_filter_mapping _filter);
+	void set_filter(std::string key, policy_field_mapping _filter);
 	
 	bool operator==(const policy_filter_container &rhs) const;
 	
 	bool operator!=(const policy_filter_container &rhs) const;
 	 
-	typedef std::map<std::string, policy_filter_mapping>::const_iterator const_iterator;
+	typedef std::map<std::string, policy_field_mapping>::const_iterator const_iterator;
 	const_iterator begin() const throw() { return filters.begin(); }
 	const_iterator end() const throw() { return filters.end(); }
+
+	bool check_field_availability(std::string app, msg::mnslp_field &field) const;	
 	
+	std::string get_field_traslate( std::string app, msg::mnslp_field &field ) const;
     
   private:
-	std::map<std::string, policy_filter_mapping> filters;
+	std::map<std::string, policy_field_mapping> filters;
 	
 };
 

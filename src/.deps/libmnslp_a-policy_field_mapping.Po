@@ -1,5 +1,7 @@
-libmnslp_a-policy_filter_container.o: policy_filter_container.cpp \
- /usr/include/c++/4.6/new \
+libmnslp_a-policy_field_mapping.o: policy_field_mapping.cpp \
+ ../include/policy_field_mapping.h /usr/include/c++/4.6/map \
+ /usr/include/c++/4.6/bits/stl_tree.h \
+ /usr/include/c++/4.6/bits/stl_algobase.h \
  /usr/include/c++/4.6/i686-linux-gnu/./bits/c++config.h \
  /usr/include/c++/4.6/i686-linux-gnu/./bits/os_defines.h \
  /usr/include/features.h /usr/include/i386-linux-gnu/bits/predefs.h \
@@ -8,9 +10,6 @@ libmnslp_a-policy_filter_container.o: policy_filter_container.cpp \
  /usr/include/i386-linux-gnu/gnu/stubs.h \
  /usr/include/i386-linux-gnu/gnu/stubs-32.h \
  /usr/include/c++/4.6/i686-linux-gnu/./bits/cpu_defines.h \
- /usr/include/c++/4.6/exception ../include/policy_filter_container.h \
- /usr/include/c++/4.6/map /usr/include/c++/4.6/bits/stl_tree.h \
- /usr/include/c++/4.6/bits/stl_algobase.h \
  /usr/include/c++/4.6/bits/functexcept.h \
  /usr/include/c++/4.6/bits/exception_defines.h \
  /usr/include/c++/4.6/bits/cpp_type_traits.h \
@@ -23,8 +22,8 @@ libmnslp_a-policy_filter_container.o: policy_filter_container.cpp \
  /usr/include/c++/4.6/bits/stl_iterator.h \
  /usr/include/c++/4.6/debug/debug.h /usr/include/c++/4.6/bits/allocator.h \
  /usr/include/c++/4.6/i686-linux-gnu/./bits/c++allocator.h \
- /usr/include/c++/4.6/ext/new_allocator.h \
- /usr/include/c++/4.6/bits/stl_function.h \
+ /usr/include/c++/4.6/ext/new_allocator.h /usr/include/c++/4.6/new \
+ /usr/include/c++/4.6/exception /usr/include/c++/4.6/bits/stl_function.h \
  /usr/include/c++/4.6/backward/binders.h \
  /usr/include/c++/4.6/bits/stl_map.h \
  /usr/include/c++/4.6/initializer_list \
@@ -98,8 +97,7 @@ libmnslp_a-policy_filter_container.o: policy_filter_container.cpp \
  /usr/include/i386-linux-gnu/bits/stdlib.h \
  /usr/include/libxml2/libxml/xlink.h /usr/include/libxml2/libxml/SAX2.h \
  /usr/include/libxml2/libxml/relaxng.h \
- /usr/include/libxml2/libxml/xmlschemas.h \
- ../include/policy_field_mapping.h ../include/msg/mnslp_field.h \
+ /usr/include/libxml2/libxml/xmlschemas.h ../include/msg/mnslp_field.h \
  ../../protlib/include/ie.h /usr/include/c++/4.6/ext/hash_map \
  /usr/include/c++/4.6/backward/backward_warning.h \
  /usr/include/c++/4.6/backward/hashtable.h /usr/include/c++/4.6/vector \
@@ -188,7 +186,7 @@ libmnslp_a-policy_filter_container.o: policy_filter_container.cpp \
  ../../protlib/include/configpar.h ../../ntlp/include/gist_conf.h \
  ../include/policy_rule.h ../include/policy_action_container.h \
  ../include/policy_action.h ../include/policy_action_mapping.h \
- ../include/policy_filter_container.h \
+ ../include/policy_field_mapping.h ../include/policy_filter_container.h \
  ../include/nop_policy_rule_installer.h \
  ../include/policy_rule_installer.h \
  ../include/netmate_ipfix_policy_rule_installer.h \
@@ -204,7 +202,13 @@ libmnslp_a-policy_filter_container.o: policy_filter_container.cpp \
  /usr/include/i386-linux-gnu/bits/xopen_lim.h /usr/include/curl/easy.h \
  /usr/include/curl/multi.h /usr/include/curl/curl.h
 
-/usr/include/c++/4.6/new:
+../include/policy_field_mapping.h:
+
+/usr/include/c++/4.6/map:
+
+/usr/include/c++/4.6/bits/stl_tree.h:
+
+/usr/include/c++/4.6/bits/stl_algobase.h:
 
 /usr/include/c++/4.6/i686-linux-gnu/./bits/c++config.h:
 
@@ -223,16 +227,6 @@ libmnslp_a-policy_filter_container.o: policy_filter_container.cpp \
 /usr/include/i386-linux-gnu/gnu/stubs-32.h:
 
 /usr/include/c++/4.6/i686-linux-gnu/./bits/cpu_defines.h:
-
-/usr/include/c++/4.6/exception:
-
-../include/policy_filter_container.h:
-
-/usr/include/c++/4.6/map:
-
-/usr/include/c++/4.6/bits/stl_tree.h:
-
-/usr/include/c++/4.6/bits/stl_algobase.h:
 
 /usr/include/c++/4.6/bits/functexcept.h:
 
@@ -263,6 +257,10 @@ libmnslp_a-policy_filter_container.o: policy_filter_container.cpp \
 /usr/include/c++/4.6/i686-linux-gnu/./bits/c++allocator.h:
 
 /usr/include/c++/4.6/ext/new_allocator.h:
+
+/usr/include/c++/4.6/new:
+
+/usr/include/c++/4.6/exception:
 
 /usr/include/c++/4.6/bits/stl_function.h:
 
@@ -453,8 +451,6 @@ libmnslp_a-policy_filter_container.o: policy_filter_container.cpp \
 /usr/include/libxml2/libxml/relaxng.h:
 
 /usr/include/libxml2/libxml/xmlschemas.h:
-
-../include/policy_field_mapping.h:
 
 ../include/msg/mnslp_field.h:
 
@@ -721,6 +717,8 @@ libmnslp_a-policy_filter_container.o: policy_filter_container.cpp \
 ../include/policy_action.h:
 
 ../include/policy_action_mapping.h:
+
+../include/policy_field_mapping.h:
 
 ../include/policy_filter_container.h:
 

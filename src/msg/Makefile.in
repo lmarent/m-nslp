@@ -103,6 +103,8 @@ am_libmnslp_msg_a_OBJECTS = libmnslp_msg_a-ie_object_key.$(OBJEXT) \
 	libmnslp_msg_a-ipfix_t.$(OBJEXT) \
 	libmnslp_msg_a-mnslp_mspec_object.$(OBJEXT) \
 	libmnslp_msg_a-mnslp_ipfix_message.$(OBJEXT) \
+	libmnslp_msg_a-mnslp_field.$(OBJEXT) \
+	libmnslp_msg_a-mnslp_field_key.$(OBJEXT) \
 	libmnslp_msg_a-mnslp_ipfix_field.$(OBJEXT) \
 	libmnslp_msg_a-mnslp_ipfix_data_record.$(OBJEXT) \
 	libmnslp_msg_a-mnslp_ipfix_template.$(OBJEXT)
@@ -133,6 +135,8 @@ CCDEPMODE = @CCDEPMODE@
 CFLAGS = @CFLAGS@
 CPP = @CPP@
 CPPFLAGS = @CPPFLAGS@
+CURL_CFLAGS = @CURL_CFLAGS@
+CURL_LIBS = @CURL_LIBS@
 CXX = @CXX@
 CXXDEPMODE = @CXXDEPMODE@
 CXXFLAGS = @CXXFLAGS@
@@ -153,8 +157,14 @@ INSTALL_STRIP_PROGRAM = @INSTALL_STRIP_PROGRAM@
 LDFLAGS = @LDFLAGS@
 LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
+LIBUUID_CFLAGS = @LIBUUID_CFLAGS@
+LIBUUID_LIBS = @LIBUUID_LIBS@
+LIBXML2_CFLAGS = @LIBXML2_CFLAGS@
+LIBXML2_LIBS = @LIBXML2_LIBS@
 LIBXML_CFLAGS = @LIBXML_CFLAGS@
 LIBXML_LIBS = @LIBXML_LIBS@
+LIBXSLT_CFLAGS = @LIBXSLT_CFLAGS@
+LIBXSLT_LIBS = @LIBXSLT_LIBS@
 LTLIBOBJS = @LTLIBOBJS@
 MAKEINFO = @MAKEINFO@
 MKDIR_P = @MKDIR_P@
@@ -305,9 +315,11 @@ libmnslp_msg_a_SOURCES = ie_object_key.cpp \
 					     ipfix_t.cpp \
 					     mnslp_mspec_object.cpp \
 					     mnslp_ipfix_message.cpp \
+					     mnslp_field.cpp \
+					     mnslp_field_key.cpp \
 					     mnslp_ipfix_field.cpp \
 					     mnslp_ipfix_data_record.cpp \
-					     mnslp_ipfix_template.cpp
+					     mnslp_ipfix_template.cpp 
 
 include_HEADERS = $(INC_DIR)/ie_store.h $(INC_DIR)/mnslp_object.h			\
 					$(INC_DIR)/msg_sequence_number.h $(INC_DIR)/mnslp_ie.h $(INC_DIR)/mnslp_object.h		\
@@ -403,6 +415,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_msg_a-ipfix_t.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_msg_a-message_hop_count.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_msg_a-mnslp_configure.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_msg_a-mnslp_field.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_msg_a-mnslp_field_key.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_msg_a-mnslp_ie.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_msg_a-mnslp_ipfix_data_record.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_msg_a-mnslp_ipfix_field.Po@am__quote@
@@ -699,6 +713,34 @@ libmnslp_msg_a-mnslp_ipfix_message.obj: mnslp_ipfix_message.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='mnslp_ipfix_message.cpp' object='libmnslp_msg_a-mnslp_ipfix_message.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_msg_a-mnslp_ipfix_message.obj `if test -f 'mnslp_ipfix_message.cpp'; then $(CYGPATH_W) 'mnslp_ipfix_message.cpp'; else $(CYGPATH_W) '$(srcdir)/mnslp_ipfix_message.cpp'; fi`
+
+libmnslp_msg_a-mnslp_field.o: mnslp_field.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_msg_a-mnslp_field.o -MD -MP -MF $(DEPDIR)/libmnslp_msg_a-mnslp_field.Tpo -c -o libmnslp_msg_a-mnslp_field.o `test -f 'mnslp_field.cpp' || echo '$(srcdir)/'`mnslp_field.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmnslp_msg_a-mnslp_field.Tpo $(DEPDIR)/libmnslp_msg_a-mnslp_field.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='mnslp_field.cpp' object='libmnslp_msg_a-mnslp_field.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_msg_a-mnslp_field.o `test -f 'mnslp_field.cpp' || echo '$(srcdir)/'`mnslp_field.cpp
+
+libmnslp_msg_a-mnslp_field.obj: mnslp_field.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_msg_a-mnslp_field.obj -MD -MP -MF $(DEPDIR)/libmnslp_msg_a-mnslp_field.Tpo -c -o libmnslp_msg_a-mnslp_field.obj `if test -f 'mnslp_field.cpp'; then $(CYGPATH_W) 'mnslp_field.cpp'; else $(CYGPATH_W) '$(srcdir)/mnslp_field.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmnslp_msg_a-mnslp_field.Tpo $(DEPDIR)/libmnslp_msg_a-mnslp_field.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='mnslp_field.cpp' object='libmnslp_msg_a-mnslp_field.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_msg_a-mnslp_field.obj `if test -f 'mnslp_field.cpp'; then $(CYGPATH_W) 'mnslp_field.cpp'; else $(CYGPATH_W) '$(srcdir)/mnslp_field.cpp'; fi`
+
+libmnslp_msg_a-mnslp_field_key.o: mnslp_field_key.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_msg_a-mnslp_field_key.o -MD -MP -MF $(DEPDIR)/libmnslp_msg_a-mnslp_field_key.Tpo -c -o libmnslp_msg_a-mnslp_field_key.o `test -f 'mnslp_field_key.cpp' || echo '$(srcdir)/'`mnslp_field_key.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmnslp_msg_a-mnslp_field_key.Tpo $(DEPDIR)/libmnslp_msg_a-mnslp_field_key.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='mnslp_field_key.cpp' object='libmnslp_msg_a-mnslp_field_key.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_msg_a-mnslp_field_key.o `test -f 'mnslp_field_key.cpp' || echo '$(srcdir)/'`mnslp_field_key.cpp
+
+libmnslp_msg_a-mnslp_field_key.obj: mnslp_field_key.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_msg_a-mnslp_field_key.obj -MD -MP -MF $(DEPDIR)/libmnslp_msg_a-mnslp_field_key.Tpo -c -o libmnslp_msg_a-mnslp_field_key.obj `if test -f 'mnslp_field_key.cpp'; then $(CYGPATH_W) 'mnslp_field_key.cpp'; else $(CYGPATH_W) '$(srcdir)/mnslp_field_key.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmnslp_msg_a-mnslp_field_key.Tpo $(DEPDIR)/libmnslp_msg_a-mnslp_field_key.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='mnslp_field_key.cpp' object='libmnslp_msg_a-mnslp_field_key.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_msg_a-mnslp_field_key.obj `if test -f 'mnslp_field_key.cpp'; then $(CYGPATH_W) 'mnslp_field_key.cpp'; else $(CYGPATH_W) '$(srcdir)/mnslp_field_key.cpp'; fi`
 
 libmnslp_msg_a-mnslp_ipfix_field.o: mnslp_ipfix_field.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_msg_a-mnslp_ipfix_field.o -MD -MP -MF $(DEPDIR)/libmnslp_msg_a-mnslp_ipfix_field.Tpo -c -o libmnslp_msg_a-mnslp_ipfix_field.o `test -f 'mnslp_ipfix_field.cpp' || echo '$(srcdir)/'`mnslp_ipfix_field.cpp

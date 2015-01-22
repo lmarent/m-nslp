@@ -33,8 +33,9 @@
 #include <string>
 #include <libxml/xmlreader.h>
 
-#include "msg/mnslp_ipfix_field.h"
+#include "msg/mnslp_field.h"
 #include "mnslp_xml_node_reader.h"
+#include "policy_field_mapping.h"
 
 namespace mnslp {
 
@@ -44,7 +45,7 @@ namespace mnslp {
  * and action processes.
  *
  */
-class policy_action_mapping : public mnslp_xml_node_reader {
+class policy_action_mapping : public policy_field_mapping {
 
   public:
 	
@@ -54,55 +55,32 @@ class policy_action_mapping : public mnslp_xml_node_reader {
 	
 	virtual ~policy_action_mapping();
 
-	/**
-	 * This function assumes that the pointer is at the beginning of a 
-	 * policy action mapping. When the function ends the pointer can be
-	 * at the beginning of the next object or at the end of the document
-	 */ 
-	int read_from_xml(xmlTextReaderPtr node);
-
     void set_proc_name(std::string proc_name);
     
     void set_priority(int priority);
-    
-    void set_export_field(msg::mnslp_ipfix_field_key ipfixfield, 
-						  std::string );
-    
-    std::string get_field_metering(msg::mnslp_ipfix_field_key _ipfixfield) const;
-    
-    std::string get_proc_name();
+            
+    std::string get_proc_name() const;
     
     int get_priority();
     
-    std::string get_application();
-
     bool operator==(const policy_action_mapping &rhs) const;
     
     bool operator!=(const policy_action_mapping &rhs) const;
-    
-	typedef std::map<msg::mnslp_ipfix_field_key, std::string>::const_iterator const_iterator;
-	const_iterator begin() const throw() { return export_fields.begin(); }
-	const_iterator end() const throw() { return export_fields.end(); }
-	
+    	
 	std::ostream &operator<<(std::ostream &out);
+	
 	std::string to_string();
-    
+		    
+    static std::string proc_name_str;
+    static std::string priority_str;
+	    
   private:
-	std::map<msg::mnslp_ipfix_field_key, std::string> export_fields;
+
 	int priority;
-	std::string metering_application;
 	std::string proc_name;
 	
 	void processNode(int level, xmlTextReaderPtr reader); 
-	
-    static std::string export_field_str;
-    static std::string proc_name_str;
-    static std::string priority_str;
-    static std::string eno_str;
-    static std::string field_type_str;
-    static std::string field_name_str;
-	
-	
+			
 };
 
 

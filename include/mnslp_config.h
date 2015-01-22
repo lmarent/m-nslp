@@ -58,8 +58,11 @@ namespace mnslp {
     
     /* Metering application parameters */
     mnslpconf_ms_metering_application,
-	mnslpcong_ms_meter_user,
-	mnslpcong_ms_meter_password,
+	mnslpcong_ms_metering_user,
+	mnslpcong_ms_metering_password,
+	mnslpcong_ms_metering_server,
+	mnslpcong_ms_metering_def_xsl,
+	mnslpcong_ms_metering_port,
     
     /* NI  */
     mnslpconf_ni_session_lifetime,
@@ -132,12 +135,27 @@ class mnslp_config {
 	
 	string get_metering_application() const { 
 		return getpar<string>(mnslpconf_ms_metering_application); }
-	
+		
 	string get_export_config_file() const { 
 		return getpar<string>(mnslpconf_ms_export_config_file); }
 	
 	string get_filter_config_file() const { 
 		return getpar<string>(mnslpconf_ms_filter_config_file); }
+
+	string get_user() const {
+		return getpar<string>(mnslpcong_ms_metering_user); }
+	
+	string get_password() const {
+		return getpar<string>(mnslpcong_ms_metering_password); }
+
+	string get_metering_server() const {
+		return getpar<string>(mnslpcong_ms_metering_server); }
+
+	string get_metering_xsl() const {
+		return getpar<string>(mnslpcong_ms_metering_def_xsl); }
+
+	string get_metering_port() const {
+		return getpar<string>(mnslpcong_ms_metering_port); }
 
     uint32 get_ni_session_lifetime() const { 
 		return getpar<uint32>(mnslpconf_ni_max_session_lifetime); }

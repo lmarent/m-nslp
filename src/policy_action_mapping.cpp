@@ -36,15 +36,12 @@
 namespace mnslp {
 
 
-std::string policy_action_mapping::export_field_str = "EXPORT_FIELD";
 std::string policy_action_mapping::proc_name_str = "PROC_NAME";
 std::string policy_action_mapping::priority_str = "PRIORITY";
-std::string policy_action_mapping::eno_str = "ENO";
-std::string policy_action_mapping::field_type_str = "FIELDTYPE";
-std::string policy_action_mapping::field_name_str = "NAME";
 
 
-policy_action_mapping::policy_action_mapping()
+policy_action_mapping::policy_action_mapping():
+	policy_field_mapping()
 {
 	// NOTHING TO DO.
 }
@@ -65,25 +62,25 @@ void policy_action_mapping::processNode(int level, xmlTextReaderPtr reader)
         
     if (name){
 		if (xmlStrEqual( name,  (xmlChar *) 
-						 policy_action_mapping::export_field_str.c_str()) == 1 )
+						 policy_field_mapping::field_str.c_str()) == 1 )
 		{
 			eno = atoi( (processAttribute( reader, 
-							policy_action_mapping::eno_str)).c_str());
+						 policy_field_mapping::eno_str)).c_str());
 							
 			field_type = atoi( (processAttribute( reader, 
-							policy_action_mapping::field_type_str)).c_str()); 
+						 policy_field_mapping::field_type_str)).c_str()); 
 							
 			name_field = processAttribute( reader, 
-							policy_action_mapping::field_name_str);
+						 policy_field_mapping::field_name_str);
 			
 			// Bring the definition of field from the container.
-			msg::mnslp_ipfix_field_key key(eno,field_type); 
+			msg::mnslp_ipfix_field_key *key = new msg::mnslp_ipfix_field_key(eno,field_type); 
 
 			// Bring the mapping between el ipfix field container and the
 			// metering application.
 			field_map = processTextNode(level + 1, reader);
 
-			set_export_field(key,field_map);
+			set_field(key,field_map);
 		}
 		else
 		{ 
@@ -104,53 +101,8 @@ void policy_action_mapping::processNode(int level, xmlTextReaderPtr reader)
 	 
 }
 
-int policy_action_mapping::read_from_xml(xmlTextReaderPtr reader)
-{
-	int ret;
-	std::string metering_app;
-	const xmlChar *name, *value;
-	int level;
-		
-	// Level 0 is the whole set of rules
-	// Level 1 corresponds to action objects.
-	// Verifies that the pointer's level is 2.
-	if (xmlTextReaderDepth(reader) == 2)
-	{
-        // Read the metering application.
-        metering_app = processAttribute(reader, "ID");
-        metering_application = metering_app;
-                
-        // Read Export_field, proc_name and priority.
-        ret = xmlTextReaderRead(reader);
-		level = 3;
-        while (ret == 1) 
-        {
-			if ((xmlTextReaderDepth(reader) >= level) 
-			     and (xmlTextReaderNodeType(reader) == 1) )
-			{
-				processNode(level, reader);
-				ret = xmlTextReaderRead(reader);				
-            }
-            else
-				if (xmlTextReaderDepth(reader) < level)
-					// Correspond to another policy_action_mapping or blank space.
-					return ret;
-				else
-					ret = xmlTextReaderRead(reader);
-				
-        }
-	}
-	else
-	{
-		throw policy_rule_installer_error("Export configuration file does not parse",
-			msg::information_code::sc_permanent_failure,
-			msg::information_code::fail_configuration_failed);	
-	}
-}
-
 policy_action_mapping::policy_action_mapping(const policy_action_mapping &rhs)
 {
-	export_fields = rhs.export_fields;
 	priority = rhs.priority;
 	metering_application = rhs.metering_application;
 	proc_name = rhs.proc_name;
@@ -172,27 +124,9 @@ void policy_action_mapping::set_priority(int _priority)
 {
 	priority = _priority;
 }
-    
-void policy_action_mapping::set_export_field(msg::mnslp_ipfix_field_key _ipfixfield, 
-											 std::string idFieldMetering)
-{
-	export_fields[_ipfixfield] = idFieldMetering;
-}
-
+        
 std::string 
-policy_action_mapping::get_field_metering(msg::mnslp_ipfix_field_key _ipfixfield) const
-{
-	std::string str;
-	const_iterator i = export_fields.find(_ipfixfield);
-	
-	if ( i != export_fields.end() )
-		return i->second;
-	else
-		return str;
-}
-    
-std::string 
-policy_action_mapping::get_proc_name()
+policy_action_mapping::get_proc_name() const
 {
 	return proc_name;
 }
@@ -201,12 +135,6 @@ int
 policy_action_mapping::get_priority()
 {
 	return priority;
-}
-
-std::string
-policy_action_mapping::get_application()
-{
-	return metering_application;
 }
 
 bool
@@ -222,15 +150,8 @@ policy_action_mapping::operator==(const policy_action_mapping &rhs) const
 	if (proc_name.compare(rhs.proc_name)) 
 		return false;
 
-	// All entries have to be identical.
-	for ( const_iterator i = export_fields.begin(); i != export_fields.end(); i++ ) {
-		msg::mnslp_ipfix_field_key key = i->first; 
-		const std::string str = i->second;
-		if ( str.compare(rhs.get_field_metering(key)) != 0)
-			return false;
-	}
+	return policy_field_mapping::operator ==(rhs);
 	
-	return true;
 
 }
 
@@ -246,12 +167,7 @@ policy_action_mapping::operator<<(std::ostream &out)
 	out << "proc_name:" << proc_name << " metering_application:" 
 		<< metering_application << " priority:" << priority << std::endl;
 
-	// Print all entries.
-	for ( const_iterator i = export_fields.begin(); i != export_fields.end(); i++ ) {
-		msg::mnslp_ipfix_field_key key = i->first; 
-		out << "Key:" << key.to_string() << " Value:" << i->second << std::endl;
-	}
-	
+	policy_field_mapping::operator<<(out);
 }    
 
 std::string
@@ -261,12 +177,7 @@ policy_action_mapping::to_string()
 	temp << "proc_name:" << proc_name << " metering_application:" 
 		<< metering_application << " priority:" << priority << std::endl;
 
-	// Print all entries.
-	for ( const_iterator i = export_fields.begin(); i != export_fields.end(); i++ ) {
-		msg::mnslp_ipfix_field_key key = i->first; 
-		temp << "Key:" << key.to_string() << " Value:" << i->second << std::endl;
-	}
-	
+	policy_field_mapping::operator<<(temp);	
 	return  temp.str();
 }    
 

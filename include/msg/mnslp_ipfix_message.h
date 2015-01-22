@@ -264,16 +264,27 @@ class mnslp_ipfix_message : public mnslp_mspec_object
 	    * @return number of read characters 
 	    */
 	   int mnslp_ipfix_import(uchar *buffer, size_t message_length );
+	   
+	   	   
+   public:	
+
+	   static const uint16 OBJECT_TYPE = 0x00F9;
+
 	   /**
 	    * Find a return a reference to a template with id: templid
 	    * @param templid - Id of the template
 	    * @return reference to the template, if not found, it returns NULL.
 	    */
 	   mnslp_ipfix_template * get_template(uint16_t templid);
-	   	   
-   public:	
 
-	   static const uint16 OBJECT_TYPE = 0x00F9;
+
+	   /**
+	    * Find a return a reference to a template with id: templid
+	    * @param templid - Id of the template
+	    * @return reference to the template, if not found, it returns NULL.
+	    */
+	   mnslp_ipfix_template * get_template(uint16_t templid) const;
+
 
 	   /**
 	    * Create a new class mnslp_ipfix_message
@@ -469,13 +480,27 @@ class mnslp_ipfix_message : public mnslp_mspec_object
 	   /**
 	    * Return the number of templates included
 	    */
-	    int get_num_templates(void);
+	    int get_num_templates(void) const;
 
 	   /**
 	    * Return a list with all templates IDs included
 	    */
 	   std::list<int> get_template_list(void) const;
-	     
+	   
+	  /** 
+	   * This function verifies that all fields included in the template
+	   * are also included as data fields. Returns true if the condition is
+	   * found, false otherwise.
+	   */
+	   bool include_all_data_fields(mnslp_ipfix_template *templ) const;
+	   
+	   /**
+	    * This functions returns a list with all data values that belong
+	    * to a field.
+	    */
+	    std::list<std::string> get_field_data_values(mnslp_ipfix_template *templ,
+							const msg::mnslp_ipfix_field &field) const ;
+		  
 	   	   
 };
 

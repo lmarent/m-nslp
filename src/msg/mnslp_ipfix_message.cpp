@@ -377,8 +377,6 @@ mnslp_ipfix_message::new_template( int nfields )
 
 }
 
-
-
 /*
  * name:        new_data_template()
  * parameters:
@@ -1336,7 +1334,7 @@ mnslp_ipfix_message::mnslp_ipfix_decode_trecord( int setid,
 
 
 int
-mnslp_ipfix_message::get_num_templates(void)
+mnslp_ipfix_message::get_num_templates(void) const
 {
 	if (message == NULL)
 		return 0;
@@ -1513,6 +1511,15 @@ void mnslp_ipfix_message::mnslp_ipfix_decode_datarecord( mnslp_ipfix_template *t
 
 mnslp_ipfix_template * 
 mnslp_ipfix_message::get_template(uint16_t templid)
+{
+	if (message != NULL)
+		return message->templates.get_template(templid);
+	else
+		return NULL;
+}
+
+mnslp_ipfix_template * 
+mnslp_ipfix_message::get_template(uint16_t templid) const
 {
 	if (message != NULL)
 		return message->templates.get_template(templid);
@@ -1768,6 +1775,65 @@ mnslp_ipfix_message::get_template_list(void) const
 		return empty;
 	}
 }
+
+bool 
+mnslp_ipfix_message::include_all_data_fields(mnslp_ipfix_template *templ) const
+{
+	// Iterate over the data records, if the data record belongs the template
+	// given verifies that it has the same number of fields.
+	// Return false if there is no data record for the template.
+	
+	std::vector<mnslp_ipfix_data_record>::const_iterator i;
+	bool val_return = false;
+	
+	for ( i= data_list.begin(); i < data_list.end(); i++){
+		if ((*i).get_template_id() == templ->get_template_id()){
+			val_return = true;
+			
+			// Verify that the record data and template have the same
+			// amount of fields.
+			if ((*i).get_num_fields() != templ->get_numfields())
+				return false;
+				
+			// Verify that both have the same field keys.
+			try
+			{
+				for (int j = 0; j < templ->get_numfields(); j++ ){
+					mnslp_ipfix_field field = templ->get_field(j).elem;
+					mnslp_ipfix_value_field value = (*i).get_field(field.get_field_type().eno, 
+														field.get_field_type().ftype);
+				}
+			}
+			catch (msg::mnslp_ipfix_bad_argument &e)
+			{
+				return false;
+			}
+		}
+	}
+	return val_return;
+}
+
+std::list<std::string> 
+mnslp_ipfix_message::get_field_data_values(mnslp_ipfix_template *templ, 
+								const mnslp_ipfix_field &field) const
+{
+
+	std::list<std::string> list_return;
+	std::vector<mnslp_ipfix_data_record>::const_iterator i;	
+	for ( i= data_list.begin(); i < data_list.end(); i++){
+		if ((*i).get_template_id() == templ->get_template_id()){
+			size_t len = field.get_field_type().length + 1;
+			char *field_value_char = (char *) malloc(len * sizeof(char));
+			mnslp_ipfix_value_field value = (*i).get_field(field.get_field_type().eno, 
+														   field.get_field_type().ftype);
+			field.snprint(field_value_char, len, value);
+			std::string field_value_string(field_value_char);
+			list_return.push_back(field_value_string);
+			free(field_value_char);
+		}
+	}
+	return list_return;
+}	
 
   } // namespace msg
 } // namespace mnslp

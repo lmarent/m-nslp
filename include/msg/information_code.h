@@ -82,16 +82,9 @@ class information_code : public mnslp_object {
 		sigfail_policy_rule_denied			= 4,
 		sigfail_unknown_policy_rule_action	= 5,
 		sigfail_rule_action_not_applicable	= 6,		
-		sigfail_dtinfo_object_required		= 7,
-		sigfail_sub_ports_not_permitted		= 8,
-		sigfail_ip_protocol_unsupported		= 9,
-		sigfail_plain_ip_not_permitted		= 10,
-		sigfail_icmp_type_not_permitted		= 11,
-		sigfail_source_ip_range_too_large	= 12,
-		sigfail_dest_ip_range_too_large		= 13,
-		sigfail_source_port_range_too_large	= 14,
-		sigfail_dest_port_range_too_large	= 15,
-		sigfail_wrong_conf_message   		= 16
+		sigfail_wrong_conf_message   		= 7,
+		sigfail_filter_action_not_applicable= 8,
+		sigfail_metering_connection_broken  = 9
 	};
 	
 	enum object_type_t {

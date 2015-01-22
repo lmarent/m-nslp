@@ -70,6 +70,12 @@ class policy_action_container {
 	const_iterator begin() const throw() { return actions.begin(); }
 	const_iterator end() const throw() { return actions.end(); }
 	
+	bool check_field_availability(std::string app, msg::mnslp_field &field) const;
+	
+	std::string get_field_traslate( std::string app, msg::mnslp_field &field ) const;
+	
+	std::string get_package(std::string app, msg::mnslp_field &field) const;
+	
     
   private:
 	std::map<std::string, policy_action> actions;

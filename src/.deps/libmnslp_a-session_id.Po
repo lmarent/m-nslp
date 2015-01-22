@@ -141,8 +141,8 @@ libmnslp_a-session_id.o: session_id.cpp /usr/include/assert.h \
  ../include/msg/mnslp_configure.h ../include/msg/mnslp_msg.h \
  ../include/msg/mnslp_ipfix_message.h /usr/include/inttypes.h \
  ../include/msg/ipfix_def.h /usr/include/c++/4.6/cstddef \
- ../include/msg/mnslp_ipfix_field.h \
- ../include/msg/mnslp_ipfix_exception.h \
+ ../include/msg/mnslp_ipfix_field.h ../include/msg/mnslp_field_key.h \
+ ../include/msg/mnslp_field.h ../include/msg/mnslp_ipfix_exception.h \
  ../include/msg/mnslp_ipfix_data_record.h \
  ../include/msg/mnslp_ipfix_template.h /usr/include/c++/4.6/list \
  /usr/include/c++/4.6/bits/stl_list.h /usr/include/c++/4.6/bits/list.tcc \
@@ -544,6 +544,10 @@ libmnslp_a-session_id.o: session_id.cpp /usr/include/assert.h \
 /usr/include/c++/4.6/cstddef:
 
 ../include/msg/mnslp_ipfix_field.h:
+
+../include/msg/mnslp_field_key.h:
+
+../include/msg/mnslp_field.h:
 
 ../include/msg/mnslp_ipfix_exception.h:
 

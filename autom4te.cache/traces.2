@@ -905,37 +905,89 @@ m4trace:configure.ac:38: -1- m4_pattern_allow([^RANLIB$])
 m4trace:configure.ac:42: -1- _m4_warn([obsolete], [The macro `AC_LANG_CPLUSPLUS' is obsolete.
 You should run autoupdate.], [../../lib/autoconf/c.m4:252: AC_LANG_CPLUSPLUS is expanded from...
 configure.ac:42: the top level])
-m4trace:configure.ac:52: -1- PKG_PROG_PKG_CONFIG
-m4trace:configure.ac:52: -1- m4_pattern_forbid([^_?PKG_[A-Z_]+$])
-m4trace:configure.ac:52: -1- m4_pattern_allow([^PKG_CONFIG(_(PATH|LIBDIR|SYSROOT_DIR|ALLOW_SYSTEM_(CFLAGS|LIBS)))?$])
-m4trace:configure.ac:52: -1- m4_pattern_allow([^PKG_CONFIG_(DISABLE_UNINSTALLED|TOP_BUILD_DIR|DEBUG_SPEW)$])
-m4trace:configure.ac:52: -1- m4_pattern_allow([^PKG_CONFIG$])
-m4trace:configure.ac:52: -1- m4_pattern_allow([^PKG_CONFIG_PATH$])
-m4trace:configure.ac:52: -1- m4_pattern_allow([^PKG_CONFIG_LIBDIR$])
-m4trace:configure.ac:52: -1- m4_pattern_allow([^PKG_CONFIG$])
-m4trace:configure.ac:53: -1- PKG_CHECK_MODULES([LIBXML], [libxml-2.0])
-m4trace:configure.ac:53: -1- m4_pattern_allow([^LIBXML_CFLAGS$])
-m4trace:configure.ac:53: -1- m4_pattern_allow([^LIBXML_LIBS$])
-m4trace:configure.ac:53: -1- PKG_CHECK_EXISTS([libxml-2.0], [pkg_cv_[]LIBXML_CFLAGS=`$PKG_CONFIG --[]cflags "libxml-2.0" 2>/dev/null`
+m4trace:configure.ac:53: -1- PKG_PROG_PKG_CONFIG
+m4trace:configure.ac:53: -1- m4_pattern_forbid([^_?PKG_[A-Z_]+$])
+m4trace:configure.ac:53: -1- m4_pattern_allow([^PKG_CONFIG(_(PATH|LIBDIR|SYSROOT_DIR|ALLOW_SYSTEM_(CFLAGS|LIBS)))?$])
+m4trace:configure.ac:53: -1- m4_pattern_allow([^PKG_CONFIG_(DISABLE_UNINSTALLED|TOP_BUILD_DIR|DEBUG_SPEW)$])
+m4trace:configure.ac:53: -1- m4_pattern_allow([^PKG_CONFIG$])
+m4trace:configure.ac:53: -1- m4_pattern_allow([^PKG_CONFIG_PATH$])
+m4trace:configure.ac:53: -1- m4_pattern_allow([^PKG_CONFIG_LIBDIR$])
+m4trace:configure.ac:53: -1- m4_pattern_allow([^PKG_CONFIG$])
+m4trace:configure.ac:54: -1- PKG_CHECK_MODULES([LIBXML], [libxml-2.0])
+m4trace:configure.ac:54: -1- m4_pattern_allow([^LIBXML_CFLAGS$])
+m4trace:configure.ac:54: -1- m4_pattern_allow([^LIBXML_LIBS$])
+m4trace:configure.ac:54: -1- PKG_CHECK_EXISTS([libxml-2.0], [pkg_cv_[]LIBXML_CFLAGS=`$PKG_CONFIG --[]cflags "libxml-2.0" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes ], [pkg_failed=yes])
-m4trace:configure.ac:53: -1- PKG_CHECK_EXISTS([libxml-2.0], [pkg_cv_[]LIBXML_LIBS=`$PKG_CONFIG --[]libs "libxml-2.0" 2>/dev/null`
+m4trace:configure.ac:54: -1- PKG_CHECK_EXISTS([libxml-2.0], [pkg_cv_[]LIBXML_LIBS=`$PKG_CONFIG --[]libs "libxml-2.0" 2>/dev/null`
 		      test "x$?" != "x0" && pkg_failed=yes ], [pkg_failed=yes])
-m4trace:configure.ac:53: -1- _PKG_SHORT_ERRORS_SUPPORTED
-m4trace:configure.ac:59: -1- AM_CONDITIONAL([USE_WITH_SCTP], [test "$enable_sctp" = yes])
-m4trace:configure.ac:59: -1- m4_pattern_allow([^USE_WITH_SCTP_TRUE$])
-m4trace:configure.ac:59: -1- m4_pattern_allow([^USE_WITH_SCTP_FALSE$])
-m4trace:configure.ac:59: -1- _AM_SUBST_NOTMAKE([USE_WITH_SCTP_TRUE])
-m4trace:configure.ac:59: -1- _AM_SUBST_NOTMAKE([USE_WITH_SCTP_FALSE])
-m4trace:configure.ac:62: -1- AM_CONDITIONAL([NSIS_NO_WARN_HASHMAP], [test "$ac_cv_unordered_map_exists" = yes])
-m4trace:configure.ac:62: -1- m4_pattern_allow([^NSIS_NO_WARN_HASHMAP_TRUE$])
-m4trace:configure.ac:62: -1- m4_pattern_allow([^NSIS_NO_WARN_HASHMAP_FALSE$])
-m4trace:configure.ac:62: -1- _AM_SUBST_NOTMAKE([NSIS_NO_WARN_HASHMAP_TRUE])
-m4trace:configure.ac:62: -1- _AM_SUBST_NOTMAKE([NSIS_NO_WARN_HASHMAP_FALSE])
-m4trace:configure.ac:70: -1- m4_pattern_allow([^LIB@&t@OBJS$])
-m4trace:configure.ac:70: -1- m4_pattern_allow([^LTLIBOBJS$])
-m4trace:configure.ac:70: -1- AM_CONDITIONAL([am__EXEEXT], [test -n "$EXEEXT"])
-m4trace:configure.ac:70: -1- m4_pattern_allow([^am__EXEEXT_TRUE$])
-m4trace:configure.ac:70: -1- m4_pattern_allow([^am__EXEEXT_FALSE$])
-m4trace:configure.ac:70: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_TRUE])
-m4trace:configure.ac:70: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_FALSE])
-m4trace:configure.ac:70: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS
+m4trace:configure.ac:54: -1- _PKG_SHORT_ERRORS_SUPPORTED
+m4trace:configure.ac:55: -1- PKG_CHECK_MODULES([LIBXML2], [libxml-2.0])
+m4trace:configure.ac:55: -1- m4_pattern_allow([^LIBXML2_CFLAGS$])
+m4trace:configure.ac:55: -1- m4_pattern_allow([^LIBXML2_LIBS$])
+m4trace:configure.ac:55: -1- PKG_CHECK_EXISTS([libxml-2.0], [pkg_cv_[]LIBXML2_CFLAGS=`$PKG_CONFIG --[]cflags "libxml-2.0" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes ], [pkg_failed=yes])
+m4trace:configure.ac:55: -1- PKG_CHECK_EXISTS([libxml-2.0], [pkg_cv_[]LIBXML2_LIBS=`$PKG_CONFIG --[]libs "libxml-2.0" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes ], [pkg_failed=yes])
+m4trace:configure.ac:55: -1- _PKG_SHORT_ERRORS_SUPPORTED
+m4trace:configure.ac:59: -1- PKG_CHECK_MODULES([LIBXSLT], [libxslt >= $LIBXSLT_REQUIRED])
+m4trace:configure.ac:59: -1- m4_pattern_allow([^LIBXSLT_CFLAGS$])
+m4trace:configure.ac:59: -1- m4_pattern_allow([^LIBXSLT_LIBS$])
+m4trace:configure.ac:59: -1- PKG_CHECK_EXISTS([libxslt >= $LIBXSLT_REQUIRED], [pkg_cv_[]LIBXSLT_CFLAGS=`$PKG_CONFIG --[]cflags "libxslt >= $LIBXSLT_REQUIRED" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes ], [pkg_failed=yes])
+m4trace:configure.ac:59: -1- PKG_CHECK_EXISTS([libxslt >= $LIBXSLT_REQUIRED], [pkg_cv_[]LIBXSLT_LIBS=`$PKG_CONFIG --[]libs "libxslt >= $LIBXSLT_REQUIRED" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes ], [pkg_failed=yes])
+m4trace:configure.ac:59: -1- _PKG_SHORT_ERRORS_SUPPORTED
+m4trace:configure.ac:60: -1- m4_pattern_allow([^LIBXSLT_CFLAGS$])
+m4trace:configure.ac:61: -1- m4_pattern_allow([^LIBXSLT_LIBS$])
+m4trace:configure.ac:65: -1- PKG_CHECK_MODULES([CURL], [libcurl], [AC_DEFINE([HAVE_CURL],[1],[Use CURL])])
+m4trace:configure.ac:65: -1- m4_pattern_allow([^CURL_CFLAGS$])
+m4trace:configure.ac:65: -1- m4_pattern_allow([^CURL_LIBS$])
+m4trace:configure.ac:65: -1- PKG_CHECK_EXISTS([libcurl], [pkg_cv_[]CURL_CFLAGS=`$PKG_CONFIG --[]cflags "libcurl" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes ], [pkg_failed=yes])
+m4trace:configure.ac:65: -1- PKG_CHECK_EXISTS([libcurl], [pkg_cv_[]CURL_LIBS=`$PKG_CONFIG --[]libs "libcurl" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes ], [pkg_failed=yes])
+m4trace:configure.ac:65: -1- _PKG_SHORT_ERRORS_SUPPORTED
+m4trace:configure.ac:65: -1- m4_pattern_allow([^HAVE_CURL$])
+m4trace:configure.ac:68: -1- AM_CONDITIONAL([CURL], [test -n "$CURL_LIBS"])
+m4trace:configure.ac:68: -1- m4_pattern_allow([^CURL_TRUE$])
+m4trace:configure.ac:68: -1- m4_pattern_allow([^CURL_FALSE$])
+m4trace:configure.ac:68: -1- _AM_SUBST_NOTMAKE([CURL_TRUE])
+m4trace:configure.ac:68: -1- _AM_SUBST_NOTMAKE([CURL_FALSE])
+m4trace:configure.ac:69: -1- m4_pattern_allow([^CURL_CFLAGS$])
+m4trace:configure.ac:70: -1- m4_pattern_allow([^CURL_LIBS$])
+m4trace:configure.ac:73: -1- PKG_CHECK_MODULES([LIBUUID], [libuuid], [LIBUUID_FOUND=yes], [LIBUUID_FOUND=no])
+m4trace:configure.ac:73: -1- m4_pattern_allow([^LIBUUID_CFLAGS$])
+m4trace:configure.ac:73: -1- m4_pattern_allow([^LIBUUID_LIBS$])
+m4trace:configure.ac:73: -1- PKG_CHECK_EXISTS([libuuid], [pkg_cv_[]LIBUUID_CFLAGS=`$PKG_CONFIG --[]cflags "libuuid" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes ], [pkg_failed=yes])
+m4trace:configure.ac:73: -1- PKG_CHECK_EXISTS([libuuid], [pkg_cv_[]LIBUUID_LIBS=`$PKG_CONFIG --[]libs "libuuid" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes ], [pkg_failed=yes])
+m4trace:configure.ac:73: -1- _PKG_SHORT_ERRORS_SUPPORTED
+m4trace:configure.ac:76: -1- PKG_CHECK_MODULES([LIBUUID], [uuid], [LIBUUID_FOUND=yes], [LIBUUID_FOUND=no])
+m4trace:configure.ac:76: -1- m4_pattern_allow([^LIBUUID_CFLAGS$])
+m4trace:configure.ac:76: -1- m4_pattern_allow([^LIBUUID_LIBS$])
+m4trace:configure.ac:76: -1- PKG_CHECK_EXISTS([uuid], [pkg_cv_[]LIBUUID_CFLAGS=`$PKG_CONFIG --[]cflags "uuid" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes ], [pkg_failed=yes])
+m4trace:configure.ac:76: -1- PKG_CHECK_EXISTS([uuid], [pkg_cv_[]LIBUUID_LIBS=`$PKG_CONFIG --[]libs "uuid" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes ], [pkg_failed=yes])
+m4trace:configure.ac:76: -1- _PKG_SHORT_ERRORS_SUPPORTED
+m4trace:configure.ac:85: -1- m4_pattern_allow([^LIBUUID_CFLAGS$])
+m4trace:configure.ac:86: -1- m4_pattern_allow([^LIBUUID_LIBS$])
+m4trace:configure.ac:93: -1- AM_CONDITIONAL([USE_WITH_SCTP], [test "$enable_sctp" = yes])
+m4trace:configure.ac:93: -1- m4_pattern_allow([^USE_WITH_SCTP_TRUE$])
+m4trace:configure.ac:93: -1- m4_pattern_allow([^USE_WITH_SCTP_FALSE$])
+m4trace:configure.ac:93: -1- _AM_SUBST_NOTMAKE([USE_WITH_SCTP_TRUE])
+m4trace:configure.ac:93: -1- _AM_SUBST_NOTMAKE([USE_WITH_SCTP_FALSE])
+m4trace:configure.ac:95: -1- AM_CONDITIONAL([NSIS_NO_WARN_HASHMAP], [test "$ac_cv_unordered_map_exists" = yes])
+m4trace:configure.ac:95: -1- m4_pattern_allow([^NSIS_NO_WARN_HASHMAP_TRUE$])
+m4trace:configure.ac:95: -1- m4_pattern_allow([^NSIS_NO_WARN_HASHMAP_FALSE$])
+m4trace:configure.ac:95: -1- _AM_SUBST_NOTMAKE([NSIS_NO_WARN_HASHMAP_TRUE])
+m4trace:configure.ac:95: -1- _AM_SUBST_NOTMAKE([NSIS_NO_WARN_HASHMAP_FALSE])
+m4trace:configure.ac:103: -1- m4_pattern_allow([^LIB@&t@OBJS$])
+m4trace:configure.ac:103: -1- m4_pattern_allow([^LTLIBOBJS$])
+m4trace:configure.ac:103: -1- AM_CONDITIONAL([am__EXEEXT], [test -n "$EXEEXT"])
+m4trace:configure.ac:103: -1- m4_pattern_allow([^am__EXEEXT_TRUE$])
+m4trace:configure.ac:103: -1- m4_pattern_allow([^am__EXEEXT_FALSE$])
+m4trace:configure.ac:103: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_TRUE])
+m4trace:configure.ac:103: -1- _AM_SUBST_NOTMAKE([am__EXEEXT_FALSE])
+m4trace:configure.ac:103: -1- _AM_OUTPUT_DEPENDENCY_COMMANDS

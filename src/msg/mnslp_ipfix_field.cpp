@@ -34,6 +34,59 @@
 
 namespace mnslp {
   namespace msg {
+
+bool 
+mnslp_ipfix_field_key::operator ==(const mnslp_field_key &rhs) const
+{ 
+	const mnslp_ipfix_field_key *other
+		= dynamic_cast<const mnslp_ipfix_field_key *>(&rhs);
+	
+	if (other != NULL)
+		return ((eno == other->eno) && (ftype == other->ftype)); 
+	else
+		return false;
+}
+
+
+bool 
+mnslp_ipfix_field_key::operator< (const mnslp_field_key& rhs) const
+{
+	const mnslp_ipfix_field_key *other
+		= dynamic_cast<const mnslp_ipfix_field_key *>(&rhs);
+
+	if (other != NULL)
+		return (eno*(1000) + ftype) < (other->eno*(1000) + other->ftype ); 
+	else
+		return false;
+}
+
+bool 
+mnslp_ipfix_field_key::operator != (const mnslp_field_key &rhs) const
+{
+	const mnslp_ipfix_field_key *other
+		= dynamic_cast<const mnslp_ipfix_field_key *>(&rhs);
+
+	if (other != NULL)
+		return ((eno != other->eno) || (ftype != other->ftype)); 
+	else
+		return false;
+		
+}
+
+
+std::string
+mnslp_ipfix_field_key::to_string() const
+{
+
+	std::ostringstream o1;
+	o1 << "eno:" << eno;
+	o1 << "ftype:" << ftype;
+	std::string str6 = o1.str();
+	return str6;
+
+}
+
+
 mnslp_ipfix_field::mnslp_ipfix_field()
 {
 
@@ -52,6 +105,14 @@ mnslp_ipfix_field::mnslp_ipfix_field(const mnslp_ipfix_field &rhs)
 mnslp_ipfix_field::~mnslp_ipfix_field()
 {
 	
+}
+
+mnslp_ipfix_field_key *
+mnslp_ipfix_field::get_field_key() const
+{
+	mnslp_ipfix_field_key* val_return = new mnslp_ipfix_field_key(field_type.eno, 
+												field_type.ftype);
+	return val_return;
 }
 
 mnslp_ipfix_field& mnslp_ipfix_field::operator= (const mnslp_ipfix_field &param)
@@ -1783,17 +1844,6 @@ mnslp_ipfix_field msnlp_ipfix_field_container::get_field( int eno, int type )
     throw mnslp_ipfix_bad_argument("Field not found in the container");
 }
 
-
-std::string 
-mnslp_ipfix_field_key::to_string()
-{
-	std::ostringstream o1;
-	o1 << "eno:" << eno;
-	o1 << "ftype:" << ftype;
-	std::string str6 = o1.str();
-	return str6;
-
-}
 
   } // namespace msg
 } // namespace mnslp

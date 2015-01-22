@@ -103,6 +103,8 @@ am_libmnslp_msg_a_OBJECTS = libmnslp_msg_a-ie_object_key.$(OBJEXT) \
 	libmnslp_msg_a-ipfix_t.$(OBJEXT) \
 	libmnslp_msg_a-mnslp_mspec_object.$(OBJEXT) \
 	libmnslp_msg_a-mnslp_ipfix_message.$(OBJEXT) \
+	libmnslp_msg_a-mnslp_field.$(OBJEXT) \
+	libmnslp_msg_a-mnslp_field_key.$(OBJEXT) \
 	libmnslp_msg_a-mnslp_ipfix_field.$(OBJEXT) \
 	libmnslp_msg_a-mnslp_ipfix_data_record.$(OBJEXT) \
 	libmnslp_msg_a-mnslp_ipfix_template.$(OBJEXT)
@@ -133,11 +135,13 @@ CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
 CPP = gcc -E
 CPPFLAGS = 
+CURL_CFLAGS =  
+CURL_LIBS = -lcurl  
 CXX = g++
 CXXDEPMODE = depmode=gcc3
 CXXFLAGS = -g -O2
 CYGPATH_W = echo
-DEFS = -DPACKAGE_NAME=\"mnslp-ua\" -DPACKAGE_TARNAME=\"mnslp-ua\" -DPACKAGE_VERSION=\"0.97\" -DPACKAGE_STRING=\"mnslp-ua\ 0.97\" -DPACKAGE_BUGREPORT=\"la.marentes455@uniandes.edu.co\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mnslp-ua\" -DVERSION=\"0.97\" -DHAVE_LIBCPPUNIT=1 -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_ARPA_INET_H=1 -DHAVE_NETDB_H=1 -DHAVE_NETINET_IN_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DTIME_WITH_SYS_TIME=1 -DRETSIGTYPE=void -DHAVE_GETHOSTNAME=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_SOCKET=1 -DHAVE_STRERROR=1
+DEFS = -DPACKAGE_NAME=\"mnslp-ua\" -DPACKAGE_TARNAME=\"mnslp-ua\" -DPACKAGE_VERSION=\"0.97\" -DPACKAGE_STRING=\"mnslp-ua\ 0.97\" -DPACKAGE_BUGREPORT=\"la.marentes455@uniandes.edu.co\" -DPACKAGE_URL=\"\" -DPACKAGE=\"mnslp-ua\" -DVERSION=\"0.97\" -DHAVE_LIBCPPUNIT=1 -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_ARPA_INET_H=1 -DHAVE_NETDB_H=1 -DHAVE_NETINET_IN_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_SYS_PARAM_H=1 -DHAVE_SYS_SOCKET_H=1 -DHAVE_SYS_TIME_H=1 -DHAVE_UNISTD_H=1 -DHAVE__BOOL=1 -DHAVE_STDBOOL_H=1 -DTIME_WITH_SYS_TIME=1 -DRETSIGTYPE=void -DHAVE_GETHOSTNAME=1 -DHAVE_GETTIMEOFDAY=1 -DHAVE_MEMSET=1 -DHAVE_SOCKET=1 -DHAVE_STRERROR=1 -DHAVE_CURL=1
 DEPDIR = .deps
 ECHO_C = 
 ECHO_N = -n
@@ -153,8 +157,14 @@ INSTALL_STRIP_PROGRAM = $(install_sh) -c -s
 LDFLAGS = 
 LIBOBJS = 
 LIBS = -lcppunit 
+LIBUUID_CFLAGS = -I/usr/include/uuid   -I/usr/include/uuid 
+LIBUUID_LIBS = -luuid  
+LIBXML2_CFLAGS = -I/usr/include/libxml2  
+LIBXML2_LIBS = -lxml2  
 LIBXML_CFLAGS = -I/usr/include/libxml2  
 LIBXML_LIBS = -lxml2  
+LIBXSLT_CFLAGS = -I/usr/include/libxml2  
+LIBXSLT_LIBS = -lxslt -lxml2  
 LTLIBOBJS = 
 MAKEINFO = ${SHELL} /home/luis/NSIS/nsis-ka-0.97/missing --run makeinfo
 MKDIR_P = /bin/mkdir -p
@@ -305,9 +315,11 @@ libmnslp_msg_a_SOURCES = ie_object_key.cpp \
 					     ipfix_t.cpp \
 					     mnslp_mspec_object.cpp \
 					     mnslp_ipfix_message.cpp \
+					     mnslp_field.cpp \
+					     mnslp_field_key.cpp \
 					     mnslp_ipfix_field.cpp \
 					     mnslp_ipfix_data_record.cpp \
-					     mnslp_ipfix_template.cpp
+					     mnslp_ipfix_template.cpp 
 
 include_HEADERS = $(INC_DIR)/ie_store.h $(INC_DIR)/mnslp_object.h			\
 					$(INC_DIR)/msg_sequence_number.h $(INC_DIR)/mnslp_ie.h $(INC_DIR)/mnslp_object.h		\
@@ -403,6 +415,8 @@ include ./$(DEPDIR)/libmnslp_msg_a-information_code.Po
 include ./$(DEPDIR)/libmnslp_msg_a-ipfix_t.Po
 include ./$(DEPDIR)/libmnslp_msg_a-message_hop_count.Po
 include ./$(DEPDIR)/libmnslp_msg_a-mnslp_configure.Po
+include ./$(DEPDIR)/libmnslp_msg_a-mnslp_field.Po
+include ./$(DEPDIR)/libmnslp_msg_a-mnslp_field_key.Po
 include ./$(DEPDIR)/libmnslp_msg_a-mnslp_ie.Po
 include ./$(DEPDIR)/libmnslp_msg_a-mnslp_ipfix_data_record.Po
 include ./$(DEPDIR)/libmnslp_msg_a-mnslp_ipfix_field.Po
@@ -699,6 +713,34 @@ libmnslp_msg_a-mnslp_ipfix_message.obj: mnslp_ipfix_message.cpp
 #	source='mnslp_ipfix_message.cpp' object='libmnslp_msg_a-mnslp_ipfix_message.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_msg_a-mnslp_ipfix_message.obj `if test -f 'mnslp_ipfix_message.cpp'; then $(CYGPATH_W) 'mnslp_ipfix_message.cpp'; else $(CYGPATH_W) '$(srcdir)/mnslp_ipfix_message.cpp'; fi`
+
+libmnslp_msg_a-mnslp_field.o: mnslp_field.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_msg_a-mnslp_field.o -MD -MP -MF $(DEPDIR)/libmnslp_msg_a-mnslp_field.Tpo -c -o libmnslp_msg_a-mnslp_field.o `test -f 'mnslp_field.cpp' || echo '$(srcdir)/'`mnslp_field.cpp
+	$(am__mv) $(DEPDIR)/libmnslp_msg_a-mnslp_field.Tpo $(DEPDIR)/libmnslp_msg_a-mnslp_field.Po
+#	source='mnslp_field.cpp' object='libmnslp_msg_a-mnslp_field.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_msg_a-mnslp_field.o `test -f 'mnslp_field.cpp' || echo '$(srcdir)/'`mnslp_field.cpp
+
+libmnslp_msg_a-mnslp_field.obj: mnslp_field.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_msg_a-mnslp_field.obj -MD -MP -MF $(DEPDIR)/libmnslp_msg_a-mnslp_field.Tpo -c -o libmnslp_msg_a-mnslp_field.obj `if test -f 'mnslp_field.cpp'; then $(CYGPATH_W) 'mnslp_field.cpp'; else $(CYGPATH_W) '$(srcdir)/mnslp_field.cpp'; fi`
+	$(am__mv) $(DEPDIR)/libmnslp_msg_a-mnslp_field.Tpo $(DEPDIR)/libmnslp_msg_a-mnslp_field.Po
+#	source='mnslp_field.cpp' object='libmnslp_msg_a-mnslp_field.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_msg_a-mnslp_field.obj `if test -f 'mnslp_field.cpp'; then $(CYGPATH_W) 'mnslp_field.cpp'; else $(CYGPATH_W) '$(srcdir)/mnslp_field.cpp'; fi`
+
+libmnslp_msg_a-mnslp_field_key.o: mnslp_field_key.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_msg_a-mnslp_field_key.o -MD -MP -MF $(DEPDIR)/libmnslp_msg_a-mnslp_field_key.Tpo -c -o libmnslp_msg_a-mnslp_field_key.o `test -f 'mnslp_field_key.cpp' || echo '$(srcdir)/'`mnslp_field_key.cpp
+	$(am__mv) $(DEPDIR)/libmnslp_msg_a-mnslp_field_key.Tpo $(DEPDIR)/libmnslp_msg_a-mnslp_field_key.Po
+#	source='mnslp_field_key.cpp' object='libmnslp_msg_a-mnslp_field_key.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_msg_a-mnslp_field_key.o `test -f 'mnslp_field_key.cpp' || echo '$(srcdir)/'`mnslp_field_key.cpp
+
+libmnslp_msg_a-mnslp_field_key.obj: mnslp_field_key.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_msg_a-mnslp_field_key.obj -MD -MP -MF $(DEPDIR)/libmnslp_msg_a-mnslp_field_key.Tpo -c -o libmnslp_msg_a-mnslp_field_key.obj `if test -f 'mnslp_field_key.cpp'; then $(CYGPATH_W) 'mnslp_field_key.cpp'; else $(CYGPATH_W) '$(srcdir)/mnslp_field_key.cpp'; fi`
+	$(am__mv) $(DEPDIR)/libmnslp_msg_a-mnslp_field_key.Tpo $(DEPDIR)/libmnslp_msg_a-mnslp_field_key.Po
+#	source='mnslp_field_key.cpp' object='libmnslp_msg_a-mnslp_field_key.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_msg_a-mnslp_field_key.obj `if test -f 'mnslp_field_key.cpp'; then $(CYGPATH_W) 'mnslp_field_key.cpp'; else $(CYGPATH_W) '$(srcdir)/mnslp_field_key.cpp'; fi`
 
 libmnslp_msg_a-mnslp_ipfix_field.o: mnslp_ipfix_field.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_msg_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_msg_a-mnslp_ipfix_field.o -MD -MP -MF $(DEPDIR)/libmnslp_msg_a-mnslp_ipfix_field.Tpo -c -o libmnslp_msg_a-mnslp_ipfix_field.o `test -f 'mnslp_ipfix_field.cpp' || echo '$(srcdir)/'`mnslp_ipfix_field.cpp

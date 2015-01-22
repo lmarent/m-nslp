@@ -29,8 +29,11 @@
 #ifndef MNSLP__POLICY_RULE_H
 #define MNSLP__POLICY_RULE_H
 
+#include <map>
+
 #include "protlib_types.h"
 #include "address.h"
+#include "mspec_rule_key.h"
 #include "msg/mnslp_mspec_object.h"
 
 
@@ -58,16 +61,41 @@ class mt_policy_rule {
 
   public:
 
-	mt_policy_rule(msg::mnslp_mspec_object &obj);
+	/**
+	* Constructor.
+	*/
+	mt_policy_rule();
 
-	virtual ~mt_policy_rule() { }
+	/**
+	* Copy constructor.
+	*/
+	mt_policy_rule(const mt_policy_rule &rhs);
+  
+	~mt_policy_rule() { }
 
+    /**
+    * Create a deep copy of this object.
+    */
 	mt_policy_rule *copy() const;
+
+    /**
+    * Add a mspec objet to the rule. This creates the key to share with the
+    * metering application. 
+    */
+    void set_object(msg::mnslp_mspec_object &obj);
+		
+	typedef std::map<mspec_rule_key, msg::mnslp_mspec_object>::const_iterator const_iterator;
+
+	const_iterator begin() const throw() { return objects.begin(); }
+	const_iterator end() const throw() { return objects.end(); }
 	
-	msg::mnslp_mspec_object get_object() const;
 
   private:
-	msg::mnslp_mspec_object object;
+	
+	/// Map for all mspec objects belonging to the rule to be used in the 
+	/// metering application.
+	std::map<mspec_rule_key,msg::mnslp_mspec_object> objects;
+	
 };
 
 std::ostream &operator<<(std::ostream &out, const mt_policy_rule &mpr);

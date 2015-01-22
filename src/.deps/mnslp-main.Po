@@ -193,8 +193,8 @@ mnslp-main.o: main.cpp /usr/include/unistd.h /usr/include/features.h \
  ../include/msg/mnslp_configure.h ../include/msg/mnslp_msg.h \
  ../include/msg/mnslp_ipfix_message.h /usr/include/inttypes.h \
  ../include/msg/ipfix_def.h /usr/include/c++/4.6/cstddef \
- ../include/msg/mnslp_ipfix_field.h \
- ../include/msg/mnslp_ipfix_exception.h \
+ ../include/msg/mnslp_ipfix_field.h ../include/msg/mnslp_field_key.h \
+ ../include/msg/mnslp_field.h ../include/msg/mnslp_ipfix_exception.h \
  ../include/msg/mnslp_ipfix_data_record.h \
  ../include/msg/mnslp_ipfix_template.h \
  ../include/msg/mnslp_mspec_object.h ../include/msg/ipfix_t.h \
@@ -231,11 +231,22 @@ mnslp-main.o: main.cpp /usr/include/unistd.h /usr/include/features.h \
  /usr/include/libxml2/libxml/xlink.h /usr/include/libxml2/libxml/SAX2.h \
  /usr/include/libxml2/libxml/relaxng.h \
  /usr/include/libxml2/libxml/xmlschemas.h ../include/policy_action.h \
- ../include/mnslp_xml_node_reader.h ../include/policy_action_mapping.h \
- ../include/msg/mnslp_ipfix_field.h ../include/policy_filter_container.h \
- ../include/policy_filter_mapping.h \
+ ../include/msg/mnslp_field.h ../include/mnslp_xml_node_reader.h \
+ ../include/policy_action_mapping.h ../include/policy_field_mapping.h \
+ ../include/policy_filter_container.h \
  ../include/nop_policy_rule_installer.h \
- ../include/netmate_policy_rule_installer.h
+ ../include/netmate_ipfix_policy_rule_installer.h \
+ ../include/msg/mnslp_ipfix_message.h \
+ ../include/msg/mnslp_ipfix_template.h /usr/include/curl/curl.h \
+ /usr/include/curl/curlver.h /usr/include/curl/curlbuild.h \
+ /usr/include/curl/curlrules.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include-fixed/limits.h \
+ /usr/lib/gcc/i686-linux-gnu/4.6/include-fixed/syslimits.h \
+ /usr/include/limits.h /usr/include/i386-linux-gnu/bits/posix1_lim.h \
+ /usr/include/i386-linux-gnu/bits/local_lim.h /usr/include/linux/limits.h \
+ /usr/include/i386-linux-gnu/bits/posix2_lim.h \
+ /usr/include/i386-linux-gnu/bits/xopen_lim.h /usr/include/curl/easy.h \
+ /usr/include/curl/multi.h /usr/include/curl/curl.h
 
 /usr/include/unistd.h:
 
@@ -813,6 +824,10 @@ mnslp-main.o: main.cpp /usr/include/unistd.h /usr/include/features.h \
 
 ../include/msg/mnslp_ipfix_field.h:
 
+../include/msg/mnslp_field_key.h:
+
+../include/msg/mnslp_field.h:
+
 ../include/msg/mnslp_ipfix_exception.h:
 
 ../include/msg/mnslp_ipfix_data_record.h:
@@ -923,16 +938,50 @@ mnslp-main.o: main.cpp /usr/include/unistd.h /usr/include/features.h \
 
 ../include/policy_action.h:
 
+../include/msg/mnslp_field.h:
+
 ../include/mnslp_xml_node_reader.h:
 
 ../include/policy_action_mapping.h:
 
-../include/msg/mnslp_ipfix_field.h:
+../include/policy_field_mapping.h:
 
 ../include/policy_filter_container.h:
 
-../include/policy_filter_mapping.h:
-
 ../include/nop_policy_rule_installer.h:
 
-../include/netmate_policy_rule_installer.h:
+../include/netmate_ipfix_policy_rule_installer.h:
+
+../include/msg/mnslp_ipfix_message.h:
+
+../include/msg/mnslp_ipfix_template.h:
+
+/usr/include/curl/curl.h:
+
+/usr/include/curl/curlver.h:
+
+/usr/include/curl/curlbuild.h:
+
+/usr/include/curl/curlrules.h:
+
+/usr/lib/gcc/i686-linux-gnu/4.6/include-fixed/limits.h:
+
+/usr/lib/gcc/i686-linux-gnu/4.6/include-fixed/syslimits.h:
+
+/usr/include/limits.h:
+
+/usr/include/i386-linux-gnu/bits/posix1_lim.h:
+
+/usr/include/i386-linux-gnu/bits/local_lim.h:
+
+/usr/include/linux/limits.h:
+
+/usr/include/i386-linux-gnu/bits/posix2_lim.h:
+
+/usr/include/i386-linux-gnu/bits/xopen_lim.h:
+
+/usr/include/curl/easy.h:
+
+/usr/include/curl/multi.h:
+
+/usr/include/curl/curl.h:

@@ -47,6 +47,8 @@
 #include <netinet/in.h>
 
 #include "ipfix_def.h"
+#include "mnslp_field_key.h"
+#include "mnslp_field.h"
 #include "mnslp_ipfix_exception.h"
 
 
@@ -63,6 +65,75 @@ namespace mnslp {
 
 
 class mnslp_ipfix_value_field;
+
+
+/**
+ * \class mnslp_ipfix_field_key
+ *
+ *
+ * \brief This respresents the key of a field to be exchanged.
+ *
+ * This class is used to represent the key of a field that is going to be exchange.
+ * The class is the key used on the map of field values inside the record set class.
+ *
+ * \author Andres Marentes
+ *
+ * \version 0.1 
+ *
+ * \date 2014/12/18 9:57:00
+ *
+ * Contact: la.marentes455@uniandes.edu.co
+ *  
+ */
+class mnslp_ipfix_field_key : public mnslp_field_key
+{
+
+private:
+
+	int eno;  				///< enterprise number or 0 
+	int ftype;              ///< field type 
+
+public:
+	
+	/// Constructor of the field key
+	inline mnslp_ipfix_field_key(int _eno, int _ftype): 
+			mnslp_field_key(mnslp_ipfix_key), eno(_eno), ftype(_ftype){}
+	
+	/// Destructor of the field key
+	inline ~mnslp_ipfix_field_key(){}
+		
+	/**
+	 *  Equals to operator. It is equal when it has the same enterprise number an type
+	 */
+	virtual bool operator ==(const mnslp_field_key &rhs) const;
+
+	/** less operator. a key field is less than other when the sum of its 
+	*    attributes is less that the same sum for the key field given as 
+	*    parameter.
+	*/ 
+	virtual bool operator< (const mnslp_field_key& rhs) const;
+
+	/** 
+	 * Assignment operator. 
+	*/ 
+	inline mnslp_ipfix_field_key& operator= (const mnslp_ipfix_field_key& param)
+	{
+		eno = param.eno;
+		ftype = param.ftype;
+		return *this;
+	}
+	
+	/** 
+	 * Not equal to operator. 
+	*/ 
+	virtual bool operator != (const mnslp_field_key &rhs) const;
+	
+	/** Convert the key field in a string.
+	*/ 
+	virtual std::string to_string() const;
+
+};
+
 
 /**
  * \class mnslp_ipfix_field
@@ -83,7 +154,7 @@ class mnslp_ipfix_value_field;
  * Contact: la.marentes455@uniandes.edu.co
  *  
  */
-class mnslp_ipfix_field
+class mnslp_ipfix_field : public mnslp_field
 {
 	private:
 	
@@ -110,6 +181,12 @@ class mnslp_ipfix_field
 		*/
 		~mnslp_ipfix_field();
 		
+		/**
+		 * Get the key for representing this field. The user has to
+		 * release the memory of this pointer.
+		 */
+		virtual mnslp_ipfix_field_key * get_field_key() const;
+		
 		/** Assignment operator. It equals a field from another field value.
 		*  @param  the field to copy from.
 		*/
@@ -130,11 +207,17 @@ class mnslp_ipfix_field
 		{ 
 			return (field_type.eno != (rhs.field_type).eno ) || (field_type.ftype != (rhs.field_type).ftype); 
 		}
-				
+						
 		/** Get the field type
 		*  @param  None
 		*/
 		inline ipfix_field_type_t get_field_type(){ return field_type; }
+
+		/** Get the field type
+		*  @param  None
+		*/
+		inline ipfix_field_type_t get_field_type() const { return field_type; }
+
 		
 		/** Encode a field value of type int into a uint8_t array. 
 		*   verifies that the value is of type int. 
@@ -310,81 +393,17 @@ class mnslp_ipfix_field
 		*/
 		int snprint( char * str, size_t size, mnslp_ipfix_value_field &in );
 
-};
-
-/**
- * \class mnslp_ipfix_field_key
- *
- *
- * \brief This respresents the key of a field to be exchanged.
- *
- * This class is used to represent the key of a field that is going to be exchange.
- * The class is the key used on the map of field values inside the record set class.
- *
- * \author Andres Marentes
- *
- * \version 0.1 
- *
- * \date 2014/12/18 9:57:00
- *
- * Contact: la.marentes455@uniandes.edu.co
- *  
- */
-class mnslp_ipfix_field_key
-{
-
-private:
-
-	int eno;  				///< enterprise number or 0 
-	int ftype;              ///< field type 
-
-public:
-	
-	/// Constructor of the field key
-	inline mnslp_ipfix_field_key(int _eno, int _ftype): 
-			eno(_eno), ftype(_ftype){}
-	
-	/// Destructor of the field key
-	inline ~mnslp_ipfix_field_key(){}
-		
-	/**
-	 *  Equals to operator. It is equal when it has the same enterprise number an type
-	 */
-	inline bool operator ==(const mnslp_ipfix_field_key &rhs) const
-	{ 
-		return ((eno == rhs.eno) && (ftype == rhs.ftype)); 
-	}
-
-	/** less operator. a key field is less than other when the sum of its 
-	*    attributes is less that the same sum for the key field given as 
-	*    parameter.
-	*/ 
-	inline bool operator< (const mnslp_ipfix_field_key& rhs) const
-	{
-		return (eno*(1000) + ftype) < (rhs.eno*(1000) + rhs.ftype ); 
-	}
-
-	/** 
-	 * Assignment operator. 
-	*/ 
-	inline mnslp_ipfix_field_key& operator= (const mnslp_ipfix_field_key& param)
-	{
-		eno = param.eno;
-		ftype = param.ftype;
-		return *this;
-	}
-	
-	/** 
-	 * Not equal to operator. 
-	*/ 
-	inline bool operator != (const mnslp_ipfix_field_key &rhs) const
-	{
-		return ((eno != rhs.eno) || (ftype != rhs.ftype)); 
-	}
-	
-	/** Convert the key field in a string.
-	*/ 
-	std::string to_string();
+		/** Put a field value into a char string. It takes the field type from
+		 *  the field object for who is call is method.
+		*  @param  in - value to put
+		* 		   str - string where the method puts the information
+		* 		   size - number of characters allocated to str, so the method could no 
+		* 				  copy more size characters.
+		*/
+		inline int snprint( char * str, size_t size, mnslp_ipfix_value_field &in ) const
+		{
+			return snprint(str, size, in);
+		}
 
 };
 

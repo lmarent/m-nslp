@@ -608,6 +608,16 @@ NSIS_NO_WARN_HASHMAP_FALSE
 NSIS_NO_WARN_HASHMAP_TRUE
 USE_WITH_SCTP_FALSE
 USE_WITH_SCTP_TRUE
+LIBUUID_LIBS
+LIBUUID_CFLAGS
+CURL_FALSE
+CURL_TRUE
+CURL_LIBS
+CURL_CFLAGS
+LIBXSLT_LIBS
+LIBXSLT_CFLAGS
+LIBXML2_LIBS
+LIBXML2_CFLAGS
 LIBXML_LIBS
 LIBXML_CFLAGS
 PKG_CONFIG_LIBDIR
@@ -724,7 +734,15 @@ PKG_CONFIG
 PKG_CONFIG_PATH
 PKG_CONFIG_LIBDIR
 LIBXML_CFLAGS
-LIBXML_LIBS'
+LIBXML_LIBS
+LIBXML2_CFLAGS
+LIBXML2_LIBS
+LIBXSLT_CFLAGS
+LIBXSLT_LIBS
+CURL_CFLAGS
+CURL_LIBS
+LIBUUID_CFLAGS
+LIBUUID_LIBS'
 
 
 # Initialize some variables set by options.
@@ -1364,6 +1382,20 @@ Some influential environment variables:
   LIBXML_CFLAGS 
               C compiler flags for LIBXML, overriding pkg-config
   LIBXML_LIBS linker flags for LIBXML, overriding pkg-config
+  LIBXML2_CFLAGS 
+              C compiler flags for LIBXML2, overriding pkg-config
+  LIBXML2_LIBS 
+              linker flags for LIBXML2, overriding pkg-config
+  LIBXSLT_CFLAGS 
+              C compiler flags for LIBXSLT, overriding pkg-config
+  LIBXSLT_LIBS 
+              linker flags for LIBXSLT, overriding pkg-config
+  CURL_CFLAGS C compiler flags for CURL, overriding pkg-config
+  CURL_LIBS   linker flags for CURL, overriding pkg-config
+  LIBUUID_CFLAGS 
+              C compiler flags for LIBUUID, overriding pkg-config
+  LIBUUID_LIBS 
+              linker flags for LIBUUID, overriding pkg-config
 
 Use these variables to override the choices made by `configure' or to help
 it to find libraries and programs with nonstandard names/locations.
@@ -5278,6 +5310,7 @@ CXXFLAGS=$SAVECXXFLAGS
 
 
 
+
 if test "x$ac_cv_env_PKG_CONFIG_set" != "xset"; then
 	if test -n "$ac_tool_prefix"; then
   # Extract the first word of "${ac_tool_prefix}pkg-config", so it can be a program name with args.
@@ -5483,6 +5516,454 @@ $as_echo "yes" >&6; }
 	
 fi
 
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LIBXML2" >&5
+$as_echo_n "checking for LIBXML2... " >&6; }
+
+if test -n "$LIBXML2_CFLAGS"; then
+    pkg_cv_LIBXML2_CFLAGS="$LIBXML2_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libxml-2.0\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libxml-2.0") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_LIBXML2_CFLAGS=`$PKG_CONFIG --cflags "libxml-2.0" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$LIBXML2_LIBS"; then
+    pkg_cv_LIBXML2_LIBS="$LIBXML2_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libxml-2.0\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libxml-2.0") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_LIBXML2_LIBS=`$PKG_CONFIG --libs "libxml-2.0" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        LIBXML2_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libxml-2.0" 2>&1`
+        else 
+	        LIBXML2_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libxml-2.0" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$LIBXML2_PKG_ERRORS" >&5
+
+	as_fn_error $? "Package requirements (libxml-2.0) were not met:
+
+$LIBXML2_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables LIBXML2_CFLAGS
+and LIBXML2_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details." "$LINENO" 5        
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables LIBXML2_CFLAGS
+and LIBXML2_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+See \`config.log' for more details" "$LINENO" 5; }        
+else
+	LIBXML2_CFLAGS=$pkg_cv_LIBXML2_CFLAGS
+	LIBXML2_LIBS=$pkg_cv_LIBXML2_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	
+fi
+
+# Checks for libxslt libraries
+LIBXSLT_REQUIRED=1.1.10
+
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LIBXSLT" >&5
+$as_echo_n "checking for LIBXSLT... " >&6; }
+
+if test -n "$LIBXSLT_CFLAGS"; then
+    pkg_cv_LIBXSLT_CFLAGS="$LIBXSLT_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libxslt >= \$LIBXSLT_REQUIRED\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libxslt >= $LIBXSLT_REQUIRED") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_LIBXSLT_CFLAGS=`$PKG_CONFIG --cflags "libxslt >= $LIBXSLT_REQUIRED" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$LIBXSLT_LIBS"; then
+    pkg_cv_LIBXSLT_LIBS="$LIBXSLT_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libxslt >= \$LIBXSLT_REQUIRED\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libxslt >= $LIBXSLT_REQUIRED") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_LIBXSLT_LIBS=`$PKG_CONFIG --libs "libxslt >= $LIBXSLT_REQUIRED" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        LIBXSLT_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libxslt >= $LIBXSLT_REQUIRED" 2>&1`
+        else 
+	        LIBXSLT_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libxslt >= $LIBXSLT_REQUIRED" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$LIBXSLT_PKG_ERRORS" >&5
+
+	as_fn_error $? "Package requirements (libxslt >= $LIBXSLT_REQUIRED) were not met:
+
+$LIBXSLT_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables LIBXSLT_CFLAGS
+and LIBXSLT_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details." "$LINENO" 5        
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables LIBXSLT_CFLAGS
+and LIBXSLT_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+See \`config.log' for more details" "$LINENO" 5; }        
+else
+	LIBXSLT_CFLAGS=$pkg_cv_LIBXSLT_CFLAGS
+	LIBXSLT_LIBS=$pkg_cv_LIBXSLT_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	
+fi
+
+
+
+# Check CURL, needed for install netmate policy rules.
+CURL_LIBS=
+
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for CURL" >&5
+$as_echo_n "checking for CURL... " >&6; }
+
+if test -n "$CURL_CFLAGS"; then
+    pkg_cv_CURL_CFLAGS="$CURL_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libcurl\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libcurl") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_CURL_CFLAGS=`$PKG_CONFIG --cflags "libcurl" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$CURL_LIBS"; then
+    pkg_cv_CURL_LIBS="$CURL_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libcurl\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libcurl") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_CURL_LIBS=`$PKG_CONFIG --libs "libcurl" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        CURL_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libcurl" 2>&1`
+        else 
+	        CURL_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libcurl" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$CURL_PKG_ERRORS" >&5
+
+	as_fn_error $? "Package requirements (libcurl) were not met:
+
+$CURL_PKG_ERRORS
+
+Consider adjusting the PKG_CONFIG_PATH environment variable if you
+installed software in a non-standard prefix.
+
+Alternatively, you may set the environment variables CURL_CFLAGS
+and CURL_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details." "$LINENO" 5        
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	{ { $as_echo "$as_me:${as_lineno-$LINENO}: error: in \`$ac_pwd':" >&5
+$as_echo "$as_me: error: in \`$ac_pwd':" >&2;}
+as_fn_error $? "The pkg-config script could not be found or is too old.  Make sure it
+is in your PATH or set the PKG_CONFIG environment variable to the full
+path to pkg-config.
+
+Alternatively, you may set the environment variables CURL_CFLAGS
+and CURL_LIBS to avoid the need to call pkg-config.
+See the pkg-config man page for more details.
+
+To get pkg-config, see <http://pkg-config.freedesktop.org/>.
+See \`config.log' for more details" "$LINENO" 5; }        
+else
+	CURL_CFLAGS=$pkg_cv_CURL_CFLAGS
+	CURL_LIBS=$pkg_cv_CURL_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	
+$as_echo "@%:@define HAVE_CURL 1" >>confdefs.h
+
+fi
+ if test -n "$CURL_LIBS"; then
+  CURL_TRUE=
+  CURL_FALSE='#'
+else
+  CURL_TRUE='#'
+  CURL_FALSE=
+fi
+
+
+
+
+
+
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LIBUUID" >&5
+$as_echo_n "checking for LIBUUID... " >&6; }
+
+if test -n "$LIBUUID_CFLAGS"; then
+    pkg_cv_LIBUUID_CFLAGS="$LIBUUID_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libuuid\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libuuid") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_LIBUUID_CFLAGS=`$PKG_CONFIG --cflags "libuuid" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$LIBUUID_LIBS"; then
+    pkg_cv_LIBUUID_LIBS="$LIBUUID_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"libuuid\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "libuuid") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_LIBUUID_LIBS=`$PKG_CONFIG --libs "libuuid" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        LIBUUID_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "libuuid" 2>&1`
+        else 
+	        LIBUUID_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "libuuid" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$LIBUUID_PKG_ERRORS" >&5
+
+	LIBUUID_FOUND=no
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	LIBUUID_FOUND=no
+else
+	LIBUUID_CFLAGS=$pkg_cv_LIBUUID_CFLAGS
+	LIBUUID_LIBS=$pkg_cv_LIBUUID_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	LIBUUID_FOUND=yes
+fi
+   if test "$LIBUUID_FOUND" = "no" ; then
+        
+pkg_failed=no
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LIBUUID" >&5
+$as_echo_n "checking for LIBUUID... " >&6; }
+
+if test -n "$LIBUUID_CFLAGS"; then
+    pkg_cv_LIBUUID_CFLAGS="$LIBUUID_CFLAGS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"uuid\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "uuid") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_LIBUUID_CFLAGS=`$PKG_CONFIG --cflags "uuid" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+if test -n "$LIBUUID_LIBS"; then
+    pkg_cv_LIBUUID_LIBS="$LIBUUID_LIBS"
+ elif test -n "$PKG_CONFIG"; then
+    if test -n "$PKG_CONFIG" && \
+    { { $as_echo "$as_me:${as_lineno-$LINENO}: \$PKG_CONFIG --exists --print-errors \"uuid\""; } >&5
+  ($PKG_CONFIG --exists --print-errors "uuid") 2>&5
+  ac_status=$?
+  $as_echo "$as_me:${as_lineno-$LINENO}: \$? = $ac_status" >&5
+  test $ac_status = 0; }; then
+  pkg_cv_LIBUUID_LIBS=`$PKG_CONFIG --libs "uuid" 2>/dev/null`
+		      test "x$?" != "x0" && pkg_failed=yes 
+else
+  pkg_failed=yes
+fi
+ else
+    pkg_failed=untried
+fi
+
+
+
+if test $pkg_failed = yes; then
+   	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+        
+if $PKG_CONFIG --atleast-pkgconfig-version 0.20; then
+        _pkg_short_errors_supported=yes
+else
+        _pkg_short_errors_supported=no
+fi
+        if test $_pkg_short_errors_supported = yes; then
+	        LIBUUID_PKG_ERRORS=`$PKG_CONFIG --short-errors --print-errors --cflags --libs "uuid" 2>&1`
+        else 
+	        LIBUUID_PKG_ERRORS=`$PKG_CONFIG --print-errors --cflags --libs "uuid" 2>&1`
+        fi
+	# Put the nasty error message in config.log where it belongs
+	echo "$LIBUUID_PKG_ERRORS" >&5
+
+	LIBUUID_FOUND=no
+elif test $pkg_failed = untried; then
+     	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+	LIBUUID_FOUND=no
+else
+	LIBUUID_CFLAGS=$pkg_cv_LIBUUID_CFLAGS
+	LIBUUID_LIBS=$pkg_cv_LIBUUID_LIBS
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
+$as_echo "yes" >&6; }
+	LIBUUID_FOUND=yes
+fi
+	    if test "$LIBUUID_FOUND" = "no" ; then
+	  	  as_fn_error $? "libuuid development files required" "$LINENO" 5
+	    else
+		  LIBUUID_INCLUDEDIR=$(pkg-config --variable=includedir uuid)
+		  LIBUUID_CFLAGS+=" -I$LIBUUID_INCLUDEDIR/uuid "
+	    fi
+   fi
+
+
+
+
 @%:@ Check whether --enable-sctp was given.
 if test "${enable_sctp+set}" = set; then :
   enableval=$enable_sctp; enable_sctp=$enableval
@@ -5497,7 +5978,6 @@ else
   USE_WITH_SCTP_TRUE='#'
   USE_WITH_SCTP_FALSE=
 fi
-
 
 
  if test "$ac_cv_unordered_map_exists" = yes; then
@@ -5676,6 +6156,10 @@ Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${am__fastdepCC_TRUE}" && test -z "${am__fastdepCC_FALSE}"; then
   as_fn_error $? "conditional \"am__fastdepCC\" was never defined.
+Usually this means the macro was only invoked conditionally." "$LINENO" 5
+fi
+if test -z "${CURL_TRUE}" && test -z "${CURL_FALSE}"; then
+  as_fn_error $? "conditional \"CURL\" was never defined.
 Usually this means the macro was only invoked conditionally." "$LINENO" 5
 fi
 if test -z "${USE_WITH_SCTP_TRUE}" && test -z "${USE_WITH_SCTP_FALSE}"; then

@@ -1,9 +1,9 @@
 /// ----------------------------------------*- mode: C++; -*--
-/// @file nop_policy_rule_installer.h
-/// The fake policy_rule_installer classes.
+/// @file mnslp_field_key.cpp
+/// mnslp_field_key.cpp - Implementation of the abstract mnslp_field_key class
 /// ----------------------------------------------------------
-/// $Id: nop_policy_rule_installer.h 2558 2015-01-16 10:55:00 amarentes $
-/// $HeadURL: https://./include/nop_policy_rule_installer.h $
+/// $Id: mnslp_field_key.cpp 2558 2015-01-20 amarentes $
+/// $HeadURL: https://src/msg/mnslp_field_key.cpp $
 // ===========================================================
 //                      
 // Copyright (C) 2012-2014, all rights reserved by
@@ -26,46 +26,53 @@
 // 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 //
 // ===========================================================
-#ifndef MNSLP__NOP_POLICY_RULE_INSTALLER_H
-#define MNSLP__NOP_POLICY_RULE_INSTALLER_H
+#include <iomanip>	// for setw()
+#include <cstring>
+#include <limits>
+
+#include "msg/mnslp_field_key.h"
 
 
-#include "policy_rule_installer.h"
-
-namespace mnslp {
+using namespace mnslp::msg;
 
 /**
- * A policy rule installer which does nothing.
+ * Standard constructor.
  *
- * Basically, all its methods are no-ops, but the requested actions are logged.
+ * This may leave an instance in an uninitialized state. Use deserialize()
+ * to initialize it from a NetMsg.
+ *
+ * The treatment is set to mandatory.
  */
-class nop_policy_rule_installer : public policy_rule_installer 
-{
-	
-  public:
+mnslp_field_key::mnslp_field_key()
+		: field_key_type(mnslp_ipfix_key) {
 
-	nop_policy_rule_installer(mnslp_config *conf) throw ();
-
-	virtual ~nop_policy_rule_installer() throw ();
-
-	void setup() throw (policy_rule_installer_error);
-
-	virtual void check(const msg::mnslp_mspec_object *object)
-		throw (policy_rule_installer_error);
-
-	virtual void install(const mt_policy_rule *mt_object)
-		throw (policy_rule_installer_error);
-
-	virtual void remove(const mt_policy_rule *mt_object)
-		throw (policy_rule_installer_error);
-
-	virtual void remove_all()
-		throw (policy_rule_installer_error);
+	// nothing to do
+}
 
 
-};
+/**
+ * Constructor for manual use.
+ *
+ * @param field_type, we created three field types for each reporting 
+ *        technology. The values used do not follow the standard
+ * 		  because this part is not commented.
+ */
+mnslp_field_key::mnslp_field_key(msnlp_field_key_type_t field_key_type)
+		: field_key_type(field_key_type) {
 
-} // namespace mnslp
+	// nothing to do
+}
 
 
-#endif // MNSLP__NOP_POLICY_RULE_INSTALLER_H
+mnslp_field_key::~mnslp_field_key() {
+	// nothing to do
+}
+
+
+uint16
+mnslp_field_key::get_field_key_type() {
+	return field_key_type;
+}
+
+
+// EOF

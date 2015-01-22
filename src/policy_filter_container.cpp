@@ -65,8 +65,9 @@ policy_filter_container::read_from_xml(xmlTextReaderPtr reader)
 		if ((xmlTextReaderDepth(reader) == 1) and 
 		      (xmlTextReaderNodeType(reader) == 1) )
 		{
-			policy_filter_mapping mapping;
-			ret = mapping.read_from_xml(reader);
+			int level = 1;
+			policy_field_mapping mapping;
+			ret = mapping.read_from_xml(level, reader);
 			set_filter(mapping.get_application(), mapping);
 		}
 		else{
@@ -92,7 +93,7 @@ policy_filter_container::read_from_xml(xmlTextReaderPtr reader)
 }
 	
 void 
-policy_filter_container::set_filter(std::string key, policy_filter_mapping _filter)
+policy_filter_container::set_filter(std::string key, policy_field_mapping _filter)
 {
 	filters[key] = _filter;
 }
@@ -123,7 +124,38 @@ policy_filter_container::operator!=(const policy_filter_container &rhs) const
 	return !(operator==(rhs));
 }    
 
+bool
+policy_filter_container::check_field_availability(std::string app, 
+						msg::mnslp_field &field) const
+{
+
+	// Look for the application and then the field on those mapping.
+	for ( const_iterator i = filters.begin(); i != filters.end(); i++ ) {
+				
+		if ( app.compare(i->first) == 0 )
+			return (i->second).check_field_availability(field);
+	}	
+	
+	return false;
+
+}
 
 
+bool
+policy_filter_container::get_field_traslate(std::string app, 
+						msg::mnslp_field &field) const
+{
+
+	std::string val_return = "";
+	// Look for the application and then the field on those mapping.
+	for ( const_iterator i = filters.begin(); i != filters.end(); i++ ) {
+				
+		if ( app.compare(i->first) == 0 )
+			return (i->second).get_field_traslate(field);
+	}	
+	
+	return val_return;
+
+}
 	
 } // namespace mnslp

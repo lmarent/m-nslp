@@ -98,9 +98,8 @@ libmnslp_msg_a-ipfix_t.o: ipfix_t.cpp ../../include/msg/ipfix_t.h \
  /usr/include/asm-generic/sockios.h \
  /usr/include/i386-linux-gnu/bits/socket2.h /usr/include/netinet/in.h \
  /usr/include/i386-linux-gnu/bits/in.h ../../include/msg/ipfix_def.h \
- /usr/include/c++/4.6/cstddef ../../include/msg/mnslp_ipfix_exception.h \
- ../../include/msg/mnslp_object.h ../../../protlib/include/ie.h \
- /usr/include/c++/4.6/ext/hash_map \
+ /usr/include/c++/4.6/cstddef ../../include/msg/mnslp_field_key.h \
+ ../../../protlib/include/ie.h /usr/include/c++/4.6/ext/hash_map \
  /usr/include/c++/4.6/backward/backward_warning.h \
  /usr/include/c++/4.6/backward/hashtable.h /usr/include/c++/4.6/iterator \
  /usr/include/c++/4.6/ostream /usr/include/c++/4.6/ios \
@@ -134,7 +133,9 @@ libmnslp_msg_a-ipfix_t.o: ipfix_t.cpp ../../include/msg/ipfix_t.h \
  /usr/include/c++/4.6/i686-linux-gnu/./bits/c++io.h \
  /usr/include/c++/4.6/bits/fstream.tcc /usr/include/c++/4.6/cassert \
  /usr/include/assert.h ../../../protlib/include/network_message.h \
- ../../include/msg/session_lifetime.h \
+ ../../include/msg/mnslp_field.h \
+ ../../include/msg/mnslp_ipfix_exception.h \
+ ../../include/msg/mnslp_object.h ../../include/msg/session_lifetime.h \
  ../../include/msg/information_code.h \
  ../../include/msg/selection_metering_entities.h \
  ../../include/msg/msg_sequence_number.h \
@@ -402,9 +403,7 @@ libmnslp_msg_a-ipfix_t.o: ipfix_t.cpp ../../include/msg/ipfix_t.h \
 
 /usr/include/c++/4.6/cstddef:
 
-../../include/msg/mnslp_ipfix_exception.h:
-
-../../include/msg/mnslp_object.h:
+../../include/msg/mnslp_field_key.h:
 
 ../../../protlib/include/ie.h:
 
@@ -501,6 +500,12 @@ libmnslp_msg_a-ipfix_t.o: ipfix_t.cpp ../../include/msg/ipfix_t.h \
 /usr/include/assert.h:
 
 ../../../protlib/include/network_message.h:
+
+../../include/msg/mnslp_field.h:
+
+../../include/msg/mnslp_ipfix_exception.h:
+
+../../include/msg/mnslp_object.h:
 
 ../../include/msg/session_lifetime.h:
 

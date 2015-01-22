@@ -144,6 +144,7 @@ libmnslp_msg_a-mnslp_response.o: mnslp_response.cpp \
  ../../include/msg/mnslp_ipfix_message.h /usr/include/inttypes.h \
  ../../include/msg/ipfix_def.h /usr/include/c++/4.6/cstddef \
  ../../include/msg/mnslp_ipfix_field.h \
+ ../../include/msg/mnslp_field_key.h ../../include/msg/mnslp_field.h \
  ../../include/msg/mnslp_ipfix_exception.h \
  ../../include/msg/mnslp_ipfix_data_record.h \
  ../../include/msg/mnslp_ipfix_template.h /usr/include/c++/4.6/list \
@@ -536,6 +537,10 @@ libmnslp_msg_a-mnslp_response.o: mnslp_response.cpp \
 /usr/include/c++/4.6/cstddef:
 
 ../../include/msg/mnslp_ipfix_field.h:
+
+../../include/msg/mnslp_field_key.h:
+
+../../include/msg/mnslp_field.h:
 
 ../../include/msg/mnslp_ipfix_exception.h:
 
