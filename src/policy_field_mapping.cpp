@@ -31,6 +31,7 @@
 #include "msg/information_code.h"
 #include "policy_rule_installer.h"
 #include <sstream>
+#include <iostream>
 
 
 namespace mnslp {
@@ -216,9 +217,10 @@ policy_field_mapping::check_field_availability(msg::mnslp_field &field)
 {
 	msg::mnslp_field_key *key = field.get_field_key();
 	for ( const_iterator i = fields.begin(); i != fields.end(); i++ ) {
-		if (*key == *(i->first))
+		if (*key == *(i->first)){
 			delete key;
 			return true;
+		}
 	}
 	delete key;
 	return false;
@@ -229,9 +231,10 @@ policy_field_mapping::check_field_availability(msg::mnslp_field &field) const
 {
 	msg::mnslp_field_key *key = field.get_field_key();
 	for ( const_iterator i = fields.begin(); i != fields.end(); i++ ) {
-		if (*key == *(i->first))
+		if (*key == *(i->first)){
 			delete key;
 			return true;
+		}
 	}
 	delete key;
 	return false;
@@ -244,9 +247,10 @@ policy_field_mapping::get_field_traslate(msg::mnslp_field &field)
 	
 	msg::mnslp_field_key *key = field.get_field_key();
 	for ( const_iterator i = fields.begin(); i != fields.end(); i++ ) {
-		if (*key == *(i->first))
+		if (*key == *(i->first)){
 			delete key;
 			return i->second;
+		}
 	}
 	delete key;
 	return val_return;
@@ -259,9 +263,10 @@ policy_field_mapping::get_field_traslate(msg::mnslp_field &field) const
 	
 	msg::mnslp_field_key *key = field.get_field_key();
 	for ( const_iterator i = fields.begin(); i != fields.end(); i++ ) {
-		if (*key == *(i->first))
+		if (*key == *(i->first)){
 			delete key;
 			return i->second;
+		}
 	}
 	delete key;
 	return val_return;

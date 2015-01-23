@@ -183,7 +183,8 @@ libmnslp_a-mnslp_xml_node_reader.o: mnslp_xml_node_reader.cpp \
  /usr/include/c++/4.6/bits/sstream.tcc \
  ../../protlib/include/configpar_repository.h \
  ../../protlib/include/configpar.h ../../ntlp/include/gist_conf.h \
- ../include/policy_rule.h ../include/policy_action_container.h \
+ ../include/policy_rule.h ../include/mspec_rule_key.h \
+ /usr/include/uuid/uuid.h ../include/policy_action_container.h \
  ../include/policy_action.h ../include/msg/mnslp_field.h \
  ../include/mnslp_xml_node_reader.h ../include/policy_action_mapping.h \
  ../include/policy_field_mapping.h ../include/policy_filter_container.h \
@@ -707,6 +708,10 @@ libmnslp_a-mnslp_xml_node_reader.o: mnslp_xml_node_reader.cpp \
 ../../ntlp/include/gist_conf.h:
 
 ../include/policy_rule.h:
+
+../include/mspec_rule_key.h:
+
+/usr/include/uuid/uuid.h:
 
 ../include/policy_action_container.h:
 

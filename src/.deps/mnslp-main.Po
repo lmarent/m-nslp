@@ -207,6 +207,7 @@ mnslp-main.o: main.cpp /usr/include/unistd.h /usr/include/features.h \
  ../include/msg/ntlp_msg.h ../../ntlp/include/mri.h \
  ../include/session_id.h ../include/session.h \
  ../include/msg/mnslp_response.h ../include/policy_rule.h \
+ ../include/mspec_rule_key.h /usr/include/uuid/uuid.h \
  ../include/mnslp_timers.h ../include/msg/selection_metering_entities.h \
  ../include/nf_session.h ../include/nr_session.h \
  ../include/policy_rule_installer.h ../include/policy_action_container.h \
@@ -873,6 +874,10 @@ mnslp-main.o: main.cpp /usr/include/unistd.h /usr/include/features.h \
 ../include/msg/mnslp_response.h:
 
 ../include/policy_rule.h:
+
+../include/mspec_rule_key.h:
+
+/usr/include/uuid/uuid.h:
 
 ../include/mnslp_timers.h:
 

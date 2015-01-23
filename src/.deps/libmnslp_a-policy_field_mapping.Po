@@ -184,7 +184,8 @@ libmnslp_a-policy_field_mapping.o: policy_field_mapping.cpp \
  /usr/include/c++/4.6/bits/sstream.tcc \
  ../../protlib/include/configpar_repository.h \
  ../../protlib/include/configpar.h ../../ntlp/include/gist_conf.h \
- ../include/policy_rule.h ../include/policy_action_container.h \
+ ../include/policy_rule.h ../include/mspec_rule_key.h \
+ /usr/include/uuid/uuid.h ../include/policy_action_container.h \
  ../include/policy_action.h ../include/policy_action_mapping.h \
  ../include/policy_field_mapping.h ../include/policy_filter_container.h \
  ../include/nop_policy_rule_installer.h \
@@ -711,6 +712,10 @@ libmnslp_a-policy_field_mapping.o: policy_field_mapping.cpp \
 ../../ntlp/include/gist_conf.h:
 
 ../include/policy_rule.h:
+
+../include/mspec_rule_key.h:
+
+/usr/include/uuid/uuid.h:
 
 ../include/policy_action_container.h:
 

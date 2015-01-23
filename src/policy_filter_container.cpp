@@ -141,7 +141,7 @@ policy_filter_container::check_field_availability(std::string app,
 }
 
 
-bool
+std::string
 policy_filter_container::get_field_traslate(std::string app, 
 						msg::mnslp_field &field) const
 {

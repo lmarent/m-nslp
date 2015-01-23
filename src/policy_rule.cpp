@@ -71,8 +71,14 @@ mt_policy_rule *mt_policy_rule::copy() const {
 void 
 mt_policy_rule::set_object(msg::mnslp_mspec_object &obj)
 {
-	mspec_rule_key key();
-	objects[key] = obj;
+	mspec_rule_key key;
+	objects.insert(std::pair<mspec_rule_key, msg::mnslp_mspec_object> (key, obj));
+}
+
+std::ostream &
+operator<<(std::ostream &out, const mt_policy_rule &r) 
+{
+	// TODO AM: implement this function.
 }
 
 }

@@ -63,9 +63,7 @@ class policy_field_mapping : public mnslp_xml_node_reader {
     
     void set_field(msg::mnslp_field_key *ipfixfield, 
 			  	   std::string idFieldMetering);
-    
-    std::string get_field(msg::mnslp_field_key *_ipfixfield) const;
-        
+            
     bool operator==(const policy_field_mapping &rhs) const;
     
     bool operator!=(const policy_field_mapping &rhs) const;
@@ -99,6 +97,8 @@ class policy_field_mapping : public mnslp_xml_node_reader {
 	std::string metering_application;
 	
 	void processNode(int level, xmlTextReaderPtr reader); 	
+
+	std::string get_field(msg::mnslp_field_key *_ipfixfield) const;
 	
 };
 

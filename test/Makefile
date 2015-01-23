@@ -70,7 +70,8 @@ am_test_runner_OBJECTS = test_runner-test_runner.$(OBJEXT) \
 	test_runner-ni_session.$(OBJEXT) \
 	test_runner-nr_session.$(OBJEXT) \
 	test_runner-nf_session.$(OBJEXT) \
-	test_runner-policy_rule_installer.$(OBJEXT)
+	test_runner-mspec_rule_key.$(OBJEXT) \
+	test_runner-policy_field_mapping.$(OBJEXT)
 test_runner_OBJECTS = $(am_test_runner_OBJECTS)
 am__DEPENDENCIES_1 = $(MNSLP_SRC) $(MNSLP_MSG_LIBDIR)
 am__DEPENDENCIES_2 = $(NTLP_LIBDIR)
@@ -261,16 +262,18 @@ test_runner_SOURCES = test_runner.cpp basic.cpp generic_object_test.h \
 		    session_lifetime.cpp utils.h mnslp_notify.cpp mnslp_refresh.cpp \
 		    mnslp_options.cpp mnslp_response.cpp utils.cpp session_id.cpp \
 		    session_manager.cpp ni_session.cpp nr_session.cpp nf_session.cpp \
-		    policy_rule_installer.cpp
+		    mspec_rule_key.cpp policy_field_mapping.cpp
 
 #LD_SCTP_LIB = -lsctp
 test_runner_CPPFLAGS = -I../src -I../src/msg -I$(MNSLP_INC) \
 	$(CPPUNIT_CFLAGS) -I$(NTLP_INC) -I$(PROTLIB_INC) \
-	-I$(FQUEUE_INC) -I/usr/include/libxml2  
+	-I$(FQUEUE_INC) -I/usr/include/libxml2     -I/usr/include/libxml2   \
+	-I/usr/include/uuid   -I/usr/include/uuid  $(am__empty)
 test_runner_LDADD = -L../src $(LD_MNSLP_LIB) $(LD_NTLP_LIB) \
 	$(LD_PROTLIB_LIB) $(LD_FQUEUE_LIB) $(CPPUNIT_LIBS) \
 	$(LD_SCTP_LIB) -lipq -lrt -lssl -lpthread -lcrypto \
-	-lxml2   $(am__empty)
+	-lxml2   -lcurl   -lxslt -lxml2   -luuid   \
+	$(am__empty)
 TESTS = $(check_PROGRAMS)
 AM_CXXFLAGS = -Wall -ggdb -pedantic -Wno-long-long $(am__append_1)
 all: all-am
@@ -332,10 +335,11 @@ include ./$(DEPDIR)/test_runner-mnslp_options.Po
 include ./$(DEPDIR)/test_runner-mnslp_refresh.Po
 include ./$(DEPDIR)/test_runner-mnslp_response.Po
 include ./$(DEPDIR)/test_runner-msg_sequence_number.Po
+include ./$(DEPDIR)/test_runner-mspec_rule_key.Po
 include ./$(DEPDIR)/test_runner-nf_session.Po
 include ./$(DEPDIR)/test_runner-ni_session.Po
 include ./$(DEPDIR)/test_runner-nr_session.Po
-include ./$(DEPDIR)/test_runner-policy_rule_installer.Po
+include ./$(DEPDIR)/test_runner-policy_field_mapping.Po
 include ./$(DEPDIR)/test_runner-selection_metering_entities.Po
 include ./$(DEPDIR)/test_runner-session_id.Po
 include ./$(DEPDIR)/test_runner-session_lifetime.Po
@@ -637,19 +641,33 @@ test_runner-nf_session.obj: nf_session.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-nf_session.obj `if test -f 'nf_session.cpp'; then $(CYGPATH_W) 'nf_session.cpp'; else $(CYGPATH_W) '$(srcdir)/nf_session.cpp'; fi`
 
-test_runner-policy_rule_installer.o: policy_rule_installer.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-policy_rule_installer.o -MD -MP -MF $(DEPDIR)/test_runner-policy_rule_installer.Tpo -c -o test_runner-policy_rule_installer.o `test -f 'policy_rule_installer.cpp' || echo '$(srcdir)/'`policy_rule_installer.cpp
-	$(am__mv) $(DEPDIR)/test_runner-policy_rule_installer.Tpo $(DEPDIR)/test_runner-policy_rule_installer.Po
-#	source='policy_rule_installer.cpp' object='test_runner-policy_rule_installer.o' libtool=no \
+test_runner-mspec_rule_key.o: mspec_rule_key.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-mspec_rule_key.o -MD -MP -MF $(DEPDIR)/test_runner-mspec_rule_key.Tpo -c -o test_runner-mspec_rule_key.o `test -f 'mspec_rule_key.cpp' || echo '$(srcdir)/'`mspec_rule_key.cpp
+	$(am__mv) $(DEPDIR)/test_runner-mspec_rule_key.Tpo $(DEPDIR)/test_runner-mspec_rule_key.Po
+#	source='mspec_rule_key.cpp' object='test_runner-mspec_rule_key.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-policy_rule_installer.o `test -f 'policy_rule_installer.cpp' || echo '$(srcdir)/'`policy_rule_installer.cpp
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-mspec_rule_key.o `test -f 'mspec_rule_key.cpp' || echo '$(srcdir)/'`mspec_rule_key.cpp
 
-test_runner-policy_rule_installer.obj: policy_rule_installer.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-policy_rule_installer.obj -MD -MP -MF $(DEPDIR)/test_runner-policy_rule_installer.Tpo -c -o test_runner-policy_rule_installer.obj `if test -f 'policy_rule_installer.cpp'; then $(CYGPATH_W) 'policy_rule_installer.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_rule_installer.cpp'; fi`
-	$(am__mv) $(DEPDIR)/test_runner-policy_rule_installer.Tpo $(DEPDIR)/test_runner-policy_rule_installer.Po
-#	source='policy_rule_installer.cpp' object='test_runner-policy_rule_installer.obj' libtool=no \
+test_runner-mspec_rule_key.obj: mspec_rule_key.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-mspec_rule_key.obj -MD -MP -MF $(DEPDIR)/test_runner-mspec_rule_key.Tpo -c -o test_runner-mspec_rule_key.obj `if test -f 'mspec_rule_key.cpp'; then $(CYGPATH_W) 'mspec_rule_key.cpp'; else $(CYGPATH_W) '$(srcdir)/mspec_rule_key.cpp'; fi`
+	$(am__mv) $(DEPDIR)/test_runner-mspec_rule_key.Tpo $(DEPDIR)/test_runner-mspec_rule_key.Po
+#	source='mspec_rule_key.cpp' object='test_runner-mspec_rule_key.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-policy_rule_installer.obj `if test -f 'policy_rule_installer.cpp'; then $(CYGPATH_W) 'policy_rule_installer.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_rule_installer.cpp'; fi`
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-mspec_rule_key.obj `if test -f 'mspec_rule_key.cpp'; then $(CYGPATH_W) 'mspec_rule_key.cpp'; else $(CYGPATH_W) '$(srcdir)/mspec_rule_key.cpp'; fi`
+
+test_runner-policy_field_mapping.o: policy_field_mapping.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-policy_field_mapping.o -MD -MP -MF $(DEPDIR)/test_runner-policy_field_mapping.Tpo -c -o test_runner-policy_field_mapping.o `test -f 'policy_field_mapping.cpp' || echo '$(srcdir)/'`policy_field_mapping.cpp
+	$(am__mv) $(DEPDIR)/test_runner-policy_field_mapping.Tpo $(DEPDIR)/test_runner-policy_field_mapping.Po
+#	source='policy_field_mapping.cpp' object='test_runner-policy_field_mapping.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-policy_field_mapping.o `test -f 'policy_field_mapping.cpp' || echo '$(srcdir)/'`policy_field_mapping.cpp
+
+test_runner-policy_field_mapping.obj: policy_field_mapping.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-policy_field_mapping.obj -MD -MP -MF $(DEPDIR)/test_runner-policy_field_mapping.Tpo -c -o test_runner-policy_field_mapping.obj `if test -f 'policy_field_mapping.cpp'; then $(CYGPATH_W) 'policy_field_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_field_mapping.cpp'; fi`
+	$(am__mv) $(DEPDIR)/test_runner-policy_field_mapping.Tpo $(DEPDIR)/test_runner-policy_field_mapping.Po
+#	source='policy_field_mapping.cpp' object='test_runner-policy_field_mapping.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-policy_field_mapping.obj `if test -f 'policy_field_mapping.cpp'; then $(CYGPATH_W) 'policy_field_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_field_mapping.cpp'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

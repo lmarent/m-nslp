@@ -107,6 +107,9 @@ libmnslp_a-policy_rule.o: policy_rule.cpp /usr/include/assert.h \
  /usr/include/asm-generic/sockios.h \
  /usr/include/i386-linux-gnu/bits/socket2.h \
  /usr/include/i386-linux-gnu/bits/in.h ../include/policy_rule.h \
+ /usr/include/c++/4.6/map /usr/include/c++/4.6/bits/stl_tree.h \
+ /usr/include/c++/4.6/bits/stl_map.h \
+ /usr/include/c++/4.6/bits/stl_multimap.h \
  ../../protlib/include/protlib_types.h ../../protlib/include/address.h \
  ../../protlib/include/ie.h /usr/include/c++/4.6/ext/hash_map \
  /usr/include/c++/4.6/backward/backward_warning.h \
@@ -128,17 +131,15 @@ libmnslp_a-policy_rule.o: policy_rule.cpp /usr/include/assert.h \
  /usr/include/c++/4.6/bits/stl_tempbuf.h \
  /usr/include/c++/4.6/backward/hash_fun.h /usr/include/c++/4.6/deque \
  /usr/include/c++/4.6/bits/stl_deque.h \
- /usr/include/c++/4.6/bits/deque.tcc /usr/include/c++/4.6/map \
- /usr/include/c++/4.6/bits/stl_tree.h /usr/include/c++/4.6/bits/stl_map.h \
- /usr/include/c++/4.6/bits/stl_multimap.h \
+ /usr/include/c++/4.6/bits/deque.tcc \
  ../../protlib/include/network_message.h /usr/include/c++/4.6/list \
  /usr/include/c++/4.6/bits/stl_list.h /usr/include/c++/4.6/bits/list.tcc \
  /usr/include/c++/4.6/set /usr/include/c++/4.6/bits/stl_set.h \
  /usr/include/c++/4.6/bits/stl_multiset.h ../../protlib/include/logfile.h \
- ../../protlib/include/threadsafe_db.h \
- ../include/msg/mnslp_mspec_object.h ../include/msg/mnslp_object.h \
- ../../protlib/include/ie.h ../include/msg/session_lifetime.h \
- ../include/msg/information_code.h \
+ ../../protlib/include/threadsafe_db.h ../include/mspec_rule_key.h \
+ /usr/include/uuid/uuid.h ../include/msg/mnslp_mspec_object.h \
+ ../include/msg/mnslp_object.h ../../protlib/include/ie.h \
+ ../include/msg/session_lifetime.h ../include/msg/information_code.h \
  ../include/msg/selection_metering_entities.h \
  ../include/msg/msg_sequence_number.h ../include/msg/message_hop_count.h
 
@@ -418,6 +419,14 @@ libmnslp_a-policy_rule.o: policy_rule.cpp /usr/include/assert.h \
 
 ../include/policy_rule.h:
 
+/usr/include/c++/4.6/map:
+
+/usr/include/c++/4.6/bits/stl_tree.h:
+
+/usr/include/c++/4.6/bits/stl_map.h:
+
+/usr/include/c++/4.6/bits/stl_multimap.h:
+
 ../../protlib/include/protlib_types.h:
 
 ../../protlib/include/address.h:
@@ -480,14 +489,6 @@ libmnslp_a-policy_rule.o: policy_rule.cpp /usr/include/assert.h \
 
 /usr/include/c++/4.6/bits/deque.tcc:
 
-/usr/include/c++/4.6/map:
-
-/usr/include/c++/4.6/bits/stl_tree.h:
-
-/usr/include/c++/4.6/bits/stl_map.h:
-
-/usr/include/c++/4.6/bits/stl_multimap.h:
-
 ../../protlib/include/network_message.h:
 
 /usr/include/c++/4.6/list:
@@ -505,6 +506,10 @@ libmnslp_a-policy_rule.o: policy_rule.cpp /usr/include/assert.h \
 ../../protlib/include/logfile.h:
 
 ../../protlib/include/threadsafe_db.h:
+
+../include/mspec_rule_key.h:
+
+/usr/include/uuid/uuid.h:
 
 ../include/msg/mnslp_mspec_object.h:
 
