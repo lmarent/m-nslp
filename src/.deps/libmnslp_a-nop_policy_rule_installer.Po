@@ -153,16 +153,17 @@ libmnslp_a-nop_policy_rule_installer.o: nop_policy_rule_installer.cpp \
  ../include/msg/mnslp_ipfix_template.h \
  ../include/msg/mnslp_mspec_object.h ../include/msg/ipfix_t.h \
  ../include/msg/mnslp_refresh.h ../include/msg/mnslp_options.h \
- ../include/msg/mnslp_notify.h ../include/msg/mnslp_mspec_object.h \
- ../include/mnslp_config.h ../../protlib/include/messages.h \
- /usr/include/c++/4.6/ext/hash_set ../../protlib/include/fqueue.h \
- ../../protlib/include/messages.h ../../protlib/fastqueue/fastqueue.h \
- ../../protlib/include/configpar.h ../../protlib/include/address.h \
- /usr/include/c++/4.6/sstream /usr/include/c++/4.6/bits/sstream.tcc \
+ ../include/msg/mnslp_notify.h ../include/policy_rule.h \
+ ../include/mspec_rule_key.h /usr/include/uuid/uuid.h \
+ ../include/msg/mnslp_mspec_object.h ../include/mnslp_config.h \
+ ../../protlib/include/messages.h /usr/include/c++/4.6/ext/hash_set \
+ ../../protlib/include/fqueue.h ../../protlib/include/messages.h \
+ ../../protlib/fastqueue/fastqueue.h ../../protlib/include/configpar.h \
+ ../../protlib/include/address.h /usr/include/c++/4.6/sstream \
+ /usr/include/c++/4.6/bits/sstream.tcc \
  ../../protlib/include/configpar_repository.h \
  ../../protlib/include/configpar.h ../../ntlp/include/gist_conf.h \
- ../include/policy_rule.h ../include/mspec_rule_key.h \
- /usr/include/uuid/uuid.h ../include/policy_action_container.h \
+ ../include/policy_action_container.h \
  /usr/include/libxml2/libxml/xmlreader.h \
  /usr/include/libxml2/libxml/xmlversion.h \
  /usr/include/libxml2/libxml/xmlexports.h \
@@ -185,8 +186,9 @@ libmnslp_a-nop_policy_rule_installer.o: nop_policy_rule_installer.cpp \
  /usr/include/libxml2/libxml/relaxng.h \
  /usr/include/libxml2/libxml/xmlschemas.h ../include/policy_action.h \
  ../include/msg/mnslp_field.h ../include/mnslp_xml_node_reader.h \
- ../include/policy_action_mapping.h ../include/policy_field_mapping.h \
- ../include/policy_filter_container.h \
+ ../include/policy_action_mapping.h /usr/include/c++/4.6/limits \
+ ../include/policy_field_mapping.h \
+ ../include/policy_application_configuration_container.h \
  ../include/nop_policy_rule_installer.h \
  ../include/netmate_ipfix_policy_rule_installer.h \
  ../include/msg/mnslp_ipfix_message.h \
@@ -627,6 +629,12 @@ libmnslp_a-nop_policy_rule_installer.o: nop_policy_rule_installer.cpp \
 
 ../include/msg/mnslp_notify.h:
 
+../include/policy_rule.h:
+
+../include/mspec_rule_key.h:
+
+/usr/include/uuid/uuid.h:
+
 ../include/msg/mnslp_mspec_object.h:
 
 ../include/mnslp_config.h:
@@ -654,12 +662,6 @@ libmnslp_a-nop_policy_rule_installer.o: nop_policy_rule_installer.cpp \
 ../../protlib/include/configpar.h:
 
 ../../ntlp/include/gist_conf.h:
-
-../include/policy_rule.h:
-
-../include/mspec_rule_key.h:
-
-/usr/include/uuid/uuid.h:
 
 ../include/policy_action_container.h:
 
@@ -721,9 +723,11 @@ libmnslp_a-nop_policy_rule_installer.o: nop_policy_rule_installer.cpp \
 
 ../include/policy_action_mapping.h:
 
+/usr/include/c++/4.6/limits:
+
 ../include/policy_field_mapping.h:
 
-../include/policy_filter_container.h:
+../include/policy_application_configuration_container.h:
 
 ../include/nop_policy_rule_installer.h:
 

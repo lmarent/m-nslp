@@ -195,7 +195,8 @@ test_runner-session_manager.o: session_manager.cpp \
  ../../m-nslp/include/msg/mnslp_options.h \
  ../../m-nslp/include/msg/mnslp_notify.h ../../protlib/include/address.h \
  ../../protlib/include/ie.h ../../protlib/include/logfile.h \
- ../../protlib/include/threadsafe_db.h \
+ ../../protlib/include/threadsafe_db.h ../../m-nslp/include/policy_rule.h \
+ ../../m-nslp/include/mspec_rule_key.h /usr/include/uuid/uuid.h \
  ../../m-nslp/include/msg/mnslp_mspec_object.h \
  ../../m-nslp/include/ni_session.h ../../m-nslp/include/mnslp_config.h \
  ../../protlib/include/messages.h /usr/include/c++/4.6/ext/hash_set \
@@ -228,8 +229,7 @@ test_runner-session_manager.o: session_manager.cpp \
  ../../ntlp/include/mri_le.h ../../m-nslp/include/msg/ntlp_msg.h \
  ../../ntlp/include/mri.h ../../m-nslp/include/session_id.h \
  ../../m-nslp/include/session.h ../../m-nslp/include/msg/mnslp_response.h \
- ../../m-nslp/include/policy_rule.h ../../m-nslp/include/mspec_rule_key.h \
- /usr/include/uuid/uuid.h ../../m-nslp/include/mnslp_timers.h \
+ ../../m-nslp/include/mnslp_timers.h \
  ../../m-nslp/include/msg/selection_metering_entities.h \
  ../../m-nslp/include/nf_session.h ../../m-nslp/include/nr_session.h \
  ../../m-nslp/include/dispatcher.h ../../ntlp/include/apimessage.h \
@@ -263,9 +263,9 @@ test_runner-session_manager.o: session_manager.cpp \
  ../../m-nslp/include/policy_action.h \
  ../../m-nslp/include/msg/mnslp_field.h \
  ../../m-nslp/include/mnslp_xml_node_reader.h \
- ../../m-nslp/include/policy_action_mapping.h \
+ ../../m-nslp/include/policy_action_mapping.h /usr/include/c++/4.6/limits \
  ../../m-nslp/include/policy_field_mapping.h \
- ../../m-nslp/include/policy_filter_container.h \
+ ../../m-nslp/include/policy_application_configuration_container.h \
  ../../m-nslp/include/nop_policy_rule_installer.h \
  ../../m-nslp/include/netmate_ipfix_policy_rule_installer.h \
  ../../m-nslp/include/msg/mnslp_ipfix_message.h \
@@ -785,6 +785,12 @@ test_runner-session_manager.o: session_manager.cpp \
 
 ../../protlib/include/threadsafe_db.h:
 
+../../m-nslp/include/policy_rule.h:
+
+../../m-nslp/include/mspec_rule_key.h:
+
+/usr/include/uuid/uuid.h:
+
 ../../m-nslp/include/msg/mnslp_mspec_object.h:
 
 ../../m-nslp/include/ni_session.h:
@@ -881,12 +887,6 @@ test_runner-session_manager.o: session_manager.cpp \
 
 ../../m-nslp/include/msg/mnslp_response.h:
 
-../../m-nslp/include/policy_rule.h:
-
-../../m-nslp/include/mspec_rule_key.h:
-
-/usr/include/uuid/uuid.h:
-
 ../../m-nslp/include/mnslp_timers.h:
 
 ../../m-nslp/include/msg/selection_metering_entities.h:
@@ -975,9 +975,11 @@ test_runner-session_manager.o: session_manager.cpp \
 
 ../../m-nslp/include/policy_action_mapping.h:
 
+/usr/include/c++/4.6/limits:
+
 ../../m-nslp/include/policy_field_mapping.h:
 
-../../m-nslp/include/policy_filter_container.h:
+../../m-nslp/include/policy_application_configuration_container.h:
 
 ../../m-nslp/include/nop_policy_rule_installer.h:
 

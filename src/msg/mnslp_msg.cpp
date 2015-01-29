@@ -359,8 +359,6 @@ size_t mnslp_msg::get_serialized_size(coding_t coding) const {
 		const IE *obj = i->second;
 
 		size += obj->get_serialized_size(coding);
-		std::cout << "object size" << obj->get_serialized_size(coding) 
-				  << "size of the message" << size << std::endl;
 	}
 
 	return size;
@@ -472,15 +470,15 @@ void mnslp_msg::set_object(mnslp_object *obj) {
 		ie_object_key key(obj->get_object_type() , 0);
 		objects.set(key, obj);
 	}
-	else{
+	else
+	{
 		
-		std::cout << "object not unique" << std::endl;
 		uint32 sequence = objects.getMaxSequence(obj->get_object_type());
 		if (sequence == -1)
 			sequence = 0;
 		else
 			sequence = sequence + 1;
-		std::cout << "Sequnce to insert" << sequence << std::endl;
+
 		ie_object_key key(obj->get_object_type() , sequence);
 		objects.set(key, obj);
 	}	

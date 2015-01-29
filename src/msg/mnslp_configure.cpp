@@ -106,7 +106,6 @@ void mnslp_configure::serialize(NetMsg &msg, coding_t coding,
 		mnslp_msg::serialize(msg, coding, bytes_written);
 		
 		uint32 start_pos2 = msg.get_pos();
-		std::cout << "new position" << start_pos2 << std::endl;
 
 		/*
 		 * Write the body: Serialize each object. According with the RFC
@@ -125,16 +124,12 @@ void mnslp_configure::serialize(NetMsg &msg, coding_t coding,
 		 * Write the body: Serialize ipfix message.
 		 */
 		uint32 max_seq_nbr = objects.getMaxSequence(mnslp_ipfix_message::OBJECT_TYPE);
-		std::cout << "max seq_nbr:" << max_seq_nbr << std::endl;
 		
 		for ( uint32 i = 0; i <= max_seq_nbr; i++ ) {
 			ie_object_key key_ipfix(mnslp_ipfix_message::OBJECT_TYPE, i);
 			bytes_written += serialize_object(key_ipfix, msg, coding);
 		}
         
-        std::cout << "pos:" << msg.get_pos() << "start:" << start_pos 
-				  << "bytes written:" << bytes_written << std::endl;
-
 		// this would be an implementation error
 		if ( bytes_written != msg.get_pos() - start_pos )
 			Log(ERROR_LOG, LOG_CRIT, "mnslp_msg",
@@ -171,8 +166,6 @@ bool mnslp_configure::check() const {
 	bool sel_meter_ent = false;
 	bool session_lt = false;
 	bool msg_hop_count = false;
-
-	std::cout << "number of objects:" << objects.size() << std::endl;
 	
 	// Check all objects for errors.
 	for ( obj_iter i = objects.begin(); i != objects.end(); i++ ) {
@@ -195,13 +188,7 @@ bool mnslp_configure::check() const {
 			message_included = true;
 		}
 	}
-	
-	std::cout << "sequence_included:" << sequence_included
-			  << "sel_meter_ent:" << sel_meter_ent
-			  << "session_lt" << session_lt
-			  << "msg_hop_count" << msg_hop_count
-			  << "message_included" << message_included << std::endl;
-			  
+				  
 	return message_included & sequence_included & sel_meter_ent & session_lt & msg_hop_count; // no error found
 }
 

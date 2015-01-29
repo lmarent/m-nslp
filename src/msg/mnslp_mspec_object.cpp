@@ -40,8 +40,6 @@ using namespace mnslp::msg;
 using namespace protlib::log;
 
 
-const char *const mnslp_mspec_object::ie_name = "mnslp_ipfix_mspec";
-
 /**
  * Standard constructor.
  *
@@ -55,14 +53,6 @@ mnslp_mspec_object::mnslp_mspec_object()
 
 	// nothing to do
 }
-
-mnslp_mspec_object::mnslp_mspec_object(const mnslp_mspec_object &rhs):
-	mnslp_object(rhs.get_object_type(), rhs.get_treatment(),  rhs.is_unique())
-{
-	// nothing to do
-}
-
-
 
 /**
  * Constructor for manual use.
@@ -83,68 +73,6 @@ mnslp_mspec_object::~mnslp_mspec_object() {
 	// nothing to do
 }
 
-mnslp_mspec_object&
-mnslp_mspec_object::operator=(const mnslp_mspec_object &rhs)
-{
-	set_object_type(rhs.get_object_type());
-	set_treatment(rhs.get_treatment());
-	set_unique(rhs.is_unique());
-}
-
-
-mnslp_mspec_object *
-mnslp_mspec_object::new_instance() const {
-	mnslp_mspec_object *q = NULL;
-	catch_bad_alloc( q = new mnslp_mspec_object() );
-	return q;
-}
-
-mnslp_mspec_object *
-mnslp_mspec_object::copy() const {
-	mnslp_mspec_object *q = NULL;
-	
-	catch_bad_alloc( q = new mnslp_mspec_object(*this) );
-	return q;
-}
-
-size_t 
-mnslp_mspec_object::get_serialized_size(coding_t coding) const 
-{
-	return HEADER_LENGTH;
-}
-
-bool 
-mnslp_mspec_object::deserialize_body(NetMsg &msg, uint16 body_length,
-		IEErrorList &err, bool skip) {
-
-	return true; // success
-	
-}
-
-bool 
-mnslp_mspec_object::check_body() const
-{
-	return true;
-}
-
-bool mnslp_mspec_object::equals_body(const mnslp_object &obj) const {
-
-	const mnslp_mspec_object *other
-		= dynamic_cast<const mnslp_mspec_object *>(&obj);
-
-	return other != NULL;
-}
-
-const char *mnslp_mspec_object::get_ie_name() const {
-	return ie_name;
-}
-
-
-void mnslp_mspec_object::serialize_body(NetMsg &msg) const {
-
-  // Nothing to do
-
-}
 
 
 // EOF

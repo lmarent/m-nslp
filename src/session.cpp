@@ -198,19 +198,14 @@ bool session::check_participating(const uint32 _sme)
 	return val_return;
 }
 
-void session::set_mspec_object(mnslp_mspec_object &object)
+void session::set_mspec_object(mnslp_mspec_object *object) 
 {
-	mspec_objects.push_back(object);
+	rule.set_object(object);
 }
 
 size_t session::get_number_mspec_objects(void)
 {
-	return mspec_objects.size();
-}
-
-void session::remove_mspec_object(iterator position)
-{
-	mspec_objects.erase(position);
+	return rule.get_number_mspec_objects();
 }
 
 /**

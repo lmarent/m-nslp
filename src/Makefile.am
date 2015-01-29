@@ -43,7 +43,9 @@ MNSLP_SOURCEFILES = benchmark_journal.cpp gistka_mapper.cpp session_id.cpp \
   policy_rule_installer.cpp policy_action.cpp policy_action_mapping.cpp \
   policy_action_container.cpp nop_policy_rule_installer.cpp \
   netmate_ipfix_policy_rule_installer.cpp mspec_rule_key.cpp policy_rule.cpp \
-  mnslp_xml_node_reader.cpp policy_filter_container.cpp policy_field_mapping.cpp 
+  mnslp_xml_node_reader.cpp policy_application_configuration_container.cpp \
+  policy_field_mapping.cpp netmate_metering_config.cpp \
+  netmate_policy_action_mapping.cpp
 
 
 libmnslp_a_SOURCES = $(MNSLP_SOURCEFILES)

@@ -192,17 +192,14 @@ IE *MNSLP_IEManager::deserialize(NetMsg &msg, uint16 category,
 	
 	switch ( category ) {
 		case cat_mnslp_msg:
-			std::cout << "Deserialize message" << std::endl;
 			return deserialize_msg(msg, coding,
 					errorlist, bytes_read, skip);
 
 		case cat_mnslp_object:
-		    std::cout << "it is going to deserialize the object" << std::endl;
 			return deserialize_object(msg, coding,
 					errorlist, bytes_read, skip);
 
 		default:
-			std::cout << "Category not found" << std::endl;
 			LogError("category " << category << " not supported");
 
 			catch_bad_alloc( errorlist.put(

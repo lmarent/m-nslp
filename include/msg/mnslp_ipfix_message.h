@@ -465,12 +465,20 @@ class mnslp_ipfix_message : public mnslp_mspec_object
 	   int get_offset(void) const;
 	   
 	   /**
-	   *  Equals to operator. 
+	   *  Equals operator. 
 	   *  It is equal when it has the same amount of templates and 
 	   *  data records, and the information inside is equal. The order in
 	   * the data records must be same too.
 	   */
-	   bool operator== (const mnslp_ipfix_message& rhs) const;
+		virtual bool isEqual(const mnslp_mspec_object &rhs) const;
+	
+		
+	   /**
+	   *  Not equals operator. 
+	   *  It is not equal when it has a different amount of templates and 
+	   *  data records, or the information inside is not equal.
+	   */
+		virtual bool notEqual(const mnslp_mspec_object &rhs) const;
 
 	   /**
 	    * Assignment operator. 

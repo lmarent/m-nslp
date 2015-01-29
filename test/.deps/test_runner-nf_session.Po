@@ -264,7 +264,7 @@ test_runner-nf_session.o: nf_session.cpp /usr/include/cppunit/TestCase.h \
  ../../m-nslp/include/mnslp_xml_node_reader.h \
  ../../m-nslp/include/policy_action_mapping.h \
  ../../m-nslp/include/policy_field_mapping.h \
- ../../m-nslp/include/policy_filter_container.h \
+ ../../m-nslp/include/policy_application_configuration_container.h \
  ../../m-nslp/include/nop_policy_rule_installer.h \
  ../../m-nslp/include/netmate_ipfix_policy_rule_installer.h \
  ../../m-nslp/include/msg/mnslp_ipfix_message.h \
@@ -977,7 +977,7 @@ test_runner-nf_session.o: nf_session.cpp /usr/include/cppunit/TestCase.h \
 
 ../../m-nslp/include/policy_field_mapping.h:
 
-../../m-nslp/include/policy_filter_container.h:
+../../m-nslp/include/policy_application_configuration_container.h:
 
 ../../m-nslp/include/nop_policy_rule_installer.h:
 

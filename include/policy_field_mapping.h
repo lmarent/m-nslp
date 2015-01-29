@@ -38,6 +38,48 @@
 
 namespace mnslp {
 
+class application_field_mapping
+{
+
+	public: 
+		application_field_mapping(std::string configuration, std::string filter, 
+									std::string exporting, std::string application_key);
+		
+		~application_field_mapping() { }
+		
+		application_field_mapping(const application_field_mapping &rhs );
+
+		bool operator==(const application_field_mapping &rhs) const;
+    
+		bool operator!=(const application_field_mapping &rhs) const;
+		
+		bool is_to_configure() { return is_configuration_field; }
+		
+		bool is_for_exporting() { return is_export_field; }
+		
+		bool is_for_filtering() { return is_filter_field; }
+		
+		std::string get_field_traslate() { return application_field_key; }
+		
+		std::string get_field_traslate() const { return application_field_key; }
+
+		bool is_configuration() const { return is_configuration_field; }
+	
+		bool is_filter() const { return is_filter_field; }
+	
+		bool is_export() const { return is_export_field; }
+				
+		std::string to_string() const; 
+					
+
+	private:
+		bool is_configuration_field;
+		bool is_filter_field;
+		bool is_export_field;
+		std::string application_field_key;
+		
+};
+
 
 /**
  * This class helps to maintain the mapping configuration for the export 
@@ -45,6 +87,7 @@ namespace mnslp {
  *
  */
 class policy_field_mapping : public mnslp_xml_node_reader {
+
 
   public:
 	
@@ -62,13 +105,15 @@ class policy_field_mapping : public mnslp_xml_node_reader {
 	int read_from_xml(int level, xmlTextReaderPtr node);
     
     void set_field(msg::mnslp_field_key *ipfixfield, 
-			  	   std::string idFieldMetering);
+			  	   application_field_mapping fieldMetering);
+
+    void set_metering_application(std::string metering_app);
             
     bool operator==(const policy_field_mapping &rhs) const;
     
     bool operator!=(const policy_field_mapping &rhs) const;
     
-	typedef std::map<msg::mnslp_field_key *, std::string>::const_iterator const_iterator;
+	typedef std::map<msg::mnslp_field_key *, application_field_mapping>::const_iterator const_iterator;
 	const_iterator begin() const throw() { return fields.begin(); }
 	const_iterator end() const throw() { return fields.end(); }
 	
@@ -83,22 +128,31 @@ class policy_field_mapping : public mnslp_xml_node_reader {
 	
 	std::string get_field_traslate(msg::mnslp_field &field) const;
 
+	bool is_configuration_field( msg::mnslp_field &field) const;
+	
+	bool is_filter_field( msg::mnslp_field &field) const;
+	
+	bool is_export_field( msg::mnslp_field &field) const;
+
     static std::string field_str;
     static std::string eno_str;
     static std::string field_type_str;
     static std::string field_name_str;
+    static std::string configuration_str;
+    static std::string filter_str;
+    static std::string export_str;
     
-    std::string get_application(){ return metering_application; }
-    std::string get_application() const { return metering_application; }
+    std::string get_metering_application(){ return metering_application; }
+    std::string get_metering_application() const { return metering_application; }
 
     
   protected:
-	std::map<msg::mnslp_field_key *, std::string> fields;
+	std::map<msg::mnslp_field_key *, application_field_mapping> fields;
 	std::string metering_application;
 	
 	void processNode(int level, xmlTextReaderPtr reader); 	
 
-	std::string get_field(msg::mnslp_field_key *_ipfixfield) const;
+	application_field_mapping get_field(msg::mnslp_field_key *_ipfixfield) const;
 	
 };
 

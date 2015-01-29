@@ -31,7 +31,7 @@ class DispatcherTest : public CppUnit::TestCase {
 	void testBasic();
 	void tearDown();
 
-	mock_natfw_config *conf;
+	mock_mnslp_config *conf;
 	session_manager *mgr;
 	mock_dispatcher *d;
 };
@@ -39,7 +39,7 @@ class DispatcherTest : public CppUnit::TestCase {
 CPPUNIT_TEST_SUITE_REGISTRATION( DispatcherTest );
 
 void DispatcherTest::setUp() {
-	conf = new mock_natfw_config();
+	conf = new mock_mnslp_config();
 	mgr = new session_manager(conf);
 	d = new mock_dispatcher(mgr, nat_mgr, NULL, conf);
 }

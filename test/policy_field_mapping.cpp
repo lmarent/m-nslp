@@ -1,8 +1,8 @@
 /*
- * Test the mspec_rule_key class.
+ * Test the policy_field_mapping class.
  *
- * $Id: mspec_rule_key.cpp 1711 2015-01-21 18:24:00 amarentes $
- * $HeadURL: https://./test/mspec_rule_key.cpp $
+ * $Id: policy_field_mapping.cpp 1711 2015-01-21 18:24:00 amarentes $
+ * $HeadURL: https://./test/policy_field_mapping.cpp $
  */
 #include <cppunit/TestCase.h>
 #include <cppunit/extensions/HelperMacros.h>
@@ -117,29 +117,39 @@ void PolicyFieldMappingTest::tearDown()
 
 void PolicyFieldMappingTest::general_test() 
 {
-	ptrFieldMapping->set_field(ptrField1->get_field_key(), "packets");
-	ptrFieldMapping->set_field(ptrField2->get_field_key(), "IPToS");
-
-	std::string packets = ptrFieldMapping->get_field(ptrField1->get_field_key());
-	CPPUNIT_ASSERT( packets.compare("packets") == 0 );
+	application_field_mapping field_mapping1 ("false","false","true","packets"); 
+	ptrFieldMapping->set_field(ptrField1->get_field_key(), field_mapping1);
 	
-	std::string Iptos = ptrFieldMapping->get_field(ptrField2->get_field_key());
-	CPPUNIT_ASSERT( Iptos.compare("IPToS") == 0 );
+	application_field_mapping field_mapping2 ("false","true","true","IPToS"); 
+	ptrFieldMapping->set_field(ptrField2->get_field_key(), field_mapping2);
+	
+	application_field_mapping packets = ptrFieldMapping->get_field(ptrField1->get_field_key());
+	CPPUNIT_ASSERT( packets == field_mapping1 );
+	
+	application_field_mapping Iptos = ptrFieldMapping->get_field(ptrField2->get_field_key());
+	CPPUNIT_ASSERT( Iptos == field_mapping2 );
 	
 	
 	mnslp_field_mapping_test *ptrFieldMapping2 = new mnslp_field_mapping_test();
 	
 	// Verify equal operator
-	ptrFieldMapping2->set_field(ptrField1->get_field_key(), "packets");
-	ptrFieldMapping2->set_field(ptrField2->get_field_key(), "IPToS");
+	ptrFieldMapping2->set_field(ptrField1->get_field_key(), field_mapping1);
+	ptrFieldMapping2->set_field(ptrField2->get_field_key(), field_mapping2);
+	CPPUNIT_ASSERT( *ptrFieldMapping2 == *ptrFieldMapping );
+
+    // Verify the application name as part of the equal method
+    ptrFieldMapping->set_metering_application("netmate");
+	CPPUNIT_ASSERT( *ptrFieldMapping2 != *ptrFieldMapping );
+	ptrFieldMapping2->set_metering_application("netmate");
 	CPPUNIT_ASSERT( *ptrFieldMapping2 == *ptrFieldMapping );
 	
 	// Verify that inserting the same field does not generate duplicates
-	ptrFieldMapping2->set_field(ptrField3->get_field_key(), "packets");
+	ptrFieldMapping2->set_field(ptrField3->get_field_key(), field_mapping2);
 	CPPUNIT_ASSERT( *ptrFieldMapping2 == *ptrFieldMapping );
 	
 	// Verify the different operator
-	ptrFieldMapping2->set_field(ptrField4->get_field_key(), "Proto");
+	application_field_mapping field_mapping4 ("false","true","true","Proto"); 
+	ptrFieldMapping2->set_field(ptrField4->get_field_key(), field_mapping4);
 	CPPUNIT_ASSERT( *ptrFieldMapping2 != *ptrFieldMapping );
 	
 	// In this case the function must return true

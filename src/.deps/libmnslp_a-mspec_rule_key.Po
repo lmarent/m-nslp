@@ -75,8 +75,9 @@ libmnslp_a-mspec_rule_key.o: mspec_rule_key.cpp \
  /usr/include/c++/4.6/bits/basic_ios.tcc /usr/include/c++/4.6/ostream \
  /usr/include/c++/4.6/bits/ostream.tcc \
  /usr/include/c++/4.6/bits/istream.tcc \
- /usr/include/c++/4.6/bits/sstream.tcc ../include/mspec_rule_key.h \
- /usr/include/uuid/uuid.h /usr/include/i386-linux-gnu/sys/types.h \
+ /usr/include/c++/4.6/bits/sstream.tcc /usr/include/c++/4.6/iostream \
+ ../include/mspec_rule_key.h /usr/include/uuid/uuid.h \
+ /usr/include/i386-linux-gnu/sys/types.h \
  /usr/include/i386-linux-gnu/sys/select.h \
  /usr/include/i386-linux-gnu/bits/select.h \
  /usr/include/i386-linux-gnu/bits/sigset.h \
@@ -281,6 +282,8 @@ libmnslp_a-mspec_rule_key.o: mspec_rule_key.cpp \
 /usr/include/c++/4.6/bits/istream.tcc:
 
 /usr/include/c++/4.6/bits/sstream.tcc:
+
+/usr/include/c++/4.6/iostream:
 
 ../include/mspec_rule_key.h:
 

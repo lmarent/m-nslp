@@ -29,6 +29,7 @@
 // ===========================================================
 
 #include <sstream>
+#include <iostream>
 #include "mspec_rule_key.h"
 
 
@@ -44,6 +45,7 @@ mspec_rule_key::mspec_rule_key()
 /// Copy constructor of the field key
 mspec_rule_key::mspec_rule_key(const mspec_rule_key &rhs)
 {
+	//std::cout << "constructor mspec_rule_key" << std::endl;
 	uuid_copy(uuid, rhs.uuid);
 }
 
@@ -87,7 +89,7 @@ mspec_rule_key::operator< (const mspec_rule_key& rhs) const
  * Return the key represented as string. 
  */
 std::string 
-mspec_rule_key::get_string_key() const
+mspec_rule_key::to_string() const
 {
 	char uuid_str[37]; 
 	uuid_unparse_lower(uuid, uuid_str); 

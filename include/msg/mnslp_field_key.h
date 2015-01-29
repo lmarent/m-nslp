@@ -38,6 +38,8 @@ class mnslp_field_key {
 	 */
 	virtual uint16 get_field_key_type();
 	
+	virtual mnslp_field_key *copy() const = 0;	
+	
 	virtual bool operator ==(const mnslp_field_key &rhs) const = 0;
 	
 	/** 

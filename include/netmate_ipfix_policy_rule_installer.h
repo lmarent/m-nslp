@@ -35,6 +35,7 @@
 #include "mnslp_config.h"
 #include "msg/mnslp_ipfix_message.h"
 #include "msg/mnslp_ipfix_template.h"
+#include "policy_rule_installer.h"
 
 // curl includes
 #include <curl/curl.h>
@@ -89,7 +90,7 @@ class netmate_ipfix_policy_rule_installer : public policy_rule_installer
 		throw (policy_rule_installer_error);
 
 
-  private:
+  protected:
 
     const msg::mnslp_ipfix_message * get_ipfix_message(const msg::mnslp_mspec_object *object);
     
@@ -97,11 +98,16 @@ class netmate_ipfix_policy_rule_installer : public policy_rule_installer
     
     msg::mnslp_ipfix_template * get_export_template(const msg::mnslp_ipfix_message *mess) const;
     
-    std::string build_command_export_fields(const msg::mnslp_ipfix_message *mess, 
+    std::string build_command_export_fields( const mspec_rule_key &key, 
+									const msg::mnslp_ipfix_message *mess, 
 									msg::mnslp_ipfix_template *templ) const;
 
 	std::string build_command_filter_fields(const msg::mnslp_ipfix_message *mess, 
 									msg::mnslp_ipfix_template *templ) const;
+
+	void print_filter_values(msg::mnslp_ipfix_field &field,
+							 std::list<std::string> &values,
+							 std::map<std::string, std::string> &filter_fields) const;
 
 	std::string create_action_command(const msg::mnslp_ipfix_message *object) 
 			const throw ();

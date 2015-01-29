@@ -76,12 +76,14 @@ mnslp_config::registerAllPars()
   registerPar( new configpar<bool>(mnslp_realm, mnslpconf_ms_is_meter, "ms-is-meter", "NE is meter", true, true) );
   registerPar( new configpar<bool>(mnslp_realm, mnslpconf_ms_install_policy_rules, "ms-install-policy-rules", "ME install policy rules", true, true) );
   registerPar( new configpar<string>(mnslp_realm, mnslpconf_ms_export_config_file, "export-config", "export configuration file name", true, "/home/luis/NSIS/nsis-ka-0.97/etc/export.xml") );
-  registerPar( new configpar<string>(mnslp_realm, mnslpconf_ms_filter_config_file, "filter-config", "filter configuration file name", true, "/home/luis/NSIS/nsis-ka-0.97/etc/filters.xml") );
+  registerPar( new configpar<string>(mnslp_realm, mnslpconf_ms_configuration_file, "filter-config", "configuration file name", true, "/home/luis/NSIS/nsis-ka-0.97/etc/configuration.xml") );
   registerPar( new configpar<string>(mnslp_realm, mnslpconf_ms_metering_application, "metering-app", "metering applicartion name", true, "netmate") );
-  registerPar( new configpar<string>(mnslp_realm, mnslpcong_ms_metering_user, "metering-user", "metering application user", true, "admin") );
-  registerPar( new configpar<string>(mnslp_realm, mnslpcong_ms_metering_server, "metering-server", "metering http server", true, "localhost") );
-  registerPar( new configpar<string>(mnslp_realm, mnslpcong_ms_metering_def_xsl, "xsl-for-decoding-metering-results", "metering results decoding", true, "/home/luis/NSIS/nsis-ka-0.97/etc/reply2.xsl") );
-  registerPar( new configpar<string>(mnslp_realm, mnslpcong_ms_metering_port, "metering-port", "metering port", true, "12244") );
+  registerPar( new configpar<string>(mnslp_realm, mnslpconf_ms_metering_user, "metering-user", "metering application user", true, "admin") );
+  registerPar( new configpar<string>(mnslp_realm, mnslpconf_ms_metering_password, "metering-password", "metering user password", true, "admin") );  
+  registerPar( new configpar<string>(mnslp_realm, mnslpconf_ms_metering_server, "metering-server", "metering http server", true, "localhost") );
+  registerPar( new configpar<string>(mnslp_realm, mnslpconf_ms_metering_def_xsl, "xsl-for-decoding-metering-results", "metering results decoding", true, "/home/luis/NSIS/nsis-ka-0.97/etc/reply2.xsl") );
+  registerPar( new configpar<string>(mnslp_realm, mnslpconf_ms_metering_port, "metering-port", "metering port", true, "12244") );
+  registerPar( new configpar<string>(mnslp_realm, mnslpconf_ms_export_directory, "export-directory", "export directory", true, "/tmp/") );
 
   registerPar( new configpar<uint32>(mnslp_realm, mnslpconf_nr_max_session_lifetime, "nr-max-session-lifetime", "NR max session lifetime in seconds", true, 60, "s") );
   

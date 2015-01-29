@@ -107,8 +107,10 @@ am__objects_1 = libmnslp_a-benchmark_journal.$(OBJEXT) \
 	libmnslp_a-mspec_rule_key.$(OBJEXT) \
 	libmnslp_a-policy_rule.$(OBJEXT) \
 	libmnslp_a-mnslp_xml_node_reader.$(OBJEXT) \
-	libmnslp_a-policy_filter_container.$(OBJEXT) \
-	libmnslp_a-policy_field_mapping.$(OBJEXT)
+	libmnslp_a-policy_application_configuration_container.$(OBJEXT) \
+	libmnslp_a-policy_field_mapping.$(OBJEXT) \
+	libmnslp_a-netmate_metering_config.$(OBJEXT) \
+	libmnslp_a-netmate_policy_action_mapping.$(OBJEXT)
 am_libmnslp_a_OBJECTS = $(am__objects_1)
 libmnslp_a_OBJECTS = $(am_libmnslp_a_OBJECTS)
 PROGRAMS = $(bin_PROGRAMS)
@@ -312,7 +314,9 @@ MNSLP_SOURCEFILES = benchmark_journal.cpp gistka_mapper.cpp session_id.cpp \
   policy_rule_installer.cpp policy_action.cpp policy_action_mapping.cpp \
   policy_action_container.cpp nop_policy_rule_installer.cpp \
   netmate_ipfix_policy_rule_installer.cpp mspec_rule_key.cpp policy_rule.cpp \
-  mnslp_xml_node_reader.cpp policy_filter_container.cpp policy_field_mapping.cpp 
+  mnslp_xml_node_reader.cpp policy_application_configuration_container.cpp \
+  policy_field_mapping.cpp netmate_metering_config.cpp \
+  netmate_policy_action_mapping.cpp
 
 libmnslp_a_SOURCES = $(MNSLP_SOURCEFILES)
 mnslp_SOURCES = mnslp_daemon.cpp main.cpp
@@ -456,6 +460,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-mnslp_xml_node_reader.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-mspec_rule_key.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-netmate_ipfix_policy_rule_installer.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-netmate_metering_config.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-netmate_policy_action_mapping.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-nf_session.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-ni_session.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-nop_policy_rule_installer.Po@am__quote@
@@ -463,8 +469,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-policy_action.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-policy_action_container.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-policy_action_mapping.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-policy_application_configuration_container.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-policy_field_mapping.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-policy_filter_container.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-policy_rule.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-policy_rule_installer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-session.Po@am__quote@
@@ -781,19 +787,19 @@ libmnslp_a-mnslp_xml_node_reader.obj: mnslp_xml_node_reader.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-mnslp_xml_node_reader.obj `if test -f 'mnslp_xml_node_reader.cpp'; then $(CYGPATH_W) 'mnslp_xml_node_reader.cpp'; else $(CYGPATH_W) '$(srcdir)/mnslp_xml_node_reader.cpp'; fi`
 
-libmnslp_a-policy_filter_container.o: policy_filter_container.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-policy_filter_container.o -MD -MP -MF $(DEPDIR)/libmnslp_a-policy_filter_container.Tpo -c -o libmnslp_a-policy_filter_container.o `test -f 'policy_filter_container.cpp' || echo '$(srcdir)/'`policy_filter_container.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmnslp_a-policy_filter_container.Tpo $(DEPDIR)/libmnslp_a-policy_filter_container.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='policy_filter_container.cpp' object='libmnslp_a-policy_filter_container.o' libtool=no @AMDEPBACKSLASH@
+libmnslp_a-policy_application_configuration_container.o: policy_application_configuration_container.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-policy_application_configuration_container.o -MD -MP -MF $(DEPDIR)/libmnslp_a-policy_application_configuration_container.Tpo -c -o libmnslp_a-policy_application_configuration_container.o `test -f 'policy_application_configuration_container.cpp' || echo '$(srcdir)/'`policy_application_configuration_container.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmnslp_a-policy_application_configuration_container.Tpo $(DEPDIR)/libmnslp_a-policy_application_configuration_container.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='policy_application_configuration_container.cpp' object='libmnslp_a-policy_application_configuration_container.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-policy_filter_container.o `test -f 'policy_filter_container.cpp' || echo '$(srcdir)/'`policy_filter_container.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-policy_application_configuration_container.o `test -f 'policy_application_configuration_container.cpp' || echo '$(srcdir)/'`policy_application_configuration_container.cpp
 
-libmnslp_a-policy_filter_container.obj: policy_filter_container.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-policy_filter_container.obj -MD -MP -MF $(DEPDIR)/libmnslp_a-policy_filter_container.Tpo -c -o libmnslp_a-policy_filter_container.obj `if test -f 'policy_filter_container.cpp'; then $(CYGPATH_W) 'policy_filter_container.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_filter_container.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmnslp_a-policy_filter_container.Tpo $(DEPDIR)/libmnslp_a-policy_filter_container.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='policy_filter_container.cpp' object='libmnslp_a-policy_filter_container.obj' libtool=no @AMDEPBACKSLASH@
+libmnslp_a-policy_application_configuration_container.obj: policy_application_configuration_container.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-policy_application_configuration_container.obj -MD -MP -MF $(DEPDIR)/libmnslp_a-policy_application_configuration_container.Tpo -c -o libmnslp_a-policy_application_configuration_container.obj `if test -f 'policy_application_configuration_container.cpp'; then $(CYGPATH_W) 'policy_application_configuration_container.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_application_configuration_container.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmnslp_a-policy_application_configuration_container.Tpo $(DEPDIR)/libmnslp_a-policy_application_configuration_container.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='policy_application_configuration_container.cpp' object='libmnslp_a-policy_application_configuration_container.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-policy_filter_container.obj `if test -f 'policy_filter_container.cpp'; then $(CYGPATH_W) 'policy_filter_container.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_filter_container.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-policy_application_configuration_container.obj `if test -f 'policy_application_configuration_container.cpp'; then $(CYGPATH_W) 'policy_application_configuration_container.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_application_configuration_container.cpp'; fi`
 
 libmnslp_a-policy_field_mapping.o: policy_field_mapping.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-policy_field_mapping.o -MD -MP -MF $(DEPDIR)/libmnslp_a-policy_field_mapping.Tpo -c -o libmnslp_a-policy_field_mapping.o `test -f 'policy_field_mapping.cpp' || echo '$(srcdir)/'`policy_field_mapping.cpp
@@ -808,6 +814,34 @@ libmnslp_a-policy_field_mapping.obj: policy_field_mapping.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='policy_field_mapping.cpp' object='libmnslp_a-policy_field_mapping.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-policy_field_mapping.obj `if test -f 'policy_field_mapping.cpp'; then $(CYGPATH_W) 'policy_field_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_field_mapping.cpp'; fi`
+
+libmnslp_a-netmate_metering_config.o: netmate_metering_config.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-netmate_metering_config.o -MD -MP -MF $(DEPDIR)/libmnslp_a-netmate_metering_config.Tpo -c -o libmnslp_a-netmate_metering_config.o `test -f 'netmate_metering_config.cpp' || echo '$(srcdir)/'`netmate_metering_config.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmnslp_a-netmate_metering_config.Tpo $(DEPDIR)/libmnslp_a-netmate_metering_config.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='netmate_metering_config.cpp' object='libmnslp_a-netmate_metering_config.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-netmate_metering_config.o `test -f 'netmate_metering_config.cpp' || echo '$(srcdir)/'`netmate_metering_config.cpp
+
+libmnslp_a-netmate_metering_config.obj: netmate_metering_config.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-netmate_metering_config.obj -MD -MP -MF $(DEPDIR)/libmnslp_a-netmate_metering_config.Tpo -c -o libmnslp_a-netmate_metering_config.obj `if test -f 'netmate_metering_config.cpp'; then $(CYGPATH_W) 'netmate_metering_config.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_metering_config.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmnslp_a-netmate_metering_config.Tpo $(DEPDIR)/libmnslp_a-netmate_metering_config.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='netmate_metering_config.cpp' object='libmnslp_a-netmate_metering_config.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-netmate_metering_config.obj `if test -f 'netmate_metering_config.cpp'; then $(CYGPATH_W) 'netmate_metering_config.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_metering_config.cpp'; fi`
+
+libmnslp_a-netmate_policy_action_mapping.o: netmate_policy_action_mapping.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-netmate_policy_action_mapping.o -MD -MP -MF $(DEPDIR)/libmnslp_a-netmate_policy_action_mapping.Tpo -c -o libmnslp_a-netmate_policy_action_mapping.o `test -f 'netmate_policy_action_mapping.cpp' || echo '$(srcdir)/'`netmate_policy_action_mapping.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmnslp_a-netmate_policy_action_mapping.Tpo $(DEPDIR)/libmnslp_a-netmate_policy_action_mapping.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='netmate_policy_action_mapping.cpp' object='libmnslp_a-netmate_policy_action_mapping.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-netmate_policy_action_mapping.o `test -f 'netmate_policy_action_mapping.cpp' || echo '$(srcdir)/'`netmate_policy_action_mapping.cpp
+
+libmnslp_a-netmate_policy_action_mapping.obj: netmate_policy_action_mapping.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-netmate_policy_action_mapping.obj -MD -MP -MF $(DEPDIR)/libmnslp_a-netmate_policy_action_mapping.Tpo -c -o libmnslp_a-netmate_policy_action_mapping.obj `if test -f 'netmate_policy_action_mapping.cpp'; then $(CYGPATH_W) 'netmate_policy_action_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_policy_action_mapping.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/libmnslp_a-netmate_policy_action_mapping.Tpo $(DEPDIR)/libmnslp_a-netmate_policy_action_mapping.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='netmate_policy_action_mapping.cpp' object='libmnslp_a-netmate_policy_action_mapping.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-netmate_policy_action_mapping.obj `if test -f 'netmate_policy_action_mapping.cpp'; then $(CYGPATH_W) 'netmate_policy_action_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_policy_action_mapping.cpp'; fi`
 
 mnslp-mnslp_daemon.o: mnslp_daemon.cpp
 @am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslp_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT mnslp-mnslp_daemon.o -MD -MP -MF $(DEPDIR)/mnslp-mnslp_daemon.Tpo -c -o mnslp-mnslp_daemon.o `test -f 'mnslp_daemon.cpp' || echo '$(srcdir)/'`mnslp_daemon.cpp

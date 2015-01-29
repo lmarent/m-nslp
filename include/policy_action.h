@@ -1,6 +1,6 @@
 /// ----------------------------------------*- mode: C++; -*--
-/// @file policy_action_container.h
-/// The policy_action_container class.
+/// @file policy_action.h
+/// The policy_action class.
 /// ----------------------------------------------------------
 /// $Id: policy_action_container.h 2558 2015-01-16 15:15:00 amarentes $
 /// $HeadURL: https://./include/policy_action_container.h $
@@ -59,29 +59,45 @@ class policy_action : public mnslp_xml_node_reader {
 	 */ 
 	int read_from_xml(xmlTextReaderPtr node);
 	
-	void set_action_mapping(std::string app, policy_action_mapping _mapping);
+	void set_action_mapping(std::string package, policy_action_mapping *_mapping);
 	
 	bool operator==(const policy_action &rhs) const;
 	
 	bool operator!=(const policy_action &rhs) const;
 	
-	std::string get_name() const;
+	void set_action(std::string _action); 
+	
+	void set_priority(int _priority);
+	
+	std::string get_action() const;
+	
+	int get_priority()const ;
 	 
-	typedef std::map<std::string, policy_action_mapping>::const_iterator const_iterator;
+	typedef std::map<std::string, policy_action_mapping *>::const_iterator const_iterator;
 	const_iterator begin() const throw() { return action_mappings.begin(); }
 	const_iterator end() const throw() { return action_mappings.end(); }
+	
+	int get_number_mappings(){ return action_mappings.size(); }
 	
 	bool check_field_availability(std::string app, msg::mnslp_field &field) const;
 	
 	std::string get_field_traslate(std::string app, msg::mnslp_field &field) const;
 	
-	std::string get_package(std::string app, msg::mnslp_field &field) const;
+	const metering_config * get_package(std::string app, msg::mnslp_field &field) const;
+	
+	policy_action& operator=(policy_action const &rhs);
     
   private:
-	std::map<std::string, policy_action_mapping> action_mappings;
+	        
+	std::map<std::string, policy_action_mapping *> action_mappings;
+
 	std::string action;
 	
+	int priority;
+	
+	static std::string action_str;
 	static std::string id_str;
+	static std::string priority_str;
 	
 };
 

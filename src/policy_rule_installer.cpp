@@ -40,28 +40,30 @@ policy_rule_installer::~policy_rule_installer() throw()
 	if (action_container != NULL)
 		delete action_container;
 	
-	if (filter_container != NULL)
-		delete filter_container;
+	if (app_container != NULL)
+		delete app_container;
 }
 
 void
 policy_rule_installer::setup() throw (policy_rule_installer_error)
 {
 	
-	std::cout << "In setup function" << std::endl << std::flush;
 	if ( config->is_ms_meter()){
 		
-		std::cout << "is_meter" << std::endl << std::flush;
-		
-		// Parse and load the export configuration.
-		parse_export_definition_file(config->get_export_config_file().c_str());
-	
- 		std::cout << "Termino export definition" << std::endl << std::flush;
-		
-		// Parse and load the filter configuration.
-		parse_filter_definition_file(config->get_filter_config_file().c_str());
-		
-		std::cout << "Termino filter definition" << std::endl << std::flush;
+		try
+		{
+			// Parse and load the filter configuration.
+			parse_configuration_definition_file(config->get_configuration_file().c_str());
+			
+			// Parse and load the export configuration.
+			parse_export_definition_file(config->get_export_config_file().c_str());
+		}
+		catch(policy_rule_installer_error &e)
+		{
+			std::cout << "Node cannot be configured as metering" << std::endl;
+			config->setpar(mnslpconf_ms_is_meter, false);
+		}
+			
 	}
 }
 
@@ -102,7 +104,7 @@ void policy_rule_installer::parse_export_definition_file(const char *filename)
 	
 }
 
-void policy_rule_installer::parse_filter_definition_file(const char *filename) 
+void policy_rule_installer::parse_configuration_definition_file(const char *filename) 
 		throw (policy_rule_installer_error)
 {
 
@@ -119,9 +121,13 @@ void policy_rule_installer::parse_filter_definition_file(const char *filename)
 				 XML_PARSE_DTDVALID); /* validate with the DTD */
 
     if (reader != NULL){
-		filter_container = new policy_filter_container();
-		filter_container->read_from_xml(reader);
-		std::cout << "Finish reading xml" << std::endl;
+		app_container = new policy_application_configuration_container();
+		app_container->read_from_xml(reader);
+		
+		policy_application_configuration_container::const_iterator it;
+		for (it = app_container->begin(); it != app_container->end(); it++)
+			std::cout << "number of applications:" << std::endl;
+		 
 	}
 	else{
 		throw policy_rule_installer_error("Export configuration file does not open",
@@ -131,25 +137,23 @@ void policy_rule_installer::parse_filter_definition_file(const char *filename)
 	
 }
 
-const policy_action_container &
+const policy_action_container *
 policy_rule_installer::get_action_container() const
 {
 	if (action_container != NULL)
-		return *action_container;
+		return action_container;
 	else
-		std::cout << "action container is null" << std::endl;
 		throw policy_rule_installer_error("action configuration not defined",
 			msg::information_code::sc_permanent_failure,
 			msg::information_code::fail_configuration_failed);
 }
 
-const policy_filter_container &
-policy_rule_installer::get_filter_container() const
+const policy_application_configuration_container *
+policy_rule_installer::get_application_configuration_container() const
 {
-	if (filter_container != NULL)
-		return *filter_container;
+	if (app_container != NULL)
+		return app_container;
 	else
-		std::cout << "filter container is null" << std::endl;
 		throw policy_rule_installer_error("filter configuration not defined",
 			msg::information_code::sc_permanent_failure,
 			msg::information_code::fail_configuration_failed);

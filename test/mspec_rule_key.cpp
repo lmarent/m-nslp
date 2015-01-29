@@ -41,9 +41,9 @@ class MspecRuleKeyTest : public CppUnit::TestCase {
 		
 		CPPUNIT_ASSERT( key1 == key4 );
 		
-		keyStr1 = key1.get_string_key();
+		keyStr1 = key1.to_string();
 		
-		keyStr3 = key3.get_string_key();
+		keyStr3 = key3.to_string();
 				
 	}
 

@@ -152,7 +152,8 @@ libmnslp_a-session_manager.o: session_manager.cpp /usr/include/assert.h \
  ../../protlib/include/ie.h /usr/include/c++/4.6/set \
  /usr/include/c++/4.6/bits/stl_set.h \
  /usr/include/c++/4.6/bits/stl_multiset.h ../../protlib/include/logfile.h \
- ../../protlib/include/threadsafe_db.h \
+ ../../protlib/include/threadsafe_db.h ../include/policy_rule.h \
+ ../include/mspec_rule_key.h /usr/include/uuid/uuid.h \
  ../include/msg/mnslp_mspec_object.h ../include/session_manager.h \
  ../include/session.h ../include/ni_session.h ../include/mnslp_config.h \
  ../../protlib/include/messages.h /usr/include/c++/4.6/ext/hash_set \
@@ -185,10 +186,9 @@ libmnslp_a-session_manager.o: session_manager.cpp /usr/include/assert.h \
  ../../ntlp/include/ntlp_object.h ../../ntlp/include/ntlp_ie.h \
  ../../ntlp/include/mri_le.h ../include/msg/ntlp_msg.h \
  ../../ntlp/include/mri.h ../include/session_id.h \
- ../include/msg/mnslp_response.h ../include/policy_rule.h \
- ../include/mspec_rule_key.h /usr/include/uuid/uuid.h \
- ../include/mnslp_timers.h ../include/msg/selection_metering_entities.h \
- ../include/nf_session.h ../include/nr_session.h
+ ../include/msg/mnslp_response.h ../include/mnslp_timers.h \
+ ../include/msg/selection_metering_entities.h ../include/nf_session.h \
+ ../include/nr_session.h
 
 /usr/include/assert.h:
 
@@ -620,6 +620,12 @@ libmnslp_a-session_manager.o: session_manager.cpp /usr/include/assert.h \
 
 ../../protlib/include/threadsafe_db.h:
 
+../include/policy_rule.h:
+
+../include/mspec_rule_key.h:
+
+/usr/include/uuid/uuid.h:
+
 ../include/msg/mnslp_mspec_object.h:
 
 ../include/session_manager.h:
@@ -721,12 +727,6 @@ libmnslp_a-session_manager.o: session_manager.cpp /usr/include/assert.h \
 ../include/session_id.h:
 
 ../include/msg/mnslp_response.h:
-
-../include/policy_rule.h:
-
-../include/mspec_rule_key.h:
-
-/usr/include/uuid/uuid.h:
 
 ../include/mnslp_timers.h:
 

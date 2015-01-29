@@ -37,6 +37,7 @@
 #include "logfile.h"
 
 #include "policy_rule_installer.h"
+#include "netmate_metering_config.h"
 
 // curl includes
 #include <curl/curl.h>
@@ -89,7 +90,6 @@ void netmate_ipfix_policy_rule_installer::setup()
 	 */
 	policy_rule_installer::setup();
     
-
 }
 
 
@@ -113,20 +113,22 @@ void netmate_ipfix_policy_rule_installer::check(const msg::mnslp_mspec_object *o
 				msg::information_code::sigfail_wrong_conf_message); 
 		}
 		else{ 
-			if (!handle_export_fields(mess, templ)) 
+			if (handle_export_fields(mess, templ) == false) 
 				throw policy_rule_installer_error("Invalid ipfix message",
 					msg::information_code::sc_signaling_session_failures,
 					msg::information_code::sigfail_rule_action_not_applicable);
 		}
-				
+						
 		templ = get_filter_template(mess);
-		if (templ== NULL){
+		if (templ== NULL)
+		{
 			throw policy_rule_installer_error("Invalid ipfix message",
 				msg::information_code::sc_signaling_session_failures,
 				msg::information_code::sigfail_wrong_conf_message); 
 		}
-		else{
-			if (!include_all_data_fields(mess, templ));
+		else
+		{
+			if (include_all_data_fields(mess, templ) == false)
 				throw policy_rule_installer_error("Invalid ipfix message",
 					msg::information_code::sc_signaling_session_failures,
 					msg::information_code::sigfail_wrong_conf_message);
@@ -137,6 +139,7 @@ void netmate_ipfix_policy_rule_installer::check(const msg::mnslp_mspec_object *o
 					msg::information_code::sc_signaling_session_failures,
 					msg::information_code::sigfail_filter_action_not_applicable);
 		}					
+		
 	}		
 	else
 	{
@@ -149,20 +152,20 @@ void netmate_ipfix_policy_rule_installer::check(const msg::mnslp_mspec_object *o
 
 
 void netmate_ipfix_policy_rule_installer::install(const mt_policy_rule *rule )
-		throw (policy_rule_installer_error) {
+		throw (policy_rule_installer_error) 
+{
 
 	bool checked = true;
 	LogDebug("install(): ");
 	
-	
 	mt_policy_rule::const_iterator i;
 	for ( i = rule->begin(); i != rule->end(); i++){
-		const msg::mnslp_ipfix_message *mess = get_ipfix_message(&(i->second));
+		const msg::mnslp_ipfix_message *mess = get_ipfix_message(i->second);
 
 		// Create configuration message.
 		std::string action = create_action_command(mess);
 		std::string post_fields = create_postfield_command(i->first, mess);
-	
+		
 		// Create the http command to send for configuration
 		execute_command(action, post_fields);
 	}
@@ -189,9 +192,7 @@ const msg::mnslp_ipfix_message *
 netmate_ipfix_policy_rule_installer::get_ipfix_message(const msg::mnslp_mspec_object *object)
 {
 	const msg::mnslp_ipfix_message *mess = dynamic_cast<const msg::mnslp_ipfix_message *>(object);
-		
 	assert( mess != NULL );
-	
 	return mess;
 }
 
@@ -199,14 +200,15 @@ msg::mnslp_ipfix_template *
 netmate_ipfix_policy_rule_installer::get_filter_template(const msg::mnslp_ipfix_message *mess) const
 {
 	
+ 	
  	msg::mnslp_ipfix_template *templ = NULL;
  	std::list<int> templates = mess->get_template_list();
-		
-	for (std::list<int>::iterator it = templates.begin(); it != templates.end(); it++){
-		msg::mnslp_ipfix_template *templ =  mess->get_template( *it );
-		if (templ->get_type() == msg::OPTION_TEMPLATE){
+	for (std::list<int>::iterator it = templates.begin(); it != templates.end(); it++)
+	{
+		templ =  mess->get_template( *it );
+		if (templ->get_type() == msg::OPTION_TEMPLATE)
 			break;
-		}
+		
 	}
 	return templ;
 
@@ -236,43 +238,52 @@ netmate_ipfix_policy_rule_installer::create_action_command(
 
 	LogDebug("create_action_command(): " );
 	
-	std:string action = "/add_task";
+	std::string action = "/add_task";
 	return action;
 }
 
 std::string  
 netmate_ipfix_policy_rule_installer::create_postfield_command(
-					const mspec_rule_key &key, const msg::mnslp_ipfix_message *message) const
-		throw () {
+					const mspec_rule_key &key, 
+					const msg::mnslp_ipfix_message *message) const throw () 
+{
 
 	msg::mnslp_ipfix_template *templ = NULL;
 	LogDebug("create_filter_command(): ");
-	std:string postfields =	"Rule=" + key.get_string_key();
- 
+	std:string postfields =	"Rule=" + key.to_string();
+
 	// Add all filters specified. 
 	templ = get_filter_template(message);
 	if (templ!= NULL){
 		postfields.append(" ");	
 		postfields.append( build_command_filter_fields(message, templ) );
 	}
+	else{
+		// TODO AM: Put in log.
+		std::cout << "Option template not found" << std::endl;
+	}
 	
 	// Add all export fields ( for now it just add the package for metering )
 	templ = get_export_template(message);
 	if (templ!= NULL){
 		postfields.append(" ");
-		postfields.append( build_command_export_fields(message, templ) );
+		postfields.append( build_command_export_fields(key, message, templ) );
+	}
+	else{
+		// TODO AM: Put in log.
+		std::cout << "Export template not found" << std::endl;
 	}
 	
-	
-	
+	return postfields;
 }
 
 bool
-netmate_ipfix_policy_rule_installer::include_all_data_fields(const msg::mnslp_ipfix_message *mess, 
+netmate_ipfix_policy_rule_installer::include_all_data_fields( const msg::mnslp_ipfix_message *mess, 
 								msg::mnslp_ipfix_template *templ)
 {
-	if (mess != NULL)
+	if (mess != NULL){
 		return mess->include_all_data_fields(templ);
+	}
 	else
 		return false;
 }
@@ -283,79 +294,143 @@ netmate_ipfix_policy_rule_installer::handle_export_fields(const msg::mnslp_ipfix
 {
 	for (int i = 0; i < templ->get_numfields(); i++ ){
 		msg::mnslp_ipfix_field field = templ->get_field(i).elem;
-		if (!(get_action_container().check_field_availability(
-						get_metering_application(),	field)))
+		
+		// Verify  the field as export configured.
+		if ( get_application_configuration_container()->is_export_field( 
+				get_metering_application(),	field) == false ){
 			return false;
+		}
+		
+		// Verify the field as a member of an action configured.
+		if (!(get_action_container()->check_field_availability(
+						get_metering_application(),	field))){
+			return false;
+		}
 	}
 	return true;
 }	
 
 std::string
-netmate_ipfix_policy_rule_installer::build_command_export_fields(const msg::mnslp_ipfix_message *mess, 
+netmate_ipfix_policy_rule_installer::build_command_export_fields( const mspec_rule_key &key, 
+									const msg::mnslp_ipfix_message *mess, 
 									msg::mnslp_ipfix_template *templ) const
 {
 	std::set<std::string> packages;
 	std::set<std::string> export_fields;
+	std::set<std::string> export_formats;
 	std::string val_return = "-a ";
-	
-	for (int i = 0; i < templ->get_numfields(); i++ ){
+	const netmate_metering_config * met_conf;
+		
+	for (int i = 0; i < templ->get_numfields(); i++ )
+	{
 		msg::mnslp_ipfix_field field = templ->get_field(i).elem;
-		export_fields.insert( get_action_container().get_field_traslate( 
+		if ( get_application_configuration_container()->
+				is_export_field( get_metering_application(), field) )
+		{
+
+			export_fields.insert( get_action_container()->get_field_traslate( 
 									get_metering_application(), field) );
-									
-		packages.insert( get_action_container().get_package( 
+																		
+			met_conf = dynamic_cast< const netmate_metering_config* >( get_action_container()->get_package( 
 									get_metering_application(), field) );
+			
+			if (met_conf != NULL)
+			{
+				std::string target;
+				packages.insert( met_conf->get_metering_procedure() );
+				
+				// Establish the target for the export process.
+				if (met_conf->get_export_procedure().compare("file") == 0){
+					target.append("file:");
+					target.append(met_conf->get_export_directory());
+					target.append(key.to_string());
+				}
+				else if (met_conf->get_export_procedure().compare("ipfix") == 0){					
+					target.append("ipfix:");
+				}					
+				else{
+					target.append("file:");
+					target.append(get_export_directory());
+					target.append(key.to_string());					
+				}
+				export_formats.insert( target );	
+			}	
+		}
 	}
-	
 	std::set<string>::iterator it;
 	for (it=packages.begin(); it!=packages.end(); ++it){
 		val_return.append(*it); 
 		val_return.append(" ");
+	}	
+
+	//  Add the target information
+	// TODO AM: for now we only take the first target.
+	std::set<string>::iterator it_target;
+	for (it_target=export_formats.begin(); it_target!=export_formats.end(); ++it_target){
+		val_return.append(" ");
+		val_return.append("-e target=");
+		val_return.append(*it); 
+		break;
 	}	
   
 	return val_return;
 }	
 
 std::string
-netmate_ipfix_policy_rule_installer::build_command_filter_fields(const msg::mnslp_ipfix_message *mess, 
+netmate_ipfix_policy_rule_installer::build_command_filter_fields( const msg::mnslp_ipfix_message *mess, 
 									msg::mnslp_ipfix_template *templ) const
 {
 	std::map<std::string, std::string> filter_fields;
-	std::string val_return = "-r ";
+	std::string val_return = "-r";
 	
 	
 	for (int i = 0; i < templ->get_numfields(); i++ ){
-		msg::mnslp_ipfix_field field = templ->get_field(i).elem;
 		
-		std::list<std::string> values = mess->get_field_data_values(templ,field);
-		std::list<std::string>::iterator it;
-		for (it=values.begin(); it!=values.end(); ++it){
-			if (it == values.begin()){
-				filter_fields.insert( std::pair<std::string,std::string>
-									( get_filter_container().get_field_traslate( 
-										get_metering_application(), field),
-									   *it ) );
-			}
-			else{ 
-				std::string comma = ",";
-				filter_fields.insert( std::pair<std::string,std::string>
-									( get_filter_container().get_field_traslate( 
-										get_metering_application(), field),
-									   comma.append(*it) ) );
-			}					
+		msg::mnslp_ipfix_field field = templ->get_field(i).elem;
+		if ( get_application_configuration_container()->
+				is_filter_field( get_metering_application(), field) )
+		{
+			std::list<std::string> values = mess->get_field_data_values(templ,field);
+			print_filter_values(field, values, filter_fields);
 		}
 	}
-	
+		
 	std::map<std::string, std::string>::iterator it;
 	for (it=filter_fields.begin(); it!=filter_fields.end(); ++it){
+		val_return.append(" ");
 		val_return.append(it->first);
-		val_return.append(":");
+		val_return.append("=");
 		val_return.append(it->second);
 	}	
-  
+		
 	return val_return;
 }	
 
+void 
+netmate_ipfix_policy_rule_installer::print_filter_values(msg::mnslp_ipfix_field &field, 
+					std::list<std::string> &values,
+					std::map<std::string, std::string> &filter_fields) const
+{
+	std::list<std::string>::iterator it;
+	std::string comma = ",";
+	for (it = values.begin(); it != values.end(); ++it)
+	{
+		if (it == values.begin())
+		{
+			filter_fields.insert( std::pair<std::string,std::string>
+								( get_application_configuration_container()->get_field_traslate( 
+									get_metering_application(), field),
+								   *it ) );
+		}
+		else
+		{ 	
+			filter_fields.insert( std::pair<std::string,std::string>
+								( get_application_configuration_container()->get_field_traslate( 
+									get_metering_application(), field),
+								   comma.append(*it) ) );
+		}					
+	}
+}
 
 bool 
 netmate_ipfix_policy_rule_installer::handle_filter_fields(const msg::mnslp_ipfix_message *mess, 
@@ -363,7 +438,7 @@ netmate_ipfix_policy_rule_installer::handle_filter_fields(const msg::mnslp_ipfix
 {
 	for (int i = 0; i < templ->get_numfields(); i++ ){
 		msg::mnslp_ipfix_field field = templ->get_field(i).elem;
-		if (!(get_filter_container().check_field_availability(
+		if (!(get_application_configuration_container()->check_field_availability(
 					get_metering_application(),field)))
 			return false;
 	}
@@ -418,9 +493,10 @@ netmate_ipfix_policy_rule_installer::execute_command(std::string action, std::st
 	xsltStylesheetPtr cur = NULL;
 	xmlDocPtr doc, out;
     
+    std::cout << "The action given is:" << action << std::endl;
 	// initialize libcurl
 	curl = curl_easy_init();
-	if (!curl) {
+	if (curl == NULL) {
 		throw policy_rule_installer_error("Error during policy installation",
 			msg::information_code::sc_signaling_session_failures,
 			msg::information_code::sigfail_metering_connection_broken);
@@ -430,7 +506,6 @@ netmate_ipfix_policy_rule_installer::execute_command(std::string action, std::st
     xmlSubstituteEntitiesDefault(1);
     xmlLoadExtDtdDefaultValue = 1;
     cur = xsltParseStylesheetFile((const xmlChar *)stylesheet.c_str());
-
 
 #ifdef USE_SSL
     use_ssl = 1;
@@ -472,7 +547,7 @@ netmate_ipfix_policy_rule_installer::execute_command(std::string action, std::st
                        
     char *_url = strdup(url.str().c_str());
     curl_easy_setopt(curl, CURLOPT_URL, _url);
-    post_body =  curl_escape(post_fields.c_str(), post_fields.length());
+    post_body =  curl_escape(post_fields.c_str(), post_fields.length());	
     curl_easy_setopt(curl, CURLOPT_POSTFIELDS, post_body);
 
     res = curl_easy_perform(curl);
@@ -484,7 +559,7 @@ netmate_ipfix_policy_rule_installer::execute_command(std::string action, std::st
 #else
        free(post_body);
 #endif
-      
+       std::cout << "Here 0" << std::endl;
 	   curl_easy_cleanup(curl);
 	   xsltFreeStylesheet(cur);
 	   xsltCleanupGlobals();
@@ -503,6 +578,8 @@ netmate_ipfix_policy_rule_installer::execute_command(std::string action, std::st
 #else
        free(post_body);
 #endif
+
+	   std::cout << "Here 4 " << std::endl;
       
 	   curl_easy_cleanup(curl);
 	   xsltFreeStylesheet(cur);
@@ -523,6 +600,8 @@ netmate_ipfix_policy_rule_installer::execute_command(std::string action, std::st
 #else
        free(post_body);
 #endif
+
+	   std::cout << "Here 5 " << std::endl;
       
 	   curl_easy_cleanup(curl);
 	   xsltFreeStylesheet(cur);
@@ -553,6 +632,8 @@ netmate_ipfix_policy_rule_installer::execute_command(std::string action, std::st
 #else
     free(post_body);
 #endif
+
+    std::cout << "Here 6 " << std::endl;
      
     curl_easy_cleanup(curl);
 	xsltFreeStylesheet(cur);

@@ -41,18 +41,17 @@ class mnslp_mspec_object : public mnslp_object
 	/*
 	 * Inherited from IE
 	 */
-	virtual mnslp_mspec_object *new_instance() const;
-	virtual mnslp_mspec_object *copy() const;
+	virtual mnslp_mspec_object *new_instance() const =0;
+	virtual mnslp_mspec_object *copy() const = 0;
 
-	virtual const char *get_ie_name() const;
-	virtual size_t get_serialized_size(coding_t coding) const;
+	virtual const char *get_ie_name() const = 0;
+	virtual size_t get_serialized_size(coding_t coding) const = 0;
+	
+	virtual ~mnslp_mspec_object();
 
-	mnslp_mspec_object(const mnslp_mspec_object &rhs);
-
-
-	mnslp_mspec_object & operator=(const mnslp_mspec_object &rhs);
-
-	~mnslp_mspec_object();
+	virtual bool isEqual(const mnslp_mspec_object &object) const = 0;
+	
+	virtual bool notEqual(const mnslp_mspec_object &object) const = 0;
 
 
   protected:
@@ -61,17 +60,14 @@ class mnslp_mspec_object : public mnslp_object
 			
 	mnslp_mspec_object(uint16 object_type, treatment_t tr, bool _unique);
 
-	virtual bool check_body() const;
-	virtual bool equals_body(const mnslp_object &obj) const;
+	virtual bool check_body() const = 0;
+	virtual bool equals_body(const mnslp_object &obj) const = 0;
 
 	virtual bool deserialize_body(NetMsg &msg, uint16 body_length,
-			IEErrorList &err, bool skip);
+			IEErrorList &err, bool skip) = 0;
 
-	virtual void serialize_body(NetMsg &msg) const;
-
-  private:
-	static const char *const ie_name;
-
+	virtual void serialize_body(NetMsg &msg) const = 0;
+	
 };
 
 

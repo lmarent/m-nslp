@@ -152,7 +152,8 @@ libmnslp_a-session_id.o: session_id.cpp /usr/include/assert.h \
  ../../protlib/include/ie.h /usr/include/c++/4.6/set \
  /usr/include/c++/4.6/bits/stl_set.h \
  /usr/include/c++/4.6/bits/stl_multiset.h ../../protlib/include/logfile.h \
- ../../protlib/include/threadsafe_db.h \
+ ../../protlib/include/threadsafe_db.h ../include/policy_rule.h \
+ ../include/mspec_rule_key.h /usr/include/uuid/uuid.h \
  ../include/msg/mnslp_mspec_object.h
 
 /usr/include/assert.h:
@@ -584,5 +585,11 @@ libmnslp_a-session_id.o: session_id.cpp /usr/include/assert.h \
 ../../protlib/include/logfile.h:
 
 ../../protlib/include/threadsafe_db.h:
+
+../include/policy_rule.h:
+
+../include/mspec_rule_key.h:
+
+/usr/include/uuid/uuid.h:
 
 ../include/msg/mnslp_mspec_object.h:

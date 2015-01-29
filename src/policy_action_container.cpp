@@ -67,7 +67,7 @@ policy_action_container::read_from_xml(xmlTextReaderPtr reader)
 		{
 			policy_action action;
 			ret = action.read_from_xml(reader);
-			set_action(action.get_name(), action);
+			set_policy_action(action.get_action(), action);
 		}
 		else{
 			ret = xmlTextReaderRead(reader);
@@ -92,8 +92,9 @@ policy_action_container::read_from_xml(xmlTextReaderPtr reader)
 }
 	
 void 
-policy_action_container::set_action(std::string key, policy_action _action)
+policy_action_container::set_policy_action(std::string key, policy_action &_action)
 {
+	std::cout << "size found" << _action.get_number_mappings() << std::endl;
 	actions[key] = _action;
 }
 	
@@ -127,14 +128,26 @@ bool
 policy_action_container::check_field_availability(std::string app, 
 												  msg::mnslp_field &field) const
 {
-	
-	for ( const_iterator i = actions.begin(); i != actions.end(); i++ ) {
 
-		// Verify if the field is included in this action.
-		if ((i->second).check_field_availability(app,field) )
+	std::vector< std::pair<int, std::string> > map_to_be_ordered;
+	// Do the search using the priority defined.
+	for ( const_iterator i = actions.begin(); i != actions.end(); i++ ) {
+		std::pair<int, std::string> pair_tmp((i->second).get_priority(), i->first);
+		map_to_be_ordered.push_back( pair_tmp);
+	}
+	
+	std::sort (map_to_be_ordered.begin(), map_to_be_ordered.end());
+	
+	for (std::vector< std::pair<int, std::string> >::iterator it=map_to_be_ordered.begin(); 
+				it!=map_to_be_ordered.end(); ++it){
+
+		const_iterator it_map;
+		it_map = actions.find((*it).second);
+		
+		if ((it_map->second).check_field_availability(app,field) )
 			return true;
 		
-	}	
+	}
 	
 	return false;
 	
@@ -145,27 +158,57 @@ policy_action_container::get_field_traslate( std::string app, msg::mnslp_field &
 {
 	
 	std::string val_return = "";
+
+	std::vector< std::pair<int, std::string> > map_to_be_ordered;
+	// Do the search using the priority defined.
 	for ( const_iterator i = actions.begin(); i != actions.end(); i++ ) {
-		// Bring the field translation from this action.
-		val_return = ((i->second).get_field_traslate(app,field) );
+		std::pair<int, std::string> pair_tmp((i->second).get_priority(), i->first);
+		map_to_be_ordered.push_back( pair_tmp);
+	}
+	
+	std::sort (map_to_be_ordered.begin(), map_to_be_ordered.end());
+	
+	for (std::vector< std::pair<int, std::string> >::iterator it=map_to_be_ordered.begin(); 
+				it!=map_to_be_ordered.end(); ++it){
+
+		const_iterator it_map;
+		it_map = actions.find((*it).second);
+		
+		val_return = ((it_map->second).get_field_traslate(app,field) );
 		if (val_return.length() > 0)
 			break;
-	}	
+		
+	}
 	
 	return val_return;
 }
 
-std::string 
+const metering_config *
 policy_action_container::get_package( std::string app, msg::mnslp_field &field ) const
 {
 	
-	std::string val_return = "";
+	const metering_config *val_return = NULL;
+	
+	std::vector< std::pair<int, std::string> > map_to_be_ordered;
+	// Do the search using the priority defined.
 	for ( const_iterator i = actions.begin(); i != actions.end(); i++ ) {
-		// Bring the field translation from this action.
-		val_return = ((i->second).get_package(app,field) );
-		if (val_return.length() > 0)
+		std::pair<int, std::string> pair_tmp((i->second).get_priority(), i->first);
+		map_to_be_ordered.push_back( pair_tmp);
+	}
+	
+	std::sort (map_to_be_ordered.begin(), map_to_be_ordered.end());
+	
+	for (std::vector< std::pair<int, std::string> >::iterator it=map_to_be_ordered.begin(); 
+				it!=map_to_be_ordered.end(); ++it){
+
+		const_iterator it_map;
+		it_map = actions.find((*it).second);
+		
+		val_return = ((it_map->second).get_package(app,field) );
+		if (val_return != NULL)
 			break;
-	}	
+		
+	}
 	
 	return val_return;
 }

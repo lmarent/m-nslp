@@ -71,30 +71,38 @@ class mt_policy_rule {
 	*/
 	mt_policy_rule(const mt_policy_rule &rhs);
   
-	~mt_policy_rule() { }
+	~mt_policy_rule();
 
     /**
     * Create a deep copy of this object.
     */
 	mt_policy_rule *copy() const;
 
+	void set_object(mspec_rule_key key, msg::mnslp_mspec_object *obj);
     /**
     * Add a mspec objet to the rule. This creates the key to share with the
     * metering application. 
+    * The key created is returned in string format.
     */
-    void set_object(msg::mnslp_mspec_object &obj);
+    std::string set_object(msg::mnslp_mspec_object *obj);
+	
+	size_t get_number_mspec_objects();
 		
-	typedef std::map<mspec_rule_key, msg::mnslp_mspec_object>::const_iterator const_iterator;
+	typedef std::map<mspec_rule_key, 
+			msg::mnslp_mspec_object *>::const_iterator const_iterator;
 
 	const_iterator begin() const throw() { return objects.begin(); }
 	const_iterator end() const throw() { return objects.end(); }
 	
+	bool operator==(const mt_policy_rule &rhs);
+	
+	bool operator!=(const mt_policy_rule &rhs); 
 
-  private:
+  protected:
 	
 	/// Map for all mspec objects belonging to the rule to be used in the 
 	/// metering application.
-	std::map<mspec_rule_key,msg::mnslp_mspec_object> objects;
+	std::map<mspec_rule_key,msg::mnslp_mspec_object *> objects;
 	
 };
 

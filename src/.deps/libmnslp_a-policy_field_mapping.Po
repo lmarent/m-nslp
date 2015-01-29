@@ -175,7 +175,8 @@ libmnslp_a-policy_field_mapping.o: policy_field_mapping.cpp \
  ../../protlib/include/ie.h /usr/include/c++/4.6/set \
  /usr/include/c++/4.6/bits/stl_set.h \
  /usr/include/c++/4.6/bits/stl_multiset.h ../../protlib/include/logfile.h \
- ../../protlib/include/threadsafe_db.h \
+ ../../protlib/include/threadsafe_db.h ../include/policy_rule.h \
+ ../include/mspec_rule_key.h /usr/include/uuid/uuid.h \
  ../include/msg/mnslp_mspec_object.h ../include/mnslp_config.h \
  ../../protlib/include/messages.h /usr/include/c++/4.6/ext/hash_set \
  ../../protlib/include/fqueue.h ../../protlib/include/messages.h \
@@ -184,10 +185,10 @@ libmnslp_a-policy_field_mapping.o: policy_field_mapping.cpp \
  /usr/include/c++/4.6/bits/sstream.tcc \
  ../../protlib/include/configpar_repository.h \
  ../../protlib/include/configpar.h ../../ntlp/include/gist_conf.h \
- ../include/policy_rule.h ../include/mspec_rule_key.h \
- /usr/include/uuid/uuid.h ../include/policy_action_container.h \
- ../include/policy_action.h ../include/policy_action_mapping.h \
- ../include/policy_field_mapping.h ../include/policy_filter_container.h \
+ ../include/policy_action_container.h ../include/policy_action.h \
+ ../include/policy_action_mapping.h /usr/include/c++/4.6/limits \
+ ../include/policy_field_mapping.h \
+ ../include/policy_application_configuration_container.h \
  ../include/nop_policy_rule_installer.h \
  ../include/policy_rule_installer.h \
  ../include/netmate_ipfix_policy_rule_installer.h \
@@ -683,6 +684,12 @@ libmnslp_a-policy_field_mapping.o: policy_field_mapping.cpp \
 
 ../../protlib/include/threadsafe_db.h:
 
+../include/policy_rule.h:
+
+../include/mspec_rule_key.h:
+
+/usr/include/uuid/uuid.h:
+
 ../include/msg/mnslp_mspec_object.h:
 
 ../include/mnslp_config.h:
@@ -711,21 +718,17 @@ libmnslp_a-policy_field_mapping.o: policy_field_mapping.cpp \
 
 ../../ntlp/include/gist_conf.h:
 
-../include/policy_rule.h:
-
-../include/mspec_rule_key.h:
-
-/usr/include/uuid/uuid.h:
-
 ../include/policy_action_container.h:
 
 ../include/policy_action.h:
 
 ../include/policy_action_mapping.h:
 
+/usr/include/c++/4.6/limits:
+
 ../include/policy_field_mapping.h:
 
-../include/policy_filter_container.h:
+../include/policy_application_configuration_container.h:
 
 ../include/nop_policy_rule_installer.h:
 

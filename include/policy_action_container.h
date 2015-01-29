@@ -60,7 +60,7 @@ class policy_action_container {
 	 */ 
 	void read_from_xml(xmlTextReaderPtr node);
 	
-	void set_action(std::string key, policy_action _action);
+	void set_policy_action(std::string key, policy_action &_action);
 	
 	bool operator==(const policy_action_container &rhs) const;
 	
@@ -74,10 +74,12 @@ class policy_action_container {
 	
 	std::string get_field_traslate( std::string app, msg::mnslp_field &field ) const;
 	
-	std::string get_package(std::string app, msg::mnslp_field &field) const;
+	const metering_config * get_package(std::string app, msg::mnslp_field &field) const;
 	
     
   private:
+    // The string corresponds to the Id of the  metering application 
+    // being included.
 	std::map<std::string, policy_action> actions;
 	
 	

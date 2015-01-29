@@ -31,6 +31,7 @@
 
 #include <map>
 #include <string>
+#include <limits>
 #include <libxml/xmlreader.h>
 
 #include "msg/mnslp_field.h"
@@ -39,6 +40,42 @@
 
 namespace mnslp {
 
+/**
+ * This class represents the configuration established for an metering application
+ **/
+class metering_config
+{
+	public: 
+		metering_config():priority(std::numeric_limits<int>::max()){}
+		virtual ~metering_config() = 0;
+		
+		virtual metering_config *copy() const = 0;
+		
+		virtual bool is_equal(const metering_config &rhs) = 0;
+		virtual bool not_equal(const metering_config &rhs) = 0;
+
+		virtual void set_priority(int _priority) = 0;
+
+		virtual int get_priority() const = 0;
+
+		virtual int get_priority() = 0;
+
+		virtual std::ostream &operator<<(std::ostream &out) const = 0;
+	
+		virtual std::string to_string() const = 0;
+
+
+	protected:
+		/// An application can have more than a procedure to meter a specific 
+		/// export field. This value decides which is the prefered metering 
+		/// procedure when that happens.
+		int priority; 		
+};
+
+inline metering_config::~metering_config()
+{
+   // Nothing to do.
+}
 
 /**
  * This class helps to maintain the mapping configuration for the export 
@@ -47,43 +84,40 @@ namespace mnslp {
  */
 class policy_action_mapping : public policy_field_mapping {
 
+
   public:
 	
 	policy_action_mapping();
-		
-	policy_action_mapping(const policy_action_mapping &rhs);
+			
+	virtual ~policy_action_mapping() = 0;
 	
-	virtual ~policy_action_mapping();
-
-    void set_proc_name(std::string proc_name);
+	static policy_action_mapping *make(std::string app);
+	
+	virtual policy_action_mapping *copy() const = 0;
+	
+	virtual int read_from_xml(int level, xmlTextReaderPtr node) = 0;
     
-    void set_priority(int priority);
-            
-    std::string get_proc_name() const;
+    bool is_equal(const policy_action_mapping &rhs) const;
     
-    int get_priority();
-    
-    bool operator==(const policy_action_mapping &rhs) const;
-    
-    bool operator!=(const policy_action_mapping &rhs) const;
+    bool not_equal(const policy_action_mapping &rhs) const;
     	
 	std::ostream &operator<<(std::ostream &out);
 	
 	std::string to_string();
-		    
-    static std::string proc_name_str;
-    static std::string priority_str;
-	    
-  private:
-
-	int priority;
-	std::string proc_name;
 	
-	void processNode(int level, xmlTextReaderPtr reader); 
-			
+	void set_metering_configuration(metering_config *met_conf);
+	
+	const metering_config * get_metering_configuration() const;
+	
+	virtual std::string get_key() const = 0;
+	
+	int get_priority() const;
+		       
+  protected:
+
+	metering_config *meter_config;
+					
 };
-
-
 
 } // namespace mnslp
 

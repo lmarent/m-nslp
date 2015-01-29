@@ -86,38 +86,23 @@ bool ie_store::operator==(const ie_store &other) const throw() {
 
 	// The number of entries has to be equal, otherwise the check
 	// after this one doesn't work.
-	
-	std::cout << "in == step 1" 
-			  << "left size:" << size() 
-			  << "Right size" << other.size() << std::endl;
-	
+		
 	if ( size() != other.size() )
 		return false;
-
-	std::cout << "in == step 2" << std::endl;
 
 	// All entries have to be identical.
 	for ( c_iter i = entries.begin(); i != entries.end(); i++ ) {
 		const ie_object_key id = i->first;
 		const IE *obj = i->second;
   
-        std::cout << "in == step 3 -id" << id.to_string() << std::endl;
-
 		IE *other_obj = other.get(id);
 		
 		// Note: other_obj can't be NULL, set() takes care of that.
 		if ( other_obj == NULL || *obj != *other_obj ){
-			if (other_obj == NULL)
-				std::cout << "The other object is null" << std::endl;
-			
-			if (*obj != *other_obj)
-				std::cout << "Diferent objects" << std::endl;
 			return false;
 		}
 	}
-	
-	std::cout << "in == step 4" << std::endl;
-	
+		
 	return true;	// no difference found
 }
 

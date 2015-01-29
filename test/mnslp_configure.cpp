@@ -120,8 +120,6 @@ void MNslpConfigureTest::testManager01() {
     mess = new mnslp_ipfix_message(sourceid, IPFIX_VERSION);	
 	mess->delete_all_templates();
 
-	std::cout << "entro 1" << std::endl;
-
 	templatedataid = mess->new_data_template( nfields );
 	mess->add_field(templatedataid, 0, IPFIX_FT_SOURCEIPV4ADDRESS, 4);
 	mess->add_field(templatedataid, 0, IPFIX_FT_OCTETDELTACOUNT, 8);
@@ -130,8 +128,6 @@ void MNslpConfigureTest::testManager01() {
 	mnslp_ipfix_field field1 = mess->get_field_definition( 0, IPFIX_FT_SOURCEIPV4ADDRESS );
 	mnslp_ipfix_value_field fvalue1 = field1.get_ipfix_value_field( (uint8_t *) buf, 4);
 	mnslp_ipfix_value_field fvalue1a = field1.get_ipfix_value_field( (uint8_t *) buf2, 4);
-
-	std::cout << "entro 2" << std::endl;
 	
 	mnslp_ipfix_field field2 = mess->get_field_definition( 0, IPFIX_FT_OCTETDELTACOUNT );
 	mnslp_ipfix_value_field fvalue2 = field2.get_ipfix_value_field( octdel);
@@ -141,8 +137,6 @@ void MNslpConfigureTest::testManager01() {
 	mnslp_ipfix_value_field fvalue3 = field3.get_ipfix_value_field( packdel );
 	mnslp_ipfix_value_field fvalue3a = field3.get_ipfix_value_field( packdel2 );
 	
-	std::cout << "entro 3" << std::endl;
-
 	mnslp_ipfix_data_record data(templatedataid);
 	data.insert_field(0, IPFIX_FT_SOURCEIPV4ADDRESS, fvalue1);
 	data.insert_field(0, IPFIX_FT_OCTETDELTACOUNT, fvalue2);
@@ -155,8 +149,6 @@ void MNslpConfigureTest::testManager01() {
 	data2.insert_field(0, IPFIX_FT_PACKETDELTACOUNT, fvalue3a);
 	mess->include_data(templatedataid, data2);
 	mess->output(templatedataid);
-
-	std::cout << "entro 4" << std::endl;
 
     /* 
      * Builds the configure message
@@ -192,6 +184,8 @@ void MNslpConfigureTest::testManager01() {
 	CPPUNIT_ASSERT( num_read == ie->get_serialized_size(IE::protocol_v1) );
 	CPPUNIT_ASSERT( ie != NULL );
     CPPUNIT_ASSERT( *m1 == *ie );
+
+	std::cout << "--------------------------------------- finish:" << num_read << std::endl;	
     
 	delete m1;
 	delete ie;
@@ -256,7 +250,6 @@ void MNslpConfigureTest::testManager02() {
 	mess->include_data(templatedataid, data2);
 	mess->output(templatedataid);
 	
-	std::cout << "copying to second message" << std::endl;
 	mnslp_ipfix_message *mess2 = new mnslp_ipfix_message(*mess);	
 	
     /* 
@@ -292,11 +285,8 @@ void MNslpConfigureTest::testManager02() {
 	CPPUNIT_ASSERT( ie != NULL );
 	CPPUNIT_ASSERT( errlist.is_empty() );
 	CPPUNIT_ASSERT( num_read == ie->get_serialized_size(IE::protocol_v1) );
-	std::cout << "after get serialized size" << std::endl;
 	CPPUNIT_ASSERT( ie != NULL );
-	std::cout << "ie != NULL" << std::endl;
     CPPUNIT_ASSERT( *m1 == *ie );
-    std::cout << "*m1 == *ie" << std::endl;
     
 	delete m1;
 	delete ie;

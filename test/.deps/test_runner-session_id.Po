@@ -194,7 +194,8 @@ test_runner-session_id.o: session_id.cpp /usr/include/cppunit/TestCase.h \
  ../../m-nslp/include/msg/mnslp_options.h \
  ../../m-nslp/include/msg/mnslp_notify.h ../../protlib/include/address.h \
  ../../protlib/include/ie.h ../../protlib/include/logfile.h \
- ../../protlib/include/threadsafe_db.h \
+ ../../protlib/include/threadsafe_db.h ../../m-nslp/include/policy_rule.h \
+ ../../m-nslp/include/mspec_rule_key.h /usr/include/uuid/uuid.h \
  ../../m-nslp/include/msg/mnslp_mspec_object.h
 
 /usr/include/cppunit/TestCase.h:
@@ -698,5 +699,11 @@ test_runner-session_id.o: session_id.cpp /usr/include/cppunit/TestCase.h \
 ../../protlib/include/logfile.h:
 
 ../../protlib/include/threadsafe_db.h:
+
+../../m-nslp/include/policy_rule.h:
+
+../../m-nslp/include/mspec_rule_key.h:
+
+/usr/include/uuid/uuid.h:
 
 ../../m-nslp/include/msg/mnslp_mspec_object.h:

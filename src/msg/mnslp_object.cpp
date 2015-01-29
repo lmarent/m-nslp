@@ -219,8 +219,6 @@ void mnslp_object::serialize(NetMsg &msg, coding_t coding,
 
 	uint32 start_pos = msg.get_pos();
 	
-	std::cout << "in serialize object:" << start_pos << std::endl;
-
 	// Check if the object is in a valid state. Throw an exception if not.
 	uint32 tmp;
 	check_ser_args(coding, tmp);
@@ -248,12 +246,7 @@ void mnslp_object::serialize(NetMsg &msg, coding_t coding,
 		throw IEMsgTooShort(CODING, get_category(), msg.get_pos());
 	}
 
-	std::cout << "llego a  serialize object:" << bytes_written << std::endl;
-
 	bytes_written = msg.get_pos() - start_pos;
-
-	std::cout << "ending serialize object:" << bytes_written << std::endl;
-
 }
 
 

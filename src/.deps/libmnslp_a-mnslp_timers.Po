@@ -182,15 +182,15 @@ libmnslp_a-mnslp_timers.o: mnslp_timers.cpp ../include/mnslp_timers.h \
  ../../protlib/include/configpar_repository.h \
  ../../protlib/include/configpar.h ../../ntlp/include/gist_conf.h \
  ../include/session_manager.h ../include/session.h \
- ../include/msg/mnslp_mspec_object.h ../include/ni_session.h \
- ../include/events.h ../../ntlp/include/mri_pc.h \
+ ../include/policy_rule.h ../include/mspec_rule_key.h \
+ /usr/include/uuid/uuid.h ../include/msg/mnslp_mspec_object.h \
+ ../include/ni_session.h ../include/events.h ../../ntlp/include/mri_pc.h \
  ../../ntlp/include/mri_le.h ../include/msg/ntlp_msg.h \
  ../../ntlp/include/mri.h ../include/session_id.h ../include/session.h \
- ../include/msg/mnslp_response.h ../include/policy_rule.h \
- ../include/mspec_rule_key.h /usr/include/uuid/uuid.h \
- ../include/mnslp_timers.h ../include/msg/selection_metering_entities.h \
- ../include/nf_session.h ../include/nr_session.h \
- ../include/policy_rule_installer.h ../include/policy_action_container.h \
+ ../include/msg/mnslp_response.h ../include/mnslp_timers.h \
+ ../include/msg/selection_metering_entities.h ../include/nf_session.h \
+ ../include/nr_session.h ../include/policy_rule_installer.h \
+ ../include/policy_action_container.h \
  /usr/include/libxml2/libxml/xmlreader.h \
  /usr/include/libxml2/libxml/xmlversion.h \
  /usr/include/libxml2/libxml/xmlexports.h \
@@ -213,8 +213,9 @@ libmnslp_a-mnslp_timers.o: mnslp_timers.cpp ../include/mnslp_timers.h \
  /usr/include/libxml2/libxml/relaxng.h \
  /usr/include/libxml2/libxml/xmlschemas.h ../include/policy_action.h \
  ../include/msg/mnslp_field.h ../include/mnslp_xml_node_reader.h \
- ../include/policy_action_mapping.h ../include/policy_field_mapping.h \
- ../include/policy_filter_container.h \
+ ../include/policy_action_mapping.h /usr/include/c++/4.6/limits \
+ ../include/policy_field_mapping.h \
+ ../include/policy_application_configuration_container.h \
  ../include/nop_policy_rule_installer.h \
  ../include/netmate_ipfix_policy_rule_installer.h \
  ../include/msg/mnslp_ipfix_message.h \
@@ -750,6 +751,12 @@ libmnslp_a-mnslp_timers.o: mnslp_timers.cpp ../include/mnslp_timers.h \
 
 ../include/session.h:
 
+../include/policy_rule.h:
+
+../include/mspec_rule_key.h:
+
+/usr/include/uuid/uuid.h:
+
 ../include/msg/mnslp_mspec_object.h:
 
 ../include/ni_session.h:
@@ -769,12 +776,6 @@ libmnslp_a-mnslp_timers.o: mnslp_timers.cpp ../include/mnslp_timers.h \
 ../include/session.h:
 
 ../include/msg/mnslp_response.h:
-
-../include/policy_rule.h:
-
-../include/mspec_rule_key.h:
-
-/usr/include/uuid/uuid.h:
 
 ../include/mnslp_timers.h:
 
@@ -846,9 +847,11 @@ libmnslp_a-mnslp_timers.o: mnslp_timers.cpp ../include/mnslp_timers.h \
 
 ../include/policy_action_mapping.h:
 
+/usr/include/c++/4.6/limits:
+
 ../include/policy_field_mapping.h:
 
-../include/policy_filter_container.h:
+../include/policy_application_configuration_container.h:
 
 ../include/nop_policy_rule_installer.h:
 

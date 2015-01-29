@@ -101,6 +101,9 @@ public:
 	
 	/// Destructor of the field key
 	inline ~mnslp_ipfix_field_key(){}
+
+
+	virtual mnslp_ipfix_field_key *copy() const;
 		
 	/**
 	 *  Equals to operator. It is equal when it has the same enterprise number an type
@@ -245,6 +248,14 @@ class mnslp_ipfix_field : public mnslp_field
 		*/
 		int ipfix_snprint_int( char * str, size_t size, mnslp_ipfix_value_field &in ); /* Tested */
 
+		/** Put the field value int into a char string 
+		*  @param  in - value to put
+		* 		   str - string where the method puts the information
+		* 		   size - number of characters allocated to str, so the method could no 
+		* 				  copy more size characters.
+		*/
+		int ipfix_snprint_int( char * str, size_t size, mnslp_ipfix_value_field &in ) const; /* Tested */
+
 		/** Put the field value unsigned int into a char string 
 		*  @param  in - value to put
 		* 		   str - string where the method puts the information
@@ -252,6 +263,14 @@ class mnslp_ipfix_field : public mnslp_field
 		* 				  copy more size characters.
 		*/
 		int ipfix_snprint_uint( char * str, size_t size, mnslp_ipfix_value_field &in );
+
+		/** Put the field value unsigned int into a char string 
+		*  @param  in - value to put
+		* 		   str - string where the method puts the information
+		* 		   size - number of characters allocated to str, so the method could no 
+		* 				  copy more size characters.
+		*/
+		int ipfix_snprint_uint( char * str, size_t size, mnslp_ipfix_value_field &in ) const;
 
 		/** Encode a field value of type bytes into a uint8_t array. 
 		*   verifies that the value is of type bytes. 
@@ -279,6 +298,14 @@ class mnslp_ipfix_field : public mnslp_field
 		*/
 		int ipfix_snprint_bytes( char * str, size_t size, mnslp_ipfix_value_field &in_field );
 
+		/** Put a bytes field value into a char string 
+		*  @param  in - value to put
+		* 		   str - string where the method puts the information
+		* 		   size - number of characters allocated to str, so the method could no 
+		* 				  copy more size characters.
+		*/
+		int ipfix_snprint_bytes( char * str, size_t size, mnslp_ipfix_value_field &in_field ) const;
+
 		/** Put an string field value into a char string 
 		*  @param  in - value to put
 		* 		   str - string where the method puts the information
@@ -287,6 +314,14 @@ class mnslp_ipfix_field : public mnslp_field
 		*/
 		int ipfix_snprint_string( char * str, size_t size, mnslp_ipfix_value_field &in_field );
 
+		/** Put an string field value into a char string 
+		*  @param  in - value to put
+		* 		   str - string where the method puts the information
+		* 		   size - number of characters allocated to str, so the method could no 
+		* 				  copy more size characters.
+		*/
+		int ipfix_snprint_string( char * str, size_t size, mnslp_ipfix_value_field &in_field ) const;
+
 		/** Put an ip address field value into a char string 
 		*  @param  in - value to put
 		* 		   str - string where the method puts the information
@@ -294,6 +329,14 @@ class mnslp_ipfix_field : public mnslp_field
 		* 				  copy more size characters.
 		*/
 		int ipfix_snprint_ipaddr( char * str, size_t size, mnslp_ipfix_value_field &in_field ); /* Tested */
+
+		/** Put an ip address field value into a char string 
+		*  @param  in - value to put
+		* 		   str - string where the method puts the information
+		* 		   size - number of characters allocated to str, so the method could no 
+		* 				  copy more size characters.
+		*/
+		int ipfix_snprint_ipaddr( char * str, size_t size, mnslp_ipfix_value_field &in_field ) const; /* Tested */
 
 		/** Encode a field value of type float into a uint8_t array. 
 		*   verifies that the value is of type float. 
@@ -320,6 +363,14 @@ class mnslp_ipfix_field : public mnslp_field
 		* 				  copy more size characters.
 		*/
 		int ipfix_snprint_float( char * str, size_t size, mnslp_ipfix_value_field &in );
+
+		/** Put a float field value into a char string 
+		*  @param  in - value to put
+		* 		   str - string where the method puts the information
+		* 		   size - number of characters allocated to str, so the method could no 
+		* 				  copy more size characters.
+		*/
+		int ipfix_snprint_float( char * str, size_t size, mnslp_ipfix_value_field &in ) const;
 
 		/** Get the field value from a field of type int of one character
 		*  verifies that the field is of type int and one character long.
@@ -394,16 +445,20 @@ class mnslp_ipfix_field : public mnslp_field
 		int snprint( char * str, size_t size, mnslp_ipfix_value_field &in );
 
 		/** Put a field value into a char string. It takes the field type from
-		 *  the field object for who is call is method.
+		 *  the field object for who is calling this method.
 		*  @param  in - value to put
 		* 		   str - string where the method puts the information
 		* 		   size - number of characters allocated to str, so the method could no 
 		* 				  copy more size characters.
 		*/
-		inline int snprint( char * str, size_t size, mnslp_ipfix_value_field &in ) const
-		{
-			return snprint(str, size, in);
-		}
+		int snprint( char * str, size_t size, mnslp_ipfix_value_field &in ) const;
+		
+		
+		/** Put a field value into string. It takes the field type from
+		 *  the field object for who is calling this method.
+		*  @param  in - value to put
+		*/
+		std::string print_value(mnslp_ipfix_value_field &in) const;
 
 };
 

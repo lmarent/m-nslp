@@ -32,7 +32,7 @@
 #include "protlib_types.h"
 #include "session_id.h"
 #include "address.h"
-#include "msg/mnslp_mspec_object.h"
+#include "policy_rule.h"
 #include <vector>
 
 
@@ -141,21 +141,10 @@ class session {
 
 	virtual bool is_final() const = 0;
 
-	typedef std::vector<msg::mnslp_mspec_object>::const_iterator const_iterator;
-	typedef std::vector<msg::mnslp_mspec_object>::iterator iterator;
-
-	void set_mspec_object(msg::mnslp_mspec_object &object);
+	void set_mspec_object(msg::mnslp_mspec_object *object);
 	
-	const_iterator begin() const throw() { return mspec_objects.begin(); }
-	const_iterator end() const throw() { return mspec_objects.end(); }
-
-	iterator begin() throw() { return mspec_objects.begin(); }
-	iterator end() throw() { return mspec_objects.end(); }
-
-	size_t get_number_mspec_objects(void);
+	size_t get_number_mspec_objects();
 	
-	void remove_mspec_object(iterator position);
-
   protected:
   
 	session();
@@ -189,7 +178,7 @@ class session {
 
 	uint32 msn;
 	
-	std::vector<msg::mnslp_mspec_object> mspec_objects;
+	mt_policy_rule rule;
 
 	pthread_mutex_t	mutex;
 

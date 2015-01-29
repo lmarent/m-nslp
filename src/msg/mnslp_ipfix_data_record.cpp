@@ -197,14 +197,11 @@ mnslp_ipfix_data_record::operator!= (const mnslp_ipfix_data_record& rhs) const
 
 	std::map<mnslp_ipfix_field_key, mnslp_ipfix_value_field>::const_iterator iter;
 	for (iter = field_data.begin(); iter != field_data.end(); ++iter) {
-		std::cout << "we are in != operator data record" << std::endl;
 		mnslp_ipfix_field_key key = iter->first;
 		mnslp_ipfix_value_field tmp = rhs.get_field(key);
 		mnslp_ipfix_value_field tmp2 = iter->second;
-		if (tmp != tmp2){
-			std::cout << "Key:" << key.to_string() << "field 1:" 
-					  << tmp.to_string() << " field 2:" 
-					  << tmp2.to_string() << std::endl;
+		if (tmp != tmp2)
+		{
 			return true;
 		}
 	}

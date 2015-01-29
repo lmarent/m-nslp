@@ -285,7 +285,7 @@ class api_configure_event : public api_event {
 	api_configure_event(const hostaddress &source, const hostaddress &dest,
 		uint16 source_port=0, uint16 dest_port=0, uint8 protocol=0,
 		uint32 msg_seq_nbr=0, uint32 msg_hop_count=0,
-		std::vector<mnslp_mspec_object> mspec_objects= std::vector<mnslp_mspec_object>(),
+		std::vector<msg::mnslp_mspec_object *> mspec_objects= std::vector<msg::mnslp_mspec_object *>(),
 		selection_metering_entities::selection_metering_entities_t sel_met_entities = selection_metering_entities::sme_any, 
 		uint32 lifetime=0, FastQueue *rq=NULL)
 		: api_event(), source_addr(source), dest_addr(dest),
@@ -312,7 +312,7 @@ class api_configure_event : public api_event {
 
 	inline uint32 get_msg_sequence_number()  const { return mes_sequence_number; } 
 	
-	inline const std::vector<mnslp_mspec_object> &get_metering_objects() const {
+	inline const std::vector<msg::mnslp_mspec_object *> &get_metering_objects() const {
 		return mspec_objects; }
 
 	inline FastQueue *get_return_queue() const { return return_queue; }
@@ -327,7 +327,7 @@ class api_configure_event : public api_event {
 	uint16 source_port;
 	uint16 dest_port;
 	uint8 protocol;
-	std::vector<mnslp_mspec_object> mspec_objects;
+	std::vector<msg::mnslp_mspec_object *> mspec_objects;
 
 	uint32 session_lifetime;
 	uint32 mes_sequence_number;

@@ -94,7 +94,7 @@ public:
 	/**
 	 * Return the key represented as string. 
 	 */
-	std::string get_string_key() const;
+	std::string to_string() const;
 	
 	/** 
 	 * Not equal to operator. 

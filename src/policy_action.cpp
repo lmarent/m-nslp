@@ -27,9 +27,11 @@
 //
 // ===========================================================
 
-#include "policy_action.h"
 #include <libxml/xmlreader.h>
 #include <iostream>
+#include <vector>
+
+#include "policy_action.h"
 #include "msg/information_code.h"
 #include "policy_rule_installer.h"
 
@@ -37,6 +39,8 @@
 namespace mnslp {
 
 std::string policy_action::id_str = "ID";
+std::string policy_action::priority_str = "PRIORITY";
+std::string policy_action::action_str = "POLICY_ACTION_APP";
 
 
 policy_action::policy_action()
@@ -46,13 +50,47 @@ policy_action::policy_action()
 	
 policy_action::policy_action(const policy_action &rhs)
 {
+	
 	action = rhs.action;
-	action_mappings = rhs.action_mappings;
+	priority = rhs.priority;
+
+	std::map<std::string, policy_action_mapping *>::const_iterator it;
+	for ( it = rhs.action_mappings.begin(); it != rhs.action_mappings.end(); it++ )
+	{
+		const std::string id = it->first;
+		const policy_action_mapping *obj = it->second;
+		if (obj){
+			set_action_mapping(id, obj->copy());
+		}
+	}
+}
+
+policy_action& 
+policy_action::operator=(policy_action const &rhs)
+{
+	action = rhs.action;
+	priority = rhs.priority;
+
+	std::map<std::string, policy_action_mapping *>::const_iterator it;
+	for ( it = rhs.action_mappings.begin(); it != rhs.action_mappings.end(); it++ )
+	{
+		const std::string id = it->first;
+		const policy_action_mapping *obj = it->second;
+		if (obj){
+			set_action_mapping(id, obj->copy());
+		}
+	}
+	return *this;
 }
 	
 policy_action::~policy_action()
 {
-	// Nothing to do.
+	std::map<std::string, policy_action_mapping *>::iterator i;
+	for ( i = action_mappings.begin(); i != action_mappings.end(); i++ ) {
+		delete i->second;
+		action_mappings.erase(i);
+	}
+
 }
 
 int policy_action::read_from_xml(xmlTextReaderPtr reader)
@@ -64,6 +102,7 @@ int policy_action::read_from_xml(xmlTextReaderPtr reader)
 	
 	// Level 0 is the whole set of rules
 	// Level 1 corresponds to action objects.
+	
 	int level = 1;
 	if (xmlTextReaderDepth(reader) == level)
 	{
@@ -80,17 +119,31 @@ int policy_action::read_from_xml(xmlTextReaderPtr reader)
 			if ((xmlTextReaderDepth(reader) == level) and 
 				(xmlTextReaderNodeType(reader) == 1) )
 			{
-				policy_action_mapping action_mapping;
-				ret = action_mapping.read_from_xml(level, reader);
-				set_action_mapping(action_mapping.get_application(), 
+				if (xmlStrEqual( name, 
+						(const xmlChar *) policy_action::action_str.c_str()) == 1 )
+				{
+					policy_action_mapping *action_mapping;
+				
+					std::string metering_application = processAttribute(reader, "ID");
+					action_mapping = policy_action_mapping::make(metering_application);
+				
+					action_mapping->read_from_xml(level, reader);
+				
+					set_action_mapping(action_mapping->get_metering_application(), 
 							   action_mapping);
-					
+				}
+				else if (xmlStrEqual( name, 
+						(const xmlChar *) policy_action::priority_str.c_str()) == 1)
+				{
+					set_priority(atoi((processTextNode(level + 1, reader)).c_str()));
+				}	
 			}
 			else{
 				if (xmlTextReaderDepth(reader) < level){
 					return ret;
 				}
-				else{
+				else
+				{
 					ret = xmlTextReaderRead(reader);
 				}
 			}
@@ -107,9 +160,19 @@ int policy_action::read_from_xml(xmlTextReaderPtr reader)
 
 	
 void
-policy_action::set_action_mapping(std::string app, policy_action_mapping _mapping)
+policy_action::set_action_mapping(std::string app, policy_action_mapping *_mapping)
 {
+
+	if ( _mapping == NULL )
+		return;
+
+	policy_action_mapping *old = action_mappings[app];
+
+	if ( old )
+		delete old;
+
 	action_mappings[app] = _mapping;
+	
 }
 
 bool
@@ -117,6 +180,9 @@ policy_action::operator ==(const policy_action & rhs) const
 {
 	if ((action.compare(rhs.action)) != 0 )
 		return false;
+		
+	if (priority != rhs.priority )
+		return false;	
 	
 	// All entries have to be identical.
 	for ( const_iterator i = action_mappings.begin(); i != action_mappings.end(); i++ ) {
@@ -124,7 +190,7 @@ policy_action::operator ==(const policy_action & rhs) const
 		
 		const_iterator j = rhs.action_mappings.find(key);
 		if ( j != rhs.action_mappings.end() ){
-			if ( i->second != j->second)
+			if ( (i->second)->not_equal( *(j->second)))
 				return false;
 		}
 		else
@@ -141,17 +207,51 @@ policy_action::operator !=(const policy_action & rhs) const
 }
 
 std::string 
-policy_action::get_name() const
+policy_action::get_action() const
 {
 	return action;
+}
+
+int policy_action::get_priority() const
+{
+	return priority;
+}
+
+void 
+policy_action::set_action(std::string _action)
+{
+	action = _action;
+}
+
+void 
+policy_action::set_priority(int _priority)
+{
+	priority = _priority;
 }
 
 bool 
 policy_action::check_field_availability(std::string app, msg::mnslp_field &field) const
 {
+	
+	std::vector< std::pair<int, std::string> > map_to_be_ordered;
+	
+	// Do the search using the priority defined.
 	for ( const_iterator i = action_mappings.begin(); i != action_mappings.end(); i++ ) {
-		if (app.compare( (i->second).get_application() ) == 0) 
-			return (i->second).check_field_availability(field);
+		std::pair<int, std::string> pair_tmp((i->second)->get_priority(), i->first);
+		map_to_be_ordered.push_back( pair_tmp);
+	}
+	
+	std::sort (map_to_be_ordered.begin(), map_to_be_ordered.end());
+	
+	for (std::vector< std::pair<int, std::string> >::iterator it=map_to_be_ordered.begin(); 
+				it!=map_to_be_ordered.end(); ++it){
+
+		std::map<std::string, policy_action_mapping *>::const_iterator it_map;
+		it_map = action_mappings.find((*it).second);
+		
+		if (app.compare( (it_map->second)->get_metering_application() ) == 0){
+			return (it_map->second)->check_field_availability(field);
+		}
 	}
 	return false;
 }
@@ -160,23 +260,58 @@ std::string
 policy_action::get_field_traslate(std::string app, msg::mnslp_field &field) const
 {
 	std::string val_return = "";
+	std::vector< std::pair<int, std::string> > map_to_be_ordered;
+	// Do the search using the priority defined.
 	for ( const_iterator i = action_mappings.begin(); i != action_mappings.end(); i++ ) {
-		if (app.compare( (i->second).get_application() ) == 0) 
-			return (i->second).get_field_traslate(field);
+		std::pair<int, std::string> pair_tmp((i->second)->get_priority(), i->first);
+		map_to_be_ordered.push_back( pair_tmp);
+	}
+	
+	std::sort (map_to_be_ordered.begin(), map_to_be_ordered.end());
+	
+	for (std::vector< std::pair<int, std::string> >::iterator it=map_to_be_ordered.begin(); 
+				it!=map_to_be_ordered.end(); ++it){
+						
+		std::map<std::string, policy_action_mapping *>::const_iterator it_map;
+		it_map = action_mappings.find((*it).second);
+		
+		if (app.compare( (it_map->second)->get_metering_application() ) == 0){
+			return (it_map->second)->get_field_traslate(field);
+		}
 	}
 	return val_return;
+		
 }
 
-std::string 
+const metering_config *
 policy_action::get_package(std::string app, msg::mnslp_field &field) const
 {
-	std::string val_return = "";
+
+	metering_config * val_return = NULL;
+	std::vector< std::pair<int, std::string> > map_to_be_ordered;
+	// Do the search using the priority defined.
 	for ( const_iterator i = action_mappings.begin(); i != action_mappings.end(); i++ ) {
-		if (app.compare( (i->second).get_application() ) == 0) 
-			if ( (i->second).check_field_availability(field) )
-				return (i->second).get_proc_name();
+		std::pair<int, std::string> pair_tmp((i->second)->get_priority(), i->first);
+		map_to_be_ordered.push_back(pair_tmp);
+	}
+	
+	std::sort (map_to_be_ordered.begin(), map_to_be_ordered.end());
+	
+	for (std::vector< std::pair<int, std::string> >::iterator it=map_to_be_ordered.begin(); 
+				it!=map_to_be_ordered.end(); ++it){
+
+		std::map<std::string, policy_action_mapping *>::const_iterator it_map;
+		it_map = action_mappings.find((*it).second);
+		
+		if (app.compare( (it_map->second)->get_metering_application() ) == 0){
+			if ( (it_map->second)->check_field_availability(field) ){
+				return (it_map->second)->get_metering_configuration();
+			}
+		}
 	}
 	return val_return;
+
 }
+
 
 } // namespace mnslp

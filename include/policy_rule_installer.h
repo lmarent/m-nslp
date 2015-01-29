@@ -35,7 +35,7 @@
 
 #include "policy_rule.h"
 #include "policy_action_container.h"
-#include "policy_filter_container.h"
+#include "policy_application_configuration_container.h"
 
 
 namespace mnslp {
@@ -75,7 +75,7 @@ class policy_rule_installer {
   public:
   
 	policy_rule_installer(mnslp_config *conf) throw () : 
-		config(conf), action_container(NULL), filter_container(NULL) { }
+		config(conf), action_container(NULL), app_container(NULL) { }
 	
 	virtual ~policy_rule_installer() throw ();
 
@@ -118,29 +118,31 @@ class policy_rule_installer {
 		throw (policy_rule_installer_error) = 0;
 
 			
-	const policy_action_container & get_action_container() const;	
+	const policy_action_container * get_action_container() const;	
 	
-	const policy_filter_container & get_filter_container() const;
+	const policy_application_configuration_container * get_application_configuration_container() const;
 
 	std::string get_metering_application(){ return config->get_metering_application(); }
 
 	std::string get_metering_application() const { return config->get_metering_application(); }
 		
-	std::string get_user() { return config->get_user(); }
+	std::string get_user() const { return config->get_user(); }
 	
-	std::string get_password() { return config->get_password(); } 
+	std::string get_password() const { return config->get_password(); } 
 	
-	std::string get_metering_server() { return config->get_metering_server(); } 
+	std::string get_metering_server() const { return config->get_metering_server(); } 
 	
-	std::string get_metering_xsl() { return config->get_metering_xsl(); } 
+	std::string get_metering_xsl() const { return config->get_metering_xsl(); } 
 	
-	std::string get_metering_port() { return config->get_metering_port(); } 
+	std::string get_metering_port() const { return config->get_metering_port(); } 
 	
+	std::string get_export_directory() const { return config->get_export_directory(); }
+  
   private:
   
 	mnslp_config *config;
 	policy_action_container * action_container;
-	policy_filter_container * filter_container;
+	policy_application_configuration_container * app_container;
 
 	/**
 	* parse_export_definition_file:
@@ -156,7 +158,7 @@ class policy_rule_installer {
 	*
 	* Parse, validate and load information about the filter configuration.
 	*/
-	void parse_filter_definition_file(const char *filename) throw (policy_rule_installer_error);
+	void parse_configuration_definition_file(const char *filename) throw (policy_rule_installer_error);
 	
 	
 	
