@@ -214,6 +214,9 @@ void ResponderTest::tearDown()
 	delete d;
 	delete policy_installer;	
 	delete conf;
+	delete mess1;
+	delete mess2;
+	delete mess3;
 }
 
 
@@ -224,9 +227,9 @@ ResponderTest::create_mnslp_configure(uint32 msn, uint32 lt) const {
 	configure->set_msg_sequence_number(msn);
 	configure->set_session_lifetime(lt);
 	configure->set_selection_metering_entities(selection_metering_entities::sme_any);
-	configure->set_mspec_object(mess1);
-	configure->set_mspec_object(mess2);
-	configure->set_mspec_object(mess3);
+	configure->set_mspec_object(mess1->copy());
+	configure->set_mspec_object(mess2->copy());
+	configure->set_mspec_object(mess3->copy());
 	
 	ntlp::mri *ntlp_mri = new ntlp::mri_pathcoupled(
 		hostaddress("192.168.0.4"), 32, 0,
@@ -256,6 +259,9 @@ ResponderTest::create_mnslp_refresh(uint32 msn, uint32 lt) const {
 
 void 
 ResponderTest::testClose() {
+	
+	std::cout << "testClose 1" << std::endl;
+	
 	/*
 	 * CLOSE ---[rx_CONFIGURE && CHECK_AA && CONFIGURE(Lifetime>0) ]---> METERING
 	 */
@@ -267,6 +273,8 @@ ResponderTest::testClose() {
 	ASSERT_RESPONSE_MESSAGE_SENT(d, information_code::sc_success);
 	ASSERT_TIMER_STARTED(d, s1.get_state_timer());
 
+	std::cout << "testClose 2" << std::endl;
+	
 	/*
 	 * CLOSE ---[rx_CONFIGURE && CONFIGURE(Lifetime > MAX) ]---> METERING
 	 */
@@ -279,11 +287,16 @@ ResponderTest::testClose() {
 	ASSERT_RESPONSE_MESSAGE_SENT(d,
 		information_code::sc_success);
 	ASSERT_TIMER_STARTED(d, s2.get_state_timer());
+	
+	std::cout << "testClose 3" << std::endl;
 }
 
 
 void 
 ResponderTest::testMetering() {
+	
+	std::cout << "Test Metering 1" << std::endl;
+	
 	/*
 	 * STATE_METERING ---[rx_REFRESH && CHECK_AA && REFRESH(Lifetime>0) ]---> STATE_METERING
 	 */
@@ -296,6 +309,7 @@ ResponderTest::testMetering() {
 	ASSERT_RESPONSE_MESSAGE_SENT(d, information_code::sc_success);
 	ASSERT_TIMER_STARTED(d, s1.get_state_timer());
 
+	std::cout << "Test Metering 2" << std::endl;
 
 	/*
 	 * STATE_METERING ---[rx_REFRESH && REFRESH(Lifetime > MAX) ]---> STATE_METERING
@@ -310,6 +324,7 @@ ResponderTest::testMetering() {
 	ASSERT_RESPONSE_MESSAGE_SENT(d, information_code::sc_success);
 	ASSERT_TIMER_STARTED(d, s2.get_state_timer());
 
+	std::cout << "Test Metering 3" << std::endl;
 
 	/*
 	 * STATE_METERING ---[rx_REFRESH && REFRESH(Lifetime == 0) ]--->STATE_CLOSE
@@ -323,6 +338,7 @@ ResponderTest::testMetering() {
 	ASSERT_RESPONSE_MESSAGE_SENT(d, information_code::sc_success);
 	ASSERT_NO_TIMER(d);
 
+	std::cout << "Test Metering 4" << std::endl;
 
 	/*
 	 * STATE_METERING_PART ---[rx_REFRESH && MSN too low ]---> STATE_METERING_PART
@@ -334,6 +350,8 @@ ResponderTest::testMetering() {
 	ASSERT_STATE(s4, nr_session::STATE_METERING);
 	ASSERT_NO_MESSAGE(d);
 	ASSERT_NO_TIMER(d);
+	
+	std::cout << "Test Metering 5" << std::endl;
 }
 
 void 

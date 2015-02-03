@@ -36,6 +36,7 @@
 #include "dispatcher.h"
 #include "session.h"
 #include "msg/information_code.h"
+#include <iostream>
 
 
 using namespace mnslp;
@@ -128,8 +129,8 @@ std::ostream &mnslp::operator<<(std::ostream &out, const nf_session &s) {
  * Copy the given message and adjust it for forwarding to the NR.
  *
  */
-ntlp_msg *nf_session::create_msg_for_nr(ntlp_msg *msg) const {
-
+ntlp_msg *nf_session::create_msg_for_nr(ntlp_msg *msg) const 
+{
 	return msg->copy_for_forwarding();
 }
 
@@ -138,8 +139,8 @@ ntlp_msg *nf_session::create_msg_for_nr(ntlp_msg *msg) const {
  * Copy the given message and adjust it for forwarding to the NI.
  *
  */
-ntlp_msg *nf_session::create_msg_for_ni(ntlp_msg *msg) const {
-
+ntlp_msg *nf_session::create_msg_for_ni(ntlp_msg *msg) const 
+{
 	return msg->copy_for_forwarding();
 }
 
@@ -579,10 +580,16 @@ nf_session::state_t nf_session::handle_state_metering(
 
 	using namespace mnslp::msg;
   
+	std::cout << "In handle_state_metering " << std::endl;
+  
 	/*
 	 * A msg_event arrived which contains a MNSLP REFRESH message.
 	 */
-	if ( is_mnslp_refresh(evt) ) {
+	if ( is_mnslp_refresh(evt) ) 
+	{
+		
+		std::cout << "In refresh message " << std::endl;
+		
 		msg_event *e = dynamic_cast<msg_event *>(evt);
 		ntlp_msg *msg = e->get_ntlp_msg();
 		mnslp_refresh *refresh = e->get_refresh();
@@ -614,12 +621,12 @@ nf_session::state_t nf_session::handle_state_metering(
 		/*
 		 * All preconditions have been checked.
 		 */
-
+		set_lifetime(lifetime); // could be a new lifetime!
 		if ( lifetime > 0 ) {
 			LogDebug("forwarder session refreshed.");
 
 			response_timer.stop();
-			set_lifetime(lifetime); // could be a new lifetime!
+
 			set_msg_sequence_number(msn);
 
 			// store one copy for further reference and pass one on
@@ -633,6 +640,7 @@ nf_session::state_t nf_session::handle_state_metering(
 		}
 		else {	// lifetime == 0
 			LogDebug("forwarder session refreshed.");
+			
 			response_timer.stop();
 			
 			d->send_message( create_msg_for_nr(msg) );
@@ -660,6 +668,8 @@ nf_session::state_t nf_session::handle_state_metering(
 	            is_timer(evt, response_timer) ) ) {
 		LogWarn("downstream peer did not respond");
 
+		std::cout << "In no next node " << std::endl;
+		
 		state_timer.stop();
 		
 		// Uninstall the previous rules.
@@ -679,7 +689,10 @@ nf_session::state_t nf_session::handle_state_metering(
 	/*
 	 * Upstream peer didn't send a refresh in time.
 	 */
-	else if ( is_timer(evt, state_timer) ) {
+	else if ( is_timer(evt, state_timer) ) 
+	{
+		std::cout << "In is timer " << std::endl;
+		
 		LogWarn("session timed out");
 		std::cout << "session timed out" << std::endl;
 		response_timer.stop();
@@ -696,26 +709,34 @@ nf_session::state_t nf_session::handle_state_metering(
 	/*
 	 * A RESPONSE to a REFRESH arrived.
 	 */
-	else if ( is_mnslp_response(evt, get_last_refresh_message()) ) {
+	else if ( is_mnslp_response(evt, get_last_refresh_message()) ) 
+	{
 			
 		msg_event *e = dynamic_cast<msg_event *>(evt);
 		ntlp_msg *msg = e->get_ntlp_msg();
 		mnslp_response *response = e->get_response();
 
-		// Discard if this is no RESPONSE to our original CREATE.
+		std::cout << "In response " << std::endl;
+		
+		// Discard if this is not a RESPONSE to our original CREATE.
 		mnslp_refresh *c = get_last_refresh_message()->get_mnslp_refresh();
 		if ( ! response->is_response_to(c) ) 
 		{
+			std::cout << "In response not match" << std::endl;
+			
 			LogWarn("RESPONSE doesn't match REFRESH, discarding");
 			return STATE_METERING;	// no change
 		}
 
 		
 		if ( response->is_success() ) {
+			
+			std::cout << "Success" << std::endl;
 			LogDebug("upstream peer sent successful response.");
 			d->send_message( create_msg_for_ni(msg) );
 			if ( get_lifetime() == 0 )
 			{
+				std::cout << "uninstalling policy rules" << std::endl;
 				state_timer.stop();	
 				// Uninstall the previous rules.
 				if (rule->get_number_rule_keys() > 0)
@@ -724,6 +745,7 @@ nf_session::state_t nf_session::handle_state_metering(
 			}
 			else
 			{
+				std::cout << "continue" << std::endl;
 				state_timer.start(d, get_lifetime());
 				return STATE_METERING; // no change
 			}
@@ -775,6 +797,8 @@ nf_session::state_t nf_session::handle_state_metering(
  */
 void nf_session::process_event(dispatcher *d, event *evt) {
 	LogDebug("begin process_event(): " << *this);
+
+	std::cout << "process_event" << std::endl;
 
 	switch ( get_state() ) {
 

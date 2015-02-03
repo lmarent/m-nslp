@@ -219,10 +219,14 @@ void InitiatorTest::setUp() {
 	
 }
 
-void InitiatorTest::tearDown() {
+void InitiatorTest::tearDown() 
+{
 	delete d;
 	delete policy_installer;	
 	delete conf;
+	delete mess1;
+	delete mess2;
+	delete mess3;
 }
 
 
@@ -280,9 +284,9 @@ void InitiatorTest::testClose() {
 	 */
 	ni_session_test s1(ni_session::STATE_CLOSE);
 	vector<msg::mnslp_mspec_object *> mspec_objects;
-	mspec_objects.push_back(mess1);
-	mspec_objects.push_back(mess2);
-	mspec_objects.push_back(mess3);
+	mspec_objects.push_back(mess1->copy());
+	mspec_objects.push_back(mess2->copy());
+	mspec_objects.push_back(mess3->copy());
 	
 	event *e1 = new api_configure_event(source, destination);
 
@@ -498,9 +502,9 @@ void InitiatorTest::testIntegratedStateMachine()
 {
 
 	vector<msg::mnslp_mspec_object *> mspec_objects;
-	mspec_objects.push_back(mess1);
-	mspec_objects.push_back(mess2);
-	mspec_objects.push_back(mess3);
+	mspec_objects.push_back(mess1->copy());
+	mspec_objects.push_back(mess2->copy());
+	mspec_objects.push_back(mess3->copy());
 
 	event *e1 = new api_configure_event(source,destination,
 										(protlib::uint16) 0, //Srcport 

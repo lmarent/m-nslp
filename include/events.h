@@ -294,7 +294,7 @@ class api_configure_event : public api_event {
 		  mspec_objects(mspec_objects), sel_met_entities(sel_met_entities),
 		  session_lifetime(lifetime), return_queue(rq) { }
 
-	virtual ~api_configure_event() { }
+	virtual ~api_configure_event();
 
 	inline hostaddress get_source_address() const { return source_addr; }
 	inline uint16 get_source_port() const { return source_port; }
@@ -336,6 +336,16 @@ class api_configure_event : public api_event {
 
 	FastQueue *return_queue;
 };
+
+inline api_configure_event::~api_configure_event()
+{
+	std::vector<msg::mnslp_mspec_object *>::iterator it;
+	for (it = mspec_objects.begin(); it != mspec_objects.end(); it++)
+	{
+		delete(*it);
+	}
+	mspec_objects.clear();
+}
 
 /**
  * An API request to send a Refresh Message.
