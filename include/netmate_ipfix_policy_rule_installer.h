@@ -1,9 +1,9 @@
 /// ----------------------------------------*- mode: C++; -*--
-/// @file netmate_policy_rule_installer.h
+/// @file netmate_ipfix_policy_rule_installer.h
 /// The policy_rule_installer for netmate meter classes.
 /// ----------------------------------------------------------
-/// $Id: netmate_policy_rule_installer.h 2558 2015-01-15 11:16:00 amarentes $
-/// $HeadURL: https://./include/netmate_policy_rule_installer.h $
+/// $Id: netmate_ipfix_policy_rule_installer.h 2558 2015-01-15 11:16:00 amarentes $
+/// $HeadURL: https://./include/netmate_ipfix_policy_rule_installer.h $
 // ===========================================================
 //                      
 // Copyright (C) 2005-2007, all rights reserved by
@@ -73,21 +73,19 @@ class netmate_ipfix_policy_rule_installer : public policy_rule_installer
 	 * This method installs a group of metering spec objects into the metering
 	 * application, it assumes that every object included has been checked
 	 * to be installable in the metering application. 
+	 * 
+	 * Creates a new mt_policy_rule that constains mspec objects installed.
 	 */
-	virtual void install(const mt_policy_rule *rule)
-		throw (policy_rule_installer_error);
+	virtual mt_policy_rule * install(const mt_policy_rule *rule);
 
 	/**
 	 * This method removes a group of metering spec objects into the metering
 	 * application, it assumes that every object included has been checked
 	 * to be installable in the metering application. 
 	 */
-	virtual void remove(const mt_policy_rule *rule)
-		throw (policy_rule_installer_error);
+	virtual mt_policy_rule * remove(const mt_policy_rule *rule);
 
-
-	virtual void remove_all()
-		throw (policy_rule_installer_error);
+	virtual bool remove_all();
 
 
   protected:
@@ -98,9 +96,11 @@ class netmate_ipfix_policy_rule_installer : public policy_rule_installer
     
     msg::mnslp_ipfix_template * get_export_template(const msg::mnslp_ipfix_message *mess) const;
     
-    std::string build_command_export_fields( const mspec_rule_key &key, 
-									const msg::mnslp_ipfix_message *mess, 
-									msg::mnslp_ipfix_template *templ) const;
+    std::map<std::string, std::string> 
+    build_command_export_fields( const mspec_rule_key &key, 
+	 							 const msg::mnslp_ipfix_message *mess, 
+								 msg::mnslp_ipfix_template *templ,
+								 std::string filter_def) const;
 
 	std::string build_command_filter_fields(const msg::mnslp_ipfix_message *mess, 
 									msg::mnslp_ipfix_template *templ) const;
@@ -112,11 +112,11 @@ class netmate_ipfix_policy_rule_installer : public policy_rule_installer
 	std::string create_action_command(const msg::mnslp_ipfix_message *object) 
 			const throw ();
 
-	std::string create_postfield_command(const mspec_rule_key &key,
-										 const msg::mnslp_ipfix_message *mess) 
-			const throw ();
+	std::map<std::string, std::string> 
+	create_postfield_command(const mspec_rule_key &key, 
+							 const msg::mnslp_ipfix_message *mess) const throw ();
 			
-	bool execute_command(std::string action, std::string filter);
+	bool execute_command(std::string action, std::string post_fields);
 	
 	/**
 	 * This function verifies that all options fields included in the option template
@@ -147,6 +147,8 @@ class netmate_ipfix_policy_rule_installer : public policy_rule_installer
 	 * to string by using strerror
 	 */
 	std::string getErr(char *e);
+	
+	static std::string rule_group; 
 	
 };
 

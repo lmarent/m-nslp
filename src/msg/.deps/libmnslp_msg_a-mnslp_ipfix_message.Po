@@ -161,10 +161,10 @@ libmnslp_msg_a-mnslp_ipfix_message.o: mnslp_ipfix_message.cpp \
  /usr/include/assert.h ../../../protlib/include/network_message.h \
  ../../include/msg/mnslp_field.h ../../include/msg/mnslp_ipfix_field.h \
  ../../include/msg/mnslp_ipfix_exception.h \
- ../../include/msg/mnslp_ipfix_message.h \
- ../../include/msg/mnslp_ipfix_data_record.h \
- ../../include/msg/mnslp_ipfix_template.h /usr/include/c++/4.6/list \
+ ../../include/msg/mnslp_ipfix_message.h /usr/include/c++/4.6/list \
  /usr/include/c++/4.6/bits/stl_list.h /usr/include/c++/4.6/bits/list.tcc \
+ ../../include/msg/mnslp_ipfix_data_record.h \
+ ../../include/msg/mnslp_ipfix_template.h \
  ../../include/msg/mnslp_mspec_object.h ../../include/msg/mnslp_object.h \
  ../../include/msg/session_lifetime.h \
  ../../include/msg/information_code.h \
@@ -615,15 +615,15 @@ libmnslp_msg_a-mnslp_ipfix_message.o: mnslp_ipfix_message.cpp \
 
 ../../include/msg/mnslp_ipfix_message.h:
 
-../../include/msg/mnslp_ipfix_data_record.h:
-
-../../include/msg/mnslp_ipfix_template.h:
-
 /usr/include/c++/4.6/list:
 
 /usr/include/c++/4.6/bits/stl_list.h:
 
 /usr/include/c++/4.6/bits/list.tcc:
+
+../../include/msg/mnslp_ipfix_data_record.h:
+
+../../include/msg/mnslp_ipfix_template.h:
 
 ../../include/msg/mnslp_mspec_object.h:
 

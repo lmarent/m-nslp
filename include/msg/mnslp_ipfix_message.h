@@ -42,6 +42,7 @@
 
 #include <inttypes.h>
 #include <map>
+#include <list>
 
 
 #include "ipfix_def.h"
@@ -173,12 +174,7 @@ class mnslp_ipfix_message : public mnslp_mspec_object
 	    * Release memory for buffers and pointers used to construct the message
 	    */
 	   void close( void );
-	   
-	   /**
-	    * Adds a field of vendor type to the collection of fields
-	    */
-	   void add_vendor_information_elements( ipfix_field_type_t *fields );
-	   
+	   	   
 	   /**
 	    * creates and add a new template for the messsage
 	    * @param  nfields	- The number of fields to include in the template
@@ -369,6 +365,19 @@ class mnslp_ipfix_message : public mnslp_mspec_object
 	    * New Methods
 	    */ 
 	   
+   	   /**
+	    * Adds a field of vendor type to the collection of fields
+	    */
+	   void add_vendor_information_element( const ipfix_field_type_t &field_t );
+
+   	   /**
+	    * Adds a field of vendor type to the collection of fields
+	    */
+	   void add_vendor_information_element( int _eno, int _ftype, ssize_t _length, 
+											int _coding, 
+											const std::string _name, 
+											const std::string _documentation );
+
 	   /**
 	    * Set the encode mode
 	    */

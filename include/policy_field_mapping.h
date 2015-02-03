@@ -118,7 +118,7 @@ class policy_field_mapping : public mnslp_xml_node_reader {
 	const_iterator end() const throw() { return fields.end(); }
 	
 	std::ostream &operator<<(std::ostream &out);
-	std::string to_string();
+	std::string to_string() const;
 	
 	bool check_field_availability(msg::mnslp_field &field);
 

@@ -284,15 +284,15 @@ class api_configure_event : public api_event {
   
 	api_configure_event(const hostaddress &source, const hostaddress &dest,
 		uint16 source_port=0, uint16 dest_port=0, uint8 protocol=0,
-		uint32 msg_seq_nbr=0, uint32 msg_hop_count=0,
+		uint32 msg_seq_nbr=0, uint32 msg_hop_count=20,
 		std::vector<msg::mnslp_mspec_object *> mspec_objects= std::vector<msg::mnslp_mspec_object *>(),
 		selection_metering_entities::selection_metering_entities_t sel_met_entities = selection_metering_entities::sme_any, 
 		uint32 lifetime=0, FastQueue *rq=NULL)
 		: api_event(), source_addr(source), dest_addr(dest),
 		  source_port(source_port), dest_port(dest_port), protocol(protocol), 
-		  mspec_objects(mspec_objects), session_lifetime(lifetime), 
 		  mes_sequence_number(msg_seq_nbr), mes_hop_count(msg_hop_count),
-		  sel_met_entities(sel_met_entities), return_queue(rq) { }
+		  mspec_objects(mspec_objects), sel_met_entities(sel_met_entities),
+		  session_lifetime(lifetime), return_queue(rq) { }
 
 	virtual ~api_configure_event() { }
 
@@ -327,12 +327,12 @@ class api_configure_event : public api_event {
 	uint16 source_port;
 	uint16 dest_port;
 	uint8 protocol;
-	std::vector<msg::mnslp_mspec_object *> mspec_objects;
 
-	uint32 session_lifetime;
 	uint32 mes_sequence_number;
 	uint32 mes_hop_count;
+	std::vector<msg::mnslp_mspec_object *> mspec_objects;
 	selection_metering_entities::selection_metering_entities_t sel_met_entities;
+	uint32 session_lifetime;
 
 	FastQueue *return_queue;
 };
@@ -628,6 +628,8 @@ inline bool is_mnslp_response(const event *evt, uint32 msn) {
 	if ( r == NULL )
 		return false;
 
+	std::cout << "Event Message number:" << r->get_msg_sequence_number() << std::endl;
+
 	return r->has_msg_sequence_number()
 		&& msn == r->get_msg_sequence_number();
 }
@@ -641,6 +643,8 @@ inline bool is_mnslp_response(const event *evt, ntlp_msg *msg) {
 	if ( m == NULL || ! m->has_msg_sequence_number() )
 		return false;
 
+	std::cout << "Message number:" << m->get_msg_sequence_number() << std::endl;
+	
 	return is_mnslp_response(evt, m->get_msg_sequence_number());
 }
 

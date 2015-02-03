@@ -232,7 +232,7 @@ libmnslp_a-nf_session.o: nf_session.cpp ../../protlib/include/logfile.h \
  /usr/include/i386-linux-gnu/bits/posix2_lim.h \
  /usr/include/i386-linux-gnu/bits/xopen_lim.h /usr/include/curl/easy.h \
  /usr/include/curl/multi.h /usr/include/curl/curl.h \
- ../include/gistka_mapper.h
+ ../include/gistka_mapper.h ../include/msg/information_code.h
 
 ../../protlib/include/logfile.h:
 
@@ -901,3 +901,5 @@ libmnslp_a-nf_session.o: nf_session.cpp ../../protlib/include/logfile.h \
 /usr/include/curl/curl.h:
 
 ../include/gistka_mapper.h:
+
+../include/msg/information_code.h:

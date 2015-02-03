@@ -55,8 +55,12 @@ policy_rule_installer::setup() throw (policy_rule_installer_error)
 			// Parse and load the filter configuration.
 			parse_configuration_definition_file(config->get_configuration_file().c_str());
 			
+			std::cout << "Finish loading configuration file" << std::endl;
+			
 			// Parse and load the export configuration.
 			parse_export_definition_file(config->get_export_config_file().c_str());
+			
+			std::cout << "Finish loading export configuration file" << std::endl;
 		}
 		catch(policy_rule_installer_error &e)
 		{
@@ -159,5 +163,18 @@ policy_rule_installer::get_application_configuration_container() const
 			msg::information_code::fail_configuration_failed);
 }
 
+std::string
+policy_rule_installer::to_string() const
+{
+	std::string val_return;
+	if (action_container!= NULL)
+		val_return.append(action_container->to_string());
+	/*
+	val_return.append("\n");
+	if (app_container != NULL)
+		val_return.append(app_container->to_string());
+	* */
+	return val_return;
+}
 	
 } // mnslp

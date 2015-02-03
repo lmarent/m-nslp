@@ -173,7 +173,7 @@ class mnslp_ipfix_field : public mnslp_field
 		/** Constructor. Creates a field 
 		*  @param Takes the field type and creates the field 
 		*/
-		mnslp_ipfix_field(ipfix_field_type_t &param);
+		mnslp_ipfix_field(const ipfix_field_type_t &param);
 		
 		/** Constructor from the data of another instance
 		 *
@@ -684,7 +684,7 @@ public:
      * Add a field into the listby given the field type
      * @throw mnslp_ipfix_bad_argument - Field already exists in the container
      */ 
-    void AddFieldType(ipfix_field_type_t &param);
+    void AddFieldType(const ipfix_field_type_t &param);
 
     /**
      * Add a field into the list by given the field type attributes

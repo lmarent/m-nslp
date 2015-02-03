@@ -1,6 +1,7 @@
-libmnslp_a-netmate_policy_action_mapping.o: \
- netmate_policy_action_mapping.cpp \
- ../include/netmate_policy_action_mapping.h /usr/include/c++/4.6/map \
+libmnslp_a-netmate_ipfix_metering_config.o: \
+ netmate_ipfix_metering_config.cpp \
+ ../include/netmate_ipfix_metering_config.h \
+ ../include/policy_action_mapping.h /usr/include/c++/4.6/map \
  /usr/include/c++/4.6/bits/stl_tree.h \
  /usr/include/c++/4.6/bits/stl_algobase.h \
  /usr/include/c++/4.6/i686-linux-gnu/./bits/c++config.h \
@@ -64,7 +65,7 @@ libmnslp_a-netmate_policy_action_mapping.o: \
  /usr/include/i386-linux-gnu/bits/confname.h /usr/include/getopt.h \
  /usr/include/i386-linux-gnu/bits/unistd.h \
  /usr/include/c++/4.6/i686-linux-gnu/./bits/atomic_word.h \
- /usr/include/c++/4.6/bits/basic_string.tcc \
+ /usr/include/c++/4.6/bits/basic_string.tcc /usr/include/c++/4.6/limits \
  /usr/include/libxml2/libxml/xmlreader.h \
  /usr/include/libxml2/libxml/xmlversion.h \
  /usr/include/libxml2/libxml/xmlexports.h \
@@ -157,55 +158,11 @@ libmnslp_a-netmate_policy_action_mapping.o: \
  ../include/msg/ipfix_def.h /usr/include/c++/4.6/cstddef \
  ../include/msg/mnslp_field.h ../include/msg/mnslp_ipfix_exception.h \
  ../include/mnslp_xml_node_reader.h ../include/policy_field_mapping.h \
- ../include/policy_action_mapping.h /usr/include/c++/4.6/limits \
- ../include/netmate_metering_config.h ../include/msg/information_code.h \
- ../include/msg/mnslp_object.h ../include/msg/session_lifetime.h \
- ../include/msg/information_code.h \
- ../include/msg/selection_metering_entities.h \
- ../include/msg/msg_sequence_number.h ../include/msg/message_hop_count.h \
- ../include/policy_rule_installer.h ../include/session.h \
- ../../protlib/include/protlib_types.h ../include/session_id.h \
- /usr/include/c++/4.6/iomanip ../include/msg/mnslp_msg.h \
- ../include/msg/ie_store.h ../include/msg/ie_object_key.h \
- ../include/msg/mnslp_configure.h ../include/msg/mnslp_msg.h \
- ../include/msg/mnslp_ipfix_message.h /usr/include/c++/4.6/set \
- /usr/include/c++/4.6/bits/stl_set.h \
- /usr/include/c++/4.6/bits/stl_multiset.h \
- ../include/msg/mnslp_ipfix_data_record.h \
- ../include/msg/mnslp_ipfix_template.h /usr/include/c++/4.6/list \
- /usr/include/c++/4.6/bits/stl_list.h /usr/include/c++/4.6/bits/list.tcc \
- ../include/msg/mnslp_mspec_object.h ../include/msg/ipfix_t.h \
- ../include/msg/mnslp_refresh.h ../include/msg/mnslp_options.h \
- ../include/msg/mnslp_notify.h ../../protlib/include/address.h \
- ../../protlib/include/ie.h ../../protlib/include/logfile.h \
- ../../protlib/include/threadsafe_db.h ../include/policy_rule.h \
- ../include/mspec_rule_key.h /usr/include/uuid/uuid.h \
- ../include/msg/mnslp_mspec_object.h ../include/mnslp_config.h \
- ../../protlib/include/messages.h /usr/include/c++/4.6/ext/hash_set \
- ../../protlib/include/fqueue.h ../../protlib/include/messages.h \
- ../../protlib/fastqueue/fastqueue.h ../../protlib/include/configpar.h \
- ../../protlib/include/address.h /usr/include/c++/4.6/sstream \
- /usr/include/c++/4.6/bits/sstream.tcc \
- ../../protlib/include/configpar_repository.h \
- ../../protlib/include/configpar.h ../../ntlp/include/gist_conf.h \
- ../include/policy_action_container.h ../include/policy_action.h \
- ../include/policy_application_configuration_container.h \
- ../include/nop_policy_rule_installer.h \
- ../include/policy_rule_installer.h \
- ../include/netmate_ipfix_policy_rule_installer.h \
- ../include/msg/mnslp_ipfix_message.h \
- ../include/msg/mnslp_ipfix_template.h /usr/include/curl/curl.h \
- /usr/include/curl/curlver.h /usr/include/curl/curlbuild.h \
- /usr/include/curl/curlrules.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include-fixed/limits.h \
- /usr/lib/gcc/i686-linux-gnu/4.6/include-fixed/syslimits.h \
- /usr/include/limits.h /usr/include/i386-linux-gnu/bits/posix1_lim.h \
- /usr/include/i386-linux-gnu/bits/local_lim.h /usr/include/linux/limits.h \
- /usr/include/i386-linux-gnu/bits/posix2_lim.h \
- /usr/include/i386-linux-gnu/bits/xopen_lim.h /usr/include/curl/easy.h \
- /usr/include/curl/multi.h /usr/include/curl/curl.h
+ /usr/include/c++/4.6/sstream /usr/include/c++/4.6/bits/sstream.tcc
 
-../include/netmate_policy_action_mapping.h:
+../include/netmate_ipfix_metering_config.h:
+
+../include/policy_action_mapping.h:
 
 /usr/include/c++/4.6/map:
 
@@ -370,6 +327,8 @@ libmnslp_a-netmate_policy_action_mapping.o: \
 /usr/include/c++/4.6/i686-linux-gnu/./bits/atomic_word.h:
 
 /usr/include/c++/4.6/bits/basic_string.tcc:
+
+/usr/include/c++/4.6/limits:
 
 /usr/include/libxml2/libxml/xmlreader.h:
 
@@ -617,158 +576,6 @@ libmnslp_a-netmate_policy_action_mapping.o: \
 
 ../include/policy_field_mapping.h:
 
-../include/policy_action_mapping.h:
-
-/usr/include/c++/4.6/limits:
-
-../include/netmate_metering_config.h:
-
-../include/msg/information_code.h:
-
-../include/msg/mnslp_object.h:
-
-../include/msg/session_lifetime.h:
-
-../include/msg/information_code.h:
-
-../include/msg/selection_metering_entities.h:
-
-../include/msg/msg_sequence_number.h:
-
-../include/msg/message_hop_count.h:
-
-../include/policy_rule_installer.h:
-
-../include/session.h:
-
-../../protlib/include/protlib_types.h:
-
-../include/session_id.h:
-
-/usr/include/c++/4.6/iomanip:
-
-../include/msg/mnslp_msg.h:
-
-../include/msg/ie_store.h:
-
-../include/msg/ie_object_key.h:
-
-../include/msg/mnslp_configure.h:
-
-../include/msg/mnslp_msg.h:
-
-../include/msg/mnslp_ipfix_message.h:
-
-/usr/include/c++/4.6/set:
-
-/usr/include/c++/4.6/bits/stl_set.h:
-
-/usr/include/c++/4.6/bits/stl_multiset.h:
-
-../include/msg/mnslp_ipfix_data_record.h:
-
-../include/msg/mnslp_ipfix_template.h:
-
-/usr/include/c++/4.6/list:
-
-/usr/include/c++/4.6/bits/stl_list.h:
-
-/usr/include/c++/4.6/bits/list.tcc:
-
-../include/msg/mnslp_mspec_object.h:
-
-../include/msg/ipfix_t.h:
-
-../include/msg/mnslp_refresh.h:
-
-../include/msg/mnslp_options.h:
-
-../include/msg/mnslp_notify.h:
-
-../../protlib/include/address.h:
-
-../../protlib/include/ie.h:
-
-../../protlib/include/logfile.h:
-
-../../protlib/include/threadsafe_db.h:
-
-../include/policy_rule.h:
-
-../include/mspec_rule_key.h:
-
-/usr/include/uuid/uuid.h:
-
-../include/msg/mnslp_mspec_object.h:
-
-../include/mnslp_config.h:
-
-../../protlib/include/messages.h:
-
-/usr/include/c++/4.6/ext/hash_set:
-
-../../protlib/include/fqueue.h:
-
-../../protlib/include/messages.h:
-
-../../protlib/fastqueue/fastqueue.h:
-
-../../protlib/include/configpar.h:
-
-../../protlib/include/address.h:
-
 /usr/include/c++/4.6/sstream:
 
 /usr/include/c++/4.6/bits/sstream.tcc:
-
-../../protlib/include/configpar_repository.h:
-
-../../protlib/include/configpar.h:
-
-../../ntlp/include/gist_conf.h:
-
-../include/policy_action_container.h:
-
-../include/policy_action.h:
-
-../include/policy_application_configuration_container.h:
-
-../include/nop_policy_rule_installer.h:
-
-../include/policy_rule_installer.h:
-
-../include/netmate_ipfix_policy_rule_installer.h:
-
-../include/msg/mnslp_ipfix_message.h:
-
-../include/msg/mnslp_ipfix_template.h:
-
-/usr/include/curl/curl.h:
-
-/usr/include/curl/curlver.h:
-
-/usr/include/curl/curlbuild.h:
-
-/usr/include/curl/curlrules.h:
-
-/usr/lib/gcc/i686-linux-gnu/4.6/include-fixed/limits.h:
-
-/usr/lib/gcc/i686-linux-gnu/4.6/include-fixed/syslimits.h:
-
-/usr/include/limits.h:
-
-/usr/include/i386-linux-gnu/bits/posix1_lim.h:
-
-/usr/include/i386-linux-gnu/bits/local_lim.h:
-
-/usr/include/linux/limits.h:
-
-/usr/include/i386-linux-gnu/bits/posix2_lim.h:
-
-/usr/include/i386-linux-gnu/bits/xopen_lim.h:
-
-/usr/include/curl/easy.h:
-
-/usr/include/curl/multi.h:
-
-/usr/include/curl/curl.h:

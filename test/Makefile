@@ -69,13 +69,15 @@ am_test_runner_OBJECTS = test_runner-test_runner.$(OBJEXT) \
 	test_runner-session_manager.$(OBJEXT) \
 	test_runner-mspec_rule_key.$(OBJEXT) \
 	test_runner-policy_application_configuration_container.$(OBJEXT) \
-	test_runner-netmate_metering_config.$(OBJEXT) \
+	test_runner-netmate_ipfix_metering_config.$(OBJEXT) \
 	test_runner-policy_field_mapping.$(OBJEXT) \
-	test_runner-netmate_policy_action_mapping.$(OBJEXT) \
+	test_runner-netmate_ipfix_policy_action_mapping.$(OBJEXT) \
 	test_runner-policy_action.$(OBJEXT) \
 	test_runner-policy_action_container.$(OBJEXT) \
 	test_runner-policy_rule.$(OBJEXT) \
-	test_runner-netmate_ipfix_policy_rule_installer.$(OBJEXT)
+	test_runner-ni_session.$(OBJEXT) \
+	test_runner-nf_session.$(OBJEXT) \
+	test_runner-nr_session.$(OBJEXT)
 test_runner_OBJECTS = $(am_test_runner_OBJECTS)
 am__DEPENDENCIES_1 = $(MNSLP_SRC) $(MNSLP_MSG_LIBDIR)
 am__DEPENDENCIES_2 = $(NTLP_LIBDIR)
@@ -267,11 +269,13 @@ test_runner_SOURCES = test_runner.cpp basic.cpp generic_object_test.h \
 		    mnslp_options.cpp mnslp_response.cpp utils.cpp session_id.cpp \
 		    session_manager.cpp mspec_rule_key.cpp \
 		    policy_application_configuration_container.cpp \
-		    netmate_metering_config.cpp policy_field_mapping.cpp \
-		    netmate_policy_action_mapping.cpp  policy_action.cpp  \
+		    netmate_ipfix_metering_config.cpp policy_field_mapping.cpp \
+		    netmate_ipfix_policy_action_mapping.cpp  policy_action.cpp  \
 			policy_action_container.cpp policy_rule.cpp \
-			netmate_ipfix_policy_rule_installer.cpp 
+			ni_session.cpp nf_session.cpp nr_session.cpp
 
+
+#netmate_ipfix_policy_rule_installer.cpp
 #LD_SCTP_LIB = -lsctp
 test_runner_CPPFLAGS = -I../src -I../src/msg -I$(MNSLP_INC) \
 	$(CPPUNIT_CFLAGS) -I$(NTLP_INC) -I$(PROTLIB_INC) \
@@ -344,9 +348,11 @@ include ./$(DEPDIR)/test_runner-mnslp_refresh.Po
 include ./$(DEPDIR)/test_runner-mnslp_response.Po
 include ./$(DEPDIR)/test_runner-msg_sequence_number.Po
 include ./$(DEPDIR)/test_runner-mspec_rule_key.Po
-include ./$(DEPDIR)/test_runner-netmate_ipfix_policy_rule_installer.Po
-include ./$(DEPDIR)/test_runner-netmate_metering_config.Po
-include ./$(DEPDIR)/test_runner-netmate_policy_action_mapping.Po
+include ./$(DEPDIR)/test_runner-netmate_ipfix_metering_config.Po
+include ./$(DEPDIR)/test_runner-netmate_ipfix_policy_action_mapping.Po
+include ./$(DEPDIR)/test_runner-nf_session.Po
+include ./$(DEPDIR)/test_runner-ni_session.Po
+include ./$(DEPDIR)/test_runner-nr_session.Po
 include ./$(DEPDIR)/test_runner-policy_action.Po
 include ./$(DEPDIR)/test_runner-policy_action_container.Po
 include ./$(DEPDIR)/test_runner-policy_application_configuration_container.Po
@@ -639,19 +645,19 @@ test_runner-policy_application_configuration_container.obj: policy_application_c
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-policy_application_configuration_container.obj `if test -f 'policy_application_configuration_container.cpp'; then $(CYGPATH_W) 'policy_application_configuration_container.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_application_configuration_container.cpp'; fi`
 
-test_runner-netmate_metering_config.o: netmate_metering_config.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-netmate_metering_config.o -MD -MP -MF $(DEPDIR)/test_runner-netmate_metering_config.Tpo -c -o test_runner-netmate_metering_config.o `test -f 'netmate_metering_config.cpp' || echo '$(srcdir)/'`netmate_metering_config.cpp
-	$(am__mv) $(DEPDIR)/test_runner-netmate_metering_config.Tpo $(DEPDIR)/test_runner-netmate_metering_config.Po
-#	source='netmate_metering_config.cpp' object='test_runner-netmate_metering_config.o' libtool=no \
+test_runner-netmate_ipfix_metering_config.o: netmate_ipfix_metering_config.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-netmate_ipfix_metering_config.o -MD -MP -MF $(DEPDIR)/test_runner-netmate_ipfix_metering_config.Tpo -c -o test_runner-netmate_ipfix_metering_config.o `test -f 'netmate_ipfix_metering_config.cpp' || echo '$(srcdir)/'`netmate_ipfix_metering_config.cpp
+	$(am__mv) $(DEPDIR)/test_runner-netmate_ipfix_metering_config.Tpo $(DEPDIR)/test_runner-netmate_ipfix_metering_config.Po
+#	source='netmate_ipfix_metering_config.cpp' object='test_runner-netmate_ipfix_metering_config.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-netmate_metering_config.o `test -f 'netmate_metering_config.cpp' || echo '$(srcdir)/'`netmate_metering_config.cpp
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-netmate_ipfix_metering_config.o `test -f 'netmate_ipfix_metering_config.cpp' || echo '$(srcdir)/'`netmate_ipfix_metering_config.cpp
 
-test_runner-netmate_metering_config.obj: netmate_metering_config.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-netmate_metering_config.obj -MD -MP -MF $(DEPDIR)/test_runner-netmate_metering_config.Tpo -c -o test_runner-netmate_metering_config.obj `if test -f 'netmate_metering_config.cpp'; then $(CYGPATH_W) 'netmate_metering_config.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_metering_config.cpp'; fi`
-	$(am__mv) $(DEPDIR)/test_runner-netmate_metering_config.Tpo $(DEPDIR)/test_runner-netmate_metering_config.Po
-#	source='netmate_metering_config.cpp' object='test_runner-netmate_metering_config.obj' libtool=no \
+test_runner-netmate_ipfix_metering_config.obj: netmate_ipfix_metering_config.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-netmate_ipfix_metering_config.obj -MD -MP -MF $(DEPDIR)/test_runner-netmate_ipfix_metering_config.Tpo -c -o test_runner-netmate_ipfix_metering_config.obj `if test -f 'netmate_ipfix_metering_config.cpp'; then $(CYGPATH_W) 'netmate_ipfix_metering_config.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_ipfix_metering_config.cpp'; fi`
+	$(am__mv) $(DEPDIR)/test_runner-netmate_ipfix_metering_config.Tpo $(DEPDIR)/test_runner-netmate_ipfix_metering_config.Po
+#	source='netmate_ipfix_metering_config.cpp' object='test_runner-netmate_ipfix_metering_config.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-netmate_metering_config.obj `if test -f 'netmate_metering_config.cpp'; then $(CYGPATH_W) 'netmate_metering_config.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_metering_config.cpp'; fi`
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-netmate_ipfix_metering_config.obj `if test -f 'netmate_ipfix_metering_config.cpp'; then $(CYGPATH_W) 'netmate_ipfix_metering_config.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_ipfix_metering_config.cpp'; fi`
 
 test_runner-policy_field_mapping.o: policy_field_mapping.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-policy_field_mapping.o -MD -MP -MF $(DEPDIR)/test_runner-policy_field_mapping.Tpo -c -o test_runner-policy_field_mapping.o `test -f 'policy_field_mapping.cpp' || echo '$(srcdir)/'`policy_field_mapping.cpp
@@ -667,19 +673,19 @@ test_runner-policy_field_mapping.obj: policy_field_mapping.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-policy_field_mapping.obj `if test -f 'policy_field_mapping.cpp'; then $(CYGPATH_W) 'policy_field_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_field_mapping.cpp'; fi`
 
-test_runner-netmate_policy_action_mapping.o: netmate_policy_action_mapping.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-netmate_policy_action_mapping.o -MD -MP -MF $(DEPDIR)/test_runner-netmate_policy_action_mapping.Tpo -c -o test_runner-netmate_policy_action_mapping.o `test -f 'netmate_policy_action_mapping.cpp' || echo '$(srcdir)/'`netmate_policy_action_mapping.cpp
-	$(am__mv) $(DEPDIR)/test_runner-netmate_policy_action_mapping.Tpo $(DEPDIR)/test_runner-netmate_policy_action_mapping.Po
-#	source='netmate_policy_action_mapping.cpp' object='test_runner-netmate_policy_action_mapping.o' libtool=no \
+test_runner-netmate_ipfix_policy_action_mapping.o: netmate_ipfix_policy_action_mapping.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-netmate_ipfix_policy_action_mapping.o -MD -MP -MF $(DEPDIR)/test_runner-netmate_ipfix_policy_action_mapping.Tpo -c -o test_runner-netmate_ipfix_policy_action_mapping.o `test -f 'netmate_ipfix_policy_action_mapping.cpp' || echo '$(srcdir)/'`netmate_ipfix_policy_action_mapping.cpp
+	$(am__mv) $(DEPDIR)/test_runner-netmate_ipfix_policy_action_mapping.Tpo $(DEPDIR)/test_runner-netmate_ipfix_policy_action_mapping.Po
+#	source='netmate_ipfix_policy_action_mapping.cpp' object='test_runner-netmate_ipfix_policy_action_mapping.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-netmate_policy_action_mapping.o `test -f 'netmate_policy_action_mapping.cpp' || echo '$(srcdir)/'`netmate_policy_action_mapping.cpp
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-netmate_ipfix_policy_action_mapping.o `test -f 'netmate_ipfix_policy_action_mapping.cpp' || echo '$(srcdir)/'`netmate_ipfix_policy_action_mapping.cpp
 
-test_runner-netmate_policy_action_mapping.obj: netmate_policy_action_mapping.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-netmate_policy_action_mapping.obj -MD -MP -MF $(DEPDIR)/test_runner-netmate_policy_action_mapping.Tpo -c -o test_runner-netmate_policy_action_mapping.obj `if test -f 'netmate_policy_action_mapping.cpp'; then $(CYGPATH_W) 'netmate_policy_action_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_policy_action_mapping.cpp'; fi`
-	$(am__mv) $(DEPDIR)/test_runner-netmate_policy_action_mapping.Tpo $(DEPDIR)/test_runner-netmate_policy_action_mapping.Po
-#	source='netmate_policy_action_mapping.cpp' object='test_runner-netmate_policy_action_mapping.obj' libtool=no \
+test_runner-netmate_ipfix_policy_action_mapping.obj: netmate_ipfix_policy_action_mapping.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-netmate_ipfix_policy_action_mapping.obj -MD -MP -MF $(DEPDIR)/test_runner-netmate_ipfix_policy_action_mapping.Tpo -c -o test_runner-netmate_ipfix_policy_action_mapping.obj `if test -f 'netmate_ipfix_policy_action_mapping.cpp'; then $(CYGPATH_W) 'netmate_ipfix_policy_action_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_ipfix_policy_action_mapping.cpp'; fi`
+	$(am__mv) $(DEPDIR)/test_runner-netmate_ipfix_policy_action_mapping.Tpo $(DEPDIR)/test_runner-netmate_ipfix_policy_action_mapping.Po
+#	source='netmate_ipfix_policy_action_mapping.cpp' object='test_runner-netmate_ipfix_policy_action_mapping.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-netmate_policy_action_mapping.obj `if test -f 'netmate_policy_action_mapping.cpp'; then $(CYGPATH_W) 'netmate_policy_action_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_policy_action_mapping.cpp'; fi`
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-netmate_ipfix_policy_action_mapping.obj `if test -f 'netmate_ipfix_policy_action_mapping.cpp'; then $(CYGPATH_W) 'netmate_ipfix_policy_action_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_ipfix_policy_action_mapping.cpp'; fi`
 
 test_runner-policy_action.o: policy_action.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-policy_action.o -MD -MP -MF $(DEPDIR)/test_runner-policy_action.Tpo -c -o test_runner-policy_action.o `test -f 'policy_action.cpp' || echo '$(srcdir)/'`policy_action.cpp
@@ -723,19 +729,47 @@ test_runner-policy_rule.obj: policy_rule.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-policy_rule.obj `if test -f 'policy_rule.cpp'; then $(CYGPATH_W) 'policy_rule.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_rule.cpp'; fi`
 
-test_runner-netmate_ipfix_policy_rule_installer.o: netmate_ipfix_policy_rule_installer.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-netmate_ipfix_policy_rule_installer.o -MD -MP -MF $(DEPDIR)/test_runner-netmate_ipfix_policy_rule_installer.Tpo -c -o test_runner-netmate_ipfix_policy_rule_installer.o `test -f 'netmate_ipfix_policy_rule_installer.cpp' || echo '$(srcdir)/'`netmate_ipfix_policy_rule_installer.cpp
-	$(am__mv) $(DEPDIR)/test_runner-netmate_ipfix_policy_rule_installer.Tpo $(DEPDIR)/test_runner-netmate_ipfix_policy_rule_installer.Po
-#	source='netmate_ipfix_policy_rule_installer.cpp' object='test_runner-netmate_ipfix_policy_rule_installer.o' libtool=no \
+test_runner-ni_session.o: ni_session.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-ni_session.o -MD -MP -MF $(DEPDIR)/test_runner-ni_session.Tpo -c -o test_runner-ni_session.o `test -f 'ni_session.cpp' || echo '$(srcdir)/'`ni_session.cpp
+	$(am__mv) $(DEPDIR)/test_runner-ni_session.Tpo $(DEPDIR)/test_runner-ni_session.Po
+#	source='ni_session.cpp' object='test_runner-ni_session.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-netmate_ipfix_policy_rule_installer.o `test -f 'netmate_ipfix_policy_rule_installer.cpp' || echo '$(srcdir)/'`netmate_ipfix_policy_rule_installer.cpp
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-ni_session.o `test -f 'ni_session.cpp' || echo '$(srcdir)/'`ni_session.cpp
 
-test_runner-netmate_ipfix_policy_rule_installer.obj: netmate_ipfix_policy_rule_installer.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-netmate_ipfix_policy_rule_installer.obj -MD -MP -MF $(DEPDIR)/test_runner-netmate_ipfix_policy_rule_installer.Tpo -c -o test_runner-netmate_ipfix_policy_rule_installer.obj `if test -f 'netmate_ipfix_policy_rule_installer.cpp'; then $(CYGPATH_W) 'netmate_ipfix_policy_rule_installer.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_ipfix_policy_rule_installer.cpp'; fi`
-	$(am__mv) $(DEPDIR)/test_runner-netmate_ipfix_policy_rule_installer.Tpo $(DEPDIR)/test_runner-netmate_ipfix_policy_rule_installer.Po
-#	source='netmate_ipfix_policy_rule_installer.cpp' object='test_runner-netmate_ipfix_policy_rule_installer.obj' libtool=no \
+test_runner-ni_session.obj: ni_session.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-ni_session.obj -MD -MP -MF $(DEPDIR)/test_runner-ni_session.Tpo -c -o test_runner-ni_session.obj `if test -f 'ni_session.cpp'; then $(CYGPATH_W) 'ni_session.cpp'; else $(CYGPATH_W) '$(srcdir)/ni_session.cpp'; fi`
+	$(am__mv) $(DEPDIR)/test_runner-ni_session.Tpo $(DEPDIR)/test_runner-ni_session.Po
+#	source='ni_session.cpp' object='test_runner-ni_session.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-netmate_ipfix_policy_rule_installer.obj `if test -f 'netmate_ipfix_policy_rule_installer.cpp'; then $(CYGPATH_W) 'netmate_ipfix_policy_rule_installer.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_ipfix_policy_rule_installer.cpp'; fi`
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-ni_session.obj `if test -f 'ni_session.cpp'; then $(CYGPATH_W) 'ni_session.cpp'; else $(CYGPATH_W) '$(srcdir)/ni_session.cpp'; fi`
+
+test_runner-nf_session.o: nf_session.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-nf_session.o -MD -MP -MF $(DEPDIR)/test_runner-nf_session.Tpo -c -o test_runner-nf_session.o `test -f 'nf_session.cpp' || echo '$(srcdir)/'`nf_session.cpp
+	$(am__mv) $(DEPDIR)/test_runner-nf_session.Tpo $(DEPDIR)/test_runner-nf_session.Po
+#	source='nf_session.cpp' object='test_runner-nf_session.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-nf_session.o `test -f 'nf_session.cpp' || echo '$(srcdir)/'`nf_session.cpp
+
+test_runner-nf_session.obj: nf_session.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-nf_session.obj -MD -MP -MF $(DEPDIR)/test_runner-nf_session.Tpo -c -o test_runner-nf_session.obj `if test -f 'nf_session.cpp'; then $(CYGPATH_W) 'nf_session.cpp'; else $(CYGPATH_W) '$(srcdir)/nf_session.cpp'; fi`
+	$(am__mv) $(DEPDIR)/test_runner-nf_session.Tpo $(DEPDIR)/test_runner-nf_session.Po
+#	source='nf_session.cpp' object='test_runner-nf_session.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-nf_session.obj `if test -f 'nf_session.cpp'; then $(CYGPATH_W) 'nf_session.cpp'; else $(CYGPATH_W) '$(srcdir)/nf_session.cpp'; fi`
+
+test_runner-nr_session.o: nr_session.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-nr_session.o -MD -MP -MF $(DEPDIR)/test_runner-nr_session.Tpo -c -o test_runner-nr_session.o `test -f 'nr_session.cpp' || echo '$(srcdir)/'`nr_session.cpp
+	$(am__mv) $(DEPDIR)/test_runner-nr_session.Tpo $(DEPDIR)/test_runner-nr_session.Po
+#	source='nr_session.cpp' object='test_runner-nr_session.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-nr_session.o `test -f 'nr_session.cpp' || echo '$(srcdir)/'`nr_session.cpp
+
+test_runner-nr_session.obj: nr_session.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-nr_session.obj -MD -MP -MF $(DEPDIR)/test_runner-nr_session.Tpo -c -o test_runner-nr_session.obj `if test -f 'nr_session.cpp'; then $(CYGPATH_W) 'nr_session.cpp'; else $(CYGPATH_W) '$(srcdir)/nr_session.cpp'; fi`
+	$(am__mv) $(DEPDIR)/test_runner-nr_session.Tpo $(DEPDIR)/test_runner-nr_session.Po
+#	source='nr_session.cpp' object='test_runner-nr_session.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-nr_session.obj `if test -f 'nr_session.cpp'; then $(CYGPATH_W) 'nr_session.cpp'; else $(CYGPATH_W) '$(srcdir)/nr_session.cpp'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

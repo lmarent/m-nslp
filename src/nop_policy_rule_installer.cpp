@@ -54,51 +54,91 @@ using namespace protlib::log;
 
 nop_policy_rule_installer::nop_policy_rule_installer(
 		mnslp_config *conf) throw () 
-		: policy_rule_installer(conf) {
+		: policy_rule_installer(conf) 
+{
 
 	// nothing to do
 }
 
 
-nop_policy_rule_installer::~nop_policy_rule_installer() throw () {
+nop_policy_rule_installer::~nop_policy_rule_installer() throw () 
+{
 	// nothing to do
 }
 
 
-void nop_policy_rule_installer::setup() throw (policy_rule_installer_error) {
+void 
+nop_policy_rule_installer::setup() throw (policy_rule_installer_error) 
+{
 
 	policy_rule_installer::setup();
+	
+	std::cout << "NOP:Setup()" << std::endl;
 	LogDebug("NOP: setup()");
 
 }
 
 
-void nop_policy_rule_installer::check(const msg::mnslp_mspec_object *object)
-		throw (policy_rule_installer_error) {
+void 
+nop_policy_rule_installer::check(const msg::mnslp_mspec_object *object)
+		throw (policy_rule_installer_error) 
+{
 
+	std::cout << "NOP:Check()" << std::endl;
 	LogDebug("NOP: check()");
 }
 
 
-void nop_policy_rule_installer::install(const mt_policy_rule *mt_rule)
-		throw (policy_rule_installer_error) {
+mt_policy_rule * 
+nop_policy_rule_installer::install(const mt_policy_rule *mt_rule) 
+{
 
-	if ( mt_rule != NULL )
-		LogDebug("NOP: installing firewall policy rule " << *mt_rule);
+	std::cout << "NOP: installing policy rule" << std::endl;
+	LogDebug("NOP: installing policy rule " << *mt_rule);
+	mt_policy_rule *rule_return;
+	
+	if ( mt_rule != NULL ){
+		rule_return = mt_rule->copy(); 
+		
+		
+		mt_policy_rule::const_iterator i;
+		for ( i = rule_return->begin(); i != rule_return->end(); i++){
+			std::vector<std::string> rule_keys;
+			rule_keys.push_back((i->first).to_string());
+			rule_return->set_commands(i->first, rule_keys);
+		}
+	}
+	else{
+		rule_return = NULL;
+	}	
+	
+	return rule_return;
 }
 
 
-void nop_policy_rule_installer::remove(const mt_policy_rule *mt_rule)
-		throw (policy_rule_installer_error) {
+mt_policy_rule * nop_policy_rule_installer::remove(const mt_policy_rule *mt_rule) 
+{
 
-	if ( mt_rule != NULL )
-		LogDebug("NOP: removing firewall policy rule " << *mt_rule);
+	std::cout << "NOP: removing policy rule" << std::endl;
+	LogDebug("NOP: removing policy rule " << *mt_rule);
+	mt_policy_rule *rule_return;
+	
+	if ( mt_rule != NULL ){
+		rule_return = mt_rule->copy(); 
+	}
+	else{
+		rule_return = NULL;
+	}	
+
+	return rule_return;
 }
 
-void nop_policy_rule_installer::remove_all()
-		throw (policy_rule_installer_error) {
+bool nop_policy_rule_installer::remove_all() 
+{
 
+	std::cout << "NOP: removing all metering policy rules" << std::endl;
 	LogDebug("NOP: removing all metering policy rules ");
+	return true;
 }
 
 

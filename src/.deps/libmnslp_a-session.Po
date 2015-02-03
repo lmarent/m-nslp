@@ -139,12 +139,13 @@ libmnslp_a-session.o: session.cpp /usr/include/assert.h \
  ../include/msg/msg_sequence_number.h ../include/msg/message_hop_count.h \
  ../include/msg/mnslp_configure.h ../include/msg/mnslp_msg.h \
  ../include/msg/mnslp_ipfix_message.h /usr/include/inttypes.h \
- ../include/msg/ipfix_def.h /usr/include/c++/4.6/cstddef \
- ../include/msg/mnslp_ipfix_field.h ../include/msg/mnslp_field_key.h \
- ../include/msg/mnslp_field.h ../include/msg/mnslp_ipfix_exception.h \
+ /usr/include/c++/4.6/list /usr/include/c++/4.6/bits/stl_list.h \
+ /usr/include/c++/4.6/bits/list.tcc ../include/msg/ipfix_def.h \
+ /usr/include/c++/4.6/cstddef ../include/msg/mnslp_ipfix_field.h \
+ ../include/msg/mnslp_field_key.h ../include/msg/mnslp_field.h \
+ ../include/msg/mnslp_ipfix_exception.h \
  ../include/msg/mnslp_ipfix_data_record.h \
- ../include/msg/mnslp_ipfix_template.h /usr/include/c++/4.6/list \
- /usr/include/c++/4.6/bits/stl_list.h /usr/include/c++/4.6/bits/list.tcc \
+ ../include/msg/mnslp_ipfix_template.h \
  ../include/msg/mnslp_mspec_object.h ../include/msg/ipfix_t.h \
  ../include/msg/mnslp_refresh.h ../include/msg/mnslp_options.h \
  ../include/msg/mnslp_notify.h ../../protlib/include/address.h \
@@ -608,6 +609,12 @@ libmnslp_a-session.o: session.cpp /usr/include/assert.h \
 
 /usr/include/inttypes.h:
 
+/usr/include/c++/4.6/list:
+
+/usr/include/c++/4.6/bits/stl_list.h:
+
+/usr/include/c++/4.6/bits/list.tcc:
+
 ../include/msg/ipfix_def.h:
 
 /usr/include/c++/4.6/cstddef:
@@ -623,12 +630,6 @@ libmnslp_a-session.o: session.cpp /usr/include/assert.h \
 ../include/msg/mnslp_ipfix_data_record.h:
 
 ../include/msg/mnslp_ipfix_template.h:
-
-/usr/include/c++/4.6/list:
-
-/usr/include/c++/4.6/bits/stl_list.h:
-
-/usr/include/c++/4.6/bits/list.tcc:
 
 ../include/msg/mnslp_mspec_object.h:
 

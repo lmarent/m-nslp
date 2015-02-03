@@ -76,10 +76,8 @@ class ni_session : public session {
 	 */
 	enum state_t {
 		STATE_CLOSE	= 0,
-		STATE_PENDING_FORW	= 1,
-		STATE_PENDING_PART	= 2,
-		STATE_METERING_FORW	= 3,
-		STATE_METERING_PART	= 4
+		STATE_PENDING	= 1,
+		STATE_METERING	= 2
 	};
 
 	ni_session(state_t s=STATE_CLOSE);
@@ -166,16 +164,19 @@ class ni_session : public session {
 	 * State machine methods:
 	 */
 	state_t handle_state_close(dispatcher *d, event *evt);
-	state_t handle_state_pending_forward(dispatcher *d, event *evt);
-	state_t handle_state_pending_participating(dispatcher *d, event *evt);
-	state_t handle_state_metering_forward(dispatcher *d, event *evt);
-	state_t handle_state_metering_participating(dispatcher *d, event *evt);
+	state_t handle_state_pending(dispatcher *d, event *evt);
+	state_t handle_state_metering(dispatcher *d, event *evt);
 
 	/*
 	 * Utility methods:
 	 */
-	void setup_session(api_configure_event *evt);
-	msg::ntlp_msg *build_configure_message(api_configure_event *evt);
+	void setup_session(dispatcher *d, 
+					   api_configure_event *evt,
+					   std::vector<msg::mnslp_mspec_object *> &missing_objects);
+												
+	msg::ntlp_msg *build_configure_message(api_configure_event *evt, 
+										   std::vector<msg::mnslp_mspec_object *> & missing_objects);
+										   
 	msg::ntlp_msg *build_refresh_message(); 
 	
 

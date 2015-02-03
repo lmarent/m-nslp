@@ -178,7 +178,9 @@ test_runner-mnslp_configure.o: mnslp_configure.cpp \
  ../../m-nslp/include/msg/mnslp_options.h \
  ../../m-nslp/include/msg/mnslp_notify.h \
  ../../m-nslp/include/msg/mnslp_ipfix_message.h /usr/include/inttypes.h \
- ../../m-nslp/include/msg/ipfix_def.h /usr/include/c++/4.6/cstddef \
+ /usr/include/c++/4.6/list /usr/include/c++/4.6/bits/stl_list.h \
+ /usr/include/c++/4.6/bits/list.tcc ../../m-nslp/include/msg/ipfix_def.h \
+ /usr/include/c++/4.6/cstddef \
  ../../m-nslp/include/msg/mnslp_ipfix_field.h /usr/include/string.h \
  /usr/include/i386-linux-gnu/bits/string3.h \
  /usr/include/i386-linux-gnu/sys/time.h \
@@ -187,8 +189,6 @@ test_runner-mnslp_configure.o: mnslp_configure.cpp \
  ../../m-nslp/include/msg/mnslp_ipfix_exception.h \
  ../../m-nslp/include/msg/mnslp_ipfix_data_record.h \
  ../../m-nslp/include/msg/mnslp_ipfix_template.h \
- /usr/include/c++/4.6/list /usr/include/c++/4.6/bits/stl_list.h \
- /usr/include/c++/4.6/bits/list.tcc \
  ../../m-nslp/include/msg/mnslp_mspec_object.h \
  ../../m-nslp/include/msg/ipfix_t.h \
  ../../m-nslp/include/msg/mnslp_object.h \
@@ -653,6 +653,12 @@ test_runner-mnslp_configure.o: mnslp_configure.cpp \
 
 /usr/include/inttypes.h:
 
+/usr/include/c++/4.6/list:
+
+/usr/include/c++/4.6/bits/stl_list.h:
+
+/usr/include/c++/4.6/bits/list.tcc:
+
 ../../m-nslp/include/msg/ipfix_def.h:
 
 /usr/include/c++/4.6/cstddef:
@@ -674,12 +680,6 @@ test_runner-mnslp_configure.o: mnslp_configure.cpp \
 ../../m-nslp/include/msg/mnslp_ipfix_data_record.h:
 
 ../../m-nslp/include/msg/mnslp_ipfix_template.h:
-
-/usr/include/c++/4.6/list:
-
-/usr/include/c++/4.6/bits/stl_list.h:
-
-/usr/include/c++/4.6/bits/list.tcc:
 
 ../../m-nslp/include/msg/mnslp_mspec_object.h:
 

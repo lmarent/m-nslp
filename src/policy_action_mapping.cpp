@@ -33,7 +33,7 @@
 #include <limits>
 
 #include "policy_action_mapping.h"
-#include "netmate_policy_action_mapping.h"
+#include "netmate_ipfix_policy_action_mapping.h"
 #include "msg/information_code.h"
 #include "policy_rule_installer.h"
 
@@ -85,14 +85,16 @@ policy_action_mapping::operator<<(std::ostream &out)
 }    
 
 std::string
-policy_action_mapping::to_string()
+policy_action_mapping::to_string() const
 {
 	ostringstream out;
-	out << " metering_application:" << metering_application;
+	out << " metering_application:" << metering_application << std::endl;
 	if (meter_config != NULL)
-		meter_config->operator<<(out);
+		out << meter_config->to_string() << std::endl;
+	else
+		out << "Configuration not exists" << std::endl;
 		
-	policy_field_mapping::operator<<(out);	
+	out << policy_field_mapping::to_string();	
 	
 	return  out.str();
 }    
@@ -124,7 +126,7 @@ policy_action_mapping::make(std::string app)
 {
     std::transform(app.begin(), app.end(),app.begin(), ::toupper);
     if (app.compare("NETMATE") == 0)
-		 return new netmate_policy_action_mapping();
+		 return new netmate_ipfix_policy_action_mapping();
 	else
 		return NULL;
 }

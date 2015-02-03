@@ -9,7 +9,7 @@
 
 #include <ext/hash_map>
 #include "policy_action.h"
-#include "netmate_policy_action_mapping.h"
+#include "netmate_ipfix_policy_action_mapping.h"
 #include "msg/mnslp_ipfix_field.h"
 #include <string>
 #include <iostream>
@@ -61,11 +61,11 @@ class PolicyActionTest : public CppUnit::TestFixture {
     msg::mnslp_ipfix_field *ptrField3;
     msg::mnslp_ipfix_field *ptrField4;
     
-    netmate_metering_config *netmate1;
-    netmate_metering_config *netmate2;
+    netmate_ipfix_metering_config *netmate1;
+    netmate_ipfix_metering_config *netmate2;
     
-    netmate_policy_action_mapping *ptrActionMapping1; 
-    netmate_policy_action_mapping *ptrActionMapping2; 
+    netmate_ipfix_policy_action_mapping *ptrActionMapping1; 
+    netmate_ipfix_policy_action_mapping *ptrActionMapping2; 
     
     policy_action_test *ptrPolicyAction;
     
@@ -109,23 +109,23 @@ void PolicyActionTest::setUp() {
 	ptrField3 = new msg::mnslp_ipfix_field(field3);
 	ptrField4 = new msg::mnslp_ipfix_field(field4);
 
-	netmate1 = new netmate_metering_config();
-	netmate1->set_priority(1);
+	netmate1 = new netmate_ipfix_metering_config();
+	netmate1->set_priority(2);
 	netmate1->set_metering_procedure("jitter");
 	netmate1->set_export_directory("/tmp/");
 	netmate1->set_export_interval(10);    
 	netmate1->set_export_procedure("file");
 
-	netmate2 = new netmate_metering_config();
-	netmate2->set_priority(2);
+	netmate2 = new netmate_ipfix_metering_config();
+	netmate2->set_priority(1);
 	netmate2->set_metering_procedure("BandWidth");
 	netmate2->set_export_directory("/tmp/");
 	netmate2->set_export_interval(5);    
 	netmate2->set_export_procedure("file");
 
 	
-	ptrActionMapping1 = new netmate_policy_action_mapping();
-	ptrActionMapping2 = new netmate_policy_action_mapping();
+	ptrActionMapping1 = new netmate_ipfix_policy_action_mapping();
+	ptrActionMapping2 = new netmate_ipfix_policy_action_mapping();
 	
 	ptrPolicyAction = new policy_action_test();
 	
@@ -160,18 +160,19 @@ void PolicyActionTest::general_test()
 	ptrActionMapping2->set_metering_application("netmate");
 	ptrActionMapping2->set_metering_configuration(netmate2);
 	
-	std::cout << "here I am:" << ptrActionMapping1->get_key() << std::endl;	
 	// The key must be the proc_name, the appplication shoud be equal in general.
 	ptrPolicyAction->set_action_mapping(ptrActionMapping1->get_key(), 
 										ptrActionMapping1);
 	
-	std::cout << "here I am 2:" << ptrActionMapping2->get_key() << std::endl;									
 	ptrPolicyAction->set_action_mapping(ptrActionMapping2->get_key(),
 										ptrActionMapping2);
-	std::cout << "here I am 3" << std::endl;
-	/*
+	
 	policy_action * ptrPolicyAction2 = new policy_action(*ptrPolicyAction);
 	CPPUNIT_ASSERT( *ptrPolicyAction2 == *ptrPolicyAction );
+	
+	ptrPolicyAction->set_priority(2);
+	CPPUNIT_ASSERT( *ptrPolicyAction2 != *ptrPolicyAction );
+	ptrPolicyAction2->set_priority(2);
 	
 	ptrPolicyAction->set_action("packets1");
 	ptrPolicyAction2->set_action("packets2");
@@ -181,15 +182,15 @@ void PolicyActionTest::general_test()
 						"netmate",*ptrField1) == true );
 	
 	// Verifies priorities between packets in the same metering application
-		
+			
 	CPPUNIT_ASSERT( (ptrPolicyAction->get_field_traslate(
 						"netmate",*ptrField1)).compare("packets_2") == 0 );
 	
-	const netmate_metering_config *tmp = dynamic_cast< const netmate_metering_config* > (ptrPolicyAction->get_package(
+	const netmate_ipfix_metering_config *tmp = dynamic_cast< const netmate_ipfix_metering_config* > (ptrPolicyAction->get_package(
 						"netmate",*ptrField1));
 	
-	CPPUNIT_ASSERT( (tmp->get_metering_procedure()).compare("jitter") == 0 );
+	CPPUNIT_ASSERT( (tmp->get_metering_procedure()).compare("BandWidth") == 0 );
 
 	delete(ptrPolicyAction2);
-	*/ 
+	 
 }

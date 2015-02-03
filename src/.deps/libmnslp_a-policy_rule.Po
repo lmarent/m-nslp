@@ -109,16 +109,16 @@ libmnslp_a-policy_rule.o: policy_rule.cpp /usr/include/assert.h \
  /usr/include/i386-linux-gnu/bits/in.h ../include/policy_rule.h \
  /usr/include/c++/4.6/map /usr/include/c++/4.6/bits/stl_tree.h \
  /usr/include/c++/4.6/bits/stl_map.h \
- /usr/include/c++/4.6/bits/stl_multimap.h \
- ../../protlib/include/protlib_types.h ../../protlib/include/address.h \
- ../../protlib/include/ie.h /usr/include/c++/4.6/ext/hash_map \
- /usr/include/c++/4.6/backward/backward_warning.h \
- /usr/include/c++/4.6/backward/hashtable.h /usr/include/c++/4.6/vector \
+ /usr/include/c++/4.6/bits/stl_multimap.h /usr/include/c++/4.6/vector \
  /usr/include/c++/4.6/bits/stl_construct.h \
  /usr/include/c++/4.6/bits/stl_uninitialized.h \
  /usr/include/c++/4.6/bits/stl_vector.h \
  /usr/include/c++/4.6/bits/stl_bvector.h \
- /usr/include/c++/4.6/bits/vector.tcc /usr/include/c++/4.6/iterator \
+ /usr/include/c++/4.6/bits/vector.tcc \
+ ../../protlib/include/protlib_types.h ../../protlib/include/address.h \
+ ../../protlib/include/ie.h /usr/include/c++/4.6/ext/hash_map \
+ /usr/include/c++/4.6/backward/backward_warning.h \
+ /usr/include/c++/4.6/backward/hashtable.h /usr/include/c++/4.6/iterator \
  /usr/include/c++/4.6/bits/stream_iterator.h \
  /usr/include/c++/4.6/algorithm /usr/include/c++/4.6/utility \
  /usr/include/c++/4.6/bits/stl_relops.h \
@@ -427,18 +427,6 @@ libmnslp_a-policy_rule.o: policy_rule.cpp /usr/include/assert.h \
 
 /usr/include/c++/4.6/bits/stl_multimap.h:
 
-../../protlib/include/protlib_types.h:
-
-../../protlib/include/address.h:
-
-../../protlib/include/ie.h:
-
-/usr/include/c++/4.6/ext/hash_map:
-
-/usr/include/c++/4.6/backward/backward_warning.h:
-
-/usr/include/c++/4.6/backward/hashtable.h:
-
 /usr/include/c++/4.6/vector:
 
 /usr/include/c++/4.6/bits/stl_construct.h:
@@ -450,6 +438,18 @@ libmnslp_a-policy_rule.o: policy_rule.cpp /usr/include/assert.h \
 /usr/include/c++/4.6/bits/stl_bvector.h:
 
 /usr/include/c++/4.6/bits/vector.tcc:
+
+../../protlib/include/protlib_types.h:
+
+../../protlib/include/address.h:
+
+../../protlib/include/ie.h:
+
+/usr/include/c++/4.6/ext/hash_map:
+
+/usr/include/c++/4.6/backward/backward_warning.h:
+
+/usr/include/c++/4.6/backward/hashtable.h:
 
 /usr/include/c++/4.6/iterator:
 

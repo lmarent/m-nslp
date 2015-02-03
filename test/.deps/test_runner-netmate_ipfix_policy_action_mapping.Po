@@ -1,4 +1,5 @@
-test_runner-session_id.o: session_id.cpp /usr/include/cppunit/TestCase.h \
+test_runner-netmate_ipfix_policy_action_mapping.o: \
+ netmate_ipfix_policy_action_mapping.cpp /usr/include/cppunit/TestCase.h \
  /usr/include/cppunit/Portability.h /usr/include/cppunit/config-auto.h \
  /usr/include/cppunit/config/CppUnitApi.h \
  /usr/include/cppunit/config/SelectDllLoader.h \
@@ -148,6 +149,29 @@ test_runner-session_id.o: session_id.cpp /usr/include/cppunit/TestCase.h \
  /usr/include/c++/4.6/bits/algorithmfwd.h \
  /usr/include/c++/4.6/bits/stl_heap.h \
  /usr/include/c++/4.6/backward/hash_fun.h \
+ ../../m-nslp/include/netmate_ipfix_policy_action_mapping.h \
+ /usr/include/libxml2/libxml/xmlreader.h \
+ /usr/include/libxml2/libxml/xmlversion.h \
+ /usr/include/libxml2/libxml/xmlexports.h \
+ /usr/include/libxml2/libxml/tree.h \
+ /usr/include/libxml2/libxml/xmlstring.h \
+ /usr/include/libxml2/libxml/xmlregexp.h \
+ /usr/include/libxml2/libxml/dict.h \
+ /usr/include/libxml2/libxml/xmlmemory.h \
+ /usr/include/libxml2/libxml/threads.h \
+ /usr/include/libxml2/libxml/globals.h \
+ /usr/include/libxml2/libxml/parser.h /usr/include/libxml2/libxml/hash.h \
+ /usr/include/libxml2/libxml/valid.h \
+ /usr/include/libxml2/libxml/xmlerror.h \
+ /usr/include/libxml2/libxml/list.h \
+ /usr/include/libxml2/libxml/xmlautomata.h \
+ /usr/include/libxml2/libxml/entities.h \
+ /usr/include/libxml2/libxml/encoding.h /usr/include/iconv.h \
+ /usr/include/libxml2/libxml/xmlIO.h /usr/include/libxml2/libxml/SAX.h \
+ /usr/include/libxml2/libxml/xlink.h /usr/include/libxml2/libxml/SAX2.h \
+ /usr/include/libxml2/libxml/relaxng.h \
+ /usr/include/libxml2/libxml/xmlschemas.h \
+ ../../m-nslp/include/msg/mnslp_field.h ../../protlib/include/ie.h \
  ../../protlib/include/protlib_types.h /usr/include/c++/4.6/cassert \
  /usr/include/assert.h /usr/include/netinet/in.h \
  /usr/lib/gcc/i686-linux-gnu/4.6/include/stdint.h /usr/include/stdint.h \
@@ -161,42 +185,22 @@ test_runner-session_id.o: session_id.cpp /usr/include/cppunit/TestCase.h \
  /usr/include/i386-linux-gnu/asm/sockios.h \
  /usr/include/asm-generic/sockios.h \
  /usr/include/i386-linux-gnu/bits/socket2.h \
- /usr/include/i386-linux-gnu/bits/in.h ../../m-nslp/include/session.h \
- ../../m-nslp/include/session_id.h /usr/include/c++/4.6/iomanip \
- ../../m-nslp/include/msg/mnslp_msg.h ../../protlib/include/ie.h \
- ../../protlib/include/protlib_types.h \
+ /usr/include/i386-linux-gnu/bits/in.h \
  ../../protlib/include/network_message.h \
- ../../m-nslp/include/msg/ie_store.h \
- ../../m-nslp/include/msg/ie_object_key.h \
- ../../m-nslp/include/msg/mnslp_object.h \
- ../../m-nslp/include/msg/session_lifetime.h \
- ../../m-nslp/include/msg/information_code.h \
- ../../m-nslp/include/msg/selection_metering_entities.h \
- ../../m-nslp/include/msg/msg_sequence_number.h \
- ../../m-nslp/include/msg/message_hop_count.h \
- ../../m-nslp/include/msg/mnslp_configure.h \
- ../../m-nslp/include/msg/mnslp_msg.h \
- ../../m-nslp/include/msg/mnslp_ipfix_message.h /usr/include/inttypes.h \
- /usr/include/c++/4.6/list /usr/include/c++/4.6/bits/stl_list.h \
- /usr/include/c++/4.6/bits/list.tcc ../../m-nslp/include/msg/ipfix_def.h \
- /usr/include/c++/4.6/cstddef \
+ ../../m-nslp/include/msg/mnslp_field_key.h \
  ../../m-nslp/include/msg/mnslp_ipfix_field.h /usr/include/string.h \
  /usr/include/i386-linux-gnu/bits/string3.h \
- /usr/include/i386-linux-gnu/sys/time.h \
- ../../m-nslp/include/msg/mnslp_field_key.h \
+ /usr/include/i386-linux-gnu/sys/time.h /usr/include/inttypes.h \
+ ../../m-nslp/include/msg/ipfix_def.h /usr/include/c++/4.6/cstddef \
  ../../m-nslp/include/msg/mnslp_field.h \
  ../../m-nslp/include/msg/mnslp_ipfix_exception.h \
- ../../m-nslp/include/msg/mnslp_ipfix_data_record.h \
- ../../m-nslp/include/msg/mnslp_ipfix_template.h \
- ../../m-nslp/include/msg/mnslp_mspec_object.h \
- ../../m-nslp/include/msg/ipfix_t.h \
- ../../m-nslp/include/msg/mnslp_refresh.h \
- ../../m-nslp/include/msg/mnslp_options.h \
- ../../m-nslp/include/msg/mnslp_notify.h ../../protlib/include/address.h \
- ../../protlib/include/ie.h ../../protlib/include/logfile.h \
- ../../protlib/include/threadsafe_db.h ../../m-nslp/include/policy_rule.h \
- ../../m-nslp/include/mspec_rule_key.h /usr/include/uuid/uuid.h \
- ../../m-nslp/include/msg/mnslp_mspec_object.h
+ ../../m-nslp/include/mnslp_xml_node_reader.h \
+ ../../m-nslp/include/policy_field_mapping.h \
+ ../../m-nslp/include/policy_action_mapping.h /usr/include/c++/4.6/limits \
+ ../../m-nslp/include/netmate_ipfix_metering_config.h \
+ ../../m-nslp/include/netmate_ipfix_metering_config.h \
+ ../../m-nslp/include/msg/mnslp_ipfix_field.h \
+ ../../m-nslp/include/ipfix_def_FOKUS.h
 
 /usr/include/cppunit/TestCase.h:
 
@@ -582,6 +586,62 @@ test_runner-session_id.o: session_id.cpp /usr/include/cppunit/TestCase.h \
 
 /usr/include/c++/4.6/backward/hash_fun.h:
 
+../../m-nslp/include/netmate_ipfix_policy_action_mapping.h:
+
+/usr/include/libxml2/libxml/xmlreader.h:
+
+/usr/include/libxml2/libxml/xmlversion.h:
+
+/usr/include/libxml2/libxml/xmlexports.h:
+
+/usr/include/libxml2/libxml/tree.h:
+
+/usr/include/libxml2/libxml/xmlstring.h:
+
+/usr/include/libxml2/libxml/xmlregexp.h:
+
+/usr/include/libxml2/libxml/dict.h:
+
+/usr/include/libxml2/libxml/xmlmemory.h:
+
+/usr/include/libxml2/libxml/threads.h:
+
+/usr/include/libxml2/libxml/globals.h:
+
+/usr/include/libxml2/libxml/parser.h:
+
+/usr/include/libxml2/libxml/hash.h:
+
+/usr/include/libxml2/libxml/valid.h:
+
+/usr/include/libxml2/libxml/xmlerror.h:
+
+/usr/include/libxml2/libxml/list.h:
+
+/usr/include/libxml2/libxml/xmlautomata.h:
+
+/usr/include/libxml2/libxml/entities.h:
+
+/usr/include/libxml2/libxml/encoding.h:
+
+/usr/include/iconv.h:
+
+/usr/include/libxml2/libxml/xmlIO.h:
+
+/usr/include/libxml2/libxml/SAX.h:
+
+/usr/include/libxml2/libxml/xlink.h:
+
+/usr/include/libxml2/libxml/SAX2.h:
+
+/usr/include/libxml2/libxml/relaxng.h:
+
+/usr/include/libxml2/libxml/xmlschemas.h:
+
+../../m-nslp/include/msg/mnslp_field.h:
+
+../../protlib/include/ie.h:
+
 ../../protlib/include/protlib_types.h:
 
 /usr/include/c++/4.6/cassert:
@@ -616,53 +676,9 @@ test_runner-session_id.o: session_id.cpp /usr/include/cppunit/TestCase.h \
 
 /usr/include/i386-linux-gnu/bits/in.h:
 
-../../m-nslp/include/session.h:
-
-../../m-nslp/include/session_id.h:
-
-/usr/include/c++/4.6/iomanip:
-
-../../m-nslp/include/msg/mnslp_msg.h:
-
-../../protlib/include/ie.h:
-
-../../protlib/include/protlib_types.h:
-
 ../../protlib/include/network_message.h:
 
-../../m-nslp/include/msg/ie_store.h:
-
-../../m-nslp/include/msg/ie_object_key.h:
-
-../../m-nslp/include/msg/mnslp_object.h:
-
-../../m-nslp/include/msg/session_lifetime.h:
-
-../../m-nslp/include/msg/information_code.h:
-
-../../m-nslp/include/msg/selection_metering_entities.h:
-
-../../m-nslp/include/msg/msg_sequence_number.h:
-
-../../m-nslp/include/msg/message_hop_count.h:
-
-../../m-nslp/include/msg/mnslp_configure.h:
-
-../../m-nslp/include/msg/mnslp_msg.h:
-
-../../m-nslp/include/msg/mnslp_ipfix_message.h:
-
-/usr/include/inttypes.h:
-
-/usr/include/c++/4.6/list:
-
-/usr/include/c++/4.6/bits/stl_list.h:
-
-/usr/include/c++/4.6/bits/list.tcc:
-
-../../m-nslp/include/msg/ipfix_def.h:
-
-/usr/include/c++/4.6/cstddef:
+../../m-nslp/include/msg/mnslp_field_key.h:
 
 ../../m-nslp/include/msg/mnslp_ipfix_field.h:
 
@@ -672,38 +688,28 @@ test_runner-session_id.o: session_id.cpp /usr/include/cppunit/TestCase.h \
 
 /usr/include/i386-linux-gnu/sys/time.h:
 
-../../m-nslp/include/msg/mnslp_field_key.h:
+/usr/include/inttypes.h:
+
+../../m-nslp/include/msg/ipfix_def.h:
+
+/usr/include/c++/4.6/cstddef:
 
 ../../m-nslp/include/msg/mnslp_field.h:
 
 ../../m-nslp/include/msg/mnslp_ipfix_exception.h:
 
-../../m-nslp/include/msg/mnslp_ipfix_data_record.h:
+../../m-nslp/include/mnslp_xml_node_reader.h:
 
-../../m-nslp/include/msg/mnslp_ipfix_template.h:
+../../m-nslp/include/policy_field_mapping.h:
 
-../../m-nslp/include/msg/mnslp_mspec_object.h:
+../../m-nslp/include/policy_action_mapping.h:
 
-../../m-nslp/include/msg/ipfix_t.h:
+/usr/include/c++/4.6/limits:
 
-../../m-nslp/include/msg/mnslp_refresh.h:
+../../m-nslp/include/netmate_ipfix_metering_config.h:
 
-../../m-nslp/include/msg/mnslp_options.h:
+../../m-nslp/include/netmate_ipfix_metering_config.h:
 
-../../m-nslp/include/msg/mnslp_notify.h:
+../../m-nslp/include/msg/mnslp_ipfix_field.h:
 
-../../protlib/include/address.h:
-
-../../protlib/include/ie.h:
-
-../../protlib/include/logfile.h:
-
-../../protlib/include/threadsafe_db.h:
-
-../../m-nslp/include/policy_rule.h:
-
-../../m-nslp/include/mspec_rule_key.h:
-
-/usr/include/uuid/uuid.h:
-
-../../m-nslp/include/msg/mnslp_mspec_object.h:
+../../m-nslp/include/ipfix_def_FOKUS.h:

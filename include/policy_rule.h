@@ -30,6 +30,7 @@
 #define MNSLP__POLICY_RULE_H
 
 #include <map>
+#include <vector>
 
 #include "protlib_types.h"
 #include "address.h"
@@ -79,30 +80,55 @@ class mt_policy_rule {
 	mt_policy_rule *copy() const;
 
 	void set_object(mspec_rule_key key, msg::mnslp_mspec_object *obj);
+
     /**
     * Add a mspec objet to the rule. This creates the key to share with the
     * metering application. 
-    * The key created is returned in string format.
-    */
-    std::string set_object(msg::mnslp_mspec_object *obj);
+    * The key created is returned.
+    */    
+    mspec_rule_key set_object(msg::mnslp_mspec_object *obj);
+
+    void set_commands(mspec_rule_key key, std::vector<std::string> commands);
 	
 	size_t get_number_mspec_objects();
+	
+	size_t get_number_rule_keys();
+
+	size_t get_number_rule_keys() const;
 		
 	typedef std::map<mspec_rule_key, 
 			msg::mnslp_mspec_object *>::const_iterator const_iterator;
+			
+	typedef std::map<mspec_rule_key,
+			std::vector<std::string> >::const_iterator const_iterator_commands;
 
 	const_iterator begin() const throw() { return objects.begin(); }
 	const_iterator end() const throw() { return objects.end(); }
 	
+	const_iterator_commands begin_commands() const throw() { return rule_keys.begin(); }
+	const_iterator_commands end_commands() const throw() { return rule_keys.end(); }
+	
 	bool operator==(const mt_policy_rule &rhs);
 	
 	bool operator!=(const mt_policy_rule &rhs); 
+	
+	mt_policy_rule & operator=(const mt_policy_rule &rhs);
+	
+	void clear_commands();
 
   protected:
 	
 	/// Map for all mspec objects belonging to the rule to be used in the 
 	/// metering application.
 	std::map<mspec_rule_key,msg::mnslp_mspec_object *> objects;
+	
+	/// This map maintains all keys for rules used for in the metering application(MA)
+	/// a mspec object can result in more than one rule.
+	/// we insert in the map when the key is installed in the MA
+	std::map<mspec_rule_key, std::vector<std::string> > rule_keys;
+
+  private:
+	bool are_equal(std::vector<std::string> left, std::vector<std::string> right);
 	
 };
 

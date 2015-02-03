@@ -73,7 +73,7 @@ void NetmateIpfixPolicyRuleInstallerTest::setUp() {
 	conf = new mock_mnslp_config();
 	netmate = new netmate_ipfix_policy_rule_installer_test(conf);
 	netmate->setup();
-	
+		
 	int sourceid = 0x00000000;
 	mess1 = new msg::mnslp_ipfix_message(sourceid, IPFIX_VERSION, true);
 	mess2 = new msg::mnslp_ipfix_message(sourceid, IPFIX_VERSION, true);
@@ -87,7 +87,6 @@ void NetmateIpfixPolicyRuleInstallerTest::setUp() {
 	add_configuration_fields(mess3);
 	
 	rule1 = new mt_policy_rule();
-	// std::cout << "Finishing setup " << std::endl;
 	
 }
 
@@ -189,12 +188,15 @@ void NetmateIpfixPolicyRuleInstallerTest::add_configuration_fields(msg::mnslp_ip
 void NetmateIpfixPolicyRuleInstallerTest::tearDown() 
 {
 	delete(netmate);
+	delete (conf);
+	std::cout << "before deleting rule1" << std::endl;
 	delete(rule1);
 
 }
 
 void NetmateIpfixPolicyRuleInstallerTest::general_test() 
 {
+	
 	try
 	{
 		netmate->check(mess1);
@@ -222,6 +224,40 @@ void NetmateIpfixPolicyRuleInstallerTest::general_test()
 		std::cout << "Mspec object not possible to include in the policy rule " << std::endl;
 	}
 	
-	netmate->install(rule1);
-
+	mt_policy_rule *result = netmate->install(rule1);
+	
+	// If the results has the same number of objects as the initial rule,
+	// then every object could be installed.
+	CPPUNIT_ASSERT( result->get_number_mspec_objects() == 
+						rule1->get_number_mspec_objects() );
+	
+	// Eliminate one of the policy rules created
+	mt_policy_rule *rule_delete = result->copy();
+	rule_delete->clear_commands();
+	
+	if (result->get_number_rule_keys() >= 1)
+	{
+		mt_policy_rule::const_iterator_commands it_command;
+		it_command = result->begin_commands();
+		rule_delete->set_commands(it_command->first, it_command->second);
+		mt_policy_rule *result_del = netmate->remove(rule_delete);
+		
+		CPPUNIT_ASSERT( result_del->get_number_rule_keys() == 
+						rule_delete->get_number_rule_keys() );
+		
+		delete(result_del);
+	}
+	
+	// Test the remove all function.
+	
+	CPPUNIT_ASSERT( netmate->remove_all() == true );
+	
+	std::cout << "before deleting rule_delete" << std::endl;
+	delete(rule_delete);
+	std::cout << "before deleting result" << std::endl;
+	delete(result);
+	
+	std::cout << "after deleting result" << std::endl;
+	
+	
 }

@@ -103,7 +103,7 @@ mnslp_ipfix_field::mnslp_ipfix_field()
 
 }
 
-mnslp_ipfix_field::mnslp_ipfix_field(ipfix_field_type_t &param): field_type(param)
+mnslp_ipfix_field::mnslp_ipfix_field(const ipfix_field_type_t &param): field_type(param)
 {
 
 }
@@ -1147,7 +1147,7 @@ void msnlp_ipfix_field_container::AddFieldType(int _eno, int _ftype, ssize_t _le
 };
 
 
-void msnlp_ipfix_field_container::AddFieldType(ipfix_field_type_t &param)
+void msnlp_ipfix_field_container::AddFieldType(const ipfix_field_type_t &param)
 {
 	mnslp_ipfix_field a = mnslp_ipfix_field(param);
 

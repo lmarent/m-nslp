@@ -78,6 +78,8 @@ class policy_application_configuration_container {
 	bool is_filter_field(std::string app, msg::mnslp_field &field) const;
 	
 	bool is_export_field(std::string app, msg::mnslp_field &field) const;
+	
+	std::string to_string();
     
   private:
 	

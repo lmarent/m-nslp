@@ -103,7 +103,7 @@ class policy_action_mapping : public policy_field_mapping {
     	
 	std::ostream &operator<<(std::ostream &out);
 	
-	std::string to_string();
+	std::string to_string() const;
 	
 	void set_metering_configuration(metering_config *met_conf);
 	

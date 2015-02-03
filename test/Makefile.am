@@ -11,11 +11,13 @@ test_runner_SOURCES = test_runner.cpp basic.cpp generic_object_test.h \
 		    mnslp_options.cpp mnslp_response.cpp utils.cpp session_id.cpp \
 		    session_manager.cpp mspec_rule_key.cpp \
 		    policy_application_configuration_container.cpp \
-		    netmate_metering_config.cpp policy_field_mapping.cpp \
-		    netmate_policy_action_mapping.cpp  policy_action.cpp  \
+		    netmate_ipfix_metering_config.cpp policy_field_mapping.cpp \
+		    netmate_ipfix_policy_action_mapping.cpp  policy_action.cpp  \
 			policy_action_container.cpp policy_rule.cpp \
-			netmate_ipfix_policy_rule_installer.cpp 
+			ni_session.cpp nf_session.cpp nr_session.cpp
 
+
+#netmate_ipfix_policy_rule_installer.cpp
 
 if USE_WITH_SCTP
 LD_SCTP_LIB= -lsctp

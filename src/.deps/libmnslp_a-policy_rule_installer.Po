@@ -156,14 +156,14 @@ libmnslp_a-policy_rule_installer.o: policy_rule_installer.cpp \
  ../include/msg/msg_sequence_number.h ../include/msg/message_hop_count.h \
  ../include/msg/mnslp_configure.h ../include/msg/mnslp_msg.h \
  ../include/msg/mnslp_ipfix_message.h /usr/include/inttypes.h \
- ../include/msg/ipfix_def.h /usr/include/c++/4.6/cstddef \
- ../include/msg/mnslp_ipfix_field.h /usr/include/string.h \
- /usr/include/i386-linux-gnu/bits/string3.h \
+ /usr/include/c++/4.6/list /usr/include/c++/4.6/bits/stl_list.h \
+ /usr/include/c++/4.6/bits/list.tcc ../include/msg/ipfix_def.h \
+ /usr/include/c++/4.6/cstddef ../include/msg/mnslp_ipfix_field.h \
+ /usr/include/string.h /usr/include/i386-linux-gnu/bits/string3.h \
  /usr/include/i386-linux-gnu/sys/time.h ../include/msg/mnslp_field_key.h \
  ../include/msg/mnslp_field.h ../include/msg/mnslp_ipfix_exception.h \
  ../include/msg/mnslp_ipfix_data_record.h \
- ../include/msg/mnslp_ipfix_template.h /usr/include/c++/4.6/list \
- /usr/include/c++/4.6/bits/stl_list.h /usr/include/c++/4.6/bits/list.tcc \
+ ../include/msg/mnslp_ipfix_template.h \
  ../include/msg/mnslp_mspec_object.h ../include/msg/ipfix_t.h \
  ../include/msg/mnslp_refresh.h ../include/msg/mnslp_options.h \
  ../include/msg/mnslp_notify.h ../../protlib/include/address.h \
@@ -621,6 +621,12 @@ libmnslp_a-policy_rule_installer.o: policy_rule_installer.cpp \
 
 /usr/include/inttypes.h:
 
+/usr/include/c++/4.6/list:
+
+/usr/include/c++/4.6/bits/stl_list.h:
+
+/usr/include/c++/4.6/bits/list.tcc:
+
 ../include/msg/ipfix_def.h:
 
 /usr/include/c++/4.6/cstddef:
@@ -642,12 +648,6 @@ libmnslp_a-policy_rule_installer.o: policy_rule_installer.cpp \
 ../include/msg/mnslp_ipfix_data_record.h:
 
 ../include/msg/mnslp_ipfix_template.h:
-
-/usr/include/c++/4.6/list:
-
-/usr/include/c++/4.6/bits/stl_list.h:
-
-/usr/include/c++/4.6/bits/list.tcc:
 
 ../include/msg/mnslp_mspec_object.h:
 

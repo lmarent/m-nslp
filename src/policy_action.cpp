@@ -30,6 +30,7 @@
 #include <libxml/xmlreader.h>
 #include <iostream>
 #include <vector>
+#include <sstream>
 
 #include "policy_action.h"
 #include "msg/information_code.h"
@@ -41,6 +42,11 @@ namespace mnslp {
 std::string policy_action::id_str = "ID";
 std::string policy_action::priority_str = "PRIORITY";
 std::string policy_action::action_str = "POLICY_ACTION_APP";
+std::string policy_action::directory_str = "DIRECTORY";
+std::string policy_action::metering_procedure_str = "METERING_PROCEDURE";
+std::string policy_action::export_procedure_str = "EXPORT_PROCEDURE";
+std::string policy_action::interval_str = "INTERVAL";
+
 
 
 policy_action::policy_action()
@@ -116,29 +122,35 @@ int policy_action::read_from_xml(xmlTextReaderPtr reader)
 		level++;
 		while (ret == 1) 
 		{
+			name = xmlTextReaderName(reader);
+			
 			if ((xmlTextReaderDepth(reader) == level) and 
-				(xmlTextReaderNodeType(reader) == 1) )
-			{
+				(xmlTextReaderNodeType(reader) ==  XML_READER_TYPE_ELEMENT ) ){
+					
 				if (xmlStrEqual( name, 
 						(const xmlChar *) policy_action::action_str.c_str()) == 1 )
 				{
+
+					std::string metering_application = 
+						processAttribute(reader, policy_action::id_str);
+						
 					policy_action_mapping *action_mapping;
-				
-					std::string metering_application = processAttribute(reader, "ID");
+									
 					action_mapping = policy_action_mapping::make(metering_application);
 				
 					action_mapping->read_from_xml(level, reader);
-				
+								
 					set_action_mapping(action_mapping->get_metering_application(), 
 							   action_mapping);
 				}
 				else if (xmlStrEqual( name, 
 						(const xmlChar *) policy_action::priority_str.c_str()) == 1)
-				{
+				{	
 					set_priority(atoi((processTextNode(level + 1, reader)).c_str()));
 				}	
 			}
 			else{
+			
 				if (xmlTextReaderDepth(reader) < level){
 					return ret;
 				}
@@ -313,5 +325,17 @@ policy_action::get_package(std::string app, msg::mnslp_field &field) const
 
 }
 
+std::string 
+policy_action::to_string() const
+{
+	ostringstream temp;
+	temp << "action:" << action << " priority:"  << priority << std::endl;
+	for ( const_iterator i = action_mappings.begin(); i != action_mappings.end(); i++ ) {
+		temp << (i->second)->to_string() << std::endl;
+	}
+	
+	return  temp.str();
+
+}
 
 } // namespace mnslp

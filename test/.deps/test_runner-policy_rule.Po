@@ -129,7 +129,8 @@ test_runner-policy_rule.o: policy_rule.cpp \
  /usr/include/c++/4.6/bits/stl_multimap.h /usr/include/c++/4.6/memory \
  /usr/include/c++/4.6/bits/stl_tempbuf.h \
  /usr/include/c++/4.6/bits/stl_raw_storage_iter.h \
- /usr/include/c++/4.6/backward/auto_ptr.h \
+ /usr/include/c++/4.6/backward/auto_ptr.h /usr/include/c++/4.6/list \
+ /usr/include/c++/4.6/bits/stl_list.h /usr/include/c++/4.6/bits/list.tcc \
  ../../m-nslp/include/policy_rule.h ../../protlib/include/protlib_types.h \
  /usr/include/c++/4.6/cassert /usr/include/assert.h \
  /usr/include/netinet/in.h \
@@ -165,10 +166,8 @@ test_runner-policy_rule.o: policy_rule.cpp \
  /usr/include/c++/4.6/bits/algorithmfwd.h \
  /usr/include/c++/4.6/bits/stl_heap.h \
  /usr/include/c++/4.6/backward/hash_fun.h \
- ../../protlib/include/network_message.h /usr/include/c++/4.6/list \
- /usr/include/c++/4.6/bits/stl_list.h /usr/include/c++/4.6/bits/list.tcc \
- ../../protlib/include/logfile.h /usr/include/string.h \
- /usr/include/i386-linux-gnu/bits/string3.h \
+ ../../protlib/include/network_message.h ../../protlib/include/logfile.h \
+ /usr/include/string.h /usr/include/i386-linux-gnu/bits/string3.h \
  /usr/include/i386-linux-gnu/sys/time.h \
  ../../protlib/include/threadsafe_db.h \
  ../../m-nslp/include/mspec_rule_key.h /usr/include/uuid/uuid.h \
@@ -189,7 +188,8 @@ test_runner-policy_rule.o: policy_rule.cpp \
  ../../m-nslp/include/msg/mnslp_ipfix_template.h \
  ../../m-nslp/include/msg/mnslp_mspec_object.h \
  ../../m-nslp/include/msg/ipfix_t.h \
- ../../m-nslp/include/msg/mnslp_ipfix_field.h
+ ../../m-nslp/include/msg/mnslp_ipfix_field.h \
+ ../../m-nslp/include/ipfix_def_FOKUS.h
 
 /usr/include/cppunit/TestCase.h:
 
@@ -527,6 +527,12 @@ test_runner-policy_rule.o: policy_rule.cpp \
 
 /usr/include/c++/4.6/backward/auto_ptr.h:
 
+/usr/include/c++/4.6/list:
+
+/usr/include/c++/4.6/bits/stl_list.h:
+
+/usr/include/c++/4.6/bits/list.tcc:
+
 ../../m-nslp/include/policy_rule.h:
 
 ../../protlib/include/protlib_types.h:
@@ -619,12 +625,6 @@ test_runner-policy_rule.o: policy_rule.cpp \
 
 ../../protlib/include/network_message.h:
 
-/usr/include/c++/4.6/list:
-
-/usr/include/c++/4.6/bits/stl_list.h:
-
-/usr/include/c++/4.6/bits/list.tcc:
-
 ../../protlib/include/logfile.h:
 
 /usr/include/string.h:
@@ -680,3 +680,5 @@ test_runner-policy_rule.o: policy_rule.cpp \
 ../../m-nslp/include/msg/ipfix_t.h:
 
 ../../m-nslp/include/msg/mnslp_ipfix_field.h:
+
+../../m-nslp/include/ipfix_def_FOKUS.h:

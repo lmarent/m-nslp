@@ -1,0 +1,181 @@
+/*
+ * FOKUS IPFIX defines
+ *
+ *
+ */
+#ifndef MNSLP_IPFIX_DEF_VENDOR_H
+#define MNSLP_IPFIX_DEF_VENDOR_H
+
+#define IPFIX_ENO_FOKUS	12325
+
+
+#define  IPFIX_FT_REVOCTETDELTACOUNT 	 176
+#define  IPFIX_FT_REVPACKETDELTACOUNT 	 177
+#define  IPFIX_FT_RTTMEAN_USEC 	 178
+#define  IPFIX_FT_RTTMIN_USEC 	 179
+#define  IPFIX_FT_RTTMAX_USEC 	 180
+#define  IPFIX_FT_IDENT 	 181
+#define  IPFIX_FT_LOSTPACKETS 	 182
+#define  IPFIX_FT_OWDVAR_USEC 	 183
+#define  IPFIX_FT_OWDVARMEAN_USEC 	 184
+#define  IPFIX_FT_OWDVARMIN_USEC 	 185
+#define  IPFIX_FT_OWDVARMAX_USEC 	 186
+#define  IPFIX_FT_OWDSD_USEC 	 187
+#define  IPFIX_FT_OWD_USEC 	 188
+#define  IPFIX_FT_OWDMEAN_USEC 	 189
+#define  IPFIX_FT_OWDMIN_USEC 	 190
+#define  IPFIX_FT_OWDMAX_USEC 	 191
+#define  IPFIX_FT_TASKID 	 192
+#define  IPFIX_FT_TSTAMP_SEC 	 193
+#define  IPFIX_FT_TSTAMP_NSEC 	 194
+#define  IPFIX_FT_PKTLENGTH 	 195
+#define  IPFIX_FT_PKTID 	 196
+#define  IPFIX_FT_STARTTIME 	 197
+#define  IPFIX_FT_ENDTIME 	 198
+#define  IPFIX_FT_RTT_USEC 	 199
+#define  IPFIX_FT_FLOWCREATIONTIMEUSEC 	 300
+#define  IPFIX_FT_FLOWENDTIMEUSEC 	 301
+#define  IPFIX_FT_TC_PACKETS 	 303
+#define  IPFIX_FT_TC_BYTES 	 304
+#define  IPFIX_FT_TC_RATE_BPS 	 305
+#define  IPFIX_FT_TC_RATE_PPS 	 306
+#define  IPFIX_FT_TC_QLEN 	 307
+#define  IPFIX_FT_TC_BACKLOG 	 308
+#define  IPFIX_FT_TC_DROPS 	 309
+#define  IPFIX_FT_TC_REQUEUES 	 310
+#define  IPFIX_FT_TC_OVERLIMITS 	 311
+#define  IPFIX_FT_OWDVARMEAN_NSEC 	 312
+#define  IPFIX_FT_OWDVARMIN_NSEC 	 313
+#define  IPFIX_FT_OWDVARMAX_NSEC 	 314
+#define  IPFIX_FT_SOURCEIPV4FANOUT 	 315
+#define  IPFIX_FT_DESTINATIONIPV4FANIN 	 316
+#define  IPFIX_FT_PACKETARRIVALMEAN 	 317
+#define  IPFIX_FT_PACKETARRIVALVAR 	 318
+#define  IPFIX_FT_PR_SESSIONID 	 330
+#define  IPFIX_FT_PR_TRANSACTIONID 	 331
+#define  IPFIX_FT_PR_AES128ENCRYPTEDDATA 	 332
+#define  IPFIX_FT_PR_AES256ENCRYPTEDDATA 	 337
+#define  IPFIX_FT_PR_DECRYPTIONKEY 	 333
+#define  IPFIX_FT_PR_AES128KEYSHARE 	 334
+#define  IPFIX_FT_PR_AES256KEYSHARE 	 338
+#define  IPFIX_FT_PR_KEYSHAREADP 	 335
+#define  IPFIX_FT_PR_KEYSHAREINITVECTOR 	 336
+#define  IPFIX_FT_PT_SYSTEM_CPU_IDLE 	 340
+#define  IPFIX_FT_PT_SYSTEM_MEM_FREE 	 341
+#define  IPFIX_FT_PT_PROCESS_CPU_USER 	 342
+#define  IPFIX_FT_PT_PROCESS_CPU_SYS 	 343
+#define  IPFIX_FT_PT_PROCESS_MEM_VZS 	 344
+#define  IPFIX_FT_PT_PROCESS_MEM_RSS 	 345
+#define  IPFIX_FT_PT_PCAPSTAT_RECV 	 346
+#define  IPFIX_FT_PT_PCAPSTAT_DROP 	 347
+#define  IPFIX_FT_PT_MESSAGE_ID 	 348
+#define  IPFIX_FT_PT_MESSAGE_VALUE 	 349
+#define  IPFIX_FT_PT_MESSAGE 	 350
+#define  IPFIX_FT_PT_INTERFACE_NAME 	 351
+#define  IPFIX_FT_PT_INTERFACE_DESCRIPTION 	 352
+#define  IPFIX_FT_SYNC_QUEUE_FILL_LEVEL 	 390
+#define  IPFIX_FT_SYNC_BOTTLENECK 	 391
+#define  IPFIX_FT_SYNC_FREQ 	 392
+#define  IPFIX_FT_ORsignalBandwidth 	 402
+#define  IPFIX_FT_ORsignalPower 	 403
+#define  IPFIX_FT_ORsymbolRate 	 405
+#define  IPFIX_FT_ORmodulationOrder 	 406
+#define  IPFIX_FT_ORrolloffFactor 	 407
+#define  IPFIX_FT_sensing_value 	 421
+#define  IPFIX_FT_sensing_threshold 	 422
+#define  IPFIX_FT_OR_terminal_id 	 423
+#define  IPFIX_FT_OR_terminal_id_list 	 424
+#define  IPFIX_FT_Infrastructure_network_id 	 425
+#define  IPFIX_FT_Spectral_allocation_vector 	 431
+#define  IPFIX_FT_Spectral_allocation_profile 	 432
+#define  IPFIX_FT_Center_frequency 	 433
+#define  IPFIX_FT_Bandwidth_of_CAP 	 434
+#define  IPFIX_FT_ORmodulation 	 435
+
+/*
+ * column name definitions
+ */
+#define  IPFIX_CN_ORmodulation 	  "ORmodulation"
+#define  IPFIX_CN_Bandwidth_of_CAP 	  "Bandwidth_of_CAP"
+#define  IPFIX_CN_Center_frequency 	  "Center_frequency"
+#define  IPFIX_CN_Spectral_allocation_profile 	  "Spectral_allocation_profile"
+#define  IPFIX_CN_Spectral_allocation_vector 	  "Spectral_allocation_vector"
+#define  IPFIX_CN_Infrastructure_network_id 	  "Infrastructure_network_id"
+#define  IPFIX_CN_OR_terminal_id_list 	  "OR_terminal_id_list"
+#define  IPFIX_CN_OR_terminal_id 	  "OR_terminal_id"
+#define  IPFIX_CN_sensing_threshold 	  "sensing_threshold"
+#define  IPFIX_CN_sensing_value 	  "sensing_value"
+#define  IPFIX_CN_ORrolloffFactor 	  "ORrolloffFactor"
+#define  IPFIX_CN_ORmodulationOrder 	  "ORmodulationOrder"
+#define  IPFIX_CN_ORsymbolRate 	  "ORsymbolRate"
+#define  IPFIX_CN_ORsignalPower 	  "ORsignalPower"
+#define  IPFIX_CN_ORsignalBandwidth 	  "ORsignalBandwidth"
+#define  IPFIX_CN_SYNC_FREQ 	  "freq"
+#define  IPFIX_CN_SYNC_BOTTLENECK 	  "bottleneck"
+#define  IPFIX_CN_SYNC_QUEUE_FILL_LEVEL 	  "queueFillLevel"
+#define  IPFIX_CN_PT_INTERFACE_DESCRIPTION 	  "interfaceDescripton"
+#define  IPFIX_CN_PT_INTERFACE_NAME 	  "interfaceName"
+#define  IPFIX_CN_PT_MESSAGE 	  "msg"
+#define  IPFIX_CN_PT_MESSAGE_VALUE 	   "msgValue"
+#define  IPFIX_CN_PT_MESSAGE_ID 	   "msgId"
+#define  IPFIX_CN_PT_PCAPSTAT_DROP 	   "pcapDrop"
+#define  IPFIX_CN_PT_PCAPSTAT_RECV 	   "pcapRecv"
+#define  IPFIX_CN_PT_PROCESS_MEM_RSS 	   "procMemRss"
+#define  IPFIX_CN_PT_PROCESS_MEM_VZS 	   "procMemVzs"
+#define  IPFIX_CN_PT_PROCESS_CPU_SYS 	  "procCpuSys"
+#define  IPFIX_CN_PT_PROCESS_CPU_USER 	  "procCpuUser"
+#define  IPFIX_CN_PT_SYSTEM_MEM_FREE 	   "sysMemFree"
+#define  IPFIX_CN_PT_SYSTEM_CPU_IDLE 	  "sysCpuIdle"
+#define  IPFIX_CN_PR_KEYSHAREINITVECTOR 	  "cryptoInitVector"
+#define  IPFIX_CN_PR_KEYSHAREADP 	  "keyShareAdp"
+#define  IPFIX_CN_PR_AES256KEYSHARE 	  "keyShare256"
+#define  IPFIX_CN_PR_AES128KEYSHARE 	  "keyShare128"
+#define  IPFIX_CN_PR_DECRYPTIONKEY 	  "decryptionKey"
+#define  IPFIX_CN_PR_AES256ENCRYPTEDDATA 	  "encryptedData128"
+#define  IPFIX_CN_PR_AES128ENCRYPTEDDATA 	  "encryptedData128"
+#define  IPFIX_CN_PR_TRANSACTIONID 	  "transactionId"
+#define  IPFIX_CN_PR_SESSIONID 	  "sessionId"
+#define  IPFIX_CN_PACKETARRIVALVAR 	 "packetArrivalVar"
+#define  IPFIX_CN_PACKETARRIVALMEAN 	 "packetArrivalMean"
+#define  IPFIX_CN_DESTINATIONIPV4FANIN 	 "destinationIPv4FanIn"
+#define  IPFIX_CN_SOURCEIPV4FANOUT 	 "sourceIPv4FanOut"
+#define  IPFIX_CN_OWDVARMAX_NSEC 	  "owdvarmax_nsec"
+#define  IPFIX_CN_OWDVARMIN_NSEC 	  "owdvarmin_nsec"
+#define  IPFIX_CN_OWDVARMEAN_NSEC 	  "owdvarmean_nsec"
+#define  IPFIX_CN_TC_OVERLIMITS 	  "tcOverlimits"
+#define  IPFIX_CN_TC_REQUEUES 	  "tcRequeues"
+#define  IPFIX_CN_TC_DROPS 	  "tcDrops"
+#define  IPFIX_CN_TC_BACKLOG 	  "tcbacklog"
+#define  IPFIX_CN_TC_QLEN 	  "tc_qlen"
+#define  IPFIX_CN_TC_RATE_PPS 	  "tcRrate_pps"
+#define  IPFIX_CN_TC_RATE_BPS 	  "tcRate_bps"
+#define  IPFIX_CN_TC_BYTES 	  "tcBytes"
+#define  IPFIX_CN_TC_PACKETS 	  "tcPackets"
+#define  IPFIX_CN_FLOWENDTIMEUSEC 	  "flowEndTimeUsec"
+#define  IPFIX_CN_FLOWCREATIONTIMEUSEC 	  "flowCreationTimeUsec"
+#define  IPFIX_CN_RTT_USEC 	  "rtt_usec"
+#define  IPFIX_CN_ENDTIME 	  "endTime"
+#define  IPFIX_CN_STARTTIME 	  "startTime"
+#define  IPFIX_CN_PKTID 	  "pktId"
+#define  IPFIX_CN_PKTLENGTH 	  "pktLength"
+#define  IPFIX_CN_TSTAMP_NSEC 	  "tstamp_nsec"
+#define  IPFIX_CN_TSTAMP_SEC 	  "tstamp_sec"
+#define  IPFIX_CN_TASKID 	  "taskId"
+#define  IPFIX_CN_OWDMAX_USEC 	  "owdmax_usec"
+#define  IPFIX_CN_OWDMIN_USEC 	  "owdmin_usec"
+#define  IPFIX_CN_OWDMEAN_USEC 	  "owdmean_usec"
+#define  IPFIX_CN_OWD_USEC 	  "owd_usec"
+#define  IPFIX_CN_OWDSD_USEC 	  "owdsd_usec"
+#define  IPFIX_CN_OWDVARMAX_USEC 	  "owdvarmax_usec"
+#define  IPFIX_CN_OWDVARMIN_USEC 	  "owdvarmin_usec"
+#define  IPFIX_CN_OWDVARMEAN_USEC 	  "owdvarmean_usec"
+#define  IPFIX_CN_OWDVAR_USEC 	  "owdvar_usec"
+#define  IPFIX_CN_LOSTPACKETS 	  "lostPackets"
+#define  IPFIX_CN_IDENT 	  "ident"
+#define  IPFIX_CN_RTTMAX_USEC 	  "rttmax_usec"
+#define  IPFIX_CN_RTTMIN_USEC 	  "rttmin_usec"
+#define  IPFIX_CN_RTTMEAN_USEC 	  "rttmean_usec"
+#define  IPFIX_CN_REVPACKETDELTACOUNT 	  "revPacketDeltaCount"
+
+#endif
+

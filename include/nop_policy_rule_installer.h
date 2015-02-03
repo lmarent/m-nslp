@@ -53,14 +53,11 @@ class nop_policy_rule_installer : public policy_rule_installer
 	virtual void check(const msg::mnslp_mspec_object *object)
 		throw (policy_rule_installer_error);
 
-	virtual void install(const mt_policy_rule *mt_object)
-		throw (policy_rule_installer_error);
+	virtual mt_policy_rule * install(const mt_policy_rule *mt_object);
 
-	virtual void remove(const mt_policy_rule *mt_object)
-		throw (policy_rule_installer_error);
+	virtual mt_policy_rule * remove(const mt_policy_rule *mt_object);
 
-	virtual void remove_all()
-		throw (policy_rule_installer_error);
+	virtual bool remove_all();
 
 
 };

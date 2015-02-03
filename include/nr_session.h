@@ -63,11 +63,9 @@ class nr_session : public session {
 	 * States of a session.
 	 */
 	enum state_t {
-		STATE_CLOSE	= 0,
-		STATE_PENDING_FORW	= 1,
-		STATE_PENDING_PART	= 2,
-		STATE_METERING_FORW	= 3,
-		STATE_METERING_PART	= 4
+		STATE_CLOSE		= 0,
+		STATE_PENDING	= 1,
+		STATE_METERING	= 2
 	};
 
 	void process_event(dispatcher *d, event *evt);
@@ -99,8 +97,7 @@ class nr_session : public session {
 	 * State machine methods:
 	 */
 	state_t handle_state_close(dispatcher *d, event *evt);
-	state_t handle_state_metering_forward(dispatcher *d, event *e);	
-	state_t handle_state_metering_participating(dispatcher *d, event *e);
+	state_t handle_state_metering(dispatcher *d, event *e);	
 
 	msg::ntlp_msg *build_trace_response(ntlp_msg *msg) const;
 
@@ -115,11 +112,15 @@ class nr_session : public session {
 	inline void set_max_lifetime(uint32 t) { max_lifetime = t; }
 
 	friend std::ostream &operator<<(std::ostream &out, const nr_session &s);
+
 	
 	/*
 	 * Metering methods:
 	 */
-	bool save_mt_policy_rule(msg_event *evt);
+	void save_mt_policy_rule(dispatcher *d, 
+   							 msg_event *evt,
+							 std::vector<msg::mnslp_mspec_object *> &missing_objects )
+		 throw (request_error);
 	
 	mt_policy_rule *get_mt_policy_rule_copy() const;
 	

@@ -197,8 +197,8 @@ test_runner-policy_action.o: policy_action.cpp \
  /usr/include/libxml2/libxml/xmlschemas.h \
  ../../m-nslp/include/policy_action_mapping.h /usr/include/c++/4.6/limits \
  ../../m-nslp/include/policy_field_mapping.h \
- ../../m-nslp/include/netmate_policy_action_mapping.h \
- ../../m-nslp/include/netmate_metering_config.h \
+ ../../m-nslp/include/netmate_ipfix_policy_action_mapping.h \
+ ../../m-nslp/include/netmate_ipfix_metering_config.h \
  ../../m-nslp/include/msg/mnslp_ipfix_field.h
 
 /usr/include/cppunit/TestCase.h:
@@ -705,8 +705,8 @@ test_runner-policy_action.o: policy_action.cpp \
 
 ../../m-nslp/include/policy_field_mapping.h:
 
-../../m-nslp/include/netmate_policy_action_mapping.h:
+../../m-nslp/include/netmate_ipfix_policy_action_mapping.h:
 
-../../m-nslp/include/netmate_metering_config.h:
+../../m-nslp/include/netmate_ipfix_metering_config.h:
 
 ../../m-nslp/include/msg/mnslp_ipfix_field.h:

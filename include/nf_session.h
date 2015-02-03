@@ -64,11 +64,9 @@ class nf_session : public session {
 	 * States of a session.
 	 */
 	enum state_t {
-		STATE_CLOSE	= 0,
-		STATE_PENDING_FORW	= 1,
-		STATE_PENDING_PART	= 2,
-		STATE_METERING_FORW	= 3,
-		STATE_METERING_PART	= 4
+		STATE_CLOSE		= 0,
+		STATE_PENDING	= 1,
+		STATE_METERING	= 2
 	};
 
 	nf_session(state_t s, const mnslp_config *conf);
@@ -112,9 +110,6 @@ class nf_session : public session {
 	ntlp::mri_pathcoupled *get_nr_mri() const;
 	void set_nr_mri(ntlp::mri_pathcoupled *m);
 
-	mt_policy_rule *get_mt_policy_rule() const;
-	void set_mt_policy_rule(mt_policy_rule *r);
-
 
   private:
   
@@ -138,39 +133,35 @@ class nf_session : public session {
 	ntlp::mri_pathcoupled *nr_mri;	// the MRI to use for reaching the NR
 	msg::ntlp_msg *configure_message;
 	msg::ntlp_msg *refresh_message;
-	mt_policy_rule *mt_rule;
 
-
-
+	state_t process_state_close(dispatcher *d, event *evt);
 	state_t handle_state_close(dispatcher *d, event *evt);
 	
-	state_t handle_state_pending_forward(dispatcher *d, event *evt);
+	state_t handle_state_pending(dispatcher *d, event *evt);
 	
-	state_t handle_state_pending_participating(dispatcher *d, event *evt);
-
-	state_t handle_state_metering_forward(dispatcher *d, event *e);
+	state_t handle_state_metering(dispatcher *d, event *evt);
 	
-	state_t handle_state_metering_participating(dispatcher *d, event *e);
-
-	state_t handle_state_close_configure(dispatcher *d, msg_event *e);
-
 	ntlp::mri_pathcoupled *create_mri_inverted(
 		ntlp::mri_pathcoupled *orig_mri) const;
 		
 	ntlp::mri_pathcoupled *create_mri_with_dest(
-		ntlp::mri_pathcoupled *orig_mri, appladdress priv_addr) const;
+		ntlp::mri_pathcoupled *orig_mri) const;
 		
-	ntlp::mri_pathcoupled *create_mri_with_source(
-		ntlp::mri_pathcoupled *orig_mri, appladdress priv_addr) const;
-
 	ntlp_msg *create_msg_for_nr(ntlp_msg *msg) const;
 	
 	ntlp_msg *create_msg_for_ni(ntlp_msg *msg) const;
+	
+	msg::ntlp_msg *
+	build_configure_message(msg_event *e, 
+							std::vector<msg::mnslp_mspec_object *> & missing_objects);
+							
+	msg::ntlp_msg * build_teardown_message(); 
 
-	bool save_mt_policy_rule(msg_event *evt);
+	void set_pc_mri(msg_event *evt) throw (request_error);
 	
-	mt_policy_rule *get_mt_policy_rule_copy() const;
-	
+	void set_mt_policy_rule(dispatcher *d, 
+							 msg_event *evt,
+							 std::vector<msg::mnslp_mspec_object *> &missing_objects);
 
 	friend std::ostream &operator<<(std::ostream &out, const nf_session &s);
 };
@@ -221,17 +212,6 @@ inline void nf_session::set_nr_mri(ntlp::mri_pathcoupled *mri) {
 	delete nr_mri;
 	nr_mri = mri;
 }
-
-inline void nf_session::set_mt_policy_rule(mt_policy_rule *r) {
-	delete mt_rule;
-	mt_rule = r;
-}
-
-inline mt_policy_rule *nf_session::get_mt_policy_rule() const {
-	return mt_rule; // may return NULL!
-}
-
-
 
 
 } // namespace mnslp

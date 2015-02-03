@@ -47,7 +47,7 @@ using protlib::uint32;
  * A random session ID is created and the message sequence number is set to 0.
  * Additionally, the mutex is initialized.
  */
-session::session() : id(), msn(0) {
+session::session() : id(), msn(0), rule(NULL) {
 	init();
 }
 
@@ -60,7 +60,7 @@ session::session() : id(), msn(0) {
  *
  * @param sid a hopefully unique session id
  */
-session::session(const session_id &sid) : id(sid), msn(0) {
+session::session(const session_id &sid) : id(sid), msn(0), rule(NULL) {
 	init();
 }
 
@@ -68,8 +68,12 @@ session::session(const session_id &sid) : id(sid), msn(0) {
 /**
  * Destructor.
  */
-session::~session() {
+session::~session() 
+{
 	pthread_mutex_destroy(&mutex);
+	
+	if (rule != NULL)
+		delete rule;
 }
 
 
@@ -90,6 +94,8 @@ void session::init() {
 	pthread_mutex_init(&mutex, &mutex_attr);
 
 	pthread_mutexattr_destroy(&mutex_attr); // valid, doesn't affect mutex
+	
+	rule = new mt_policy_rule();
 }
 
 
@@ -200,12 +206,16 @@ bool session::check_participating(const uint32 _sme)
 
 void session::set_mspec_object(mnslp_mspec_object *object) 
 {
-	rule.set_object(object);
+	if (rule != NULL)
+		rule->set_object(object);
 }
 
 size_t session::get_number_mspec_objects(void)
 {
-	return rule.get_number_mspec_objects();
+	if (rule != NULL)
+		return rule->get_number_mspec_objects();
+	else
+		return 0;
 }
 
 /**

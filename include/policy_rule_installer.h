@@ -99,8 +99,7 @@ class policy_rule_installer {
 	 * local metering package. After calling this method, the rules are
 	 * in effect and data traffic will be treated as requested.
 	 */
-	virtual void install(const mt_policy_rule *mt_object)
-		throw (policy_rule_installer_error) = 0;
+	virtual mt_policy_rule * install(const mt_policy_rule *mt_object) = 0;
 
 	/**
 	 * Remove the given policy rule.
@@ -111,11 +110,9 @@ class policy_rule_installer {
 	 * Note that this is the reverse operation to install(). Only previously
 	 * installed policy rule may be deleted!. 
 	 */
-	virtual void remove(const mt_policy_rule * mt_object)
-		throw (policy_rule_installer_error) = 0;
+	virtual mt_policy_rule * remove(const mt_policy_rule * mt_object) = 0;
 
-	virtual void remove_all()
-		throw (policy_rule_installer_error) = 0;
+	virtual bool remove_all() = 0;
 
 			
 	const policy_action_container * get_action_container() const;	
@@ -137,6 +134,8 @@ class policy_rule_installer {
 	std::string get_metering_port() const { return config->get_metering_port(); } 
 	
 	std::string get_export_directory() const { return config->get_export_directory(); }
+	
+	std::string to_string() const;
   
   private:
   

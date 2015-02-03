@@ -76,6 +76,8 @@ class policy_action_container {
 	
 	const metering_config * get_package(std::string app, msg::mnslp_field &field) const;
 	
+	std::string to_string();
+	
     
   private:
     // The string corresponds to the Id of the  metering application 

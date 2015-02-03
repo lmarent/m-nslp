@@ -111,7 +111,8 @@ std::ostream &mnslp::operator<<(std::ostream &out, const nr_session &s)
 /**
  * Return a copy of the saved metering policy rule if we have one.
  */
-mt_policy_rule *nr_session::get_mt_policy_rule_copy() const {
+mt_policy_rule *
+nr_session::get_mt_policy_rule_copy() const {
 	if ( get_mt_policy_rule() == NULL )
 		return NULL;
 	else
@@ -125,9 +126,15 @@ mt_policy_rule *nr_session::get_mt_policy_rule_copy() const {
  * If we receive a successful response later, we will activate the rule.
  * In case we don't support the requested policy rule, an exception is thrown.
  */
-bool nr_session::save_mt_policy_rule(msg_event *evt) {
+void 
+nr_session::save_mt_policy_rule(dispatcher *d, 
+   							    msg_event *evt,
+								std::vector<msg::mnslp_mspec_object *> &missing_objects) 
+			throw (request_error)
+{
 	
 	using ntlp::mri_pathcoupled;
+	std::vector<msg::mnslp_mspec_object *> objects;
 
 	assert( evt != NULL );
 
@@ -139,46 +146,30 @@ bool nr_session::save_mt_policy_rule(msg_event *evt) {
 
 	if ( pc_mri == NULL ) {
 		LogError("no path-coupled MRI found");
-		return false; // failure
+		throw request_error("no path-coupled MRI found",
+			information_code::sc_permanent_failure,
+			information_code::fail_configuration_failed); // failure
 	}
 
-	assert( pc_mri->get_downstream() == true );
-
-    /* TODO AM - define the policy rule for metering. 
-	// TODO: We ignore sub_ports for now.
-	if ( configure->get_subsequent_ports() != 0 )
-		throw policy_rule_installer_error("unsupported sub_ports value",
-			information_code::sc_signaling_session_failures,
-			information_code::sigfail_unknown_policy_rule_action);
-
-	fw_policy_rule::action_t action;
-
-	switch ( create->get_rule_action() ) {
-	  case extended_flow_info::ra_allow:
-		action = fw_policy_rule::ACTION_ALLOW;
-		break;
-	  case extended_flow_info::ra_deny:
-		action = fw_policy_rule::ACTION_DENY;
-		break;
-	  default:
-		throw policy_rule_installer_error("unknown policy rule action",
-			information_code::sc_signaling_session_failures,
-			information_code::sigfail_unknown_policy_rule_action);
+	configure->get_mspec_objects(objects);
+	
+	// Check which metering object could be installed in this node.
+	std::vector<msg::mnslp_mspec_object *>::const_iterator it_objects;
+	for ( it_objects = objects.begin(); it_objects != objects.end(); it_objects++)
+	{
+		const mnslp_mspec_object *object = *it_objects;
+		if (check_participating(configure->get_selection_metering_entities())){
+			if (d->check(object))
+				rule->set_object(object->copy());
+			else
+				missing_objects.push_back(object->copy());
+		}
+		else{
+			missing_objects.push_back(object->copy());
+		}
 	}
-
-	fw_policy_rule *r = new fw_policy_rule(action,
-		pc_mri->get_sourceaddress(), pc_mri->get_sourceprefix(),
-		pc_mri->get_sourceport(),
-		pc_mri->get_destaddress(), pc_mri->get_destprefix(),
-		pc_mri->get_destport(),
-		pc_mri->get_protocol()
-	);
-
-	set_fw_policy_rule(r);
-    */
-	LogDebug("saved policy rule for later use: ");
-
-	return true; // success
+	
+	LogDebug("The policy rule has been established: ");
 }
 
 
@@ -192,7 +183,8 @@ bool nr_session::save_mt_policy_rule(msg_event *evt) {
 /*
  * state: STATE_CLOSE
  */
-nr_session::state_t nr_session::handle_state_close(dispatcher *d, event *evt) 
+nr_session::state_t 
+nr_session::handle_state_close(dispatcher *d, event *evt) 
 {
 	using namespace msg;
 
@@ -226,35 +218,53 @@ nr_session::state_t nr_session::handle_state_close(dispatcher *d, event *evt)
 			LogDebug("responder session initiated.");
 			set_lifetime(lifetime);
 			set_msg_sequence_number(msn);
+			std::vector<msg::mnslp_mspec_object *> missing_objects;
+	
+			save_mt_policy_rule(d, e, missing_objects);
 			
-			if (check_participating(c->get_selection_metering_entities()))
-			{
-			
-				// TODO AM: Install the metering policy 
-				/*save_mt_policy_rule(e);
-				d->install_policy_rules(get_mt_policy_rule_copy());*/
-
-				ntlp_msg *resp = msg->create_success_response(lifetime);
-
-				d->send_message(resp);
-
-				state_timer.start(d, lifetime);
-
-				return STATE_METERING_PART;
+			if (missing_objects.size() > 0){
+				// Error at least one object could not be installed.
+				d->send_message( msg->create_response(
+								 information_code::sc_permanent_failure, 
+								 information_code::fail_internal_error) );
+				return STATE_CLOSE;
 			}
 			else
 			{
-				ntlp_msg *resp = msg->create_success_response(lifetime);
-
-				d->send_message(resp);
-
-				state_timer.start(d, lifetime);
-
-				return STATE_METERING_FORW;			
+				mt_policy_rule * result = d->install_policy_rules(rule);
+				if (result->get_number_mspec_objects() ==
+					rule->get_number_mspec_objects() ){
+					// free the space allocated to the rule to be installed.
+					delete(rule);
+					// Assign the response as the rule installed.
+					rule = result;
+					ntlp_msg *resp = msg->create_success_response(lifetime);
+					d->send_message(resp);
+					state_timer.start(d, lifetime);
+					return STATE_METERING;
+				}	
+				else
+				{
+					set_lifetime(0);
+					delete(rule);
+					// Assign the response as the rule installed.
+					rule = result;
+					// Uninstall the previous rules.
+					if (rule->get_number_rule_keys() > 0)
+						d->remove_policy_rules(rule);
+					
+					d->send_message( msg->create_response(
+										information_code::sc_permanent_failure, 
+										information_code::fail_internal_error) );
+					return STATE_CLOSE;
+				}				
 			}
 		}
 		else {
 			LogWarn("invalid lifetime.");
+			d->send_message( msg->create_response(
+								 information_code::sc_permanent_failure, 
+								 information_code::fail_configuration_failed) );
 			return STATE_CLOSE;
 		}
 	}
@@ -266,16 +276,17 @@ nr_session::state_t nr_session::handle_state_close(dispatcher *d, event *evt)
 
 
 /*
- * state: STATE_METERING_FORW
+ * state: STATE_METERING
  */
-nr_session::state_t nr_session::handle_state_metering_forward(
+nr_session::state_t nr_session::handle_state_metering(
 		dispatcher *d, event *evt) 
 {
 
 	/*
 	 * A msg_event arrived which contains a MNSLP REFRESH message.
 	 */
-	if ( is_mnslp_refresh(evt) ) {
+	if ( is_mnslp_refresh(evt) ) 
+	{
 		msg_event *e = dynamic_cast<msg_event *>(evt);
 		ntlp_msg *msg = e->get_ntlp_msg();
 		mnslp_refresh *c = e->get_refresh();
@@ -288,18 +299,18 @@ nr_session::state_t nr_session::handle_state_metering_forward(
 			check_lifetime(lifetime, get_max_lifetime());
 			check_authorization(d, e);
 		}
-		catch ( override_lifetime &e) {
+		catch ( override_lifetime &exp) {
 			lifetime = get_max_lifetime();
 		}
-		catch ( request_error &e ) {
-			LogError(e);
-			d->send_message( msg->create_error_response(e) );
-			return STATE_METERING_FORW;
+		catch ( request_error &exp ) {
+			LogError(exp);
+			d->send_message( msg->create_error_response(exp) );
+			return STATE_METERING;
 		}
 
 		if ( ! is_greater_than(msn, get_msg_sequence_number()) ) {
 			LogWarn("duplicate response received.");
-			return STATE_METERING_FORW; // no change
+			return STATE_METERING; // no change
 		}
 		else if ( lifetime > 0 ) {
 			LogDebug("authentication succesful.");
@@ -313,25 +324,29 @@ nr_session::state_t nr_session::handle_state_metering_forward(
 
 			state_timer.restart(d, lifetime);
 
-			return STATE_METERING_FORW; // no change
+			return STATE_METERING; // no change
 		}
-		else if ( lifetime == 0 ) {
+		else if ( lifetime == 0 ) 
+		{
 			LogInfo("terminating session on NI request.");
-
-			// TODO AM: implement remove policy rules
-			//d->remove_policy_rules(get_mt_policy_rule_copy());
-
-			d->report_async_event("NI terminated session");
+		
+			// Uninstall the previous rules.
+			if (rule->get_number_rule_keys() > 0)
+				d->remove_policy_rules(rule);
 			
 			ntlp_msg *resp = msg->create_success_response(lifetime);
-
+		
 			d->send_message(resp);
+			
+			state_timer.stop();
+
 			return STATE_CLOSE;
 		}
-		else {
+		else 
+		{
 			LogWarn("invalid lifetime.");
 
-			return STATE_METERING_FORW; // no change
+			return STATE_METERING; // no change
 		}
 	}
 	/*
@@ -339,109 +354,29 @@ nr_session::state_t nr_session::handle_state_metering_forward(
 	 */
 	else if ( is_timer(evt, state_timer) ) {
 		LogWarn("session timed out.");
+		// Uninstall the previous rules.
+		if (rule->get_number_rule_keys() > 0)
+			d->remove_policy_rules(rule);
 
 		d->report_async_event("session timed out");
 		return STATE_CLOSE;
 	}
-	/*
-	 * Outdated timer event, discard and don't log.
-	 */
-	else if ( is_timer(evt) ) {
-		return STATE_METERING_FORW; // no change
-	}
-	else {
-		LogInfo("discarding unexpected event " << *evt);
-
-		return STATE_METERING_FORW; // no change
-	}
-}
-
-
-/*
- * state: STATE_METERING_FORW
- */
-nr_session::state_t nr_session::handle_state_metering_participating(
-		dispatcher *d, event *evt) 
-{
-
-	/*
-	 * A msg_event arrived which contains a MNSLP REFRESH message.
-	 */
-	if ( is_mnslp_refresh(evt) ) {
-		msg_event *e = dynamic_cast<msg_event *>(evt);
-		ntlp_msg *msg = e->get_ntlp_msg();
-		mnslp_refresh *c = e->get_refresh();
-
-		uint32 lifetime = c->get_session_lifetime();
-		uint32 msn = c->get_msg_sequence_number();
 	
-		// Before proceeding check several preconditions.
-		try {
-			check_lifetime(lifetime, get_max_lifetime());
-			check_authorization(d, e);
-		}
-		catch ( override_lifetime &e) {
-			lifetime = get_max_lifetime();
-		}
-		catch ( request_error &e ) {
-			LogError(e);
-			d->send_message( msg->create_error_response(e) );
-			return STATE_METERING_PART;
-		}
-
-		if ( ! is_greater_than(msn, get_msg_sequence_number()) ) {
-			LogWarn("duplicate response received.");
-			return STATE_METERING_PART; // no change
-		}
-		else if ( lifetime > 0 ) {
-			LogDebug("authentication succesful.");
-
-			set_lifetime(lifetime); // could be a new lifetime!
-			set_msg_sequence_number(msn);
-
-			ntlp_msg *resp = msg->create_success_response(lifetime);
-
-			d->send_message(resp);
-
-			state_timer.restart(d, lifetime);
-
-			return STATE_METERING_PART; // no change
-		}
-		else if ( lifetime == 0 ) {
-			LogInfo("terminating session on NI request.");
-
-			d->report_async_event("NI terminated session");
-			
-			// TODO AM: Send a sucessfull response to the ni.
-			return STATE_CLOSE;
-		}
-		else {
-			LogWarn("invalid lifetime.");
-
-			return STATE_METERING_PART; // no change
-		}
-	}
-	/*
-	 * The session timeout was triggered.
-	 */
-	else if ( is_timer(evt, state_timer) ) {
-		LogWarn("session timed out.");
-
-		d->report_async_event("session timed out");
-		return STATE_CLOSE;
-	}
 	/*
 	 * Outdated timer event, discard and don't log.
 	 */
-	else if ( is_timer(evt) ) {
-		return STATE_METERING_PART; // no change
+	else if ( is_timer(evt) ) 
+	{
+		return STATE_METERING;// no change
 	}
-	else {
+	else 
+	{
 		LogInfo("discarding unexpected event " << *evt);
 
-		return STATE_METERING_PART; // no change
+		return STATE_METERING; // no change
 	}
 }
+
 
 /**
  * Process an event.
@@ -458,12 +393,8 @@ void nr_session::process_event(dispatcher *d, event *evt)
 			state = handle_state_close(d, evt);
 			break;
 
-		case nr_session::STATE_METERING_FORW:
-			state = handle_state_metering_forward(d, evt);
-			break;
-
-		case nr_session::STATE_METERING_PART:
-			state = handle_state_metering_participating(d, evt);
+		case nr_session::STATE_METERING:
+			state = handle_state_metering(d, evt);
 			break;
 
 		default:

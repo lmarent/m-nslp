@@ -51,11 +51,11 @@
 #include "ipfix_ssl.h"
 #endif
 
-
 #include "msg/mnslp_ipfix_message.h"
 #include "msg/mnslp_ipfix_data_record.h"
 #include "msg/mnslp_ipfix_exception.h"
 #include "msg/mnslp_ipfix_template.h"
+
 #include "msg/ipfix_t.h"
 
 
@@ -234,32 +234,42 @@ mnslp_ipfix_message::set_encode_mode(bool _encode_network)
 
 /*
  * name:        ipfix_add_vendor_information_elements()
- * parameters:  > fields - array of fields of size nfields+1
- *                         the last field has ftype = 0
+ * parameters:  field_t- field structure
  * description: add information elements to global list of field types
  * remarks:
  */
-void mnslp_ipfix_message::add_vendor_information_elements( ipfix_field_type_t *fields )
+void mnslp_ipfix_message::add_vendor_information_element( const ipfix_field_type_t &field_t )
 {
-    ipfix_field_type_t *ft;
-
+	
     if ( ! g_tstart ) {  
         throw mnslp_ipfix_bad_argument("Message not initialized");
     }
 
-    /** add to list of field types
-     */
-    ft = fields;
-    while ( ft->ftype !=0 ) {
-        /** create new node
-         */
-        g_ipfix_fields.AddFieldType(*ft);
-
-        ft++;
-        continue;
-    }
+    g_ipfix_fields.AddFieldType(field_t);
 
 }
+
+/*
+ * name:        ipfix_add_vendor_information_elements()
+ * parameters:  field_t- field structure
+ * description: add information elements to global list of field types
+ * remarks:
+ */
+void mnslp_ipfix_message::add_vendor_information_element(int _eno, int _ftype, ssize_t _length, 
+														 int _coding, 
+														 const std::string _name, 
+														 const std::string _documentation )
+{
+	
+    if ( ! g_tstart ) {  
+        throw mnslp_ipfix_bad_argument("Message not initialized");
+    }
+
+    g_ipfix_fields.AddFieldType(_eno, _ftype, _length, _coding, _name, _documentation);
+    
+}
+
+
 
 void mnslp_ipfix_message::allocate_additional_memory(size_t additional)
 {
@@ -312,7 +322,7 @@ void mnslp_ipfix_message::init( int sourceid, int ipfix_version )
     g_ipfix_fields.initialize_forward();
 
     g_ipfix_fields.initialize_reverse();
-
+    
 }
 
 /*
@@ -412,7 +422,7 @@ void
 mnslp_ipfix_message::add_field(  uint16_t templid,
                uint32_t         eno,
                uint16_t         type,
-               uint16_t         length )
+               uint16_t         length ) 
 {
     
     mnslp_ipfix_template *templ;     

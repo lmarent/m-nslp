@@ -59,7 +59,9 @@ class mnslp_configure : public mnslp_msg {
 	
 	uint32 get_message_hop_count() const;
 	
-	void set_mspec_object(mnslp_ipfix_message *message);
+	void set_mspec_object(mnslp_mspec_object *obj);
+	
+	void get_mspec_objects(std::vector<mnslp_mspec_object *> &list_return);
 	
   protected:
 	uint32 serialize_object(ie_object_key &key, NetMsg &msg, coding_t coding) const;

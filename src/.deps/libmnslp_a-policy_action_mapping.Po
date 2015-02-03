@@ -155,8 +155,9 @@ libmnslp_a-policy_action_mapping.o: policy_action_mapping.cpp \
  ../include/msg/ipfix_def.h /usr/include/c++/4.6/cstddef \
  ../include/msg/mnslp_field.h ../include/msg/mnslp_ipfix_exception.h \
  ../include/mnslp_xml_node_reader.h ../include/policy_field_mapping.h \
- ../include/netmate_policy_action_mapping.h \
- ../include/policy_action_mapping.h ../include/netmate_metering_config.h \
+ ../include/netmate_ipfix_policy_action_mapping.h \
+ ../include/policy_action_mapping.h \
+ ../include/netmate_ipfix_metering_config.h \
  ../include/msg/information_code.h ../include/msg/mnslp_object.h \
  ../include/msg/session_lifetime.h ../include/msg/information_code.h \
  ../include/msg/selection_metering_entities.h \
@@ -166,10 +167,10 @@ libmnslp_a-policy_action_mapping.o: policy_action_mapping.cpp \
  /usr/include/c++/4.6/iomanip ../include/msg/mnslp_msg.h \
  ../include/msg/ie_store.h ../include/msg/ie_object_key.h \
  ../include/msg/mnslp_configure.h ../include/msg/mnslp_msg.h \
- ../include/msg/mnslp_ipfix_message.h \
- ../include/msg/mnslp_ipfix_data_record.h \
- ../include/msg/mnslp_ipfix_template.h /usr/include/c++/4.6/list \
+ ../include/msg/mnslp_ipfix_message.h /usr/include/c++/4.6/list \
  /usr/include/c++/4.6/bits/stl_list.h /usr/include/c++/4.6/bits/list.tcc \
+ ../include/msg/mnslp_ipfix_data_record.h \
+ ../include/msg/mnslp_ipfix_template.h \
  ../include/msg/mnslp_mspec_object.h ../include/msg/ipfix_t.h \
  ../include/msg/mnslp_refresh.h ../include/msg/mnslp_options.h \
  ../include/msg/mnslp_notify.h ../../protlib/include/address.h \
@@ -620,11 +621,11 @@ libmnslp_a-policy_action_mapping.o: policy_action_mapping.cpp \
 
 ../include/policy_field_mapping.h:
 
-../include/netmate_policy_action_mapping.h:
+../include/netmate_ipfix_policy_action_mapping.h:
 
 ../include/policy_action_mapping.h:
 
-../include/netmate_metering_config.h:
+../include/netmate_ipfix_metering_config.h:
 
 ../include/msg/information_code.h:
 
@@ -662,15 +663,15 @@ libmnslp_a-policy_action_mapping.o: policy_action_mapping.cpp \
 
 ../include/msg/mnslp_ipfix_message.h:
 
-../include/msg/mnslp_ipfix_data_record.h:
-
-../include/msg/mnslp_ipfix_template.h:
-
 /usr/include/c++/4.6/list:
 
 /usr/include/c++/4.6/bits/stl_list.h:
 
 /usr/include/c++/4.6/bits/list.tcc:
+
+../include/msg/mnslp_ipfix_data_record.h:
+
+../include/msg/mnslp_ipfix_template.h:
 
 ../include/msg/mnslp_mspec_object.h:
 

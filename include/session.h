@@ -170,6 +170,8 @@ class session {
 	 */
 	virtual void process_event(dispatcher *d, event *evt) = 0;
 
+	mt_policy_rule *rule;
+
   private:
   
 	session_id id;
@@ -178,8 +180,6 @@ class session {
 
 	uint32 msn;
 	
-	mt_policy_rule rule;
-
 	pthread_mutex_t	mutex;
 
 	void init();

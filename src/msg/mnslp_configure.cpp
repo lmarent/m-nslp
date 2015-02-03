@@ -321,9 +321,28 @@ uint32 mnslp_configure::get_message_hop_count() const {
  * it is inserted. In Other words, the first message inserted is the number one message and so on.
  * *
  * @param message object to be inserted.
- */void mnslp_configure::set_mspec_object(mnslp_ipfix_message *message)
+ */
+void mnslp_configure::set_mspec_object(mnslp_mspec_object *message)
 {
 	set_object(message);
 }
+
+void mnslp_configure::get_mspec_objects(std::vector<mnslp_mspec_object *> &list_return)
+{
+	for ( obj_iter i = objects.begin(); i != objects.end(); i++ ) {
+		const ie_object_key key = i->first;
+		const mnslp_mspec_object *obj = dynamic_cast<const mnslp_mspec_object *>( i->second);
+		
+		if ((key.get_object_type() != message_hop_count::OBJECT_TYPE) 
+		    and (key.get_object_type() != message_hop_count::OBJECT_TYPE)
+		    and (key.get_object_type() != selection_metering_entities::OBJECT_TYPE) 
+		    and (key.get_object_type() != msg_sequence_number::OBJECT_TYPE)
+		    and (key.get_object_type() != session_lifetime::OBJECT_TYPE)){
+				
+			list_return.push_back(obj->copy());
+		}
+	}
+}
+
 
 // EOF

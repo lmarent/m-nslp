@@ -94,7 +94,6 @@ policy_action_container::read_from_xml(xmlTextReaderPtr reader)
 void 
 policy_action_container::set_policy_action(std::string key, policy_action &_action)
 {
-	std::cout << "size found" << _action.get_number_mappings() << std::endl;
 	actions[key] = _action;
 }
 	
@@ -198,6 +197,7 @@ policy_action_container::get_package( std::string app, msg::mnslp_field &field )
 	
 	std::sort (map_to_be_ordered.begin(), map_to_be_ordered.end());
 	
+	
 	for (std::vector< std::pair<int, std::string> >::iterator it=map_to_be_ordered.begin(); 
 				it!=map_to_be_ordered.end(); ++it){
 
@@ -210,6 +210,20 @@ policy_action_container::get_package( std::string app, msg::mnslp_field &field )
 		
 	}
 	
+	return val_return;
+}
+
+std::string
+policy_action_container::to_string()
+{
+    std::string val_return;
+	for ( const_iterator i = actions.begin(); i != actions.end(); i++ ) {
+		std::cout << i->first << std::endl;
+		val_return.append("\n");
+		val_return.append(i->first);
+		val_return.append(":");
+		val_return.append((i->second).to_string());
+	}
 	return val_return;
 }
 	

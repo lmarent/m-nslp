@@ -210,6 +210,17 @@ policy_application_configuration_container::is_export_field(std::string app,
 	return val_return;
 }
 
+std::string
+policy_application_configuration_container::to_string()
+{
+    std::string val_return;
+	for ( const_iterator i = applications.begin(); i != applications.end(); i++ ) {
+		val_return.append("\n");
+		val_return.append(i->first);
+		val_return.append(":");
+		val_return.append((i->second).to_string());
+	}
+}
 
 	
 } // namespace mnslp

@@ -86,6 +86,8 @@ class policy_action : public mnslp_xml_node_reader {
 	const metering_config * get_package(std::string app, msg::mnslp_field &field) const;
 	
 	policy_action& operator=(policy_action const &rhs);
+	
+	std::string to_string() const;
     
   private:
 	        
@@ -98,6 +100,10 @@ class policy_action : public mnslp_xml_node_reader {
 	static std::string action_str;
 	static std::string id_str;
 	static std::string priority_str;
+	static std::string directory_str;
+	static std::string metering_procedure_str;
+	static std::string export_procedure_str;
+	static std::string interval_str;
 	
 };
 

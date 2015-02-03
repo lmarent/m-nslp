@@ -168,10 +168,10 @@ libmnslp_a-policy_action_container.o: policy_action_container.cpp \
  /usr/include/c++/4.6/iomanip ../include/msg/mnslp_msg.h \
  ../include/msg/ie_store.h ../include/msg/ie_object_key.h \
  ../include/msg/mnslp_configure.h ../include/msg/mnslp_msg.h \
- ../include/msg/mnslp_ipfix_message.h \
- ../include/msg/mnslp_ipfix_data_record.h \
- ../include/msg/mnslp_ipfix_template.h /usr/include/c++/4.6/list \
+ ../include/msg/mnslp_ipfix_message.h /usr/include/c++/4.6/list \
  /usr/include/c++/4.6/bits/stl_list.h /usr/include/c++/4.6/bits/list.tcc \
+ ../include/msg/mnslp_ipfix_data_record.h \
+ ../include/msg/mnslp_ipfix_template.h \
  ../include/msg/mnslp_mspec_object.h ../include/msg/ipfix_t.h \
  ../include/msg/mnslp_refresh.h ../include/msg/mnslp_options.h \
  ../include/msg/mnslp_notify.h ../../protlib/include/address.h \
@@ -659,15 +659,15 @@ libmnslp_a-policy_action_container.o: policy_action_container.cpp \
 
 ../include/msg/mnslp_ipfix_message.h:
 
-../include/msg/mnslp_ipfix_data_record.h:
-
-../include/msg/mnslp_ipfix_template.h:
-
 /usr/include/c++/4.6/list:
 
 /usr/include/c++/4.6/bits/stl_list.h:
 
 /usr/include/c++/4.6/bits/list.tcc:
+
+../include/msg/mnslp_ipfix_data_record.h:
+
+../include/msg/mnslp_ipfix_template.h:
 
 ../include/msg/mnslp_mspec_object.h:
 

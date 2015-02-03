@@ -307,7 +307,8 @@ void dispatcher::report_async_event(std::string msg) throw () {
 /**
  * Install the given policy rules.
  */
-void dispatcher::install_policy_rules(const mt_policy_rule *mt_rule)
+mt_policy_rule * 
+dispatcher::install_policy_rules(const mt_policy_rule *mt_rule)
 		throw (policy_rule_installer_error) {
 
 	assert( rule_installer != NULL );
@@ -315,13 +316,8 @@ void dispatcher::install_policy_rules(const mt_policy_rule *mt_rule)
 	if ( mt_rule != NULL )
 		LogDebug("installing MNSLP policy rule " << *mt_rule);
 
-	try {
-		rule_installer->install(mt_rule);
-	}
-	catch ( policy_rule_installer_error &e ) {
-		LogError("cannot install policy rules: " << e);
-		throw;
-	}
+	mt_policy_rule * result = rule_installer->install(mt_rule);
+	return result;
 }
 
 
@@ -333,20 +329,35 @@ void dispatcher::remove_policy_rules(const mt_policy_rule *mt_rule)
 
 	assert( rule_installer != NULL );
 
-
 	if ( mt_rule != NULL )
 		LogDebug("removing MNSLP policy rule " << *mt_rule);
 
-	try {
-		rule_installer->remove(mt_rule);
-	}
-	catch ( policy_rule_installer_error &e ) {
-		LogError("cannot remove policy rules: " << e);
-		throw;
-	}
+	mt_policy_rule * result = rule_installer->remove(mt_rule);
+	
+	if (result->get_number_rule_keys() != 
+			mt_rule->get_number_rule_keys())
+			throw policy_rule_installer_error("Invalid ipfix message",
+				msg::information_code::sc_signaling_session_failures,
+				msg::information_code::sigfail_wrong_conf_message); 
+				
 }
 
+bool dispatcher::check(const msg::mnslp_mspec_object *object) {	
+		
+	assert( rule_installer != NULL );
+	
+	if ( object != NULL )
+		LogDebug("Checking mspec object " << *object);
+	
+	try {
+		rule_installer->check(object);
+		return true;
+	}
+	catch (policy_rule_installer_error &e){
+		return false;
+	}
 
+}
 
 bool dispatcher::is_authorized(const msg_event *evt) const throw () {
 	LogUnimp("implement dispatcher::is_authorized()!");

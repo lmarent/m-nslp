@@ -323,7 +323,7 @@ policy_field_mapping::operator<<(std::ostream &out)
 }    
 
 std::string
-policy_field_mapping::to_string()
+policy_field_mapping::to_string() const
 {
 	ostringstream temp;
 

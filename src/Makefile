@@ -109,8 +109,8 @@ am__objects_1 = libmnslp_a-benchmark_journal.$(OBJEXT) \
 	libmnslp_a-mnslp_xml_node_reader.$(OBJEXT) \
 	libmnslp_a-policy_application_configuration_container.$(OBJEXT) \
 	libmnslp_a-policy_field_mapping.$(OBJEXT) \
-	libmnslp_a-netmate_metering_config.$(OBJEXT) \
-	libmnslp_a-netmate_policy_action_mapping.$(OBJEXT)
+	libmnslp_a-netmate_ipfix_metering_config.$(OBJEXT) \
+	libmnslp_a-netmate_ipfix_policy_action_mapping.$(OBJEXT)
 am_libmnslp_a_OBJECTS = $(am__objects_1)
 libmnslp_a_OBJECTS = $(am_libmnslp_a_OBJECTS)
 PROGRAMS = $(bin_PROGRAMS)
@@ -314,9 +314,11 @@ MNSLP_SOURCEFILES = benchmark_journal.cpp gistka_mapper.cpp session_id.cpp \
   policy_rule_installer.cpp policy_action.cpp policy_action_mapping.cpp \
   policy_action_container.cpp nop_policy_rule_installer.cpp \
   netmate_ipfix_policy_rule_installer.cpp mspec_rule_key.cpp policy_rule.cpp \
-  mnslp_xml_node_reader.cpp policy_application_configuration_container.cpp \
-  policy_field_mapping.cpp netmate_metering_config.cpp \
-  netmate_policy_action_mapping.cpp
+  mnslp_xml_node_reader.cpp \
+  policy_application_configuration_container.cpp \
+  policy_field_mapping.cpp \
+  netmate_ipfix_metering_config.cpp \
+  netmate_ipfix_policy_action_mapping.cpp
 
 libmnslp_a_SOURCES = $(MNSLP_SOURCEFILES)
 mnslp_SOURCES = mnslp_daemon.cpp main.cpp
@@ -459,9 +461,9 @@ include ./$(DEPDIR)/libmnslp_a-mnslp_daemon.Po
 include ./$(DEPDIR)/libmnslp_a-mnslp_timers.Po
 include ./$(DEPDIR)/libmnslp_a-mnslp_xml_node_reader.Po
 include ./$(DEPDIR)/libmnslp_a-mspec_rule_key.Po
+include ./$(DEPDIR)/libmnslp_a-netmate_ipfix_metering_config.Po
+include ./$(DEPDIR)/libmnslp_a-netmate_ipfix_policy_action_mapping.Po
 include ./$(DEPDIR)/libmnslp_a-netmate_ipfix_policy_rule_installer.Po
-include ./$(DEPDIR)/libmnslp_a-netmate_metering_config.Po
-include ./$(DEPDIR)/libmnslp_a-netmate_policy_action_mapping.Po
 include ./$(DEPDIR)/libmnslp_a-nf_session.Po
 include ./$(DEPDIR)/libmnslp_a-ni_session.Po
 include ./$(DEPDIR)/libmnslp_a-nop_policy_rule_installer.Po
@@ -815,33 +817,33 @@ libmnslp_a-policy_field_mapping.obj: policy_field_mapping.cpp
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-policy_field_mapping.obj `if test -f 'policy_field_mapping.cpp'; then $(CYGPATH_W) 'policy_field_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/policy_field_mapping.cpp'; fi`
 
-libmnslp_a-netmate_metering_config.o: netmate_metering_config.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-netmate_metering_config.o -MD -MP -MF $(DEPDIR)/libmnslp_a-netmate_metering_config.Tpo -c -o libmnslp_a-netmate_metering_config.o `test -f 'netmate_metering_config.cpp' || echo '$(srcdir)/'`netmate_metering_config.cpp
-	$(am__mv) $(DEPDIR)/libmnslp_a-netmate_metering_config.Tpo $(DEPDIR)/libmnslp_a-netmate_metering_config.Po
-#	source='netmate_metering_config.cpp' object='libmnslp_a-netmate_metering_config.o' libtool=no \
+libmnslp_a-netmate_ipfix_metering_config.o: netmate_ipfix_metering_config.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-netmate_ipfix_metering_config.o -MD -MP -MF $(DEPDIR)/libmnslp_a-netmate_ipfix_metering_config.Tpo -c -o libmnslp_a-netmate_ipfix_metering_config.o `test -f 'netmate_ipfix_metering_config.cpp' || echo '$(srcdir)/'`netmate_ipfix_metering_config.cpp
+	$(am__mv) $(DEPDIR)/libmnslp_a-netmate_ipfix_metering_config.Tpo $(DEPDIR)/libmnslp_a-netmate_ipfix_metering_config.Po
+#	source='netmate_ipfix_metering_config.cpp' object='libmnslp_a-netmate_ipfix_metering_config.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-netmate_metering_config.o `test -f 'netmate_metering_config.cpp' || echo '$(srcdir)/'`netmate_metering_config.cpp
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-netmate_ipfix_metering_config.o `test -f 'netmate_ipfix_metering_config.cpp' || echo '$(srcdir)/'`netmate_ipfix_metering_config.cpp
 
-libmnslp_a-netmate_metering_config.obj: netmate_metering_config.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-netmate_metering_config.obj -MD -MP -MF $(DEPDIR)/libmnslp_a-netmate_metering_config.Tpo -c -o libmnslp_a-netmate_metering_config.obj `if test -f 'netmate_metering_config.cpp'; then $(CYGPATH_W) 'netmate_metering_config.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_metering_config.cpp'; fi`
-	$(am__mv) $(DEPDIR)/libmnslp_a-netmate_metering_config.Tpo $(DEPDIR)/libmnslp_a-netmate_metering_config.Po
-#	source='netmate_metering_config.cpp' object='libmnslp_a-netmate_metering_config.obj' libtool=no \
+libmnslp_a-netmate_ipfix_metering_config.obj: netmate_ipfix_metering_config.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-netmate_ipfix_metering_config.obj -MD -MP -MF $(DEPDIR)/libmnslp_a-netmate_ipfix_metering_config.Tpo -c -o libmnslp_a-netmate_ipfix_metering_config.obj `if test -f 'netmate_ipfix_metering_config.cpp'; then $(CYGPATH_W) 'netmate_ipfix_metering_config.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_ipfix_metering_config.cpp'; fi`
+	$(am__mv) $(DEPDIR)/libmnslp_a-netmate_ipfix_metering_config.Tpo $(DEPDIR)/libmnslp_a-netmate_ipfix_metering_config.Po
+#	source='netmate_ipfix_metering_config.cpp' object='libmnslp_a-netmate_ipfix_metering_config.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-netmate_metering_config.obj `if test -f 'netmate_metering_config.cpp'; then $(CYGPATH_W) 'netmate_metering_config.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_metering_config.cpp'; fi`
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-netmate_ipfix_metering_config.obj `if test -f 'netmate_ipfix_metering_config.cpp'; then $(CYGPATH_W) 'netmate_ipfix_metering_config.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_ipfix_metering_config.cpp'; fi`
 
-libmnslp_a-netmate_policy_action_mapping.o: netmate_policy_action_mapping.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-netmate_policy_action_mapping.o -MD -MP -MF $(DEPDIR)/libmnslp_a-netmate_policy_action_mapping.Tpo -c -o libmnslp_a-netmate_policy_action_mapping.o `test -f 'netmate_policy_action_mapping.cpp' || echo '$(srcdir)/'`netmate_policy_action_mapping.cpp
-	$(am__mv) $(DEPDIR)/libmnslp_a-netmate_policy_action_mapping.Tpo $(DEPDIR)/libmnslp_a-netmate_policy_action_mapping.Po
-#	source='netmate_policy_action_mapping.cpp' object='libmnslp_a-netmate_policy_action_mapping.o' libtool=no \
+libmnslp_a-netmate_ipfix_policy_action_mapping.o: netmate_ipfix_policy_action_mapping.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-netmate_ipfix_policy_action_mapping.o -MD -MP -MF $(DEPDIR)/libmnslp_a-netmate_ipfix_policy_action_mapping.Tpo -c -o libmnslp_a-netmate_ipfix_policy_action_mapping.o `test -f 'netmate_ipfix_policy_action_mapping.cpp' || echo '$(srcdir)/'`netmate_ipfix_policy_action_mapping.cpp
+	$(am__mv) $(DEPDIR)/libmnslp_a-netmate_ipfix_policy_action_mapping.Tpo $(DEPDIR)/libmnslp_a-netmate_ipfix_policy_action_mapping.Po
+#	source='netmate_ipfix_policy_action_mapping.cpp' object='libmnslp_a-netmate_ipfix_policy_action_mapping.o' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-netmate_policy_action_mapping.o `test -f 'netmate_policy_action_mapping.cpp' || echo '$(srcdir)/'`netmate_policy_action_mapping.cpp
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-netmate_ipfix_policy_action_mapping.o `test -f 'netmate_ipfix_policy_action_mapping.cpp' || echo '$(srcdir)/'`netmate_ipfix_policy_action_mapping.cpp
 
-libmnslp_a-netmate_policy_action_mapping.obj: netmate_policy_action_mapping.cpp
-	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-netmate_policy_action_mapping.obj -MD -MP -MF $(DEPDIR)/libmnslp_a-netmate_policy_action_mapping.Tpo -c -o libmnslp_a-netmate_policy_action_mapping.obj `if test -f 'netmate_policy_action_mapping.cpp'; then $(CYGPATH_W) 'netmate_policy_action_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_policy_action_mapping.cpp'; fi`
-	$(am__mv) $(DEPDIR)/libmnslp_a-netmate_policy_action_mapping.Tpo $(DEPDIR)/libmnslp_a-netmate_policy_action_mapping.Po
-#	source='netmate_policy_action_mapping.cpp' object='libmnslp_a-netmate_policy_action_mapping.obj' libtool=no \
+libmnslp_a-netmate_ipfix_policy_action_mapping.obj: netmate_ipfix_policy_action_mapping.cpp
+	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT libmnslp_a-netmate_ipfix_policy_action_mapping.obj -MD -MP -MF $(DEPDIR)/libmnslp_a-netmate_ipfix_policy_action_mapping.Tpo -c -o libmnslp_a-netmate_ipfix_policy_action_mapping.obj `if test -f 'netmate_ipfix_policy_action_mapping.cpp'; then $(CYGPATH_W) 'netmate_ipfix_policy_action_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_ipfix_policy_action_mapping.cpp'; fi`
+	$(am__mv) $(DEPDIR)/libmnslp_a-netmate_ipfix_policy_action_mapping.Tpo $(DEPDIR)/libmnslp_a-netmate_ipfix_policy_action_mapping.Po
+#	source='netmate_ipfix_policy_action_mapping.cpp' object='libmnslp_a-netmate_ipfix_policy_action_mapping.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
-#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-netmate_policy_action_mapping.obj `if test -f 'netmate_policy_action_mapping.cpp'; then $(CYGPATH_W) 'netmate_policy_action_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_policy_action_mapping.cpp'; fi`
+#	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-netmate_ipfix_policy_action_mapping.obj `if test -f 'netmate_ipfix_policy_action_mapping.cpp'; then $(CYGPATH_W) 'netmate_ipfix_policy_action_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_ipfix_policy_action_mapping.cpp'; fi`
 
 mnslp-mnslp_daemon.o: mnslp_daemon.cpp
 	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslp_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT mnslp-mnslp_daemon.o -MD -MP -MF $(DEPDIR)/mnslp-mnslp_daemon.Tpo -c -o mnslp-mnslp_daemon.o `test -f 'mnslp_daemon.cpp' || echo '$(srcdir)/'`mnslp_daemon.cpp

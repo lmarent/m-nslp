@@ -79,8 +79,10 @@ class dispatcher {
 	virtual id_t start_timer(const session *s, int secs) throw ();
 	
 	virtual void report_async_event(std::string msg) throw ();
-
-	virtual void install_policy_rules(const mt_policy_rule *mt_rule)
+	
+	virtual bool check(const msg::mnslp_mspec_object *object);
+	
+	virtual mt_policy_rule * install_policy_rules(const mt_policy_rule *mt_rule) 
 		throw (policy_rule_installer_error);
 		
 	virtual void remove_policy_rules(const mt_policy_rule *mt_rule)
