@@ -718,7 +718,19 @@ nf_session::state_t nf_session::handle_state_metering(
 
 		return STATE_CLOSE;
 	}
-	
+	/*
+	 * GIST detected that one of our routes is no longer usable. This
+	 * could be the route to the NI or to the NR.
+	 */
+	else if ( is_route_changed_bad_event(evt) ) {
+		LogUnimp("route to the NI or to the NR is no longer usable");
+
+		// Uninstall the previous rules.
+		if (rule->get_number_rule_keys() > 0)
+			d->remove_policy_rules(rule);
+
+		return STATE_CLOSE;
+	}	
 	/*
 	 * A RESPONSE to a REFRESH arrived.
 	 */
@@ -767,19 +779,6 @@ nf_session::state_t nf_session::handle_state_metering(
 
 			return STATE_CLOSE;
 		}
-	}
-	/*
-	 * GIST detected that one of our routes is no longer usable. This
-	 * could be the route to the NI or to the NR.
-	 */
-	else if ( is_route_changed_bad_event(evt) ) {
-		LogUnimp("route to the NI or to the NR is no longer usable");
-
-		// Uninstall the previous rules.
-		if (rule->get_number_rule_keys() > 0)
-			d->remove_policy_rules(rule);
-
-		return STATE_CLOSE;
 	}
 	/*
 	 * Outdated timer event, discard and don't log.
