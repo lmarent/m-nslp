@@ -130,6 +130,11 @@ class ipfix_t
 	 * the message is in the correct ipfix message
 	 */
 	void copy_raw_message(uchar * msg, size_t _offset);
+	
+	/**
+	 * Release the buffer and reinitiate it
+	 */
+	void reinitiate_buffer(void);
 
 };
 

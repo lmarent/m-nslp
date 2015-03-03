@@ -35,10 +35,10 @@
 namespace mnslp {
   namespace msg {
 
-mnslp_ipfix_template::mnslp_ipfix_template(const mnslp_ipfix_template &rhs)
+mnslp_ipfix_template::mnslp_ipfix_template(const mnslp_ipfix_template &rhs):
+tsend(0)
 {
 	type = rhs.type;
-	tsend = rhs.tsend;
 	tid = rhs.tid;
 	maxfields = rhs.maxfields;
 	datafields = rhs.datafields;
@@ -85,7 +85,7 @@ mnslp_ipfix_template::remove_unknown_fields()
 /** If type == 0 Then data Field
  *  else scope field
 */
-void mnslp_ipfix_template::add_field(uint16_t _flength, 
+void mnslp_ipfix_template::add_data_field(uint16_t _flength, 
                                      ipfix_unknown_field_t _unknown_f, 
 								     int _relay_f,
 									 mnslp_ipfix_field  &_field)
@@ -97,11 +97,27 @@ void mnslp_ipfix_template::add_field(uint16_t _flength,
 	t.relay_f = _relay_f;
 	t.elem = _field;
 			
-	if (type == DATA_TEMPLATE)
-		datafields.push_back(t);
-	else
-		scopefields.push_back(t);
+	datafields.push_back(t);
 }
+
+/** 
+ * add a scope field.
+*/
+void mnslp_ipfix_template::add_scope_field(uint16_t _flength, 
+                                     ipfix_unknown_field_t _unknown_f, 
+								     int _relay_f,
+									 mnslp_ipfix_field  &_field)
+{
+	ipfix_template_field_t t;
+	
+	t.flength = _flength;
+	t.unknown_f = _unknown_f;
+	t.relay_f = _relay_f;
+	t.elem = _field;
+
+	scopefields.push_back(t);
+}
+
 
 bool
 mnslp_ipfix_template::operator== (const mnslp_ipfix_template& rhs)

@@ -123,12 +123,10 @@ mt_policy_rule::get_number_mspec_objects()
 bool
 mt_policy_rule::operator==(const mt_policy_rule &rhs)
 {
-	std::cout << "estoy en 0" << std::endl;
 	if (objects.size() != rhs.objects.size()){
 		return false;
 	}
 	
-	std::cout << "estoy en 1" << std::endl;
 	// All objects have to be identical.
 	for ( const_iterator i = objects.begin(); i != objects.end(); i++ ) {
 		const_iterator j = rhs.objects.find(i->first);
@@ -142,11 +140,9 @@ mt_policy_rule::operator==(const mt_policy_rule &rhs)
 	}	
 
 	// Verify rule keys.
-	std::cout << "estoy en 2" << std::endl;
 	if (rule_keys.size() != rhs.rule_keys.size())
 		return false;
 	
-	std::cout << "estoy en 3" << std::endl;
 	for ( const_iterator_commands it = rule_keys.begin(); it != rule_keys.end(); it++ ) {
 		const_iterator_commands ij = rhs.rule_keys.find(it->first);
 		if ( ij == rhs.rule_keys.end() )
@@ -156,7 +152,6 @@ mt_policy_rule::operator==(const mt_policy_rule &rhs)
 			return false;	
 
 	}
-	std::cout << "estoy en 4" << std::endl;
 	return true;
 }
 

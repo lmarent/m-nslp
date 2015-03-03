@@ -148,6 +148,8 @@ ntlp_msg *nf_session::create_msg_for_ni(ntlp_msg *msg) const
 void nf_session::set_pc_mri(msg_event *evt) throw (request_error)
 {
 	using ntlp::mri_pathcoupled;
+	
+	LogDebug( "Begin set_pc_mri()");
 
 	assert( evt != NULL );
 
@@ -168,6 +170,8 @@ void nf_session::set_pc_mri(msg_event *evt) throw (request_error)
 	set_nr_mri( create_mri_with_dest(pc_mri) );
 	set_ni_mri( create_mri_inverted(pc_mri) );
 
+	LogDebug( "End set_pc_mri()");
+
 }
 
 /**
@@ -180,6 +184,8 @@ void nf_session::set_mt_policy_rule(dispatcher *d,
 									 msg_event *evt,
 									 std::vector<msg::mnslp_mspec_object *> &missing_objects) 
 {
+	
+	LogDebug( "Begin set_mt_policy_rule()");
 	
 	std::vector<msg::mnslp_mspec_object *> objects;
 	assert( evt != NULL );
@@ -205,7 +211,7 @@ void nf_session::set_mt_policy_rule(dispatcher *d,
 			missing_objects.push_back(object->copy());
 		}
 	}
-	LogDebug("The policy rule has been established: ");
+	LogDebug("End set_mt_policy_rule() ");
 }
 
 
@@ -225,6 +231,8 @@ nf_session::build_configure_message(msg_event *e,
 								std::vector<msg::mnslp_mspec_object *> & missing_objects) 
 {
 	using namespace mnslp::msg;
+	
+	LogDebug( "Begin build_configure_message");
 		
 	assert( get_nr_mri() != NULL );
 	
@@ -251,6 +259,7 @@ nf_session::build_configure_message(msg_event *e,
 	for ( it_objects = missing_objects.begin(); 
 			it_objects != missing_objects.end(); it_objects++ )
 	{
+		LogDebug( "Adding object to message");
 		configure->set_mspec_object((*it_objects)->copy());
 	}
 
@@ -259,6 +268,8 @@ nf_session::build_configure_message(msg_event *e,
 	 */
 	ntlp_msg *msg = new ntlp_msg(get_id(), configure, get_nr_mri()->copy(), 0);
 
+	LogDebug( "End build_configure_message");
+	
 	return msg;
 }
 
@@ -272,6 +283,8 @@ nf_session::build_configure_message(msg_event *e,
 msg::ntlp_msg *nf_session::build_teardown_message() 
 {
 	using namespace mnslp::msg;
+	
+	LogDebug( "Begin build_teardown_message");
 
 	assert( get_nr_mri() != NULL );
 
@@ -286,7 +299,8 @@ msg::ntlp_msg *nf_session::build_teardown_message()
 	 * Wrap the Configure inside an ntlp_msg and add session ID and MRI.
 	 */
 	ntlp_msg *msg = new ntlp_msg(get_id(), refresh, get_nr_mri()->copy(), 0);
-
+	
+	LogDebug( "Ending build_teardown_message");
 	return msg;
 }
 
@@ -295,7 +309,7 @@ nf_session::process_state_close(dispatcher *d, event *evt)
 {
 	using ntlp::mri_pathcoupled;
 	
-	std::cout << "In process State Close" << std::endl;
+	LogDebug( "Begin process State Close");
 	
 	msg_event *e = dynamic_cast<msg_event *>(evt);
 	ntlp_msg *msg = e->get_ntlp_msg();
@@ -343,7 +357,8 @@ nf_session::process_state_close(dispatcher *d, event *evt)
 		d->send_message( msg->create_error_response(exc) );
 		return STATE_CLOSE;	
 	}
-
+	
+	LogDebug( "Ending process State Close");
 }
 
 
@@ -353,6 +368,8 @@ nf_session::handle_state_close(dispatcher *d, event *evt)
 
 	using namespace msg;
 	using ntlp::mri_pathcoupled;
+	
+	LogDebug("begin handle_state_close(): " << *this);
 
 	/*
 	 * A msg_event arrived which contains a MNSLP Configure message.
@@ -400,6 +417,8 @@ nf_session::handle_state_close(dispatcher *d, event *evt)
 		return process_state_close(d, evt);
 
 	}
+	
+	LogDebug("End handle_state_close(): " << *this);
 }
 
 /*
@@ -410,7 +429,8 @@ nf_session::handle_state_pending(dispatcher *d, event *evt) {
 
 	using namespace mnslp::msg;
 
-
+	LogDebug("begin handle_state_pending(): " << *this);
+	
 	/*
 	 * Another CONFIGURE from the upstream peer arrived.
 	 *
@@ -569,6 +589,9 @@ nf_session::handle_state_pending(dispatcher *d, event *evt) {
 		LogInfo("discarding unexpected event " << *evt);
 		return STATE_PENDING; // no change
 	}
+
+	LogDebug("Ending handle_state_pending(): " << *this);
+
 }
 
 
@@ -580,7 +603,7 @@ nf_session::state_t nf_session::handle_state_metering(
 
 	using namespace mnslp::msg;
   
-	std::cout << "In handle_state_metering " << std::endl;
+	LogDebug("Begining handle_state_metering(): " << *this);
   
 	/*
 	 * A msg_event arrived which contains a MNSLP REFRESH message.
@@ -788,6 +811,9 @@ nf_session::state_t nf_session::handle_state_metering(
 		LogInfo("discarding unexpected event " << *evt);
 		return STATE_METERING; // no change
 	}
+
+	LogDebug("Ending handle_state_metering(): " << *this);
+	
 }
 
 /**
@@ -796,9 +822,8 @@ nf_session::state_t nf_session::handle_state_metering(
  * This method implements the transition function of the state machine.
  */
 void nf_session::process_event(dispatcher *d, event *evt) {
-	LogDebug("begin process_event(): " << *this);
 
-	std::cout << "process_event" << std::endl;
+	LogDebug("begin process_event(): " << *this);
 
 	switch ( get_state() ) {
 
@@ -829,6 +854,8 @@ void nf_session::process_event(dispatcher *d, event *evt) {
 ntlp::mri_pathcoupled *nf_session::create_mri_with_dest(
 		ntlp::mri_pathcoupled *orig_mri) const {
 
+	LogDebug("begin create_mri_with_dest(): " << *this);
+
 	assert( orig_mri != NULL );
 	assert( orig_mri->get_downstream() == true );
 
@@ -847,6 +874,8 @@ ntlp::mri_pathcoupled *nf_session::create_mri_with_dest(
 		orig_mri->get_downstream()
 	);
 
+	LogDebug("End create_mri_with_dest(): " << *this);
+
 	return new_mri;
 }
 
@@ -856,11 +885,15 @@ ntlp::mri_pathcoupled *nf_session::create_mri_with_dest(
 ntlp::mri_pathcoupled *nf_session::create_mri_inverted(
 		ntlp::mri_pathcoupled *orig_mri) const {
 
+	LogDebug("begin create_mri_inverted(): " << *this);
+
 	assert( orig_mri != NULL );
 	assert( orig_mri->get_downstream() == true );
 
 	ntlp::mri_pathcoupled *new_mri = orig_mri->copy();
 	new_mri->invertDirection();
+
+	LogDebug("end create_mri_inverted(): " << *this);
 
 	return new_mri;
 }

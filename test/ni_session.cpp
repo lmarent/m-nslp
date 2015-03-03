@@ -253,8 +253,8 @@ msg::ntlp_msg *InitiatorTest::create_mnslp_response(uint8 severity,
 	resp->set_msg_sequence_number(msn);
 
 	ntlp::mri *ntlp_mri = new ntlp::mri_pathcoupled(
-		hostaddress("192.168.0.4"), 32, 0,
-		hostaddress("192.168.0.5"), 32, 0,
+		hostaddress("192.168.1.4"), 32, 0,
+		hostaddress("192.168.1.5"), 32, 0,
 		"tcp", 0, 0, 0, true
 	);
 
@@ -296,10 +296,9 @@ void InitiatorTest::testClose() {
 	ASSERT_TIMER_STARTED(d, s1.get_response_timer());
 
 	event *e2 = new api_configure_event(source,destination,(protlib::uint16) 0, 
-									   (protlib::uint16) 0, (protlib::uint8) 0,
-									   (protlib::uint32) 20, START_MSN,  
-										mspec_objects, selection_metering_entities::sme_any,
-										conf->get_ni_session_lifetime(), NULL);
+ 					   (protlib::uint16) 0, (protlib::uint8) 0,
+                          		   mspec_objects, conf->get_ni_session_lifetime(),
+					   selection_metering_entities::sme_any, NULL);
 
 	ni_session_test s2(ni_session::STATE_CLOSE);
 	process(s2, e2);
@@ -507,15 +506,13 @@ void InitiatorTest::testIntegratedStateMachine()
 	mspec_objects.push_back(mess3->copy());
 
 	event *e1 = new api_configure_event(source,destination,
-										(protlib::uint16) 0, //Srcport 
-									    (protlib::uint16) 0, //Dstport
-									    (protlib::uint8) 0, // Protocol
-										START_MSN,			// Msg Seq Number		
-										(protlib::uint32) 20, // Hop Count  
-										mspec_objects, // Mspec Objects
-										selection_metering_entities::sme_any, 
-										conf->get_ni_session_lifetime(), 
-										NULL);
+   					    (protlib::uint16) 0, //Srcport 
+					    (protlib::uint16) 0, //Dstport
+					    (protlib::uint8) 0, // Protocol
+					    mspec_objects, // Mspec Objects
+					    conf->get_ni_session_lifetime(), 
+					    selection_metering_entities::sme_any,
+					    NULL);
 
 	ni_session_test s1(ni_session::STATE_CLOSE);
 	process(s1, e1);
@@ -529,7 +526,7 @@ void InitiatorTest::testIntegratedStateMachine()
 	 */
 	ntlp_msg *resp1 = create_mnslp_response(information_code::sc_success,
 		information_code::suc_successfully_processed,
-		information_code::obj_none, START_MSN);
+		information_code::obj_none, s1.get_msg_sequence_number());
 
 	event *e2 = new msg_event(NULL, resp1);
 

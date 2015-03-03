@@ -208,9 +208,6 @@ ie_store::getMaxSequence(uint32 id) const {
 				ingress = true;
 		}
 	}
-	// If not found return -1 (an invalid index).
-	if (ingress == false)
-		result = -1;
 	
 	return result;
 }

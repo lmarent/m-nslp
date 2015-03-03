@@ -108,9 +108,9 @@ void mnslp_refresh::serialize(NetMsg &msg, coding_t coding,
 	/*
 	 * Write the body: Serialize each object.
 	 */
-	ie_object_key key_msn(msg_sequence_number::OBJECT_TYPE, 0);
+	ie_object_key key_msn(msg_sequence_number::OBJECT_TYPE, 1);
 	bytes_written += serialize_object(key_msn, msg, coding);
-	ie_object_key key_slf(session_lifetime::OBJECT_TYPE, 0);
+	ie_object_key key_slf(session_lifetime::OBJECT_TYPE, 1);
 	bytes_written += serialize_object(key_slf, msg, coding);
 	
 	// this would be an implementation error
@@ -144,13 +144,13 @@ bool mnslp_refresh::check() const {
 		return false;
 
 	// Verifies that message sequence number exists.
-	ie_object_key key_msn(msg_sequence_number::OBJECT_TYPE, 0);
+	ie_object_key key_msn(msg_sequence_number::OBJECT_TYPE, 1);
 	obj = get_object(key_msn);
 	if (obj == NULL)
 		return false;
 
 	// Verifies that session lifetime exists.
-	ie_object_key key_slt(session_lifetime::OBJECT_TYPE, 0);
+	ie_object_key key_slt(session_lifetime::OBJECT_TYPE, 1);
 	obj= get_object(key_slt);
 	if (obj == NULL)
 		return false;
@@ -180,7 +180,7 @@ void mnslp_refresh::set_session_lifetime(uint32 milliseconds) {
  */
 uint32 mnslp_refresh::get_session_lifetime() const {
 	
-	ie_object_key key(session_lifetime::OBJECT_TYPE,0);
+	ie_object_key key(session_lifetime::OBJECT_TYPE,1);
 	session_lifetime *lt = dynamic_cast<session_lifetime *>(
 		get_object(key));
 
@@ -211,7 +211,7 @@ void mnslp_refresh::set_msg_sequence_number(uint32 msn) {
  */
 uint32 mnslp_refresh::get_msg_sequence_number() const {
 	
-	ie_object_key key(msg_sequence_number::OBJECT_TYPE,0);
+	ie_object_key key(msg_sequence_number::OBJECT_TYPE,1);
 	msg_sequence_number *msn = dynamic_cast<msg_sequence_number *>(
 		get_object(key));
 

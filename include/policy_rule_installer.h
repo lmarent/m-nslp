@@ -131,7 +131,7 @@ class policy_rule_installer {
 	
 	std::string get_metering_xsl() const { return config->get_metering_xsl(); } 
 	
-	std::string get_metering_port() const { return config->get_metering_port(); } 
+	uint32 get_metering_port() const { return config->get_metering_port(); } 
 	
 	std::string get_export_directory() const { return config->get_export_directory(); }
 	

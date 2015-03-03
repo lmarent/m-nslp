@@ -39,6 +39,11 @@
 using namespace mnslp::msg;
 using namespace protlib::log;
 
+#define LogError(msg) ERRLog("mnslp_configure", msg)
+#define LogWarn(msg) WLog("mnslp_configure", msg)
+#define LogInfo(msg) ILog("mnslp_configure", msg)
+#define LogDebug(msg) DLog("mnslp_configure", msg)
+
 
 /**
  * Constructor.
@@ -94,7 +99,8 @@ mnslp_configure *mnslp_configure::copy() const {
 
 void mnslp_configure::serialize(NetMsg &msg, coding_t coding,
 		uint32 &bytes_written) const throw (IEError) {
-
+	
+	LogDebug("Begin serialize");
 	
 	if ( check() ){ 
 		const IE *obj;
@@ -111,25 +117,25 @@ void mnslp_configure::serialize(NetMsg &msg, coding_t coding,
 		 * Write the body: Serialize each object. According with the RFC
 		 * Order of object is important. So we give the correct order here.
 		 */
-		ie_object_key key_msn(msg_sequence_number::OBJECT_TYPE, 0);
+		ie_object_key key_msn(msg_sequence_number::OBJECT_TYPE, 1);
 		bytes_written += serialize_object(key_msn, msg, coding);
-		ie_object_key key_slf(session_lifetime::OBJECT_TYPE, 0);
+		ie_object_key key_slf(session_lifetime::OBJECT_TYPE, 1);
 		bytes_written += serialize_object(key_slf, msg, coding);
-		ie_object_key key_sme(selection_metering_entities::OBJECT_TYPE, 0);
+		ie_object_key key_sme(selection_metering_entities::OBJECT_TYPE, 1);
 		bytes_written += serialize_object(key_sme, msg, coding);
-		ie_object_key key_mhc(message_hop_count::OBJECT_TYPE, 0);
+		ie_object_key key_mhc(message_hop_count::OBJECT_TYPE, 1);
 		bytes_written += serialize_object(key_mhc, msg, coding);
 		
 		/*
 		 * Write the body: Serialize ipfix message.
 		 */
 		uint32 max_seq_nbr = objects.getMaxSequence(mnslp_ipfix_message::OBJECT_TYPE);
-		
-		for ( uint32 i = 0; i <= max_seq_nbr; i++ ) {
+
+		for ( uint32 i = 1; i <= max_seq_nbr; i++ ) {
 			ie_object_key key_ipfix(mnslp_ipfix_message::OBJECT_TYPE, i);
 			bytes_written += serialize_object(key_ipfix, msg, coding);
 		}
-        
+		        
 		// this would be an implementation error
 		if ( bytes_written != msg.get_pos() - start_pos )
 			Log(ERROR_LOG, LOG_CRIT, "mnslp_msg",
@@ -143,6 +149,7 @@ void mnslp_configure::serialize(NetMsg &msg, coding_t coding,
 					"serialize(): Data missing for the message");
 	}
 	
+	LogDebug("Ending serialize");
 }
 
 uint32 
@@ -184,12 +191,11 @@ bool mnslp_configure::check() const {
 			msg_hop_count = true;
 		}
 		
-	    if ( key.get_object_type() == mnslp_ipfix_message::OBJECT_TYPE ){
-			message_included = true;
-		}
+		// A configure message can be received in a node without any mspec object
+		// because they already have been deployed.
 	}
 				  
-	return message_included & sequence_included & sel_meter_ent & session_lt & msg_hop_count; // no error found
+	return sequence_included & sel_meter_ent & session_lt & msg_hop_count; // no error found
 }
 
 void mnslp_configure::register_ie(IEManager *iem) const {
@@ -214,7 +220,7 @@ void mnslp_configure::set_session_lifetime(uint32 milliseconds) {
  */
 uint32 mnslp_configure::get_session_lifetime() const {
 	
-	ie_object_key key(session_lifetime::OBJECT_TYPE, 0);
+	ie_object_key key(session_lifetime::OBJECT_TYPE, 1);
 	
 	session_lifetime *lt = dynamic_cast<session_lifetime *>(
 		get_object(key));
@@ -246,7 +252,7 @@ void mnslp_configure::set_msg_sequence_number(uint32 msn) {
  */
 uint32 mnslp_configure::get_msg_sequence_number() const {
 	
-	ie_object_key key(msg_sequence_number::OBJECT_TYPE, 0);
+	ie_object_key key(msg_sequence_number::OBJECT_TYPE, 1);
 	
 	msg_sequence_number *lt = dynamic_cast<msg_sequence_number *>(
 		get_object(key));
@@ -275,7 +281,7 @@ void mnslp_configure::set_selection_metering_entities(uint32 value) {
  */
 uint32 mnslp_configure::get_selection_metering_entities() const {
 	
-	ie_object_key key(selection_metering_entities::OBJECT_TYPE, 0);
+	ie_object_key key(selection_metering_entities::OBJECT_TYPE, 1);
 	
 	selection_metering_entities *sme = dynamic_cast<selection_metering_entities *>(
 		get_object(key));
@@ -304,7 +310,7 @@ void mnslp_configure::set_message_hop_count(uint32 value) {
  */
 uint32 mnslp_configure::get_message_hop_count() const {
 	
-	ie_object_key key(message_hop_count::OBJECT_TYPE, 0);
+	ie_object_key key(message_hop_count::OBJECT_TYPE, 1);
 	
 	message_hop_count *mhc = dynamic_cast<message_hop_count *>(
 		get_object(key));

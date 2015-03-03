@@ -59,8 +59,6 @@
 #include "msg/ipfix_t.h"
 
 
-
-
 namespace mnslp {
   namespace msg {
 
@@ -99,7 +97,7 @@ const char *const mnslp_ipfix_message::ie_name = "mnslp_ipfix_mspec";
 
 mnslp_ipfix_message::mnslp_ipfix_message( ):
 		mnslp_mspec_object(OBJECT_TYPE, tr_mandatory, false),
-		message(NULL), g_tstart(0), encode_network(true), serialized_size(0)
+		message(NULL), g_tstart(0), encode_network(true)
 {    
     init( 0, IPFIX_VERSION );
 }
@@ -107,7 +105,7 @@ mnslp_ipfix_message::mnslp_ipfix_message( ):
 mnslp_ipfix_message::mnslp_ipfix_message( int sourceid, int ipfix_version, bool _encode_network):
 		mnslp_mspec_object(OBJECT_TYPE, tr_mandatory, false), 
 		message(NULL), g_tstart(0), 
-		encode_network(_encode_network), serialized_size(0)
+		encode_network(_encode_network), require_output(true)
 {
 
     switch( ipfix_version ) 
@@ -155,50 +153,68 @@ mnslp_ipfix_message::get_serialized_size(coding_t coding) const
 {
 	size_t val_return;
 	val_return = HEADER_LENGTH;
-	val_return = val_return + serialized_size;
+	val_return = val_return + get_offset();
+	
+	// For GIST it is required to add padding if the message is not multiple
+	// of 4.
+	int num_padding = val_return %4;
+	if (num_padding != 0)
+		num_padding = 4 - num_padding;
+		
+	val_return = val_return + num_padding;
 	return val_return;
 }
 
 
-bool mnslp_ipfix_message::deserialize_body(NetMsg &msg, uint16 body_length,
+bool 
+mnslp_ipfix_message::deserialize_body(NetMsg &msg, uint16 body_length,
 		IEErrorList &err, bool skip) {
+
+	std::cout << "deserialize body:" << body_length << std::endl;
 
 	uchar *messdef;
 	int num_read=0;
-	
+	uchar *padding = new uchar[4];
+	int num_padding = 0;
+
 	messdef = (uchar *) malloc(sizeof(uchar) * body_length);
 	uint32 start_pos = msg.get_pos();
 	
 	msg.copy_to(messdef, start_pos, body_length);
 	close();
-		
+	
 	num_read = mnslp_ipfix_import(messdef, body_length );
-	
-	delete messdef;
-	
-    if (num_read == body_length)
-    {
-		msg.set_pos(start_pos + body_length);
-		serialized_size = body_length;
-		return true; // success
-	}
-	else
+
+	std::cout << "after import message - bytes read:" << num_read 
+			  << "body lenght:" << body_length << std::endl;
+
+	// Manage the possible padding added in the origin.
+	num_padding = body_length - num_read;	
+	for (int i = 0 ; i < num_padding; i++ )
 	{
-		return false; 
+		if (messdef[num_read + i] != 0){
+			return false;
+		}
 	}
-	
+	std::cout << "here I am" << std::endl;
+	msg.set_pos(start_pos + body_length);
+	return true;	
 }
 
 bool 
 mnslp_ipfix_message::check_body() const
 {
-    if (get_offset() > 0 )
+    if (get_offset() > 0 ){
 		return true;
-	else 
+    }
+    else 
+    {
 		return false;
+    }
 }
 
-bool mnslp_ipfix_message::equals_body(const mnslp_object &obj) const {
+bool mnslp_ipfix_message::equals_body(const mnslp_object &obj) const 
+{
 
 	const mnslp_ipfix_message *other
 		= dynamic_cast<const mnslp_ipfix_message *>(&obj);
@@ -207,22 +223,50 @@ bool mnslp_ipfix_message::equals_body(const mnslp_object &obj) const {
 		&& this->isEqual(*other);
 }
 
-const char *mnslp_ipfix_message::get_ie_name() const {
+const char *
+mnslp_ipfix_message::get_ie_name() const 
+{
 	return ie_name;
 }
 
 
-ostream &mnslp_ipfix_message::print_attributes(ostream &os) const {
+ostream &mnslp_ipfix_message::print_attributes(ostream &os) const 
+{
 	// TODO AM: Missing function definition
 	return os;
 }
 
-void mnslp_ipfix_message::serialize_body(NetMsg &msg) const 
+void 
+mnslp_ipfix_message::serialize_body(NetMsg &msg) const 
 {
-
+	uchar *padding;
+	int num_padding = 0;
+	int offset = 0;
 	uint32 start_pos = msg.get_pos();	
-	msg.copy_from(get_message(),start_pos, get_offset());
+	msg.copy_from(get_message(),start_pos, get_offset());	
 	msg.set_pos(start_pos + get_offset());
+	
+	// For GIST it is required to add padding if the message is not multiple
+	// of 4.
+	offset = get_offset();
+	num_padding = offset % 4;
+
+	if ( num_padding != 0 ){
+		num_padding = 4 - num_padding; // How many additional bytes are required.
+		std::cout << "get offset:" << offset << "Num padding:" << num_padding << std::endl;
+		padding = new uchar[4];
+		std::cout << "voy aqui" << std::endl;
+		for (int i = 0 ; i < num_padding; i++ ){
+			padding[i] = 0;
+		}
+		uint32 start_pos2 = msg.get_pos();
+		std::cout << "voy aqui 1" << std::endl;
+		msg.copy_from(padding,start_pos2, num_padding);
+		msg.set_pos(start_pos2 + num_padding);
+		std::cout << "voy aqui 3" << std::endl;
+	}
+	
+	std::cout << "Num bytes copied:" << msg.get_pos() - start_pos << std::endl;
 
 }
 
@@ -268,8 +312,6 @@ void mnslp_ipfix_message::add_vendor_information_element(int _eno, int _ftype, s
     g_ipfix_fields.AddFieldType(_eno, _ftype, _length, _coding, _name, _documentation);
     
 }
-
-
 
 void mnslp_ipfix_message::allocate_additional_memory(size_t additional)
 {
@@ -358,6 +400,10 @@ mnslp_ipfix_message::new_template( int nfields )
 		 */
 		(message->templates).add_template(t);
 		
+		/** The message change, so it requires a new output 
+		 */
+		require_output = true;
+		
 		return t->get_template_id();
 	
 	}
@@ -381,6 +427,10 @@ mnslp_ipfix_message::new_data_template( int nfields )
     uint16_t templid;
     mnslp_ipfix_template *templ;
 
+	/** The message changed, so it requires a new output 
+	 */
+	require_output = true;
+
     templid = new_template( nfields );
     templ = message->templates.get_template(templid);
     templ->set_type(DATA_TEMPLATE);
@@ -398,6 +448,10 @@ mnslp_ipfix_message::new_option_template( int nfields )
 {
     uint16_t templid;
     mnslp_ipfix_template  *templ;
+
+	/** The message changed, so it requires a new output 
+	 */
+	require_output = true;
 
     templid =  new_template( nfields );
     templ = message->templates.get_template(templid);
@@ -439,9 +493,14 @@ mnslp_ipfix_message::add_field(  uint16_t templid,
         mnslp_ipfix_field field = g_ipfix_fields.get_field(eno, type);
         
         if (encode_network)
-			templ->add_field(length,KNOWN,1,field);
+			templ->add_data_field(length,KNOWN,1,field);
 		else
-			templ->add_field(length,KNOWN,0,field);
+			templ->add_data_field(length,KNOWN,0,field);
+
+		/** The message changed, so it requires a new output 
+		*/
+		require_output = true;
+
     }
     else 
         throw mnslp_ipfix_bad_argument("Maximum number of field reach");
@@ -475,9 +534,14 @@ mnslp_ipfix_message::add_scope_field( uint16_t templid,
         mnslp_ipfix_field field = g_ipfix_fields.get_field(eno, type);
         
          if (encode_network)
-			templ->add_field(length,KNOWN,1,field);
+			templ->add_scope_field(length,KNOWN,1,field);
 		else
-			templ->add_field(length,KNOWN,0,field);
+			templ->add_scope_field(length,KNOWN,0,field);
+
+		/** The message changed, so it requires a new output 
+		*/
+		require_output = true;
+			
     }
     else 
         throw mnslp_ipfix_bad_argument("Maximum number of field reach");
@@ -493,9 +557,12 @@ void mnslp_ipfix_message::delete_template( uint16_t templid )
 
     /** remove template from list
      */
-    
     message->templates.delete_template(templid);
 
+	/** The message changed, so it requires a new output 
+	 */
+	require_output = true;
+    
 }
 
 /*
@@ -507,8 +574,11 @@ void mnslp_ipfix_message::delete_all_templates( void )
 {
     /** remove all templates from list
      */
-    
     message->templates.delete_all_templates();
+
+	/** The message changed, so it requires a new output 
+	 */
+	require_output = true;
 
 }
 
@@ -531,9 +601,14 @@ mnslp_ipfix_message::make_template( export_fields_t *fields,
 	try
 	{
 		for ( i=0; i<nfields; i++ ){
-			std::cout << "i:" << i << std::endl;
 			add_field( templid, fields[i].eno, fields[i].ienum, fields[i].length);
 		}
+		
+		/** The message changed, so it requires a new output 
+		*/
+		require_output = true;
+		
+		return templid;
 				
 	}
 	catch(...)
@@ -542,10 +617,10 @@ mnslp_ipfix_message::make_template( export_fields_t *fields,
 		throw mnslp_ipfix_bad_argument("Could not insert all fields"); 
 	}
 
-    return templid;
 }
 
-void mnslp_ipfix_message::finish_cs( void )
+void 
+mnslp_ipfix_message::finish_cs( void )
 {
     size_t   buflen;
     uint8_t  *buf;
@@ -575,7 +650,8 @@ void mnslp_ipfix_message::finish_cs( void )
  * parameters:
  * return:      0/-1
  */
-void mnslp_ipfix_message::_write_hdr( void )
+void 
+mnslp_ipfix_message::_write_hdr( void )
 {
     int hsize, buflen = 0;
     time_t      now = time(NULL);
@@ -586,7 +662,6 @@ void mnslp_ipfix_message::_write_hdr( void )
     if ( message->version == IPFIX_VERSION_NF9 ) 
     {
         hsize = 20;
-        
         if ( hsize + message->offset > message->buffer_lenght ) 
 			allocate_additional_memory(hsize + message->offset - message->buffer_lenght );
         
@@ -616,7 +691,8 @@ void mnslp_ipfix_message::_write_hdr( void )
     else 
     {
         hsize = IPFIX_HDR_BYTES;
-        
+        std::cout << "buffer offset:" << message->offset 
+				  << "hdr bytes:" << IPFIX_HDR_BYTES << std::endl;
         if ( hsize + message->offset > message->buffer_lenght ) 
 			allocate_additional_memory(hsize + message->offset - message->buffer_lenght );
 
@@ -640,12 +716,10 @@ void mnslp_ipfix_message::_write_hdr( void )
 		}
 		message->length = message->offset + IPFIX_HDR_BYTES;
 		message->exporttime = now;
-		message->offset += hsize;
-		
+		message->offset += hsize;		
     }
-    
-    serialized_size = message->offset;
-
+    std::cout << "final message size:" << message->offset
+		      << "message lenght:" << message->length << std::endl;
 }
 
 
@@ -654,7 +728,8 @@ void mnslp_ipfix_message::_write_hdr( void )
  * parameters:
  * remarks:    
  */
-void mnslp_ipfix_message::_output_flush( void )
+void 
+mnslp_ipfix_message::_output_flush( void )
 {
     int               ret;
     std::string 	  func = "_output_flush";
@@ -666,8 +741,7 @@ void mnslp_ipfix_message::_output_flush( void )
         /* finish current dataset */
         finish_cs( );
     }
-    
-    _write_hdr( );
+
 }
 
 /*
@@ -675,7 +749,8 @@ void mnslp_ipfix_message::_output_flush( void )
  * parameters:
  * return:      0 = ok, -1 = error
  */
-void mnslp_ipfix_message::close( void )
+void 
+mnslp_ipfix_message::close( void )
 {
     if ( message != NULL )
         delete (message);
@@ -707,6 +782,7 @@ mnslp_ipfix_message::_write_template( mnslp_ipfix_template  *templ )
             if ((templ->get_field(i).elem).get_field_type().eno != IPFIX_FT_NOENO)
                 ssize += 4;
         }
+        std::cout << "Option Template - number of fields:" << templ->get_numfields() << std::endl;
         for ( osize=0; i<templ->get_numfields(); i++ ) {
             osize += 4;
             if ((templ->get_field(i).elem).get_field_type().eno != IPFIX_FT_NOENO)
@@ -721,6 +797,8 @@ mnslp_ipfix_message::_write_template( mnslp_ipfix_template  *templ )
                 tsize += 4;
         }
     }
+    
+    std::cout << "template size:" << tsize << std::endl;
 
     /* check space */
     if ( tsize + message->offset > message->buffer_lenght ) 
@@ -811,6 +889,7 @@ mnslp_ipfix_message::_write_template( mnslp_ipfix_template  *templ )
     if ( templ->get_type() == OPTION_TEMPLATE ) 
     {
         n = templ->get_numfields();
+        std::cout << "num scope fields:" << templ->get_number_scopefields() << std::endl;
         for ( i=0; i<templ->get_number_scopefields(); i++ ) {
             if ( (templ->get_field(i).elem).get_field_type().eno == IPFIX_FT_NOENO ) {
 				if (encode_network == true){
@@ -844,6 +923,7 @@ mnslp_ipfix_message::_write_template( mnslp_ipfix_template  *templ )
 
     for ( ; i<templ->get_numfields(); i++ )
     {
+        std::cout << "entro field:" << i << std::endl;
         if ( (templ->get_field(i).elem).get_field_type().eno == IPFIX_FT_NOENO ) {
 			if (encode_network == true){
 				INSERTU16( buf+buflen, buflen, (templ->get_field(i).elem).get_field_type().ftype );
@@ -869,15 +949,62 @@ mnslp_ipfix_message::_write_template( mnslp_ipfix_template  *templ )
         }
     }
     templ->set_time_send( time(NULL) );
-	
+	std::cout << "buffer len:" << buflen << std::endl;
     message->offset += buflen;
     if ( message->version == IPFIX_VERSION_NF9 )
          message->nrecords++;
 
 }
 
+void
+mnslp_ipfix_message::output(void)
+{
+	
+	if (require_output == true)
+	{
+		
+		// Clear the internal buffer.
+		message->reinitiate_buffer();
+		
+		std::list<int>::iterator it;
+		std::list<int> lst_templates = get_template_list();
+		
+		// Put in internal buffer template definition and data related for non-option
+		// templates
+		for ( it = lst_templates.begin(); it != lst_templates.end(); ++it)
+		{
+			mnslp_ipfix_template *templ = get_template(*it);
+			if (templ->get_type() == OPTION_TEMPLATE)
+				output_set( *it );
+		}
+		
+		// Put in internal buffer template definition and data related. For option
+		// templates.
+		for ( it = lst_templates.begin(); it != lst_templates.end(); ++it)
+		{
+			mnslp_ipfix_template *templ = get_template(*it);
+			if (templ->get_type() != OPTION_TEMPLATE)
+				output_set( *it );
+		}
+
+		// Calculate message header information and put it on the buffer.
+		_write_hdr( );
+		
+		/** The message changed, so it requires a new output 
+		*/
+		require_output = false;
+	}
+
+}
+
+/*
+ * name:        output_set()
+ * parameters:  Write in the buffer template definition and all 
+ * 				data records related to templateid given as parameter.
+ * return:      
+ */
 void 
-mnslp_ipfix_message::output( uint16_t templid )
+mnslp_ipfix_message::output_set( uint16_t templid )
 {
     int               i, newset_f=0;
     size_t            buflen, datasetlen;
@@ -893,21 +1020,20 @@ mnslp_ipfix_message::output( uint16_t templid )
     	
     /** writes the templates if it was not done before
      */
-    if ( templ->get_tsend() == 0 )
+    if ( templ->get_tsend() == 0 ){
         _write_template( templ ); 
+    }
     
 
     /** get size of data set, check space
     */ 
     if ( templ->get_template_id() == message->cs_tid ) 
     {
-        std::cout << "No new set" << std::endl;
         newset_f = 0;
         datasetlen = 0;
     }
     else 
     {
-        std::cout << "New set" << message->cs_tid << std::endl;
         if ( message->cs_tid > 0 ) {
             finish_cs( );
         }
@@ -916,13 +1042,15 @@ mnslp_ipfix_message::output( uint16_t templid )
     }
         	
     // insert the data records associated with the template.
-    for ( int data_index= 0; data_index < data_list.size(); data_index++){
+    for ( int data_index= 0; data_index < data_list.size(); data_index++)
+	{
 		
-		if (data_list[data_index].get_template_id() == templ->get_template_id()){
+		if (data_list[data_index].get_template_id() == templ->get_template_id())
+		{
 			
 			mnslp_ipfix_data_record g_data = data_list[data_index];
-			
-			for ( i=0; i < templ->get_numfields(); i++ ){
+			for ( i=0; i < templ->get_numfields(); i++ )
+			{
 				mnslp_ipfix_field_key field_key = mnslp_ipfix_field_key((templ->get_field(i).elem).get_field_type().eno, 
 																		(templ->get_field(i).elem).get_field_type().ftype);
 				if ( templ->get_field(i).flength == IPFIX_FT_VARLEN ) {
@@ -1001,10 +1129,10 @@ mnslp_ipfix_message::output( uint16_t templid )
 		    if ( message->version == IPFIX_VERSION )
 				message->seqno ++;
 		}
+		std::cout << "data len:" << data_index << std::endl;
 	}
-		    
     _output_flush( );
-    
+		        
 }
 
 
@@ -1026,32 +1154,52 @@ mnslp_ipfix_message::include_data( uint16_t templid,
 	}
 				
     data_list.push_back(data);
+
+	/** The message changed, so it requires a new output 
+	*/
+	require_output = true;
+    
 }
 
 uchar * 
 mnslp_ipfix_message::get_message(void) const
 {
-	if (message != NULL)
-		return message->buffer;
+	if (message != NULL) 
+	{
+		if (require_output == true)
+		{
+			return NULL;
+		}
+		else
+			return message->buffer;
+	}
+	else
+		return NULL;
 }
+
+
 
 int 
 mnslp_ipfix_message::get_offset(void) const
 {
-	if (message != NULL)
-		return message->offset;
+	if (message != NULL){
+		if (require_output == true)
+		{
+			return 0;
+		}
+			return message->offset;
+	}
 	else
 		return 0;
 }
 
 mnslp_ipfix_message::mnslp_ipfix_message(uchar * param, size_t message_length, bool _encode_network):
 	mnslp_mspec_object(OBJECT_TYPE, tr_mandatory, false),
-	message(NULL), g_tstart(0), encode_network(_encode_network)
+	message(NULL), g_tstart(0), encode_network(_encode_network), require_output(true)
 {
 	int nrecords;
 	nrecords = mnslp_ipfix_import(param, message_length );
-	
-	std::cout << "end import function - bytes read:" << nrecords << std::endl;
+
 }
 
 
@@ -1175,9 +1323,10 @@ mnslp_ipfix_message::mnslp_ipfix_decode_trecord( int setid,
 
     /** read template header
      */
+    std::cout << "Reading template - setid::" << setid << std::endl;
     switch( setid ) {
       case IPFIX_SETID_OPTTEMPLATE:
-                    
+		  std::cout << "read option template" << std::endl;
           if ( len<6 )
               throw mnslp_ipfix_bad_argument("invalid message lenght");
           if (encode_network == true){    
@@ -1195,6 +1344,7 @@ mnslp_ipfix_message::mnslp_ipfix_decode_trecord( int setid,
           break;
       case IPFIX_SETID_OPTTEMPLATE_NF9:
       {          
+          std::cout << "read option template 2" << std::endl;
           size_t scopelen, optionlen;
           if ( len<6 )
               throw mnslp_ipfix_bad_argument("invalid message lenght");
@@ -1221,7 +1371,7 @@ mnslp_ipfix_message::mnslp_ipfix_decode_trecord( int setid,
       }
       case IPFIX_SETID_TEMPLATE:
       case IPFIX_SETID_TEMPLATE_NF9:
-                    
+          std::cout << "data template" << std::endl;
           if ( len<4 )
              throw mnslp_ipfix_bad_argument("invalid message lenght");
           if (encode_network == true){
@@ -1293,7 +1443,10 @@ mnslp_ipfix_message::mnslp_ipfix_decode_trecord( int setid,
 			if (offset >= len)
 				throw mnslp_ipfix_bad_argument("Field in template has a longer length than message"); 
 			else
-				read_field(t, buf+offset, len-offset, &offset);
+				if (i < nscopefields)
+					read_field(t, buf+offset, len-offset, &offset, true);
+				else
+					read_field(t, buf+offset, len-offset, &offset, false);
 		}
 		*nread = offset;		
 	}
@@ -1302,7 +1455,8 @@ mnslp_ipfix_message::mnslp_ipfix_decode_trecord( int setid,
 		message->templates.get_template(templid);
 		throw mnslp_ipfix_bad_argument("Could not read the template information"); 
 	}
-
+	
+	std::cout << "Finish Ok reading template" << std::endl;
 }
 
 
@@ -1319,7 +1473,8 @@ void
 mnslp_ipfix_message::read_field(mnslp_ipfix_template *templ, 
 							    const uint8_t  *buf, 
 							    size_t   buflen, 
-							    size_t   *nread)
+							    size_t   *nread,
+							    bool 	 isscopefield )
 {
     uint16_t ftype;
     uint16_t length;
@@ -1377,7 +1532,10 @@ mnslp_ipfix_message::read_field(mnslp_ipfix_template *templ,
     try
     {
         mnslp_ipfix_field field = g_ipfix_fields.get_field(eno, (int) ftype);
-        templ->add_field(length, KNOWN, relay_f, field);
+        if (isscopefield)
+			templ->add_scope_field(length, KNOWN, relay_f, field);
+        else
+			templ->add_data_field(length, KNOWN, relay_f, field);
 				
 	}
 	catch(mnslp_ipfix_bad_argument e)
@@ -1386,7 +1544,10 @@ mnslp_ipfix_message::read_field(mnslp_ipfix_template *templ,
          */
         /* mark node, so we can drop it later */
         mnslp_ipfix_field field = g_ipfix_fields.get_field(0, 0);
-        templ->add_field(length, UNKNOWN, relay_f, field);
+        if (isscopefield)
+			templ->add_scope_field(length, UNKNOWN, relay_f, field);
+		else
+			templ->add_data_field(length, UNKNOWN, relay_f, field);
 	}
 		
 }
@@ -1408,6 +1569,8 @@ void mnslp_ipfix_message::mnslp_ipfix_decode_datarecord( mnslp_ipfix_template *t
     std::string   func = "mnslp_ipfix_decode_datarecord";
     mnslp_ipfix_data_record g_data(templ->get_template_id());
     char salida[30];
+    
+    std::cout << "Reading datarecord" << std::endl;
     
     /** parse message
      */
@@ -1459,16 +1622,20 @@ void mnslp_ipfix_message::mnslp_ipfix_decode_datarecord( mnslp_ipfix_template *t
     }
     
     data_list.push_back(g_data);
+    
+    std::cout << "Finish Reading datarecord" << std::endl;
 
 }
 
 mnslp_ipfix_template * 
 mnslp_ipfix_message::get_template(uint16_t templid)
 {
-	if (message != NULL)
+	if (message != NULL){
 		return message->templates.get_template(templid);
-	else
+	}
+	else{
 		return NULL;
+	}
 }
 
 mnslp_ipfix_template * 
@@ -1491,6 +1658,8 @@ mnslp_ipfix_message::mnslp_ipfix_import( uchar  *buffer,
     int                  bytes, bytesleft;
     int                  err_flag = 0;
     std::string          func = "mnslp_ipfix_import";
+
+	std::cout << "mnslp_ipfix_import" << message_length << std::endl;
 
     if (message_length < 2)
 		throw mnslp_ipfix_bad_argument("Invalid Message");
@@ -1531,13 +1700,17 @@ mnslp_ipfix_message::mnslp_ipfix_import( uchar  *buffer,
 			READ16_NOENCODE(setid, buf+nread);
 			READ16_NOENCODE(setlen, buf+nread+2);
 		}
-				
+		std::cout << "read setid:" << setid << std::endl;
+		std::cout << "setlen:" << setlen << std::endl;	
         nread  += 4;
-        if ( setlen <4 ) {
+        if ( setlen < 4 ) {
             // std::string err1 = func + "set" + std::to_string(i+1) + ": invalid set length " + std::to_string(setlen);
             continue;
         }
         setlen -= 4;  // this corresponds to the record's header.
+        std::cout << "message_length:" << 	message_length << std::endl;	
+        std::cout << "nread:" << nread << std::endl;	
+        std::cout << "setlen:" << setlen << std::endl;		
         if (setlen > (message_length - nread)) {
 			int ii;
 
@@ -1557,24 +1730,22 @@ mnslp_ipfix_message::mnslp_ipfix_import( uchar  *buffer,
              || (setid == IPFIX_SETID_OPTTEMPLATE) ) {
             /** parse a template set ( option or normal template ).
              */
-
             for (offset = nread, bytesleft = setlen; bytesleft > 4;) {
 
 				// mlogf(4, "[%s] set%d: decode template, setlen=%d, left=%d\n",
 				//		func, i + 1, setlen, bytesleft);
 
-				mnslp_ipfix_decode_trecord(setid, buf + offset, bytesleft,&bytes);
+				mnslp_ipfix_decode_trecord(setid, buf + offset, bytesleft, &bytes);
 				bytesleft -= bytes;
 				offset += bytes;
-			}
+	    }
             nread += setlen;
         }
         else if ( setid > 255 )
         {
-            /** get template
-             */
+	    /** get template
+            */
             mnslp_ipfix_template *templ = get_template(setid);
-
             if ( templ == NULL ) {
                 nread += setlen;
                 err_flag = 1;
@@ -1588,8 +1759,10 @@ mnslp_ipfix_message::mnslp_ipfix_import( uchar  *buffer,
                     
                     bytesleft -= bytes;
                     offset    += bytes;
+                    
+                    std::cout << "bytes left" << bytesleft << std::endl;
+                    
                 }
-
                 if ( bytesleft ) {
                     // mlogf( 3, "[%s] set%d: skip %d bytes padding\n",
                     //       func, i+1, bytesleft );
@@ -1600,7 +1773,7 @@ mnslp_ipfix_message::mnslp_ipfix_import( uchar  *buffer,
         else {
             // mlogf( 0, "[%s] set%d: invalid set id %d, set skipped!\n",
             //       func, i+1, setid );
-            nread += setlen;
+	    nread += setlen;
         }
     } /* for (read sets */
 
@@ -1608,7 +1781,9 @@ mnslp_ipfix_message::mnslp_ipfix_import( uchar  *buffer,
         goto errend;
 
 end:
-    message->copy_raw_message(buffer, message_length);
+
+	std::cout << "import finish ok" << std::endl;
+    message->copy_raw_message(buffer, nread);
     
     // Establishes correct values for the current data set.
     if ( setid > 255 ){
@@ -1618,14 +1793,19 @@ end:
 		message->cs_header = (u_int8_t *) message->buffer + message->cs_offset;
 	}
     message->nrecords = data_list.size();
+    
+    /** The message does not require ouput.
+     */
+    require_output = false;
+    
     return nread;
 
  errend:
+	std::cout << "import not finish ok" << std::endl;
     data_list.clear();
     return -1;
 	
 }
-
 
 bool 
 mnslp_ipfix_message::isEqual (const mnslp_mspec_object &rhs) const
@@ -1647,12 +1827,14 @@ mnslp_ipfix_message::isEqual (const mnslp_mspec_object &rhs) const
 		if ((obj->message != NULL) and (message != NULL)){
 			
 			if (*(obj->message) != *message){
+				std::cout << "Different header" << std::endl;
 				return false;
 			}							
 			try
 			{
 				for (int i = 0; i < data_list.size(); i++){
 					if ( data_list[i] != obj->data_list[i] ){
+						std::cout << "Different data list" << std::endl;
 						return false;
 					}
 				}
@@ -1681,7 +1863,6 @@ mnslp_ipfix_message::notEqual (const mnslp_mspec_object &rhs) const
 mnslp_ipfix_message &
 mnslp_ipfix_message::operator=(const mnslp_ipfix_message &other)
 {
-	std::cout << "estoy en operador assign" << std::endl;
 	
 	if (other.message != NULL)
 	   message = new ipfix_t(*(other.message));
@@ -1690,7 +1871,10 @@ mnslp_ipfix_message::operator=(const mnslp_ipfix_message &other)
 	g_lasttid = other.g_lasttid;
 	data_list = other.data_list;
 	encode_network = other.encode_network;
-	serialized_size = other.serialized_size;
+
+	/** The message changed, so it requires a new output 
+	*/
+	require_output = true;
 	
 	return *this;
 	
@@ -1698,7 +1882,7 @@ mnslp_ipfix_message::operator=(const mnslp_ipfix_message &other)
 
 mnslp_ipfix_message::mnslp_ipfix_message(const mnslp_ipfix_message &other):
 mnslp_mspec_object(OBJECT_TYPE, tr_mandatory, false),
-message(NULL), g_tstart(0), encode_network(true), serialized_size(0)
+message(NULL), g_tstart(0), encode_network(true), require_output(true)
 {
 	
 	if (other.message != NULL)
@@ -1708,7 +1892,7 @@ message(NULL), g_tstart(0), encode_network(true), serialized_size(0)
 	g_lasttid = other.g_lasttid;
 	data_list = other.data_list;
 	encode_network = other.encode_network;
-	serialized_size = other.serialized_size;
+	require_output = other.require_output;
 		
 }
 
@@ -1758,6 +1942,7 @@ mnslp_ipfix_message::include_all_data_fields(mnslp_ipfix_template *templ) const
 			}
 		}
 	}
+	
 	return val_return;
 }
 

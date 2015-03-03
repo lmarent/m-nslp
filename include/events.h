@@ -284,15 +284,14 @@ class api_configure_event : public api_event {
   
 	api_configure_event(const hostaddress &source, const hostaddress &dest,
 		uint16 source_port=0, uint16 dest_port=0, uint8 protocol=0,
-		uint32 msg_seq_nbr=0, uint32 msg_hop_count=20,
-		std::vector<msg::mnslp_mspec_object *> mspec_objects= std::vector<msg::mnslp_mspec_object *>(),
-		selection_metering_entities::selection_metering_entities_t sel_met_entities = selection_metering_entities::sme_any, 
-		uint32 lifetime=0, FastQueue *rq=NULL)
+		std::vector<msg::mnslp_mspec_object *> mspec_objects= std::vector<msg::mnslp_mspec_object *>(), 
+		uint32 lifetime=0, 
+		selection_metering_entities::selection_metering_entities_t sel_met_entities = selection_metering_entities::sme_any,
+		FastQueue *rq=NULL)
 		: api_event(), source_addr(source), dest_addr(dest),
 		  source_port(source_port), dest_port(dest_port), protocol(protocol), 
-		  mes_sequence_number(msg_seq_nbr), mes_hop_count(msg_hop_count),
-		  mspec_objects(mspec_objects), sel_met_entities(sel_met_entities),
-		  session_lifetime(lifetime), return_queue(rq) { }
+		  mspec_objects(mspec_objects), session_lifetime(lifetime),  sel_met_entities(sel_met_entities),
+		  return_queue(rq) { }
 
 	virtual ~api_configure_event();
 
@@ -305,12 +304,8 @@ class api_configure_event : public api_event {
 	inline uint8 get_protocol() const { return protocol; }
 	
 	inline uint32 get_session_lifetime() const { return session_lifetime; }
-	
-	inline uint32 get_selection_metering_entities()  const { return (uint32) sel_met_entities; } 
-
-	inline uint32 get_message_hop_count()  const { return mes_hop_count; } 
-
-	inline uint32 get_msg_sequence_number()  const { return mes_sequence_number; } 
+		
+	inline uint32 get_selection_metering_entities()  const { return (uint32) sel_met_entities; }
 	
 	inline const std::vector<msg::mnslp_mspec_object *> &get_metering_objects() const {
 		return mspec_objects; }
@@ -328,11 +323,9 @@ class api_configure_event : public api_event {
 	uint16 dest_port;
 	uint8 protocol;
 
-	uint32 mes_sequence_number;
-	uint32 mes_hop_count;
 	std::vector<msg::mnslp_mspec_object *> mspec_objects;
-	selection_metering_entities::selection_metering_entities_t sel_met_entities;
 	uint32 session_lifetime;
+	selection_metering_entities::selection_metering_entities_t sel_met_entities;
 
 	FastQueue *return_queue;
 };

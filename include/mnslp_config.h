@@ -70,6 +70,8 @@ namespace mnslp {
     mnslpconf_ni_response_timeout,
     mnslpconf_ni_max_session_lifetime,
     mnslpconf_ni_max_retries,
+    mnslpconf_ni_msg_hop_count,
+
     /* NF  */
     mnslpconf_nf_max_session_lifetime,
     mnslpconf_nf_response_timeout,
@@ -155,8 +157,8 @@ class mnslp_config {
 	string get_metering_xsl() const {
 		return getpar<string>(mnslpconf_ms_metering_def_xsl); }
 
-	string get_metering_port() const {
-		return getpar<string>(mnslpconf_ms_metering_port); }
+	uint32 get_metering_port() const {
+		return getpar<uint32>(mnslpconf_ms_metering_port); }
 
 	string get_export_directory() const {
 		return getpar<string>(mnslpconf_ms_export_directory); }
@@ -166,6 +168,9 @@ class mnslp_config {
         
 	uint32 get_ni_max_retries() const { 
 		return getpar<uint32>(mnslpconf_ni_max_retries); }
+    
+    uint32 get_ni_msg_hop_count() const {
+		return getpar<uint32>(mnslpconf_ni_msg_hop_count); }
     
     uint32 get_ni_response_timeout() const { 
 		return getpar<uint32>(mnslpconf_ni_response_timeout); }
@@ -190,7 +195,7 @@ class mnslp_config {
 
 	/// The ID of the queue that receives messages from the NTLP.
 	static const message::qaddr_t INPUT_QUEUE_ADDRESS
-		= message::qaddr_api_2;
+		= message::qaddr_api_3;
 
 	/// The ID of the queue inside the NTLP that we send messages to.
 	static const message::qaddr_t OUTPUT_QUEUE_ADDRESS

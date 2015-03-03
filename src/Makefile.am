@@ -12,7 +12,7 @@
 #
 include ../../Makefile.inc
 
-bin_PROGRAMS = mnslp
+bin_PROGRAMS = mnslpd test_client
 
 #dist_natfw_scripts = 
 
@@ -34,8 +34,11 @@ MNSLPMSG_LIBDIR	= msg
 libmnslp_a_CPPFLAGS = -I$(API_INC) -I$(MNSLP_INC) -I$(MNSLPMSG_INCDIR) -I$(NTLP_INC) -I$(PROTLIB_INC) -I$(FQUEUE_INC)
 libmnslp_a_CPPFLAGS += @LIBXML_CFLAGS@ @CURL_CFLAGS@ @LIBXSLT_CFLAGS@ @LIBUUID_CFLAGS@
 
-mnslp_CPPFLAGS = -I$(API_INC) -I$(MNSLP_INC) -I$(MNSLPMSG_INCDIR) -I$(NTLP_INC) -I$(PROTLIB_INC) -I$(FQUEUE_INC)
-mnslp_CPPFLAGS += @LIBXML_CFLAGS@ @CURL_CFLAGS@ @LIBXSLT_CFLAGS@ @LIBUUID_CFLAGS@
+mnslpd_CPPFLAGS = -I$(API_INC) -I$(MNSLP_INC) -I$(MNSLPMSG_INCDIR) -I$(NTLP_INC) -I$(PROTLIB_INC) -I$(FQUEUE_INC)
+mnslpd_CPPFLAGS += @LIBXML_CFLAGS@ @CURL_CFLAGS@ @LIBXSLT_CFLAGS@ @LIBUUID_CFLAGS@
+
+test_client_CPPFLAGS = -I$(API_INC) -I$(NATFW_INC) -I$(QSPEC_INC) -I$(NTLP_INC) -I$(PROTLIB_INC) -I$(FQUEUE_INC)
+test_client_CPPFLAGS += @LIBXML_CFLAGS@ @CURL_CFLAGS@ @LIBXSLT_CFLAGS@ @LIBUUID_CFLAGS@
 
 MNSLP_SOURCEFILES = benchmark_journal.cpp gistka_mapper.cpp session_id.cpp \
   dispatcher.cpp mnslp_daemon.cpp nf_session.cpp ni_session.cpp \
@@ -52,15 +55,19 @@ MNSLP_SOURCEFILES = benchmark_journal.cpp gistka_mapper.cpp session_id.cpp \
 
 libmnslp_a_SOURCES = $(MNSLP_SOURCEFILES)
 
-mnslp_SOURCES = mnslp_daemon.cpp main.cpp
+mnslpd_SOURCES = mnslp_daemon.cpp main.cpp
+
+test_client_SOURCES = test_client.cpp
 
 if USE_WITH_SCTP
 LD_SCTP_LIB= -lsctp
 endif
 
-mnslp_LDADD = -L. -l$(MNSLP_LLIB) -L$(MNSLP_MSG_LIBDIR) -l$(MNSLPMSG_LLIB) $(LD_QSPEC_LIB) $(LD_NTLP_LIB) $(LD_PROTLIB_LIB) $(LD_FQUEUE_LIB) -lipq -lssl -lrt $(LD_SCTP_LIB) -lpthread -lxml2
-mnslp_LDADD += @LIBXML_LIBS@ @CURL_LIBS@ @LIBXSLT_LIBS@ @LIBUUID_LIBS@
+mnslpd_LDADD = -L. -l$(MNSLP_LLIB) -L$(MNSLP_MSG_LIBDIR) -l$(MNSLPMSG_LLIB) $(LD_QSPEC_LIB) $(LD_NTLP_LIB) $(LD_PROTLIB_LIB) $(LD_FQUEUE_LIB) -lnetfilter_queue -lssl -lrt $(LD_SCTP_LIB) -lpthread -lxml2
+mnslpd_LDADD += @LIBXML_LIBS@ @CURL_LIBS@ @LIBXSLT_LIBS@ @LIBUUID_LIBS@
 
+test_client_LDADD = -L. -l$(MNSLP_LLIB) -L$(MNSLP_MSG_LIBDIR) -l$(MNSLPMSG_LLIB) $(LD_QSPEC_LIB) $(LD_NTLP_LIB) $(LD_PROTLIB_LIB) $(LD_FQUEUE_LIB) -lnetfilter_queue -lssl -lrt $(LD_SCTP_LIB) -lpthread -lxml2
+test_client_LDADD += @LIBXML_LIBS@ @CURL_LIBS@ @LIBXSLT_LIBS@ @LIBUUID_LIBS@
 
 include_HEADERS = $(INC_DIR)/session_id.h \
 	        	$(MNSLPMSG_INCDIR)/msg_sequence_number.h $(MNSLPMSG_INCDIR)/mnslp_ie.h $(MNSLPMSG_INCDIR)/mnslp_object.h \

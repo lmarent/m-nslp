@@ -1,0 +1,675 @@
+Making check in src/msg
+make[1]: Entering directory `/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/msg'
+make[1]: Nothing to be done for `check'.
+make[1]: Leaving directory `/home/luis/NSIS/nsis-ka-0.97/m-nslp/src/msg'
+Making check in src
+make[1]: Entering directory `/home/luis/NSIS/nsis-ka-0.97/m-nslp/src'
+make[1]: Nothing to be done for `check'.
+make[1]: Leaving directory `/home/luis/NSIS/nsis-ka-0.97/m-nslp/src'
+Making check in test
+make[1]: Entering directory `/home/luis/NSIS/nsis-ka-0.97/m-nslp/test'
+make  test_runner
+make[2]: Entering directory `/home/luis/NSIS/nsis-ka-0.97/m-nslp/test'
+make[2]: `test_runner' is up to date.
+make[2]: Leaving directory `/home/luis/NSIS/nsis-ka-0.97/m-nslp/test'
+make  check-TESTS
+make[2]: Entering directory `/home/luis/NSIS/nsis-ka-0.97/m-nslp/test'
+BasicTest::testCppUnit : OK
+BasicTest::testProtlib : OK
+MnslpMsgTest::testComparison : OK
+MnslpMsgTest::testCopying : OK
+SessionLifetimeTest::testMyself : OK
+SessionLifetimeTest::testComparison : OK
+SessionLifetimeTest::testCopying : OK
+SessionLifetimeTest::testSerializeserialize body lenght:4
+ : OK
+SessionLifetimeTest::testReadWriteserialize body lenght:4
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+ : OK
+InformationCodeTest::testMyself : OK
+InformationCodeTest::testComparison : OK
+InformationCodeTest::testCopying : OK
+InformationCodeTest::testSerializeserialize body lenght:4
+ : OK
+InformationCodeTest::testReadWriteserialize body lenght:4
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+ : OK
+InformationCodeTest::testBasics : OK
+MNslpConfigureTest::testBasics : OK
+MNslpConfigureTest::testComparison : OK
+MNslpConfigureTest::testCopying : OK
+MNslpConfigureTest::testManager01template size:20
+entro field:0
+entro field:1
+entro field:2
+buffer len:20
+data len:0
+data len:1
+buffer offset:68hdr bytes:16
+final message size:84message lenght:84
+serialize body lenght:4
+serialize body lenght:4
+serialize body lenght:4
+serialize body lenght:4
+serialize body lenght:84
+Num bytes copied:84
+----------------------------------------bytes written:124
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+body length ntlp message:84
+deserialize message lenght:84
+deserialize body:84
+mnslp_ipfix_import84
+ Arrive 1.4
+header received10length:84exporttime:1425150401seqno:2sourceid:12345
+ Arrive 1.2
+read setid:2
+setlen:20
+message_length:84
+nread:20
+setlen:16
+Reading template - setid::2
+data template
+Finish Ok reading template
+read setid:256
+setlen:24
+message_length:84
+nread:40
+setlen:20
+Reading datarecord
+Finish Reading datarecord
+bytes left0
+read setid:256
+setlen:24
+message_length:84
+nread:64
+setlen:20
+Reading datarecord
+Finish Reading datarecord
+bytes left0
+import finish ok
+after import message - bytes read:84body lenght:84
+here I am
+object deserialized ok
+--------------------------------------- bytes read:124
+--------------------------------------- finish:124
+ : OK
+MNslpConfigureTest::testManager02template size:20
+entro field:0
+entro field:1
+entro field:2
+buffer len:20
+data len:0
+data len:1
+buffer offset:68hdr bytes:16
+final message size:84message lenght:84
+serialize body lenght:4
+serialize body lenght:4
+serialize body lenght:4
+serialize body lenght:4
+serialize body lenght:84
+Num bytes copied:84
+serialize body lenght:84
+Num bytes copied:84
+----------------------------------------bytes written:212
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+body length ntlp message:84
+deserialize message lenght:84
+deserialize body:84
+mnslp_ipfix_import84
+ Arrive 1.4
+header received10length:84exporttime:1425150401seqno:2sourceid:12345
+ Arrive 1.2
+read setid:2
+setlen:20
+message_length:84
+nread:20
+setlen:16
+Reading template - setid::2
+data template
+Finish Ok reading template
+read setid:256
+setlen:24
+message_length:84
+nread:40
+setlen:20
+Reading datarecord
+Finish Reading datarecord
+bytes left0
+read setid:256
+setlen:24
+message_length:84
+nread:64
+setlen:20
+Reading datarecord
+Finish Reading datarecord
+bytes left0
+import finish ok
+after import message - bytes read:84body lenght:84
+here I am
+object deserialized ok
+body length ntlp message:84
+deserialize message lenght:84
+deserialize body:84
+mnslp_ipfix_import84
+ Arrive 1.4
+header received10length:84exporttime:1425150401seqno:2sourceid:12345
+ Arrive 1.2
+read setid:2
+setlen:20
+message_length:84
+nread:20
+setlen:16
+Reading template - setid::2
+data template
+Finish Ok reading template
+read setid:256
+setlen:24
+message_length:84
+nread:40
+setlen:20
+Reading datarecord
+Finish Reading datarecord
+bytes left0
+read setid:256
+setlen:24
+message_length:84
+nread:64
+setlen:20
+Reading datarecord
+Finish Reading datarecord
+bytes left0
+import finish ok
+after import message - bytes read:84body lenght:84
+here I am
+object deserialized ok
+--------------------------------------- bytes read:212
+ : OK
+MNslpConfigureTest::testManager03output performed 1
+output performed 2
+output performed 3
+Option Template - number of fields:7
+template size:38
+num scope fields:0
+entro field:0
+entro field:1
+entro field:2
+entro field:3
+entro field:4
+entro field:5
+entro field:6
+buffer len:38
+data len:0
+template size:12
+entro field:0
+buffer len:12
+data len:0
+buffer offset:75hdr bytes:16
+final message size:91message lenght:91
+serialize size96
+output performed
+serialize body lenght:4
+serialize body lenght:4
+serialize body lenght:4
+serialize body lenght:4
+serialize body lenght:92
+get offset:91Num padding:1
+voy aqui
+voy aqui 1
+voy aqui 3
+Num bytes copied:92
+----------------------------------------bytes written:132
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+body length ntlp message:92
+deserialize message lenght:92
+deserialize body:92
+mnslp_ipfix_import92
+ Arrive 1.4
+header received10length:91exporttime:1425150401seqno:1sourceid:0
+ Arrive 1.2
+read setid:2
+setlen:12
+message_length:92
+nread:20
+setlen:8
+Reading template - setid::2
+data template
+Finish Ok reading template
+read setid:3
+setlen:38
+message_length:92
+nread:32
+setlen:34
+Reading template - setid::3
+read option template
+Finish Ok reading template
+read setid:257
+setlen:25
+message_length:92
+nread:70
+setlen:21
+Reading datarecord
+Finish Reading datarecord
+bytes left0
+import finish ok
+after import message - bytes read:91body lenght:92
+here I am
+object deserialized ok
+--------------------------------------- bytes read:132
+ : OK
+MessageHopCountTest::testMyself : OK
+MessageHopCountTest::testComparison : OK
+MessageHopCountTest::testCopying : OK
+MessageHopCountTest::testSerializeserialize body lenght:4
+ : OK
+MessageHopCountTest::testReadWriteserialize body lenght:4
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+ : OK
+MessageHopCountTest::testBasics : OK
+MsgSequenceNumberTest::testMyself : OK
+MsgSequenceNumberTest::testComparison : OK
+MsgSequenceNumberTest::testCopying : OK
+MsgSequenceNumberTest::testSerializeserialize body lenght:4
+ : OK
+MsgSequenceNumberTest::testReadWriteserialize body lenght:4
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+ : OK
+MsgSequenceNumberTest::testBasics : OK
+SelectionMeteringEntitiesTest::testMyself : OK
+SelectionMeteringEntitiesTest::testComparison : OK
+SelectionMeteringEntitiesTest::testCopying : OK
+SelectionMeteringEntitiesTest::testSerializeserialize body lenght:4
+ : OK
+SelectionMeteringEntitiesTest::testReadWriteserialize body lenght:4
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+ : OK
+SelectionMeteringEntitiesTest::testBasics : OK
+SessionLifetimeTest::testMyself : OK
+SessionLifetimeTest::testComparison : OK
+SessionLifetimeTest::testCopying : OK
+SessionLifetimeTest::testSerializeserialize body lenght:4
+ : OK
+SessionLifetimeTest::testReadWriteserialize body lenght:4
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+ : OK
+MnslpNotifyTest::testBasics : OK
+MnslpNotifyTest::testComparison : OK
+MnslpNotifyTest::testCopying : OK
+MnslpNotifyTest::testManagerserialize body lenght:4
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+ : OK
+MnslpRefreshTest::testBasics : OK
+MnslpRefreshTest::testComparison : OK
+MnslpRefreshTest::testCopying : OK
+MnslpRefreshTest::testManagerserialize body lenght:4
+serialize body lenght:4
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+ : OK
+MnslpOptionsTest::testBasics : OK
+MnslpOptionsTest::testComparison : OK
+MnslpOptionsTest::testCopying : OK
+MnslpOptionsTest::testManagerserialize body lenght:4
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+ : OK
+MnslpResponseTest::testBasics : OK
+MnslpResponseTest::testComparison : OK
+MnslpResponseTest::testCopying : OK
+MnslpResponseTest::testManager01serialize body lenght:4
+serialize body lenght:4
+----------------------------------------bytes written:20
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+--------------------------------------- bytes read:20
+ : OK
+MnslpResponseTest::testManager02template size:20
+entro field:0
+entro field:1
+entro field:2
+buffer len:20
+data len:0
+data len:1
+buffer offset:68hdr bytes:16
+final message size:84message lenght:84
+serialize body lenght:4
+serialize body lenght:4
+serialize body lenght:84
+Num bytes copied:84
+----------------------------------------bytes written:108
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+body length ntlp message:4
+deserialize message lenght:4
+object deserialized ok
+body length ntlp message:84
+deserialize message lenght:84
+deserialize body:84
+mnslp_ipfix_import84
+ Arrive 1.4
+header received10length:84exporttime:1425150401seqno:2sourceid:12345
+ Arrive 1.2
+read setid:2
+setlen:20
+message_length:84
+nread:20
+setlen:16
+Reading template - setid::2
+data template
+Finish Ok reading template
+read setid:256
+setlen:24
+message_length:84
+nread:40
+setlen:20
+Reading datarecord
+Finish Reading datarecord
+bytes left0
+read setid:256
+setlen:24
+message_length:84
+nread:64
+setlen:20
+Reading datarecord
+Finish Reading datarecord
+bytes left0
+import finish ok
+after import message - bytes read:84body lenght:84
+here I am
+object deserialized ok
+--------------------------------------- bytes read:108
+ : OK
+SessionIdTest::testComparison : OK
+SessionIdTest::testAssignment : OK
+SessionManagerTest::testGetRetrieve : OK
+SessionManagerTest::testRemove : OK
+MspecRuleKeyTest::general_test : OK
+PolicyApplicationConfigurationContainerTest::general_test : OK
+NetmateMeteringConfigTest::general_test : OK
+PolicyFieldMappingTest::general_test : OK
+PolicyActionMappingTest::general_test : OK
+PolicyActionTest::general_test : OK
+PolicyActionContainerTest::general_test : OK
+PolicyRuleTest::general_test : OK
+PolicyRuleTest::testFieldNotFoundException : OK
+InitiatorTest::testClosebegin process_event(): 
+begin process_event(): 
+Initiator
+NOP:Check()
+Initiator
+NOP:Check()
+Initiator
+NOP:Check()
+ : OK
+InitiatorTest::testPendingbegin process_event(): 
+Message number:77
+Event Message number:77
+NOP: installing policy rule
+Policy rules installed0
+begin process_event(): 
+Message number:77
+Event Message number:77
+begin process_event(): 
+begin process_event(): 
+begin process_event(): 
+begin process_event(): 
+ : OK
+InitiatorTest::testMeteringbegin process_event(): 
+Message number:77
+Event Message number:77
+begin process_event(): 
+Message number:77
+Event Message number:77
+begin process_event(): 
+begin process_event(): 
+begin process_event(): 
+Number of rules installed:0
+begin process_event(): 
+ : OK
+InitiatorTest::testIntegratedStateMachinebegin process_event(): 
+Initiator
+NOP:Check()
+Initiator
+NOP:Check()
+Initiator
+NOP:Check()
+begin process_event(): 
+Message number:117893637
+Event Message number:117893637
+NOP: installing policy rule
+Policy rules installed3
+begin process_event(): 
+Number of rules installed:3
+NOP: removing policy rule
+ : OK
+ForwarderTest::testCloseprocess_event
+In process State Close
+st_forwarder
+NOP:Check()
+st_forwarder
+NOP:Check()
+st_forwarder
+NOP:Check()
+process_event
+In process State Close
+st_forwarder
+NOP:Check()
+st_forwarder
+NOP:Check()
+st_forwarder
+NOP:Check()
+ : OK
+ForwarderTest::testPendingprocess_event
+Message number:77
+Event Message number:77
+NOP: installing policy rule
+process_event
+Message number:77
+Event Message number:77
+process_event
+process_event
+process_event
+In process State Close
+st_forwarder
+NOP:Check()
+st_forwarder
+NOP:Check()
+st_forwarder
+NOP:Check()
+process_event
+ : OK
+ForwarderTest::testMeteringprocess_event
+In handle_state_metering 
+In no next node 
+process_event
+In handle_state_metering 
+In refresh message 
+process_event
+In handle_state_metering 
+In refresh message 
+process_event
+In handle_state_metering 
+In is timer 
+session timed out
+process_event
+In handle_state_metering 
+In is timer 
+session timed out
+process_event
+In handle_state_metering 
+Message number:78
+Event Message number:78
+In response 
+Success
+continue
+process_event
+In handle_state_metering 
+Message number:78
+Event Message number:78
+In response 
+Success
+uninstalling policy rules
+ : OK
+ForwarderTest::testIntegratedStateMachineprocess_event
+In process State Close
+st_forwarder
+NOP:Check()
+st_forwarder
+NOP:Check()
+st_forwarder
+NOP:Check()
+process_event
+Message number:77
+Event Message number:77
+NOP: installing policy rule
+process_event
+In handle_state_metering 
+In refresh message 
+process_event
+In handle_state_metering 
+Message number:78
+Event Message number:78
+In response 
+Success
+uninstalling policy rules
+NOP: removing policy rule
+ : OK
+ResponderTest::testClosetestClose 1
+st_receiver
+NOP:Check()
+st_receiver
+NOP:Check()
+st_receiver
+NOP:Check()
+NOP: installing policy rule
+testClose 2
+st_receiver
+NOP:Check()
+st_receiver
+NOP:Check()
+st_receiver
+NOP:Check()
+NOP: installing policy rule
+testClose 3
+ : OK
+ResponderTest::testMeteringTest Metering 1
+Test Metering 2
+Test Metering 3
+Test Metering 4
+Test Metering 5
+ : OK
+ResponderTest::testIntegratedStateMachinest_receiver
+NOP:Check()
+st_receiver
+NOP:Check()
+st_receiver
+NOP:Check()
+NOP: installing policy rule
+NOP: removing policy rule
+ : OK
+NetmateIpfixPolicyRuleInstallerTest::general_testnumber of applications:
+number of applications:
+Finish loading configuration file
+Finish loading export configuration file
+in is_export_fieldnetmate
+number of applications:2
+app:NetMate2
+app:netmate
+we found the application for ask for export field
+in is_export_fieldnetmate
+number of applications:2
+app:NetMate2
+app:netmate
+we found the application for ask for export field
+in is_export_fieldnetmate
+number of applications:2
+app:NetMate2
+app:netmate
+we found the application for ask for export field
+Mspec object not possible to include in the policy rule 
+before exec command
+create string with filter fields
+create string with export fields
+in is_export_fieldnetmate
+number of applications:2
+app:NetMate2
+app:netmate
+we found the application for ask for export field
+The action given is:/add_task
+Here 0
+It cannot install the object
+create string with filter fields
+create string with export fields
+in is_export_fieldnetmate
+number of applications:2
+app:NetMate2
+app:netmate
+we found the application for ask for export field
+The action given is:/add_task
+Here 0
+It cannot install the object
+ : assertionbefore deleting rule1
+
+FAIL: test_runner
+===============================================
+1 of 1 test failed
+Please report to la.marentes455@uniandes.edu.co
+===============================================
+make[2]: Leaving directory `/home/luis/NSIS/nsis-ka-0.97/m-nslp/test'
+make[1]: Leaving directory `/home/luis/NSIS/nsis-ka-0.97/m-nslp/test'

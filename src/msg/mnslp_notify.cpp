@@ -102,7 +102,7 @@ void mnslp_notify::serialize(NetMsg &msg, coding_t coding,
 	/*
 	 * Write the body: Serialize each object.
 	 */
-	ie_object_key key_inf(information_code::OBJECT_TYPE, 0);
+	ie_object_key key_inf(information_code::OBJECT_TYPE, 1);
 	bytes_written += serialize_object(key_inf, msg, coding);
 	
 
@@ -132,7 +132,7 @@ mnslp_notify::serialize_object(ie_object_key &key, NetMsg &msg, coding_t coding)
 bool mnslp_notify::check() const {
 	
 	// Verifies that information code exists.
-	ie_object_key key_inf(information_code::OBJECT_TYPE, 0);
+	ie_object_key key_inf(information_code::OBJECT_TYPE, 1);
 	mnslp_object *obj= get_object(key_inf);
 	if (obj == NULL)
 		return false;
@@ -173,7 +173,7 @@ void mnslp_notify::set_information_code(uint8 severity, uint8 response_code,
  */
 uint16 mnslp_notify::get_object_type() const {
 	
-	ie_object_key key (information_code::OBJECT_TYPE, 0);
+	ie_object_key key (information_code::OBJECT_TYPE, 1);
 	information_code *ic = dynamic_cast<information_code *>(
 		get_object(key));
 
@@ -191,7 +191,7 @@ uint16 mnslp_notify::get_object_type() const {
  */
 uint8 mnslp_notify::get_severity_class() const {
 	
-	ie_object_key key (information_code::OBJECT_TYPE, 0);
+	ie_object_key key (information_code::OBJECT_TYPE, 1);
 	information_code *ic = dynamic_cast<information_code *>(
 		get_object(key));
 
@@ -208,7 +208,7 @@ uint8 mnslp_notify::get_severity_class() const {
  */
 uint8 mnslp_notify::get_response_code() const {
 	
-	ie_object_key key (information_code::OBJECT_TYPE, 0);
+	ie_object_key key (information_code::OBJECT_TYPE, 1);
 	information_code *ic = dynamic_cast<information_code *>(
 		get_object(key));
 
@@ -226,7 +226,7 @@ uint8 mnslp_notify::get_response_code() const {
 uint16 
 mnslp_notify::get_response_object_type() const {
 	
-	ie_object_key key (information_code::OBJECT_TYPE, 0);
+	ie_object_key key (information_code::OBJECT_TYPE, 1);
 	information_code *ic = dynamic_cast<information_code *>(
 		get_object(key));
 

@@ -141,7 +141,12 @@ ipfix_t::operator== (const ipfix_t& rhs)
 	   (buffer_lenght != rhs.buffer_lenght) ||
 	   (seqno != rhs.seqno)  
 	   ){
-		std::cout << "estoy 2a:" << seqno << "rhs.seqno:" << rhs.seqno << std::endl;		
+		std::cout << "sourceid" << sourceid << "rhs.sourceid" << rhs.sourceid << std::endl;	
+		std::cout << "version" << version << "rhs.version" << rhs.version << std::endl;
+		std::cout << "nrecords" << nrecords << "rhs.nrecords" << rhs.nrecords << std::endl;
+		std::cout << "offset" << offset << "rhs.offset" << rhs.offset << std::endl;
+		std::cout << "buffer_lenght" << buffer_lenght << "rhs.buffer_lenght" << rhs.buffer_lenght << std::endl;
+		std::cout << "seqno" << seqno << "rhs.seqno" << rhs.seqno << std::endl;
 		return false;
 	}
 		
@@ -149,7 +154,6 @@ ipfix_t::operator== (const ipfix_t& rhs)
 		if ( (rhs.count != count ) ||
 			 (rhs.sysuptime != sysuptime ) ||
 			 (rhs.unixtime != unixtime ) ){
-			std::cout << "estoy 2aa"<< std::endl;		
 			return false;
 		}
 	}
@@ -157,7 +161,7 @@ ipfix_t::operator== (const ipfix_t& rhs)
 	if (version == IPFIX_VERSION){
 		if ( (rhs.length != length) ||
 			 (rhs.exporttime != exporttime) ){
-			std::cout << "estoy 2aaa"<< std::endl;		
+			std::cout << "different lenght" << std::endl;
 			return false;
 		}
 	}
@@ -187,6 +191,17 @@ ipfix_t::copy_raw_message(uchar * msg, size_t _offset)
 		throw mnslp_ipfix_bad_argument("buffer length not enough for the raw copy");
 }
 
+void 
+ipfix_t::reinitiate_buffer(void)
+{
+   if (buffer != NULL) 
+	   delete buffer;
+   
+   buffer = new uchar[IPFIX_DEFAULT_BUFLEN];
+   buffer_lenght = IPFIX_DEFAULT_BUFLEN;
+   offset = 0;
+
+}
 
   } // namespace msg
 } // namespace mnslp

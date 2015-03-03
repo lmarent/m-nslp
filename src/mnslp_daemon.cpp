@@ -104,10 +104,84 @@ void mnslp_daemon::startup() {
 		LogError("unable to setup the policy rule installer: " << e);
 	}
 
+    AddressList *addresses = new AddressList();
+
+    hostaddresslist_t& ntlpv4addr= ntlp::gconf.getparref< hostaddresslist_t >(ntlp::gistconf_localaddrv4);
+    hostaddresslist_t& ntlpv6addr= ntlp::gconf.getparref< hostaddresslist_t >(ntlp::gistconf_localaddrv6);
+
+    if (ntlpv4addr.size() == 0 && ntlpv6addr.size() == 0) {
+         addresses->add_host_prop(NULL, AddressList::ConfiguredAddr_P);
+         addresses->add_host_prop(NULL, AddressList::ConfiguredAddr_P);
+         addresses->add_host_prop(NULL, AddressList::ConfiguredAddr_P);
+    }
+
+    // fill in configured IPv4 addresses
+    if (ntlpv4addr.size() != 0) {
+         hostaddresslist_t::const_iterator it;
+         for (it = ntlpv4addr.begin(); it != ntlpv4addr.end(); it++) {
+            netaddress na((*it));
+            addresses->add_property(na);
+         }
+    }
+
+    // fill in configured IPv6 addresses
+    if (ntlpv6addr.size() != 0) {
+         hostaddresslist_t::const_iterator it;
+         for (it = ntlpv6addr.begin(); it != ntlpv6addr.end(); it++) {
+            netaddress na((*it));
+            addresses->add_property(na);
+         }
+   }
+
+   // MOBILITY (mobility extension): configure net prefix of home network
+   const netaddress& na= ntlp::gconf.getparref<netaddress>(ntlp::gistconf_home_netprefix);
+   if (!na.is_ip_unspec()) {
+        addresses->add_property(na, AddressList::HomeNet_P);
+   }
+
+   // MOBILITY: configure home address
+   const hostaddress& homeaddr= ntlp::gconf.getparref< hostaddress >(ntlp::gistconf_home_address);
+   if (!homeaddr.is_ip_unspec()){
+       const netaddress na(homeaddr);
+       addresses->add_property(na, AddressList::HomeAddr_P);
+       addresses->add_property(na, AddressList::ConfiguredAddr_P);
+   }
+
+    // MOBILITY: care-of interfaces
+    const string& coa_iface= ntlp::gconf.getparref< string >(ntlp::gistconf_coa_interfaces);
+    if (!coa_iface.empty()){
+       std::stringstream in(coa_iface);
+       while (in) {
+         std::string token;
+         in >> token;
+         addresses->ignore_locals();
+         addresses->by_interface(true);
+         // XXX: memleak
+         addresses->add_interface(strdup(token.c_str()));
+       }
+    }
+
+    // MOBILITY: home agent address
+    const hostaddress& homeagent_addr= ntlp::gconf.getparref< hostaddress >(ntlp::gistconf_homeagent_address);
+    if (!homeagent_addr.is_ip_unspec()){
+        const netaddress na(homeagent_addr);
+        addresses->add_property(na, AddressList::HAAddr_P);
+        addresses->add_property(na, AddressList::ConfiguredAddr_P);
+    }
+    // MOBILITY: home agent address
+    const hostaddress& alt_homeagent_addr= ntlp::gconf.getparref< hostaddress  >(ntlp::gistconf_homeagent_address_alt);
+    if (!alt_homeagent_addr.is_ip_unspec()){
+        const netaddress na(alt_homeagent_addr);
+        addresses->add_property(na, AddressList::AltHAAddr_P);
+        addresses->add_property(na, AddressList::ConfiguredAddr_P);
+    }
+
+
 	/*
 	 * Start the GIST thread.
 	 */
 	NTLPStarterParam ntlpparam;
+	ntlpparam.addresses = addresses;	
 	ntlp_starter= new ThreadStarter<NTLPStarter, NTLPStarterParam>(1, ntlpparam);
 	ntlp_starter->start_processing();
 

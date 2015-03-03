@@ -137,6 +137,10 @@ class session {
 	
 	void set_msg_sequence_number(uint32 value) { msn = value; }
 	
+	void set_msg_hop_count(uint32 value) { msg_hop_count = value; }
+	
+	uint32 get_msg_hop_count() const { return msg_hop_count; }
+	
 	uint32 next_msg_sequence_number();
 
 	virtual bool is_final() const = 0;
@@ -179,6 +183,8 @@ class session {
 	session_type_t type;
 
 	uint32 msn;
+	
+	uint32 msg_hop_count;
 	
 	pthread_mutex_t	mutex;
 

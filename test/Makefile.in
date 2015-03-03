@@ -77,7 +77,8 @@ am_test_runner_OBJECTS = test_runner-test_runner.$(OBJEXT) \
 	test_runner-policy_rule.$(OBJEXT) \
 	test_runner-ni_session.$(OBJEXT) \
 	test_runner-nf_session.$(OBJEXT) \
-	test_runner-nr_session.$(OBJEXT)
+	test_runner-nr_session.$(OBJEXT) \
+	test_runner-netmate_ipfix_policy_rule_installer.$(OBJEXT)
 test_runner_OBJECTS = $(am_test_runner_OBJECTS)
 am__DEPENDENCIES_1 = $(MNSLP_SRC) $(MNSLP_MSG_LIBDIR)
 am__DEPENDENCIES_2 = $(NTLP_LIBDIR)
@@ -272,10 +273,9 @@ test_runner_SOURCES = test_runner.cpp basic.cpp generic_object_test.h \
 		    netmate_ipfix_metering_config.cpp policy_field_mapping.cpp \
 		    netmate_ipfix_policy_action_mapping.cpp  policy_action.cpp  \
 			policy_action_container.cpp policy_rule.cpp \
-			ni_session.cpp nf_session.cpp nr_session.cpp
+			ni_session.cpp nf_session.cpp nr_session.cpp \
+			netmate_ipfix_policy_rule_installer.cpp
 
-
-#netmate_ipfix_policy_rule_installer.cpp
 @USE_WITH_SCTP_TRUE@LD_SCTP_LIB = -lsctp
 test_runner_CPPFLAGS = -I../src -I../src/msg -I$(MNSLP_INC) \
 	$(CPPUNIT_CFLAGS) -I$(NTLP_INC) -I$(PROTLIB_INC) \
@@ -283,7 +283,7 @@ test_runner_CPPFLAGS = -I../src -I../src/msg -I$(MNSLP_INC) \
 	@LIBUUID_CFLAGS@ $(am__empty)
 test_runner_LDADD = -L../src $(LD_MNSLP_LIB) $(LD_NTLP_LIB) \
 	$(LD_PROTLIB_LIB) $(LD_FQUEUE_LIB) $(CPPUNIT_LIBS) \
-	$(LD_SCTP_LIB) -lipq -lrt -lssl -lpthread -lcrypto \
+	$(LD_SCTP_LIB) -lnetfilter_queue -lrt -lssl -lpthread -lcrypto \
 	@LIBXML_LIBS@ @CURL_LIBS@ @LIBXSLT_LIBS@ @LIBUUID_LIBS@ \
 	$(am__empty)
 TESTS = $(check_PROGRAMS)
@@ -350,6 +350,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_runner-mspec_rule_key.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_runner-netmate_ipfix_metering_config.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_runner-netmate_ipfix_policy_action_mapping.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_runner-netmate_ipfix_policy_rule_installer.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_runner-nf_session.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_runner-ni_session.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_runner-nr_session.Po@am__quote@
@@ -770,6 +771,20 @@ test_runner-nr_session.obj: nr_session.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='nr_session.cpp' object='test_runner-nr_session.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-nr_session.obj `if test -f 'nr_session.cpp'; then $(CYGPATH_W) 'nr_session.cpp'; else $(CYGPATH_W) '$(srcdir)/nr_session.cpp'; fi`
+
+test_runner-netmate_ipfix_policy_rule_installer.o: netmate_ipfix_policy_rule_installer.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-netmate_ipfix_policy_rule_installer.o -MD -MP -MF $(DEPDIR)/test_runner-netmate_ipfix_policy_rule_installer.Tpo -c -o test_runner-netmate_ipfix_policy_rule_installer.o `test -f 'netmate_ipfix_policy_rule_installer.cpp' || echo '$(srcdir)/'`netmate_ipfix_policy_rule_installer.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/test_runner-netmate_ipfix_policy_rule_installer.Tpo $(DEPDIR)/test_runner-netmate_ipfix_policy_rule_installer.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='netmate_ipfix_policy_rule_installer.cpp' object='test_runner-netmate_ipfix_policy_rule_installer.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-netmate_ipfix_policy_rule_installer.o `test -f 'netmate_ipfix_policy_rule_installer.cpp' || echo '$(srcdir)/'`netmate_ipfix_policy_rule_installer.cpp
+
+test_runner-netmate_ipfix_policy_rule_installer.obj: netmate_ipfix_policy_rule_installer.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_runner-netmate_ipfix_policy_rule_installer.obj -MD -MP -MF $(DEPDIR)/test_runner-netmate_ipfix_policy_rule_installer.Tpo -c -o test_runner-netmate_ipfix_policy_rule_installer.obj `if test -f 'netmate_ipfix_policy_rule_installer.cpp'; then $(CYGPATH_W) 'netmate_ipfix_policy_rule_installer.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_ipfix_policy_rule_installer.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/test_runner-netmate_ipfix_policy_rule_installer.Tpo $(DEPDIR)/test_runner-netmate_ipfix_policy_rule_installer.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='netmate_ipfix_policy_rule_installer.cpp' object='test_runner-netmate_ipfix_policy_rule_installer.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_runner_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_runner-netmate_ipfix_policy_rule_installer.obj `if test -f 'netmate_ipfix_policy_rule_installer.cpp'; then $(CYGPATH_W) 'netmate_ipfix_policy_rule_installer.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_ipfix_policy_rule_installer.cpp'; fi`
 
 ID: $(HEADERS) $(SOURCES) $(LISP) $(TAGS_FILES)
 	list='$(SOURCES) $(HEADERS) $(LISP) $(TAGS_FILES)'; \

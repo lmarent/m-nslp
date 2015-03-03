@@ -198,9 +198,17 @@ class mnslp_ipfix_template
 		}
 		
 		/**
-		 * Add a new field to the template
+		 * Add a new data field to the template
 		 */
-		void add_field(uint16_t _flength, 
+		void add_data_field(uint16_t _flength, 
+					   ipfix_unknown_field_t _unknown_f, 
+					   int _relay_f,  
+					   mnslp_ipfix_field  &_field);
+
+		/**
+		 * Add a new scope field to the template
+		 */
+		void add_scope_field(uint16_t _flength, 
 					   ipfix_unknown_field_t _unknown_f, 
 					   int _relay_f,  
 					   mnslp_ipfix_field  &_field);

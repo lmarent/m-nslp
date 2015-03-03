@@ -561,7 +561,7 @@ netmate_ipfix_policy_rule_installer::execute_command(std::string action, std::st
 	string response;
 	string input, input2;
 	string stylesheet = get_metering_xsl();
-	int port = atoi(get_metering_port().c_str());
+	int port = get_metering_port();
 	unsigned long rcode;
 	bool val_return = true;
 #ifdef USE_SSL

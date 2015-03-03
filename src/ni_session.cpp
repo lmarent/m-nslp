@@ -69,6 +69,8 @@ ni_session::ni_session(const session_id &id, const mnslp_config *conf)
 	assert( conf != NULL );
 	set_response_timeout(conf->get_ni_response_timeout());
 	set_max_retries(conf->get_ni_max_retries());
+	set_msg_hop_count(conf->get_ni_msg_hop_count());
+	
 }
 
 
@@ -134,7 +136,7 @@ std::ostream &mnslp::operator<<(std::ostream &out, const ni_session &s)
  * This will fetch the session lifetime and also increment the MSN.
  */
 msg::ntlp_msg *ni_session::build_configure_message(api_configure_event *e, 
-								std::vector<msg::mnslp_mspec_object *> & missing_objects) 
+   						   std::vector<msg::mnslp_mspec_object *> & missing_objects) 
 {
 	using namespace mnslp::msg;
 
@@ -150,9 +152,9 @@ msg::ntlp_msg *ni_session::build_configure_message(api_configure_event *e,
 	else
 		configure->set_session_lifetime(e->get_session_lifetime());	
 		
-	configure->set_msg_sequence_number(e->get_msg_sequence_number());
+	configure->set_msg_sequence_number(next_msg_sequence_number());
 	configure->set_selection_metering_entities(e->get_selection_metering_entities());
-	configure->set_message_hop_count(e->get_message_hop_count());
+	configure->set_message_hop_count(get_msg_hop_count());
 
 	/*
 	 * Insert missing objects to install.
@@ -202,8 +204,8 @@ msg::ntlp_msg *ni_session::build_refresh_message()
 
 void 
 ni_session::setup_session(dispatcher *d, 
-						  api_configure_event *e, 
-						  std::vector<msg::mnslp_mspec_object *> &missing_objects) 
+	          	  api_configure_event *e, 
+			  std::vector<msg::mnslp_mspec_object *> &missing_objects) 
 {
 	
 	/*
@@ -249,12 +251,17 @@ ni_session::setup_session(dispatcher *d,
 		mnslp_mspec_object *object = *it_objects;
 		if (check_participating(e->get_selection_metering_entities())){
 			if (d->check(object))
-				rule->set_object(object->copy());
+			{
+			   rule->set_object(object->copy());
+			}
 			else
-				missing_objects.push_back(object->copy());
+			{
+			   missing_objects.push_back(object->copy());
+			}
 		}
-		else{
-			missing_objects.push_back(object->copy());
+		else
+        {
+		    missing_objects.push_back(object->copy());
 		}
 	}
 	
@@ -278,6 +285,8 @@ ni_session::state_t ni_session::handle_state_close(dispatcher *d, event *evt)
 {
 	using msg::mnslp_configure;
 	std::vector<msg::mnslp_mspec_object *> missing_objects;
+
+	LogDebug("Initiating state handle_state_close ");
 
 	/*
 	 * API Create event received.
@@ -328,7 +337,7 @@ ni_session::state_t ni_session::handle_state_pending(
 		dispatcher *d, event *evt) {
 
 	
-	std::cout << "initiating state pending" << std::endl;
+	LogDebug("Initiating state pending ");
 	using namespace mnslp::msg;
 
 	/*
@@ -394,7 +403,6 @@ ni_session::state_t ni_session::handle_state_pending(
 		msg_event *e = dynamic_cast<msg_event *>(evt);
 		mnslp_response *resp = e->get_response();
 
-		std::cout << "received response" << std::endl;
 		LogDebug("received response " << *resp);
 
 		// Discard if this is no RESPONSE to our original CONFIGURE.
@@ -406,7 +414,6 @@ ni_session::state_t ni_session::handle_state_pending(
 
 		if ( resp->is_success() ) {
 			
-			std::cout << "initiated session" << std::endl;
 			LogDebug("initiated session " << get_id());
 			d->report_async_event("CONFIGURE session initiated");
 			response_timer.stop();
@@ -477,7 +484,7 @@ ni_session::state_t ni_session::handle_state_metering(
 
 	using namespace mnslp::msg;
 	
-	std::cout << "initiating state metering" << std::endl;
+	LogDebug("Initiating state metering");
 	
 	/*
 	 * A refresh timer was triggered.

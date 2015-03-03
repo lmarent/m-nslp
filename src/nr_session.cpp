@@ -94,10 +94,8 @@ nr_session::~nr_session()
 std::ostream &mnslp::operator<<(std::ostream &out, const nr_session &s) 
 {
 	static const char *const names[] = { "CLOSE", 
-										 "PENDING_FORWARD", 
-										 "PENDING_PARTICIPATING", 
-										 "METERING_FORWARD", 
-										 "METERING_PARTICIPATING" };
+										 "PENDING", 
+										 "METERING"};
 
 	return out << "[nr_session: id=" << s.get_id()
 		<< ", state=" << names[s.get_state()] << "]";

@@ -151,7 +151,7 @@ bool mnslp_object::deserialize_header(NetMsg &msg, uint16 &body_length,
 	// The header's value is in 32bit words, we convert it to bytes.
 	body_length = (header_raw & 0xFFF) * 4u;
 
-
+	std::cout << "body length ntlp message:" << body_length << std::endl;
 	// Error: Message is shorter than the length field makes us believe.
 	if ( msg.get_bytes_left() < body_length ) {
 		catch_bad_alloc( errorlist.put(
@@ -182,13 +182,15 @@ IE *mnslp_object::deserialize(NetMsg &msg, coding_t coding,
 	if ( ! deserialize_header(msg, body_length, err, skip) )
 		return NULL;
 
-
+	std::cout << "deserialize message lenght:" << body_length << std::endl;
 	// Parse body
-	if ( ! deserialize_body(msg, body_length, err, skip) )
+	if ( ! deserialize_body(msg, body_length, err, skip) ){
+		std::cout << "return NULL" << std::endl;
 		return NULL;
+	}
 	
 	bytes_read = msg.get_pos() - start_pos;
-
+	std::cout << "object deserialized ok" << std::endl;
 	return this;	// success
 }
 
@@ -227,6 +229,7 @@ void mnslp_object::serialize(NetMsg &msg, coding_t coding,
 	 * Write header
 	 */
 	uint16 body_length = get_serialized_size(CODING) - HEADER_LENGTH;
+	std::cout << "serialize body lenght:" << body_length << std::endl;
 
 	try {
 		serialize_header(msg, body_length);

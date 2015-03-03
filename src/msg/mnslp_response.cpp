@@ -109,11 +109,11 @@ void mnslp_response::serialize(NetMsg &msg, coding_t coding,
 	/*
 	 * Write the body: Serialize each object.
 	 */
-	ie_object_key key_msn(msg_sequence_number::OBJECT_TYPE, 0);
+	ie_object_key key_msn(msg_sequence_number::OBJECT_TYPE, 1);
 	bytes_written += serialize_object(key_msn, msg, coding);
-	ie_object_key key_inf(information_code::OBJECT_TYPE, 0);
+	ie_object_key key_inf(information_code::OBJECT_TYPE, 1);
 	bytes_written += serialize_object(key_inf, msg, coding);
-	ie_object_key key_slf(session_lifetime::OBJECT_TYPE, 0);
+	ie_object_key key_slf(session_lifetime::OBJECT_TYPE, 1);
 	bytes_written += serialize_object(key_slf, msg, coding);
 	
 	/*
@@ -121,21 +121,9 @@ void mnslp_response::serialize(NetMsg &msg, coding_t coding,
 	 */
 	uint32 max_seq_nbr = objects.getMaxSequence(mnslp_ipfix_message::OBJECT_TYPE);
 	
-	if (max_seq_nbr != -1){
-		if (max_seq_nbr == 0)
-		{
-			// Case when there is only one ipfix message. 
-			ie_object_key key_ipfix(mnslp_ipfix_message::OBJECT_TYPE, 0);
-			if (get_object(key_ipfix) != NULL)
-				bytes_written += serialize_object(key_ipfix, msg, coding);
-		}
-		else
-		{
-			for ( uint32 i = 0; i <= max_seq_nbr; i++ ) {
-				ie_object_key key_ipfix(mnslp_ipfix_message::OBJECT_TYPE, i);
-				bytes_written += serialize_object(key_ipfix, msg, coding);
-			}
-		}
+	for ( uint32 i = 1; i <= max_seq_nbr; i++ ) {
+		ie_object_key key_ipfix(mnslp_ipfix_message::OBJECT_TYPE, i);
+		bytes_written += serialize_object(key_ipfix, msg, coding);
 	}
 	
 	// this would be an implementation error
@@ -203,7 +191,7 @@ void mnslp_response::set_session_lifetime(uint32 milliseconds)
 uint32 mnslp_response::get_session_lifetime() const 
 {
 	
-	ie_object_key key(session_lifetime::OBJECT_TYPE, 0);
+	ie_object_key key(session_lifetime::OBJECT_TYPE, 1);
 	session_lifetime *lt = dynamic_cast<session_lifetime *>(get_object(key));
 
 	if ( lt == NULL )
@@ -253,7 +241,7 @@ void mnslp_response::set_information_code(uint8 severity, uint8 response_code,
  */
 uint16 mnslp_response::get_object_type() const 
 {
-	ie_object_key key(information_code::OBJECT_TYPE, 0);
+	ie_object_key key(information_code::OBJECT_TYPE, 1);
 	information_code *ic = dynamic_cast<information_code *>(get_object(key));
 
 	if ( ic == NULL )
@@ -270,7 +258,7 @@ uint16 mnslp_response::get_object_type() const
  */
 uint8 mnslp_response::get_severity_class() const 
 {
-	ie_object_key key(information_code::OBJECT_TYPE, 0);
+	ie_object_key key(information_code::OBJECT_TYPE, 1);
 	information_code *ic = dynamic_cast<information_code *>(
 		get_object(key));
 
@@ -287,7 +275,7 @@ uint8 mnslp_response::get_severity_class() const
  */
 uint8 mnslp_response::get_response_code() const 
 {
-	ie_object_key key(information_code::OBJECT_TYPE, 0);
+	ie_object_key key(information_code::OBJECT_TYPE, 1);
 	information_code *ic = dynamic_cast<information_code *>(
 		get_object(key));
 
@@ -305,7 +293,7 @@ uint8 mnslp_response::get_response_code() const
  */
 uint16 mnslp_response::get_response_object_type() const 
 {
-	ie_object_key key(information_code::OBJECT_TYPE, 0);
+	ie_object_key key(information_code::OBJECT_TYPE, 1);
 	information_code *ic = dynamic_cast<information_code *>(
 		get_object(key));
 
@@ -322,7 +310,7 @@ uint16 mnslp_response::get_response_object_type() const
  */
 uint32 mnslp_response::get_msg_sequence_number() const 
 {
-	ie_object_key key(msg_sequence_number::OBJECT_TYPE, 0);
+	ie_object_key key(msg_sequence_number::OBJECT_TYPE, 1);
 	msg_sequence_number *msn = dynamic_cast<msg_sequence_number *>(
 		get_object(key));
 
@@ -339,7 +327,7 @@ uint32 mnslp_response::get_msg_sequence_number() const
  */
 bool mnslp_response::is_success() const 
 {
-	ie_object_key key(information_code::OBJECT_TYPE, 0);
+	ie_object_key key(information_code::OBJECT_TYPE, 1);
 	information_code *io = dynamic_cast<information_code *>(
 		get_object(key));
 

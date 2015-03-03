@@ -44,7 +44,7 @@ PRE_UNINSTALL = :
 POST_UNINSTALL = :
 DIST_COMMON = $(include_HEADERS) $(srcdir)/../../Makefile.inc \
 	$(srcdir)/Makefile.am $(srcdir)/Makefile.in
-bin_PROGRAMS = mnslp$(EXEEXT)
+bin_PROGRAMS = mnslpd$(EXEEXT) test_client$(EXEEXT)
 subdir = src
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
 am__aclocal_m4_deps = $(top_srcdir)/configure.ac
@@ -114,14 +114,20 @@ am__objects_1 = libmnslp_a-benchmark_journal.$(OBJEXT) \
 am_libmnslp_a_OBJECTS = $(am__objects_1)
 libmnslp_a_OBJECTS = $(am_libmnslp_a_OBJECTS)
 PROGRAMS = $(bin_PROGRAMS)
-am_mnslp_OBJECTS = mnslp-mnslp_daemon.$(OBJEXT) mnslp-main.$(OBJEXT)
-mnslp_OBJECTS = $(am_mnslp_OBJECTS)
+am_mnslpd_OBJECTS = mnslpd-mnslp_daemon.$(OBJEXT) \
+	mnslpd-main.$(OBJEXT)
+mnslpd_OBJECTS = $(am_mnslpd_OBJECTS)
 am__DEPENDENCIES_1 = $(QSPEC_LIBDIR)
 am__DEPENDENCIES_2 = $(NTLP_LIBDIR)
 am__DEPENDENCIES_3 = $(PROTLIB_LIBDIR)
 am__DEPENDENCIES_4 = $(FQUEUE_LIBDIR)
 am__DEPENDENCIES_5 =
-mnslp_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2) \
+mnslpd_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2) \
+	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_4) \
+	$(am__DEPENDENCIES_5)
+am_test_client_OBJECTS = test_client-test_client.$(OBJEXT)
+test_client_OBJECTS = $(am_test_client_OBJECTS)
+test_client_DEPENDENCIES = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2) \
 	$(am__DEPENDENCIES_3) $(am__DEPENDENCIES_4) \
 	$(am__DEPENDENCIES_5)
 DEFAULT_INCLUDES = -I.@am__isrc@
@@ -133,8 +139,10 @@ CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 CXXLD = $(CXX)
 CXXLINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) \
 	-o $@
-SOURCES = $(libmnslp_a_SOURCES) $(mnslp_SOURCES)
-DIST_SOURCES = $(libmnslp_a_SOURCES) $(mnslp_SOURCES)
+SOURCES = $(libmnslp_a_SOURCES) $(mnslpd_SOURCES) \
+	$(test_client_SOURCES)
+DIST_SOURCES = $(libmnslp_a_SOURCES) $(mnslpd_SOURCES) \
+	$(test_client_SOURCES)
 HEADERS = $(include_HEADERS)
 ETAGS = etags
 CTAGS = ctags
@@ -305,7 +313,10 @@ MNSLPMSG_LIBDIR = msg
 libmnslp_a_CPPFLAGS = -I$(API_INC) -I$(MNSLP_INC) -I$(MNSLPMSG_INCDIR) \
 	-I$(NTLP_INC) -I$(PROTLIB_INC) -I$(FQUEUE_INC) @LIBXML_CFLAGS@ \
 	@CURL_CFLAGS@ @LIBXSLT_CFLAGS@ @LIBUUID_CFLAGS@ $(am__empty)
-mnslp_CPPFLAGS = -I$(API_INC) -I$(MNSLP_INC) -I$(MNSLPMSG_INCDIR) \
+mnslpd_CPPFLAGS = -I$(API_INC) -I$(MNSLP_INC) -I$(MNSLPMSG_INCDIR) \
+	-I$(NTLP_INC) -I$(PROTLIB_INC) -I$(FQUEUE_INC) @LIBXML_CFLAGS@ \
+	@CURL_CFLAGS@ @LIBXSLT_CFLAGS@ @LIBUUID_CFLAGS@ $(am__empty)
+test_client_CPPFLAGS = -I$(API_INC) -I$(NATFW_INC) -I$(QSPEC_INC) \
 	-I$(NTLP_INC) -I$(PROTLIB_INC) -I$(FQUEUE_INC) @LIBXML_CFLAGS@ \
 	@CURL_CFLAGS@ @LIBXSLT_CFLAGS@ @LIBUUID_CFLAGS@ $(am__empty)
 MNSLP_SOURCEFILES = benchmark_journal.cpp gistka_mapper.cpp session_id.cpp \
@@ -321,12 +332,18 @@ MNSLP_SOURCEFILES = benchmark_journal.cpp gistka_mapper.cpp session_id.cpp \
   netmate_ipfix_policy_action_mapping.cpp
 
 libmnslp_a_SOURCES = $(MNSLP_SOURCEFILES)
-mnslp_SOURCES = mnslp_daemon.cpp main.cpp
+mnslpd_SOURCES = mnslp_daemon.cpp main.cpp
+test_client_SOURCES = test_client.cpp
 @USE_WITH_SCTP_TRUE@LD_SCTP_LIB = -lsctp
-mnslp_LDADD = -L. -l$(MNSLP_LLIB) -L$(MNSLP_MSG_LIBDIR) \
+mnslpd_LDADD = -L. -l$(MNSLP_LLIB) -L$(MNSLP_MSG_LIBDIR) \
 	-l$(MNSLPMSG_LLIB) $(LD_QSPEC_LIB) $(LD_NTLP_LIB) \
-	$(LD_PROTLIB_LIB) $(LD_FQUEUE_LIB) -lipq -lssl -lrt \
-	$(LD_SCTP_LIB) -lpthread -lxml2 @LIBXML_LIBS@ @CURL_LIBS@ \
+	$(LD_PROTLIB_LIB) $(LD_FQUEUE_LIB) -lnetfilter_queue -lssl \
+	-lrt $(LD_SCTP_LIB) -lpthread -lxml2 @LIBXML_LIBS@ @CURL_LIBS@ \
+	@LIBXSLT_LIBS@ @LIBUUID_LIBS@ $(am__empty)
+test_client_LDADD = -L. -l$(MNSLP_LLIB) -L$(MNSLP_MSG_LIBDIR) \
+	-l$(MNSLPMSG_LLIB) $(LD_QSPEC_LIB) $(LD_NTLP_LIB) \
+	$(LD_PROTLIB_LIB) $(LD_FQUEUE_LIB) -lnetfilter_queue -lssl \
+	-lrt $(LD_SCTP_LIB) -lpthread -lxml2 @LIBXML_LIBS@ @CURL_LIBS@ \
 	@LIBXSLT_LIBS@ @LIBUUID_LIBS@ $(am__empty)
 include_HEADERS = $(INC_DIR)/session_id.h \
 	        	$(MNSLPMSG_INCDIR)/msg_sequence_number.h $(MNSLPMSG_INCDIR)/mnslp_ie.h $(MNSLPMSG_INCDIR)/mnslp_object.h \
@@ -443,9 +460,12 @@ uninstall-binPROGRAMS:
 
 clean-binPROGRAMS:
 	-test -z "$(bin_PROGRAMS)" || rm -f $(bin_PROGRAMS)
-mnslp$(EXEEXT): $(mnslp_OBJECTS) $(mnslp_DEPENDENCIES) $(EXTRA_mnslp_DEPENDENCIES) 
-	@rm -f mnslp$(EXEEXT)
-	$(CXXLINK) $(mnslp_OBJECTS) $(mnslp_LDADD) $(LIBS)
+mnslpd$(EXEEXT): $(mnslpd_OBJECTS) $(mnslpd_DEPENDENCIES) $(EXTRA_mnslpd_DEPENDENCIES) 
+	@rm -f mnslpd$(EXEEXT)
+	$(CXXLINK) $(mnslpd_OBJECTS) $(mnslpd_LDADD) $(LIBS)
+test_client$(EXEEXT): $(test_client_OBJECTS) $(test_client_DEPENDENCIES) $(EXTRA_test_client_DEPENDENCIES) 
+	@rm -f test_client$(EXEEXT)
+	$(CXXLINK) $(test_client_OBJECTS) $(test_client_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -478,8 +498,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-session.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-session_id.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/libmnslp_a-session_manager.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mnslp-main.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mnslp-mnslp_daemon.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mnslpd-main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/mnslpd-mnslp_daemon.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/test_client-test_client.Po@am__quote@
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
@@ -845,33 +866,47 @@ libmnslp_a-netmate_ipfix_policy_action_mapping.obj: netmate_ipfix_policy_action_
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libmnslp_a_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o libmnslp_a-netmate_ipfix_policy_action_mapping.obj `if test -f 'netmate_ipfix_policy_action_mapping.cpp'; then $(CYGPATH_W) 'netmate_ipfix_policy_action_mapping.cpp'; else $(CYGPATH_W) '$(srcdir)/netmate_ipfix_policy_action_mapping.cpp'; fi`
 
-mnslp-mnslp_daemon.o: mnslp_daemon.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslp_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT mnslp-mnslp_daemon.o -MD -MP -MF $(DEPDIR)/mnslp-mnslp_daemon.Tpo -c -o mnslp-mnslp_daemon.o `test -f 'mnslp_daemon.cpp' || echo '$(srcdir)/'`mnslp_daemon.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/mnslp-mnslp_daemon.Tpo $(DEPDIR)/mnslp-mnslp_daemon.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='mnslp_daemon.cpp' object='mnslp-mnslp_daemon.o' libtool=no @AMDEPBACKSLASH@
+mnslpd-mnslp_daemon.o: mnslp_daemon.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslpd_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT mnslpd-mnslp_daemon.o -MD -MP -MF $(DEPDIR)/mnslpd-mnslp_daemon.Tpo -c -o mnslpd-mnslp_daemon.o `test -f 'mnslp_daemon.cpp' || echo '$(srcdir)/'`mnslp_daemon.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/mnslpd-mnslp_daemon.Tpo $(DEPDIR)/mnslpd-mnslp_daemon.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='mnslp_daemon.cpp' object='mnslpd-mnslp_daemon.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslp_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o mnslp-mnslp_daemon.o `test -f 'mnslp_daemon.cpp' || echo '$(srcdir)/'`mnslp_daemon.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslpd_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o mnslpd-mnslp_daemon.o `test -f 'mnslp_daemon.cpp' || echo '$(srcdir)/'`mnslp_daemon.cpp
 
-mnslp-mnslp_daemon.obj: mnslp_daemon.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslp_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT mnslp-mnslp_daemon.obj -MD -MP -MF $(DEPDIR)/mnslp-mnslp_daemon.Tpo -c -o mnslp-mnslp_daemon.obj `if test -f 'mnslp_daemon.cpp'; then $(CYGPATH_W) 'mnslp_daemon.cpp'; else $(CYGPATH_W) '$(srcdir)/mnslp_daemon.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/mnslp-mnslp_daemon.Tpo $(DEPDIR)/mnslp-mnslp_daemon.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='mnslp_daemon.cpp' object='mnslp-mnslp_daemon.obj' libtool=no @AMDEPBACKSLASH@
+mnslpd-mnslp_daemon.obj: mnslp_daemon.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslpd_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT mnslpd-mnslp_daemon.obj -MD -MP -MF $(DEPDIR)/mnslpd-mnslp_daemon.Tpo -c -o mnslpd-mnslp_daemon.obj `if test -f 'mnslp_daemon.cpp'; then $(CYGPATH_W) 'mnslp_daemon.cpp'; else $(CYGPATH_W) '$(srcdir)/mnslp_daemon.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/mnslpd-mnslp_daemon.Tpo $(DEPDIR)/mnslpd-mnslp_daemon.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='mnslp_daemon.cpp' object='mnslpd-mnslp_daemon.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslp_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o mnslp-mnslp_daemon.obj `if test -f 'mnslp_daemon.cpp'; then $(CYGPATH_W) 'mnslp_daemon.cpp'; else $(CYGPATH_W) '$(srcdir)/mnslp_daemon.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslpd_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o mnslpd-mnslp_daemon.obj `if test -f 'mnslp_daemon.cpp'; then $(CYGPATH_W) 'mnslp_daemon.cpp'; else $(CYGPATH_W) '$(srcdir)/mnslp_daemon.cpp'; fi`
 
-mnslp-main.o: main.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslp_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT mnslp-main.o -MD -MP -MF $(DEPDIR)/mnslp-main.Tpo -c -o mnslp-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/mnslp-main.Tpo $(DEPDIR)/mnslp-main.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='main.cpp' object='mnslp-main.o' libtool=no @AMDEPBACKSLASH@
+mnslpd-main.o: main.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslpd_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT mnslpd-main.o -MD -MP -MF $(DEPDIR)/mnslpd-main.Tpo -c -o mnslpd-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/mnslpd-main.Tpo $(DEPDIR)/mnslpd-main.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='main.cpp' object='mnslpd-main.o' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslp_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o mnslp-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslpd_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o mnslpd-main.o `test -f 'main.cpp' || echo '$(srcdir)/'`main.cpp
 
-mnslp-main.obj: main.cpp
-@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslp_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT mnslp-main.obj -MD -MP -MF $(DEPDIR)/mnslp-main.Tpo -c -o mnslp-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
-@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/mnslp-main.Tpo $(DEPDIR)/mnslp-main.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='main.cpp' object='mnslp-main.obj' libtool=no @AMDEPBACKSLASH@
+mnslpd-main.obj: main.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslpd_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT mnslpd-main.obj -MD -MP -MF $(DEPDIR)/mnslpd-main.Tpo -c -o mnslpd-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/mnslpd-main.Tpo $(DEPDIR)/mnslpd-main.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='main.cpp' object='mnslpd-main.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslp_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o mnslp-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(mnslpd_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o mnslpd-main.obj `if test -f 'main.cpp'; then $(CYGPATH_W) 'main.cpp'; else $(CYGPATH_W) '$(srcdir)/main.cpp'; fi`
+
+test_client-test_client.o: test_client.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_client_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_client-test_client.o -MD -MP -MF $(DEPDIR)/test_client-test_client.Tpo -c -o test_client-test_client.o `test -f 'test_client.cpp' || echo '$(srcdir)/'`test_client.cpp
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/test_client-test_client.Tpo $(DEPDIR)/test_client-test_client.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='test_client.cpp' object='test_client-test_client.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_client_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_client-test_client.o `test -f 'test_client.cpp' || echo '$(srcdir)/'`test_client.cpp
+
+test_client-test_client.obj: test_client.cpp
+@am__fastdepCXX_TRUE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_client_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT test_client-test_client.obj -MD -MP -MF $(DEPDIR)/test_client-test_client.Tpo -c -o test_client-test_client.obj `if test -f 'test_client.cpp'; then $(CYGPATH_W) 'test_client.cpp'; else $(CYGPATH_W) '$(srcdir)/test_client.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(am__mv) $(DEPDIR)/test_client-test_client.Tpo $(DEPDIR)/test_client-test_client.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	source='test_client.cpp' object='test_client-test_client.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(test_client_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o test_client-test_client.obj `if test -f 'test_client.cpp'; then $(CYGPATH_W) 'test_client.cpp'; else $(CYGPATH_W) '$(srcdir)/test_client.cpp'; fi`
 install-includeHEADERS: $(include_HEADERS)
 	@$(NORMAL_INSTALL)
 	test -z "$(includedir)" || $(MKDIR_P) "$(DESTDIR)$(includedir)"

@@ -157,10 +157,11 @@ class mnslp_ipfix_message : public mnslp_mspec_object
 	   msnlp_ipfix_field_container 			g_ipfix_fields;				///< Collection of fields that can be exchanged
 	   time_t             					g_tstart;					///< datetime when the message starts for processing
 	   uint16_t           					g_lasttid;                  ///< last sequence id givem
-	   std::vector<mnslp_ipfix_data_record> data_list; 				///< List of data record asociated with the message
+	   std::vector<mnslp_ipfix_data_record> data_list; 					///< List of data record asociated with the message
 	   bool                             	encode_network;				///< convert to network encoding 
-	   size_t 							    serialized_size;
-	   static const char *const ie_name;
+	   static const char *const 			ie_name;
+	   bool 								require_output;				/// Control in the messsage has changed since the last
+																		/// output execution.
 	   
 	
    protected:
@@ -235,11 +236,13 @@ class mnslp_ipfix_message : public mnslp_mspec_object
 	    * 		 buf2  	- character string to read
 	    * 		 buflen - Number of characters to read
 	    * 		 nread 	- Number of read characters ( output).
+	    * 		 isscopefield - The field to read is scope field.
 	    */
 	   void read_field(mnslp_ipfix_template *templ, 
 					   const uint8_t  *buf2, 
 					   size_t   buflen, 
-					   size_t   *nread);
+					   size_t   *nread,
+					   bool 	 isscopefield);
 
 	   /**
 	    * parse and read a record set  from characters in buf.
@@ -260,7 +263,15 @@ class mnslp_ipfix_message : public mnslp_mspec_object
 	    * @return number of read characters 
 	    */
 	   int mnslp_ipfix_import(uchar *buffer, size_t message_length );
-	   
+
+
+	   /**
+	    * Export the message to the internal buffer. Only export the data associated 
+	    * with the template given as parameter
+	    *  @param templid 		- Template Id.
+	    */
+	   void output_set( uint16_t templid );
+
 	   	   
    public:	
 
@@ -360,7 +371,6 @@ class mnslp_ipfix_message : public mnslp_mspec_object
 	    */
 	   virtual void serialize_body(NetMsg &msg) const;
 	   
-	   
 	   /*
 	    * New Methods
 	    */ 
@@ -455,14 +465,13 @@ class mnslp_ipfix_message : public mnslp_mspec_object
 	    */
 	   void include_data( uint16_t templid, 
 						  mnslp_ipfix_data_record &data );
-	   
+
 	   /**
-	    * Export the message into an internal buffer. It only exports data associated
-	    * with the template given as parameter.
-	    * @param templ 	- Pointer to the template
+	    * Export the message to the internal buffer. This function must be
+	    * executed before associating the message as an spec object.
 	    */
-	   void output( uint16_t templid );
-					
+	   void output(void);	   
+	   					
 	   /**
 	    * Get the internal buffer that was exported
 	    */

@@ -139,7 +139,7 @@ uint8 mnslp_msg::extract_msg_type(uint32 header_raw) throw () {
  */
 uint32 mnslp_msg::get_msg_sequence_number() const {
 	
-	ie_object_key key(msg_sequence_number::OBJECT_TYPE,0);
+	ie_object_key key(msg_sequence_number::OBJECT_TYPE, 1);
 	
 	msg_sequence_number *msn = dynamic_cast<msg_sequence_number *>(
 		get_object(key));
@@ -157,7 +157,7 @@ uint32 mnslp_msg::get_msg_sequence_number() const {
  */
 bool mnslp_msg::has_msg_sequence_number() const {
 	
-	ie_object_key key(msg_sequence_number::OBJECT_TYPE,0);
+	ie_object_key key(msg_sequence_number::OBJECT_TYPE, 1);
 	msg_sequence_number *msn = dynamic_cast<msg_sequence_number *>(
 		get_object(key));
 
@@ -220,7 +220,6 @@ mnslp_msg *mnslp_msg::deserialize(NetMsg &msg, coding_t coding,
 
 		// Deserializing failed.
 		if ( ie == NULL ){
-			std::cout << "Deserialized failed ********************" << std::endl; 
 			return NULL;
 		}
 
@@ -242,11 +241,11 @@ mnslp_msg *mnslp_msg::deserialize(NetMsg &msg, coding_t coding,
 		// test for duplicate object, other than metering messages.
 		if (obj->is_unique())
 		{			
-			ie_object_key key(obj->get_object_type(),0);
+			ie_object_key key(obj->get_object_type(),1);
 			if ( get_object( key ) != NULL ) {
 				catch_bad_alloc( errorlist.put(
 					new PDUSyntaxError(coding, get_category(),
-						obj->get_object_type(), 0,
+						obj->get_object_type(), 1,
 						saved_pos, "Duplicate object")) );
 
 				if ( ! skip )
@@ -306,7 +305,6 @@ void mnslp_msg::serialize(NetMsg &msg, coding_t coding,
 	 */
 	 
 	uint32 header_raw = (get_msg_type() << 24);
-    
 	try {
 		msg.encode32(header_raw);
 		bytes_written += 4;
@@ -314,7 +312,6 @@ void mnslp_msg::serialize(NetMsg &msg, coding_t coding,
 	catch (NetMsgError) {
 		throw IEMsgTooShort(coding, get_category(), msg.get_pos());
 	}
-
 	// this would be an implementation error
 	if ( bytes_written != msg.get_pos() - start_pos )
 		Log(ERROR_LOG, LOG_CRIT, "mnslp_msg",
@@ -467,17 +464,13 @@ mnslp_object *mnslp_msg::get_object(ie_object_key &object_type) const {
 void mnslp_msg::set_object(mnslp_object *obj) {
 	
 	if (obj-> is_unique()){
-		ie_object_key key(obj->get_object_type() , 0);
+		ie_object_key key(obj->get_object_type() , 1);
 		objects.set(key, obj);
 	}
-	else
-	{
+	else{
 		
 		uint32 sequence = objects.getMaxSequence(obj->get_object_type());
-		if (sequence == -1)
-			sequence = 0;
-		else
-			sequence = sequence + 1;
+		sequence = sequence + 1;
 
 		ie_object_key key(obj->get_object_type() , sequence);
 		objects.set(key, obj);

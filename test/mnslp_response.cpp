@@ -205,8 +205,7 @@ void MnslpResponseTest::testManager02() {
 	data2.insert_field(0, IPFIX_FT_OCTETDELTACOUNT, fvalue2a);
 	data2.insert_field(0, IPFIX_FT_PACKETDELTACOUNT, fvalue3a);
 	mess->include_data(templatedataid, data2);
-	mess->output(templatedataid);
-
+	mess->output();
 
     /* 
      * Builds the refresh message without any ipfix message.

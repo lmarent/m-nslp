@@ -106,7 +106,7 @@ void mnslp_options::serialize(NetMsg &msg, coding_t coding,
 	/*
 	 * Write the body: Serialize each object.
 	 */
-	ie_object_key key_msn(msg_sequence_number::OBJECT_TYPE, 0);
+	ie_object_key key_msn(msg_sequence_number::OBJECT_TYPE, 1);
 	bytes_written += serialize_object(key_msn, msg, coding);
 	
 	// this would be an implementation error
@@ -138,7 +138,7 @@ bool mnslp_options::check() const {
 		return false;
 
 	// Verifies that information code exists.
-	ie_object_key key_msn(msg_sequence_number::OBJECT_TYPE, 0);
+	ie_object_key key_msn(msg_sequence_number::OBJECT_TYPE, 1);
 	mnslp_object *obj= get_object(key_msn);
 	if (obj == NULL)
 		return false;
@@ -169,7 +169,7 @@ void mnslp_options::set_msg_sequence_number(uint32 msn) {
  */
 uint32 mnslp_options::get_msg_sequence_number() const {
 	
-	ie_object_key key(msg_sequence_number::OBJECT_TYPE,0);
+	ie_object_key key(msg_sequence_number::OBJECT_TYPE,1);
 	msg_sequence_number *msn = dynamic_cast<msg_sequence_number *>(
 		get_object(key));
 

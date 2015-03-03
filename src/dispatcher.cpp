@@ -346,17 +346,22 @@ bool dispatcher::check(const msg::mnslp_mspec_object *object) {
 		
 	assert( rule_installer != NULL );
 	
-	if ( object != NULL )
-		LogDebug("Checking mspec object " << *object);
+	if (config->is_ms_meter())
+	{	
+		if ( object != NULL )
+			LogDebug("Checking mspec object " << *object);
 	
-	try {
-		rule_installer->check(object);
-		return true;
+		try 
+		{
+			rule_installer->check(object);
+			return true;
+		}
+		catch (policy_rule_installer_error &e){
+			return false;
+		}
 	}
-	catch (policy_rule_installer_error &e){
+	else
 		return false;
-	}
-
 }
 
 bool dispatcher::is_authorized(const msg_event *evt) const throw () {
