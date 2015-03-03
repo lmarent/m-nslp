@@ -44,12 +44,12 @@ using namespace protlib::log;
 using protlib::uint32;
 
 
-#define LogError(msg) ERRLog("mnslp_session", msg)
-#define LogWarn(msg) WLog("mnslp_session", msg)
-#define LogInfo(msg) ILog("mnslp_session", msg)
-#define LogDebug(msg) DLog("mnslp_session", msg)
+#define LogError(msg) ERRLog("nf_session", msg)
+#define LogWarn(msg) WLog("nf_session", msg)
+#define LogInfo(msg) ILog("nf_session", msg)
+#define LogDebug(msg) DLog("nf_session", msg)
 
-#define LogUnimp(msg) Log(ERROR_LOG, LOG_UNIMP, "mnslp_session", \
+#define LogUnimp(msg) Log(ERROR_LOG, LOG_UNIMP, "nf_session", \
 	msg << " at " << __FILE__ << ":" << __LINE__)
 
 
