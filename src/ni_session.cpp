@@ -118,10 +118,7 @@ uint32 ni_session::create_random_number() const
 
 std::ostream &mnslp::operator<<(std::ostream &out, const ni_session &s) 
 {
-	static const char *const names[] = { "CLOSE", "PENDING_FORWARD", 
-										 "PENDING_PARTICIPATING", 
-										 "METERING_FORWARD", 
-										 "METERING_PARTICIPATING" };
+	static const char *const names[] = { "CLOSE", "PENDING", "METERING" };
 
 	return out << "[ni_session: id=" << s.get_id()
 			   << ", state=" << names[s.get_state()] << "]";
@@ -316,7 +313,8 @@ ni_session::state_t ni_session::handle_state_close(dispatcher *d, event *evt)
 			delete(*it_objects);
 		}
 		missing_objects.clear();
-
+		
+		LogDebug("Ending state handle_state_close - New State PENDING ");
 		return STATE_PENDING;
 		
 	}
@@ -432,19 +430,17 @@ ni_session::state_t ni_session::handle_state_pending(
 			// Verify that every rule that passed the checking process could be installed.
 			if (result->get_number_mspec_objects() == rule->get_number_mspec_objects() )
 			{
-				std::cout << "Policy rules installed" 
-						  << result->get_number_mspec_objects() << std::endl;
 				// free the space allocated to the rule to be installed.
 				delete(rule);
 				// Assign the response as the rule installed.
 				rule = result;
 				set_configure_counter(0);
+				LogDebug("Ending state handle pending - New State METERING ");
 				return STATE_METERING;
 				  
 			}
 			else{
-				
-				std::cout << "Error installing the policy rule" << std::endl;
+				LogDebug("Error installing the policy rule ");
 				// teardown the session because an error occurs
 				set_lifetime(0);
 				set_last_configure_message(NULL);
@@ -469,7 +465,6 @@ ni_session::state_t ni_session::handle_state_pending(
 	 * Some other, unexpected event arrived.
 	 */
 	else {
-		std::cout << "discarding unexpected event" << std::endl;
 		LogInfo("discarding unexpected event " << *evt);
 		return STATE_PENDING; // no change
 	}
@@ -530,6 +525,7 @@ ni_session::state_t ni_session::handle_state_metering(
 			if (rule->get_number_rule_keys() > 0)
 				d->remove_policy_rules(rule);
 			
+			LogDebug("no response to our REFRESH message");
 			d->report_async_event("got no response to our REFRESH message");
 			return STATE_CLOSE;
 		}
@@ -545,13 +541,11 @@ ni_session::state_t ni_session::handle_state_metering(
 		set_last_refresh_message(NULL);
 
 		// Uninstall the previous rules.
-		std::cout << "Number of rules installed:" 
-				  << rule->get_number_rule_keys() << std::endl;
 		if (rule->get_number_rule_keys() > 0) 
 			d->remove_policy_rules(rule);
 
 		d->send_message( build_refresh_message() );
-
+		LogDebug("Ending state metering - api teardown");
 		return STATE_CLOSE;
 	}
 	/*

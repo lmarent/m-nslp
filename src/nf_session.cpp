@@ -109,10 +109,8 @@ nf_session::~nf_session()
 
 std::ostream &mnslp::operator<<(std::ostream &out, const nf_session &s) {
 	static const char *const names[] = { "CLOSE", 
-										 "PENDING_FORWARD", 
-										 "PENDING_PARTICIPATING", 
-										 "METERING_FORWARD", 
-										 "METERING_PARTICIPATING" };
+										 "PENDING", 
+										 "METERING" };
 
 	return out << "[nf_session: id=" << s.get_id()
 		<< ", state=" << names[s.get_state()] << "]";
@@ -344,7 +342,8 @@ nf_session::process_state_close(dispatcher *d, event *evt)
 			delete(*it_objects);
 		}
 		missing_objects.clear();
-				
+		
+		LogDebug( "Ending process State Close New state PENDING");		
 		return STATE_PENDING;
 	}	
 	catch ( policy_rule_installer_error &exc ) {
@@ -358,7 +357,6 @@ nf_session::process_state_close(dispatcher *d, event *evt)
 		return STATE_CLOSE;	
 	}
 	
-	LogDebug( "Ending process State Close");
 }
 
 
@@ -418,7 +416,6 @@ nf_session::handle_state_close(dispatcher *d, event *evt)
 
 	}
 	
-	LogDebug("End handle_state_close(): " << *this);
 }
 
 /*
@@ -610,9 +607,7 @@ nf_session::state_t nf_session::handle_state_metering(
 	 */
 	if ( is_mnslp_refresh(evt) ) 
 	{
-		
-		std::cout << "In refresh message " << std::endl;
-		
+				
 		msg_event *e = dynamic_cast<msg_event *>(evt);
 		ntlp_msg *msg = e->get_ntlp_msg();
 		mnslp_refresh *refresh = e->get_refresh();
@@ -662,7 +657,7 @@ nf_session::state_t nf_session::handle_state_metering(
 			return STATE_METERING; // no change
 		}
 		else {	// lifetime == 0
-			LogDebug("forwarder session refreshed.");
+			LogDebug("forwarder session refreshed lifetime 0.");
 			
 			response_timer.stop();
 			
@@ -690,8 +685,6 @@ nf_session::state_t nf_session::handle_state_metering(
 	else if ( ( is_no_next_node_found_event(evt) || 
 	            is_timer(evt, response_timer) ) ) {
 		LogWarn("downstream peer did not respond");
-
-		std::cout << "In no next node " << std::endl;
 		
 		state_timer.stop();
 		
@@ -713,11 +706,8 @@ nf_session::state_t nf_session::handle_state_metering(
 	 * Upstream peer didn't send a refresh in time.
 	 */
 	else if ( is_timer(evt, state_timer) ) 
-	{
-		std::cout << "In is timer " << std::endl;
-		
+	{		
 		LogWarn("session timed out");
-		std::cout << "session timed out" << std::endl;
 		response_timer.stop();
 
 		// Uninstall the previous rules.
@@ -738,15 +728,11 @@ nf_session::state_t nf_session::handle_state_metering(
 		msg_event *e = dynamic_cast<msg_event *>(evt);
 		ntlp_msg *msg = e->get_ntlp_msg();
 		mnslp_response *response = e->get_response();
-
-		std::cout << "In response " << std::endl;
 		
 		// Discard if this is not a RESPONSE to our original CREATE.
 		mnslp_refresh *c = get_last_refresh_message()->get_mnslp_refresh();
 		if ( ! response->is_response_to(c) ) 
-		{
-			std::cout << "In response not match" << std::endl;
-			
+		{			
 			LogWarn("RESPONSE doesn't match REFRESH, discarding");
 			return STATE_METERING;	// no change
 		}
@@ -754,12 +740,10 @@ nf_session::state_t nf_session::handle_state_metering(
 		
 		if ( response->is_success() ) {
 			
-			std::cout << "Success" << std::endl;
 			LogDebug("upstream peer sent successful response.");
 			d->send_message( create_msg_for_ni(msg) );
 			if ( get_lifetime() == 0 )
 			{
-				std::cout << "uninstalling policy rules" << std::endl;
 				state_timer.stop();	
 				// Uninstall the previous rules.
 				if (rule->get_number_rule_keys() > 0)
@@ -768,7 +752,6 @@ nf_session::state_t nf_session::handle_state_metering(
 			}
 			else
 			{
-				std::cout << "continue" << std::endl;
 				state_timer.start(d, get_lifetime());
 				return STATE_METERING; // no change
 			}

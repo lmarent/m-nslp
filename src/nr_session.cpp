@@ -132,6 +132,9 @@ nr_session::save_mt_policy_rule(dispatcher *d,
 {
 	
 	using ntlp::mri_pathcoupled;
+
+	LogDebug("Starting save_mt_policy_rule ");
+
 	std::vector<msg::mnslp_mspec_object *> objects;
 
 	assert( evt != NULL );
@@ -185,6 +188,8 @@ nr_session::state_t
 nr_session::handle_state_close(dispatcher *d, event *evt) 
 {
 	using namespace msg;
+
+	LogDebug("Starting handle_state_close ");
 
 	/*
 	 * A msg_event arrived which contains a MNSLP configure message.
@@ -279,6 +284,7 @@ nr_session::handle_state_close(dispatcher *d, event *evt)
 nr_session::state_t nr_session::handle_state_metering(
 		dispatcher *d, event *evt) 
 {
+	LogDebug("Starting handle_state_metering ");
 
 	/*
 	 * A msg_event arrived which contains a MNSLP REFRESH message.
