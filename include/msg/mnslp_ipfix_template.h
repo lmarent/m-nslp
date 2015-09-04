@@ -74,6 +74,10 @@ typedef struct
     mnslp_ipfix_field   	elem;
 } ipfix_template_field_t;
 
+typedef vector<ipap_template_field_t> 			templateFieldList_t;
+typedef vector<ipap_template_field_t>::iterator 	templateFieldIterList_t;
+typedef vector<ipap_template_field_t>::const_iterator 	templateFieldConstIterList_t;
+
 /**
  * \class mnslp_ipfix_template
  *
