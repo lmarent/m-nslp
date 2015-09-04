@@ -41,8 +41,27 @@ tsend(0)
 	type = rhs.type;
 	tid = rhs.tid;
 	maxfields = rhs.maxfields;
-	datafields = rhs.datafields;
-	scopefields = rhs.scopefields;
+
+	templateFieldConstIterList_t it;
+	for( it = rhs.datafields.begin(); it != rhs.datafields.end(); ++it)
+	{
+		ipap_template_field_t ftmp;
+		ftmp.flength = it->flength;
+		ftmp.unknown_f = it->unknown_f;
+		ftmp.relay_f = it->relay_f;
+		ftmp.elem = it->elem;
+		datafields.push_back(ftmp);
+	}	
+
+	for( it = rhs.scopefields.begin(); it != rhs.scopefields.end(); ++it)
+	{
+		ipap_template_field_t ftmp;
+		ftmp.flength = it->flength;
+		ftmp.unknown_f = it->unknown_f;
+		ftmp.relay_f = it->relay_f;
+		ftmp.elem = it->elem;
+		scopefields.push_back(ftmp);
+	}
 }
 
 ipfix_template_field_t mnslp_ipfix_template::get_field(int i)
